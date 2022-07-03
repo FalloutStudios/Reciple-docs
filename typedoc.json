@@ -1,0 +1,20 @@
+{
+  "$schema": "https://typedoc.org/schema.json",
+  "entryPoints": [
+    "../src/index.ts"
+  ],
+  "entryPointStrategy": "Resolve",
+  "out": "docs",
+  "plugin": [
+    "typedoc-plugin-mdn-links",
+    "typedoc-plugin-djs-links"
+  ],
+  "theme": "default",
+  "tsconfig": "../tsconfig.json",
+  "name": "Reciple",
+  "json": "docs/docs.json",
+  "includeVersion": true,
+  "excludeExternals": true,
+  "hideGenerator": true,
+  "githubPages": true
+}
