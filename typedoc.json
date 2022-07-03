@@ -16,5 +16,6 @@
   "includeVersion": true,
   "excludeExternals": true,
   "hideGenerator": true,
+  "gitRemote": "https://github.com/FalloutStudios/Reciple",
   "githubPages": true
 }
