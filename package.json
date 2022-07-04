@@ -1,7 +1,7 @@
 {
   "scripts": {
     "build": "npx typedoc",
-    "update": "git add . && git commit -a -m \"Update docs\" && git pull -m \"Update docs locally\" && git push"
+    "update": "git add . && git commit -a -m \"Update docs\" && git pull && git push"
   },
   "devDependencies": {
     "typedoc": "0.22.18",
