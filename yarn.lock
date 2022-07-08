@@ -81,6 +81,13 @@ shiki@^0.10.1:
     vscode-oniguruma "^1.6.1"
     vscode-textmate "5.2.0"
 
+typedoc-plugin-discord-types@^1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/typedoc-plugin-discord-types/-/typedoc-plugin-discord-types-1.0.2.tgz#3063ccdddf55a271c7a6a4482106f78145c9b438"
+  integrity sha512-4zonNeTbUM0pQoMm51yQkXMeLZAroJtI4rYx51iiBY61sA/nCfikMISL4cmt0K8Q7JmAlq/bXSDEx7zbLDTu8w==
+  dependencies:
+    undici "^5.4.0"
+
 typedoc-plugin-djs-links@^1.2.0:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/typedoc-plugin-djs-links/-/typedoc-plugin-djs-links-1.2.0.tgz#b274741de96130c88dfd4d910afe80b5bb0b1a5b"
@@ -111,6 +118,11 @@ typescript@^4.7.4:
   version "4.7.4"
   resolved "https://registry.yarnpkg.com/typescript/-/typescript-4.7.4.tgz#1a88596d1cf47d59507a1bcdfb5b9dfe4d488235"
   integrity sha512-C0WQT0gezHuw6AdY1M2jxUO83Rjf0HP7Sk1DtXj6j1EwkQNZrHAg2XPWlq62oqEhYvONq5pkC2Y9oPljWToLmQ==
+
+undici@^5.4.0:
+  version "5.6.1"
+  resolved "https://registry.yarnpkg.com/undici/-/undici-5.6.1.tgz#7e5c56d15032d06738358dea433f98130e2a0561"
+  integrity sha512-yYVqywdCbNb99f/w045wqmv++WExXDjY0FEvLSB7QUZZH6izxrVkF4dJn1aimcvN0+WAhv75Gg7v6VJoqmRtJQ==
 
 vscode-oniguruma@^1.6.1:
   version "1.6.2"

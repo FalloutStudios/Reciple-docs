@@ -3,15 +3,17 @@
   "entryPoints": [
     "../src/index.ts"
   ],
-  "entryPointStrategy": "Resolve",
+  "entryPointStrategy": "resolve",
   "out": "docs",
   "plugin": [
     "typedoc-plugin-mdn-links",
-    "typedoc-plugin-djs-links"
+    "typedoc-plugin-djs-links",
+    "typedoc-plugin-discord-types"
   ],
   "theme": "default",
   "tsconfig": "../tsconfig.json",
   "name": "Reciple",
+  "cname": "reciple.js.org",
   "json": "docs/docs.json",
   "includeVersion": true,
   "excludeExternals": true,
