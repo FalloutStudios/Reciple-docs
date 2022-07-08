@@ -1,7 +1,7 @@
 {
   "scripts": {
     "watch": "npx typedoc --watch",
-    "build": "npx typedoc && cp includes/* docs",
+    "build": "npx typedoc && cp includes/** docs",
     "update": "git add . && git commit -a -m \"Update docs\" && git pull && git push"
   },
   "devDependencies": {
