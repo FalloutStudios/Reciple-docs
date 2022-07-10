@@ -1,34 +1,34 @@
 {
 	"id": 0,
-	"name": "Reciple - v1.7.0",
+	"name": "Reciple - v1.7.1-pre.0",
 	"kind": 1,
 	"kindString": "Project",
 	"flags": {},
 	"originalName": "Reciple",
 	"children": [
 		{
-			"id": 207,
+			"id": 213,
 			"name": "InteractionCommandBuilder",
 			"kind": 128,
 			"kindString": "Class",
 			"flags": {},
 			"children": [
 				{
-					"id": 208,
+					"id": 214,
 					"name": "constructor",
 					"kind": 512,
 					"kindString": "Constructor",
 					"flags": {},
 					"signatures": [
 						{
-							"id": 209,
+							"id": 215,
 							"name": "new InteractionCommandBuilder",
 							"kind": 16384,
 							"kindString": "Constructor signature",
 							"flags": {},
 							"type": {
 								"type": "reference",
-								"id": 207,
+								"id": 213,
 								"name": "InteractionCommandBuilder"
 							},
 							"inheritedFrom": {
@@ -43,7 +43,7 @@
 					}
 				},
 				{
-					"id": 212,
+					"id": 218,
 					"name": "allowExecuteInDM",
 					"kind": 1024,
 					"kindString": "Property",
@@ -64,7 +64,7 @@
 					"defaultValue": "true"
 				},
 				{
-					"id": 210,
+					"id": 216,
 					"name": "builder",
 					"kind": 1024,
 					"kindString": "Property",
@@ -86,7 +86,7 @@
 					"defaultValue": "'INTERACTION_COMMAND'"
 				},
 				{
-					"id": 213,
+					"id": 219,
 					"name": "execute",
 					"kind": 1024,
 					"kindString": "Property",
@@ -103,28 +103,28 @@
 					"type": {
 						"type": "reflection",
 						"declaration": {
-							"id": 214,
+							"id": 220,
 							"name": "__type",
 							"kind": 65536,
 							"kindString": "Type literal",
 							"flags": {},
 							"signatures": [
 								{
-									"id": 215,
+									"id": 221,
 									"name": "__type",
 									"kind": 4096,
 									"kindString": "Call signature",
 									"flags": {},
 									"parameters": [
 										{
-											"id": 216,
+											"id": 222,
 											"name": "options",
 											"kind": 32768,
 											"kindString": "Parameter",
 											"flags": {},
 											"type": {
 												"type": "reference",
-												"id": 202,
+												"id": 208,
 												"name": "RecipleInteractionCommandExecute"
 											}
 										}
@@ -140,7 +140,7 @@
 					"defaultValue": "..."
 				},
 				{
-					"id": 211,
+					"id": 217,
 					"name": "requiredPermissions",
 					"kind": 1024,
 					"kindString": "Property",
@@ -177,7 +177,7 @@
 					"defaultValue": "[]"
 				},
 				{
-					"id": 220,
+					"id": 226,
 					"name": "setExecute",
 					"kind": 2048,
 					"kindString": "Method",
@@ -193,7 +193,7 @@
 					],
 					"signatures": [
 						{
-							"id": 221,
+							"id": 227,
 							"name": "setExecute",
 							"kind": 4096,
 							"kindString": "Call signature",
@@ -203,7 +203,7 @@
 							},
 							"parameters": [
 								{
-									"id": 222,
+									"id": 228,
 									"name": "execute",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -211,28 +211,28 @@
 									"type": {
 										"type": "reflection",
 										"declaration": {
-											"id": 223,
+											"id": 229,
 											"name": "__type",
 											"kind": 65536,
 											"kindString": "Type literal",
 											"flags": {},
 											"signatures": [
 												{
-													"id": 224,
+													"id": 230,
 													"name": "__type",
 													"kind": 4096,
 													"kindString": "Call signature",
 													"flags": {},
 													"parameters": [
 														{
-															"id": 225,
+															"id": 231,
 															"name": "options",
 															"kind": 32768,
 															"kindString": "Parameter",
 															"flags": {},
 															"type": {
 																"type": "reference",
-																"id": 202,
+																"id": 208,
 																"name": "RecipleInteractionCommandExecute"
 															}
 														}
@@ -249,14 +249,14 @@
 							],
 							"type": {
 								"type": "reference",
-								"id": 207,
+								"id": 213,
 								"name": "InteractionCommandBuilder"
 							}
 						}
 					]
 				},
 				{
-					"id": 217,
+					"id": 223,
 					"name": "setRequiredPermissions",
 					"kind": 2048,
 					"kindString": "Method",
@@ -272,7 +272,7 @@
 					],
 					"signatures": [
 						{
-							"id": 218,
+							"id": 224,
 							"name": "setRequiredPermissions",
 							"kind": 4096,
 							"kindString": "Call signature",
@@ -282,7 +282,7 @@
 							},
 							"parameters": [
 								{
-									"id": 219,
+									"id": 225,
 									"name": "requiredPermissions",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -300,7 +300,7 @@
 							],
 							"type": {
 								"type": "reference",
-								"id": 207,
+								"id": 213,
 								"name": "InteractionCommandBuilder"
 							}
 						}
@@ -312,25 +312,25 @@
 					"title": "Constructors",
 					"kind": 512,
 					"children": [
-						208
+						214
 					]
 				},
 				{
 					"title": "Properties",
 					"kind": 1024,
 					"children": [
-						212,
-						210,
-						213,
-						211
+						218,
+						216,
+						219,
+						217
 					]
 				},
 				{
 					"title": "Methods",
 					"kind": 2048,
 					"children": [
-						220,
-						217
+						226,
+						223
 					]
 				}
 			],
@@ -351,35 +351,35 @@
 			]
 		},
 		{
-			"id": 238,
+			"id": 244,
 			"name": "MessageCommandBuilder",
 			"kind": 128,
 			"kindString": "Class",
 			"flags": {},
 			"children": [
 				{
-					"id": 239,
+					"id": 245,
 					"name": "constructor",
 					"kind": 512,
 					"kindString": "Constructor",
 					"flags": {},
 					"signatures": [
 						{
-							"id": 240,
+							"id": 246,
 							"name": "new MessageCommandBuilder",
 							"kind": 16384,
 							"kindString": "Constructor signature",
 							"flags": {},
 							"type": {
 								"type": "reference",
-								"id": 238,
+								"id": 244,
 								"name": "MessageCommandBuilder"
 							}
 						}
 					]
 				},
 				{
-					"id": 244,
+					"id": 250,
 					"name": "aliases",
 					"kind": 1024,
 					"kindString": "Property",
@@ -403,7 +403,7 @@
 					"defaultValue": "[]"
 				},
 				{
-					"id": 249,
+					"id": 255,
 					"name": "allowExecuteByBots",
 					"kind": 1024,
 					"kindString": "Property",
@@ -424,7 +424,7 @@
 					"defaultValue": "false"
 				},
 				{
-					"id": 248,
+					"id": 254,
 					"name": "allowExecuteInDM",
 					"kind": 1024,
 					"kindString": "Property",
@@ -445,7 +445,7 @@
 					"defaultValue": "true"
 				},
 				{
-					"id": 241,
+					"id": 247,
 					"name": "builder",
 					"kind": 1024,
 					"kindString": "Property",
@@ -467,7 +467,7 @@
 					"defaultValue": "'MESSAGE_COMMAND'"
 				},
 				{
-					"id": 243,
+					"id": 249,
 					"name": "description",
 					"kind": 1024,
 					"kindString": "Property",
@@ -488,7 +488,7 @@
 					"defaultValue": "''"
 				},
 				{
-					"id": 250,
+					"id": 256,
 					"name": "execute",
 					"kind": 1024,
 					"kindString": "Property",
@@ -505,28 +505,28 @@
 					"type": {
 						"type": "reflection",
 						"declaration": {
-							"id": 251,
+							"id": 257,
 							"name": "__type",
 							"kind": 65536,
 							"kindString": "Type literal",
 							"flags": {},
 							"signatures": [
 								{
-									"id": 252,
+									"id": 258,
 									"name": "__type",
 									"kind": 4096,
 									"kindString": "Call signature",
 									"flags": {},
 									"parameters": [
 										{
-											"id": 253,
+											"id": 259,
 											"name": "options",
 											"kind": 32768,
 											"kindString": "Parameter",
 											"flags": {},
 											"type": {
 												"type": "reference",
-												"id": 226,
+												"id": 232,
 												"name": "RecipleMessageCommandExecute"
 											}
 										}
@@ -542,7 +542,7 @@
 					"defaultValue": "..."
 				},
 				{
-					"id": 242,
+					"id": 248,
 					"name": "name",
 					"kind": 1024,
 					"kindString": "Property",
@@ -563,7 +563,7 @@
 					"defaultValue": "''"
 				},
 				{
-					"id": 245,
+					"id": 251,
 					"name": "options",
 					"kind": 1024,
 					"kindString": "Property",
@@ -581,14 +581,14 @@
 						"type": "array",
 						"elementType": {
 							"type": "reference",
-							"id": 290,
+							"id": 296,
 							"name": "MessageCommandOptionBuilder"
 						}
 					},
 					"defaultValue": "[]"
 				},
 				{
-					"id": 247,
+					"id": 253,
 					"name": "requiredPermissions",
 					"kind": 1024,
 					"kindString": "Property",
@@ -625,7 +625,7 @@
 					"defaultValue": "[]"
 				},
 				{
-					"id": 246,
+					"id": 252,
 					"name": "validateOptions",
 					"kind": 1024,
 					"kindString": "Property",
@@ -646,7 +646,7 @@
 					"defaultValue": "false"
 				},
 				{
-					"id": 260,
+					"id": 266,
 					"name": "addAliases",
 					"kind": 2048,
 					"kindString": "Method",
@@ -662,7 +662,7 @@
 					],
 					"signatures": [
 						{
-							"id": 261,
+							"id": 267,
 							"name": "addAliases",
 							"kind": 4096,
 							"kindString": "Call signature",
@@ -672,7 +672,7 @@
 							},
 							"parameters": [
 								{
-									"id": 262,
+									"id": 268,
 									"name": "aliases",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -690,14 +690,14 @@
 							],
 							"type": {
 								"type": "reference",
-								"id": 238,
+								"id": 244,
 								"name": "MessageCommandBuilder"
 							}
 						}
 					]
 				},
 				{
-					"id": 278,
+					"id": 284,
 					"name": "addOption",
 					"kind": 2048,
 					"kindString": "Method",
@@ -713,7 +713,7 @@
 					],
 					"signatures": [
 						{
-							"id": 279,
+							"id": 285,
 							"name": "addOption",
 							"kind": 4096,
 							"kindString": "Call signature",
@@ -723,7 +723,7 @@
 							},
 							"parameters": [
 								{
-									"id": 280,
+									"id": 286,
 									"name": "option",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -733,41 +733,41 @@
 										"types": [
 											{
 												"type": "reference",
-												"id": 290,
+												"id": 296,
 												"name": "MessageCommandOptionBuilder"
 											},
 											{
 												"type": "reflection",
 												"declaration": {
-													"id": 281,
+													"id": 287,
 													"name": "__type",
 													"kind": 65536,
 													"kindString": "Type literal",
 													"flags": {},
 													"signatures": [
 														{
-															"id": 282,
+															"id": 288,
 															"name": "__type",
 															"kind": 4096,
 															"kindString": "Call signature",
 															"flags": {},
 															"parameters": [
 																{
-																	"id": 283,
+																	"id": 289,
 																	"name": "constructor",
 																	"kind": 32768,
 																	"kindString": "Parameter",
 																	"flags": {},
 																	"type": {
 																		"type": "reference",
-																		"id": 290,
+																		"id": 296,
 																		"name": "MessageCommandOptionBuilder"
 																	}
 																}
 															],
 															"type": {
 																"type": "reference",
-																"id": 290,
+																"id": 296,
 																"name": "MessageCommandOptionBuilder"
 															}
 														}
@@ -780,14 +780,14 @@
 							],
 							"type": {
 								"type": "reference",
-								"id": 238,
+								"id": 244,
 								"name": "MessageCommandBuilder"
 							}
 						}
 					]
 				},
 				{
-					"id": 287,
+					"id": 293,
 					"name": "getCommandOptionValues",
 					"kind": 2048,
 					"kindString": "Method",
@@ -803,7 +803,7 @@
 					],
 					"signatures": [
 						{
-							"id": 288,
+							"id": 294,
 							"name": "getCommandOptionValues",
 							"kind": 4096,
 							"kindString": "Call signature",
@@ -813,7 +813,7 @@
 							},
 							"parameters": [
 								{
-									"id": 289,
+									"id": 295,
 									"name": "options",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -830,7 +830,7 @@
 								"type": "array",
 								"elementType": {
 									"type": "reference",
-									"id": 232,
+									"id": 238,
 									"name": "MessageCommandValidatedOption"
 								}
 							}
@@ -838,7 +838,7 @@
 					]
 				},
 				{
-					"id": 269,
+					"id": 275,
 					"name": "setAllowExecuteByBots",
 					"kind": 2048,
 					"kindString": "Method",
@@ -854,7 +854,7 @@
 					],
 					"signatures": [
 						{
-							"id": 270,
+							"id": 276,
 							"name": "setAllowExecuteByBots",
 							"kind": 4096,
 							"kindString": "Call signature",
@@ -864,7 +864,7 @@
 							},
 							"parameters": [
 								{
-									"id": 271,
+									"id": 277,
 									"name": "allowExecuteByBots",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -877,14 +877,14 @@
 							],
 							"type": {
 								"type": "reference",
-								"id": 238,
+								"id": 244,
 								"name": "MessageCommandBuilder"
 							}
 						}
 					]
 				},
 				{
-					"id": 266,
+					"id": 272,
 					"name": "setAllowExecuteInDM",
 					"kind": 2048,
 					"kindString": "Method",
@@ -900,7 +900,7 @@
 					],
 					"signatures": [
 						{
-							"id": 267,
+							"id": 273,
 							"name": "setAllowExecuteInDM",
 							"kind": 4096,
 							"kindString": "Call signature",
@@ -910,7 +910,7 @@
 							},
 							"parameters": [
 								{
-									"id": 268,
+									"id": 274,
 									"name": "allowExecuteInDM",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -923,14 +923,14 @@
 							],
 							"type": {
 								"type": "reference",
-								"id": 238,
+								"id": 244,
 								"name": "MessageCommandBuilder"
 							}
 						}
 					]
 				},
 				{
-					"id": 257,
+					"id": 263,
 					"name": "setDescription",
 					"kind": 2048,
 					"kindString": "Method",
@@ -946,7 +946,7 @@
 					],
 					"signatures": [
 						{
-							"id": 258,
+							"id": 264,
 							"name": "setDescription",
 							"kind": 4096,
 							"kindString": "Call signature",
@@ -956,7 +956,7 @@
 							},
 							"parameters": [
 								{
-									"id": 259,
+									"id": 265,
 									"name": "description",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -969,14 +969,14 @@
 							],
 							"type": {
 								"type": "reference",
-								"id": 238,
+								"id": 244,
 								"name": "MessageCommandBuilder"
 							}
 						}
 					]
 				},
 				{
-					"id": 272,
+					"id": 278,
 					"name": "setExecute",
 					"kind": 2048,
 					"kindString": "Method",
@@ -992,7 +992,7 @@
 					],
 					"signatures": [
 						{
-							"id": 273,
+							"id": 279,
 							"name": "setExecute",
 							"kind": 4096,
 							"kindString": "Call signature",
@@ -1002,7 +1002,7 @@
 							},
 							"parameters": [
 								{
-									"id": 274,
+									"id": 280,
 									"name": "execute",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -1010,28 +1010,28 @@
 									"type": {
 										"type": "reflection",
 										"declaration": {
-											"id": 275,
+											"id": 281,
 											"name": "__type",
 											"kind": 65536,
 											"kindString": "Type literal",
 											"flags": {},
 											"signatures": [
 												{
-													"id": 276,
+													"id": 282,
 													"name": "__type",
 													"kind": 4096,
 													"kindString": "Call signature",
 													"flags": {},
 													"parameters": [
 														{
-															"id": 277,
+															"id": 283,
 															"name": "options",
 															"kind": 32768,
 															"kindString": "Parameter",
 															"flags": {},
 															"type": {
 																"type": "reference",
-																"id": 226,
+																"id": 232,
 																"name": "RecipleMessageCommandExecute"
 															}
 														}
@@ -1048,14 +1048,14 @@
 							],
 							"type": {
 								"type": "reference",
-								"id": 238,
+								"id": 244,
 								"name": "MessageCommandBuilder"
 							}
 						}
 					]
 				},
 				{
-					"id": 254,
+					"id": 260,
 					"name": "setName",
 					"kind": 2048,
 					"kindString": "Method",
@@ -1071,7 +1071,7 @@
 					],
 					"signatures": [
 						{
-							"id": 255,
+							"id": 261,
 							"name": "setName",
 							"kind": 4096,
 							"kindString": "Call signature",
@@ -1081,7 +1081,7 @@
 							},
 							"parameters": [
 								{
-									"id": 256,
+									"id": 262,
 									"name": "name",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -1094,14 +1094,14 @@
 							],
 							"type": {
 								"type": "reference",
-								"id": 238,
+								"id": 244,
 								"name": "MessageCommandBuilder"
 							}
 						}
 					]
 				},
 				{
-					"id": 263,
+					"id": 269,
 					"name": "setRequiredPermissions",
 					"kind": 2048,
 					"kindString": "Method",
@@ -1117,7 +1117,7 @@
 					],
 					"signatures": [
 						{
-							"id": 264,
+							"id": 270,
 							"name": "setRequiredPermissions",
 							"kind": 4096,
 							"kindString": "Call signature",
@@ -1127,7 +1127,7 @@
 							},
 							"parameters": [
 								{
-									"id": 265,
+									"id": 271,
 									"name": "permissions",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -1156,14 +1156,14 @@
 							],
 							"type": {
 								"type": "reference",
-								"id": 238,
+								"id": 244,
 								"name": "MessageCommandBuilder"
 							}
 						}
 					]
 				},
 				{
-					"id": 284,
+					"id": 290,
 					"name": "setValidateOptions",
 					"kind": 2048,
 					"kindString": "Method",
@@ -1179,7 +1179,7 @@
 					],
 					"signatures": [
 						{
-							"id": 285,
+							"id": 291,
 							"name": "setValidateOptions",
 							"kind": 4096,
 							"kindString": "Call signature",
@@ -1189,7 +1189,7 @@
 							},
 							"parameters": [
 								{
-									"id": 286,
+									"id": 292,
 									"name": "validateOptions",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -1202,7 +1202,7 @@
 							],
 							"type": {
 								"type": "reference",
-								"id": 238,
+								"id": 244,
 								"name": "MessageCommandBuilder"
 							}
 						}
@@ -1214,39 +1214,39 @@
 					"title": "Constructors",
 					"kind": 512,
 					"children": [
-						239
+						245
 					]
 				},
 				{
 					"title": "Properties",
 					"kind": 1024,
 					"children": [
-						244,
-						249,
-						248,
-						241,
-						243,
 						250,
-						242,
-						245,
+						255,
+						254,
 						247,
-						246
+						249,
+						256,
+						248,
+						251,
+						253,
+						252
 					]
 				},
 				{
 					"title": "Methods",
 					"kind": 2048,
 					"children": [
-						260,
-						278,
-						287,
-						269,
 						266,
-						257,
+						284,
+						293,
+						275,
 						272,
-						254,
 						263,
-						284
+						278,
+						260,
+						269,
+						290
 					]
 				}
 			],
@@ -1259,35 +1259,35 @@
 			]
 		},
 		{
-			"id": 290,
+			"id": 296,
 			"name": "MessageCommandOptionBuilder",
 			"kind": 128,
 			"kindString": "Class",
 			"flags": {},
 			"children": [
 				{
-					"id": 291,
+					"id": 297,
 					"name": "constructor",
 					"kind": 512,
 					"kindString": "Constructor",
 					"flags": {},
 					"signatures": [
 						{
-							"id": 292,
+							"id": 298,
 							"name": "new MessageCommandOptionBuilder",
 							"kind": 16384,
 							"kindString": "Constructor signature",
 							"flags": {},
 							"type": {
 								"type": "reference",
-								"id": 290,
+								"id": 296,
 								"name": "MessageCommandOptionBuilder"
 							}
 						}
 					]
 				},
 				{
-					"id": 294,
+					"id": 300,
 					"name": "description",
 					"kind": 1024,
 					"kindString": "Property",
@@ -1308,7 +1308,7 @@
 					"defaultValue": "''"
 				},
 				{
-					"id": 293,
+					"id": 299,
 					"name": "name",
 					"kind": 1024,
 					"kindString": "Property",
@@ -1329,7 +1329,7 @@
 					"defaultValue": "''"
 				},
 				{
-					"id": 295,
+					"id": 301,
 					"name": "required",
 					"kind": 1024,
 					"kindString": "Property",
@@ -1350,7 +1350,7 @@
 					"defaultValue": "false"
 				},
 				{
-					"id": 296,
+					"id": 302,
 					"name": "validator",
 					"kind": 1024,
 					"kindString": "Property",
@@ -1367,21 +1367,21 @@
 					"type": {
 						"type": "reflection",
 						"declaration": {
-							"id": 297,
+							"id": 303,
 							"name": "__type",
 							"kind": 65536,
 							"kindString": "Type literal",
 							"flags": {},
 							"signatures": [
 								{
-									"id": 298,
+									"id": 304,
 									"name": "__type",
 									"kind": 4096,
 									"kindString": "Call signature",
 									"flags": {},
 									"parameters": [
 										{
-											"id": 299,
+											"id": 305,
 											"name": "value",
 											"kind": 32768,
 											"kindString": "Parameter",
@@ -1403,7 +1403,7 @@
 					"defaultValue": "..."
 				},
 				{
-					"id": 303,
+					"id": 309,
 					"name": "setDescription",
 					"kind": 2048,
 					"kindString": "Method",
@@ -1419,7 +1419,7 @@
 					],
 					"signatures": [
 						{
-							"id": 304,
+							"id": 310,
 							"name": "setDescription",
 							"kind": 4096,
 							"kindString": "Call signature",
@@ -1429,7 +1429,7 @@
 							},
 							"parameters": [
 								{
-									"id": 305,
+									"id": 311,
 									"name": "description",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -1442,14 +1442,14 @@
 							],
 							"type": {
 								"type": "reference",
-								"id": 290,
+								"id": 296,
 								"name": "MessageCommandOptionBuilder"
 							}
 						}
 					]
 				},
 				{
-					"id": 300,
+					"id": 306,
 					"name": "setName",
 					"kind": 2048,
 					"kindString": "Method",
@@ -1465,7 +1465,7 @@
 					],
 					"signatures": [
 						{
-							"id": 301,
+							"id": 307,
 							"name": "setName",
 							"kind": 4096,
 							"kindString": "Call signature",
@@ -1475,7 +1475,7 @@
 							},
 							"parameters": [
 								{
-									"id": 302,
+									"id": 308,
 									"name": "name",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -1488,14 +1488,14 @@
 							],
 							"type": {
 								"type": "reference",
-								"id": 290,
+								"id": 296,
 								"name": "MessageCommandOptionBuilder"
 							}
 						}
 					]
 				},
 				{
-					"id": 306,
+					"id": 312,
 					"name": "setRequired",
 					"kind": 2048,
 					"kindString": "Method",
@@ -1511,7 +1511,7 @@
 					],
 					"signatures": [
 						{
-							"id": 307,
+							"id": 313,
 							"name": "setRequired",
 							"kind": 4096,
 							"kindString": "Call signature",
@@ -1521,7 +1521,7 @@
 							},
 							"parameters": [
 								{
-									"id": 308,
+									"id": 314,
 									"name": "required",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -1534,14 +1534,14 @@
 							],
 							"type": {
 								"type": "reference",
-								"id": 290,
+								"id": 296,
 								"name": "MessageCommandOptionBuilder"
 							}
 						}
 					]
 				},
 				{
-					"id": 309,
+					"id": 315,
 					"name": "setValidator",
 					"kind": 2048,
 					"kindString": "Method",
@@ -1557,7 +1557,7 @@
 					],
 					"signatures": [
 						{
-							"id": 310,
+							"id": 316,
 							"name": "setValidator",
 							"kind": 4096,
 							"kindString": "Call signature",
@@ -1567,7 +1567,7 @@
 							},
 							"parameters": [
 								{
-									"id": 311,
+									"id": 317,
 									"name": "validator",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -1575,21 +1575,21 @@
 									"type": {
 										"type": "reflection",
 										"declaration": {
-											"id": 312,
+											"id": 318,
 											"name": "__type",
 											"kind": 65536,
 											"kindString": "Type literal",
 											"flags": {},
 											"signatures": [
 												{
-													"id": 313,
+													"id": 319,
 													"name": "__type",
 													"kind": 4096,
 													"kindString": "Call signature",
 													"flags": {},
 													"parameters": [
 														{
-															"id": 314,
+															"id": 320,
 															"name": "value",
 															"kind": 32768,
 															"kindString": "Parameter",
@@ -1612,7 +1612,7 @@
 							],
 							"type": {
 								"type": "reference",
-								"id": 290,
+								"id": 296,
 								"name": "MessageCommandOptionBuilder"
 							}
 						}
@@ -1624,27 +1624,27 @@
 					"title": "Constructors",
 					"kind": 512,
 					"children": [
-						291
+						297
 					]
 				},
 				{
 					"title": "Properties",
 					"kind": 1024,
 					"children": [
-						294,
-						293,
-						295,
-						296
+						300,
+						299,
+						301,
+						302
 					]
 				},
 				{
 					"title": "Methods",
 					"kind": 2048,
 					"children": [
-						303,
-						300,
+						309,
 						306,
-						309
+						312,
+						315
 					]
 				}
 			],
@@ -1657,14 +1657,14 @@
 			]
 		},
 		{
-			"id": 315,
+			"id": 321,
 			"name": "MessageCommandOptions",
 			"kind": 128,
 			"kindString": "Class",
 			"flags": {},
 			"children": [
 				{
-					"id": 316,
+					"id": 322,
 					"name": "constructor",
 					"kind": 512,
 					"kindString": "Constructor",
@@ -1678,14 +1678,14 @@
 					],
 					"signatures": [
 						{
-							"id": 317,
+							"id": 323,
 							"name": "new MessageCommandOptions",
 							"kind": 16384,
 							"kindString": "Constructor signature",
 							"flags": {},
 							"parameters": [
 								{
-									"id": 318,
+									"id": 324,
 									"name": "options",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -1694,7 +1694,7 @@
 										"type": "array",
 										"elementType": {
 											"type": "reference",
-											"id": 232,
+											"id": 238,
 											"name": "MessageCommandValidatedOption"
 										}
 									}
@@ -1702,7 +1702,7 @@
 							],
 							"type": {
 								"type": "reference",
-								"id": 315,
+								"id": 321,
 								"name": "MessageCommandOptions"
 							},
 							"overwrites": {
@@ -1717,7 +1717,7 @@
 					}
 				},
 				{
-					"id": 319,
+					"id": 325,
 					"name": "get",
 					"kind": 2048,
 					"kindString": "Method",
@@ -1733,7 +1733,7 @@
 					],
 					"signatures": [
 						{
-							"id": 320,
+							"id": 326,
 							"name": "get",
 							"kind": 4096,
 							"kindString": "Call signature",
@@ -1743,7 +1743,7 @@
 							},
 							"parameters": [
 								{
-									"id": 321,
+									"id": 327,
 									"name": "name",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -1754,7 +1754,7 @@
 									}
 								},
 								{
-									"id": 322,
+									"id": 328,
 									"name": "requied",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -1767,19 +1767,19 @@
 							],
 							"type": {
 								"type": "reference",
-								"id": 232,
+								"id": 238,
 								"name": "MessageCommandValidatedOption"
 							}
 						},
 						{
-							"id": 323,
+							"id": 329,
 							"name": "get",
 							"kind": 4096,
 							"kindString": "Call signature",
 							"flags": {},
 							"parameters": [
 								{
-									"id": 324,
+									"id": 330,
 									"name": "name",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -1790,7 +1790,7 @@
 									}
 								},
 								{
-									"id": 325,
+									"id": 331,
 									"name": "requied",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -1812,7 +1812,7 @@
 									},
 									{
 										"type": "reference",
-										"id": 232,
+										"id": 238,
 										"name": "MessageCommandValidatedOption"
 									}
 								]
@@ -1821,7 +1821,7 @@
 					]
 				},
 				{
-					"id": 326,
+					"id": 332,
 					"name": "getValue",
 					"kind": 2048,
 					"kindString": "Method",
@@ -1837,7 +1837,7 @@
 					],
 					"signatures": [
 						{
-							"id": 327,
+							"id": 333,
 							"name": "getValue",
 							"kind": 4096,
 							"kindString": "Call signature",
@@ -1847,7 +1847,7 @@
 							},
 							"parameters": [
 								{
-									"id": 328,
+									"id": 334,
 									"name": "name",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -1858,7 +1858,7 @@
 									}
 								},
 								{
-									"id": 329,
+									"id": 335,
 									"name": "requied",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -1875,14 +1875,14 @@
 							}
 						},
 						{
-							"id": 330,
+							"id": 336,
 							"name": "getValue",
 							"kind": 4096,
 							"kindString": "Call signature",
 							"flags": {},
 							"parameters": [
 								{
-									"id": 331,
+									"id": 337,
 									"name": "name",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -1893,7 +1893,7 @@
 									}
 								},
 								{
-									"id": 332,
+									"id": 338,
 									"name": "requied",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -1928,15 +1928,15 @@
 					"title": "Constructors",
 					"kind": 512,
 					"children": [
-						316
+						322
 					]
 				},
 				{
 					"title": "Methods",
 					"kind": 2048,
 					"children": [
-						319,
-						326
+						325,
+						332
 					]
 				}
 			],
@@ -1953,7 +1953,7 @@
 					"typeArguments": [
 						{
 							"type": "reference",
-							"id": 232,
+							"id": 238,
 							"name": "MessageCommandValidatedOption"
 						}
 					],
@@ -1964,14 +1964,14 @@
 			]
 		},
 		{
-			"id": 17,
+			"id": 16,
 			"name": "RecipleClient",
 			"kind": 128,
 			"kindString": "Class",
 			"flags": {},
 			"children": [
 				{
-					"id": 18,
+					"id": 17,
 					"name": "constructor",
 					"kind": 512,
 					"kindString": "Constructor",
@@ -1985,14 +1985,14 @@
 					],
 					"signatures": [
 						{
-							"id": 19,
+							"id": 18,
 							"name": "new RecipleClient",
 							"kind": 16384,
 							"kindString": "Constructor signature",
 							"flags": {},
 							"typeParameter": [
 								{
-									"id": 20,
+									"id": 19,
 									"name": "Ready",
 									"kind": 131072,
 									"kindString": "Type parameter",
@@ -2009,25 +2009,25 @@
 							],
 							"parameters": [
 								{
-									"id": 21,
+									"id": 20,
 									"name": "options",
 									"kind": 32768,
 									"kindString": "Parameter",
 									"flags": {},
 									"type": {
 										"type": "reference",
-										"id": 2,
+										"id": 1,
 										"name": "RecipleClientOptions"
 									}
 								}
 							],
 							"type": {
 								"type": "reference",
-								"id": 17,
+								"id": 16,
 								"typeArguments": [
 									{
 										"type": "reference",
-										"id": 20,
+										"id": 19,
 										"name": "Ready"
 									}
 								],
@@ -2045,7 +2045,7 @@
 					}
 				},
 				{
-					"id": 85,
+					"id": 84,
 					"name": "commands",
 					"kind": 1024,
 					"kindString": "Property",
@@ -2061,13 +2061,13 @@
 					],
 					"type": {
 						"type": "reference",
-						"id": 4,
+						"id": 3,
 						"name": "RecipleClientCommands"
 					},
 					"defaultValue": "..."
 				},
 				{
-					"id": 84,
+					"id": 83,
 					"name": "config",
 					"kind": 1024,
 					"kindString": "Property",
@@ -2083,13 +2083,13 @@
 					],
 					"type": {
 						"type": "reference",
-						"id": 134,
+						"id": 140,
 						"name": "Config"
 					},
 					"defaultValue": "..."
 				},
 				{
-					"id": 88,
+					"id": 87,
 					"name": "logger",
 					"kind": 1024,
 					"kindString": "Property",
@@ -2111,7 +2111,7 @@
 					}
 				},
 				{
-					"id": 87,
+					"id": 86,
 					"name": "modules",
 					"kind": 1024,
 					"kindString": "Property",
@@ -2129,14 +2129,14 @@
 						"type": "array",
 						"elementType": {
 							"type": "reference",
-							"id": 381,
+							"id": 387,
 							"name": "RecipleModule"
 						}
 					},
 					"defaultValue": "[]"
 				},
 				{
-					"id": 86,
+					"id": 85,
 					"name": "otherApplicationCommandData",
 					"kind": 1024,
 					"kindString": "Property",
@@ -2157,7 +2157,7 @@
 							"types": [
 								{
 									"type": "reference",
-									"id": 393,
+									"id": 399,
 									"name": "interactionCommandBuilders"
 								},
 								{
@@ -2172,7 +2172,7 @@
 					"defaultValue": "[]"
 				},
 				{
-					"id": 89,
+					"id": 88,
 					"name": "version",
 					"kind": 1024,
 					"kindString": "Property",
@@ -2193,7 +2193,7 @@
 					"defaultValue": "version"
 				},
 				{
-					"id": 126,
+					"id": 132,
 					"name": "_commandExecuteError",
 					"kind": 2048,
 					"kindString": "Method",
@@ -2203,13 +2203,13 @@
 					"sources": [
 						{
 							"fileName": "reciple/classes/RecipleClient.ts",
-							"line": 292,
+							"line": 313,
 							"character": 18
 						}
 					],
 					"signatures": [
 						{
-							"id": 127,
+							"id": 133,
 							"name": "_commandExecuteError",
 							"kind": 4096,
 							"kindString": "Call signature",
@@ -2219,7 +2219,7 @@
 							},
 							"parameters": [
 								{
-									"id": 128,
+									"id": 134,
 									"name": "err",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -2232,14 +2232,14 @@
 									}
 								},
 								{
-									"id": 129,
+									"id": 135,
 									"name": "command",
 									"kind": 32768,
 									"kindString": "Parameter",
 									"flags": {},
 									"type": {
 										"type": "reference",
-										"id": 365,
+										"id": 371,
 										"name": "recipleCommandBuildersExecute"
 									}
 								}
@@ -2260,7 +2260,7 @@
 					]
 				},
 				{
-					"id": 104,
+					"id": 103,
 					"name": "addCommand",
 					"kind": 2048,
 					"kindString": "Method",
@@ -2270,13 +2270,13 @@
 					"sources": [
 						{
 							"fileName": "reciple/classes/RecipleClient.ts",
-							"line": 168,
+							"line": 170,
 							"character": 11
 						}
 					],
 					"signatures": [
 						{
-							"id": 105,
+							"id": 104,
 							"name": "addCommand",
 							"kind": 4096,
 							"kindString": "Call signature",
@@ -2286,25 +2286,25 @@
 							},
 							"parameters": [
 								{
-									"id": 106,
+									"id": 105,
 									"name": "command",
 									"kind": 32768,
 									"kindString": "Parameter",
 									"flags": {},
 									"type": {
 										"type": "reference",
-										"id": 364,
+										"id": 370,
 										"name": "recipleCommandBuilders"
 									}
 								}
 							],
 							"type": {
 								"type": "reference",
-								"id": 17,
+								"id": 16,
 								"typeArguments": [
 									{
 										"type": "reference",
-										"id": 20,
+										"id": 19,
 										"name": "Ready"
 									}
 								],
@@ -2314,7 +2314,7 @@
 					]
 				},
 				{
-					"id": 107,
+					"id": 106,
 					"name": "addCommandListeners",
 					"kind": 2048,
 					"kindString": "Method",
@@ -2324,13 +2324,13 @@
 					"sources": [
 						{
 							"fileName": "reciple/classes/RecipleClient.ts",
-							"line": 183,
+							"line": 185,
 							"character": 11
 						}
 					],
 					"signatures": [
 						{
-							"id": 108,
+							"id": 107,
 							"name": "addCommandListeners",
 							"kind": 4096,
 							"kindString": "Call signature",
@@ -2340,11 +2340,11 @@
 							},
 							"type": {
 								"type": "reference",
-								"id": 17,
+								"id": 16,
 								"typeArguments": [
 									{
 										"type": "reference",
-										"id": 20,
+										"id": 19,
 										"name": "Ready"
 									}
 								],
@@ -2354,7 +2354,7 @@
 					]
 				},
 				{
-					"id": 95,
+					"id": 94,
 					"name": "addModule",
 					"kind": 2048,
 					"kindString": "Method",
@@ -2364,13 +2364,13 @@
 					"sources": [
 						{
 							"fileName": "reciple/classes/RecipleClient.ts",
-							"line": 143,
+							"line": 145,
 							"character": 17
 						}
 					],
 					"signatures": [
 						{
-							"id": 96,
+							"id": 95,
 							"name": "addModule",
 							"kind": 4096,
 							"kindString": "Call signature",
@@ -2380,19 +2380,19 @@
 							},
 							"parameters": [
 								{
-									"id": 97,
+									"id": 96,
 									"name": "script",
 									"kind": 32768,
 									"kindString": "Parameter",
 									"flags": {},
 									"type": {
 										"type": "reference",
-										"id": 370,
+										"id": 376,
 										"name": "RecipleScript"
 									}
 								},
 								{
-									"id": 98,
+									"id": 97,
 									"name": "registerCommands",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -2404,7 +2404,7 @@
 									"defaultValue": "true"
 								},
 								{
-									"id": 99,
+									"id": 98,
 									"name": "info",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -2414,14 +2414,14 @@
 									"type": {
 										"type": "reflection",
 										"declaration": {
-											"id": 100,
+											"id": 99,
 											"name": "__type",
 											"kind": 65536,
 											"kindString": "Type literal",
 											"flags": {},
 											"children": [
 												{
-													"id": 101,
+													"id": 100,
 													"name": "filename",
 													"kind": 1024,
 													"kindString": "Property",
@@ -2441,7 +2441,7 @@
 													}
 												},
 												{
-													"id": 103,
+													"id": 102,
 													"name": "path",
 													"kind": 1024,
 													"kindString": "Property",
@@ -2461,7 +2461,7 @@
 													}
 												},
 												{
-													"id": 102,
+													"id": 101,
 													"name": "versions",
 													"kind": 1024,
 													"kindString": "Property",
@@ -2487,9 +2487,9 @@
 													"title": "Properties",
 													"kind": 1024,
 													"children": [
-														101,
-														103,
-														102
+														100,
+														102,
+														101
 													]
 												}
 											]
@@ -2513,21 +2513,21 @@
 					]
 				},
 				{
-					"id": 52,
+					"id": 51,
 					"name": "emit",
 					"kind": 2048,
 					"kindString": "Method",
 					"flags": {},
 					"signatures": [
 						{
-							"id": 53,
+							"id": 52,
 							"name": "emit",
 							"kind": 4096,
 							"kindString": "Call signature",
 							"flags": {},
 							"typeParameter": [
 								{
-									"id": 54,
+									"id": 53,
 									"name": "E",
 									"kind": 131072,
 									"kindString": "Type parameter",
@@ -2537,7 +2537,7 @@
 										"operator": "keyof",
 										"target": {
 											"type": "reference",
-											"id": 13,
+											"id": 12,
 											"name": "RecipleClientEvents"
 										}
 									}
@@ -2545,19 +2545,19 @@
 							],
 							"parameters": [
 								{
-									"id": 55,
+									"id": 54,
 									"name": "event",
 									"kind": 32768,
 									"kindString": "Parameter",
 									"flags": {},
 									"type": {
 										"type": "reference",
-										"id": 54,
+										"id": 53,
 										"name": "E"
 									}
 								},
 								{
-									"id": 56,
+									"id": 55,
 									"name": "args",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -2568,12 +2568,12 @@
 										"type": "indexedAccess",
 										"indexType": {
 											"type": "reference",
-											"id": 54,
+											"id": 53,
 											"name": "E"
 										},
 										"objectType": {
 											"type": "reference",
-											"id": 13,
+											"id": 12,
 											"name": "RecipleClientEvents"
 										}
 									}
@@ -2589,14 +2589,14 @@
 							}
 						},
 						{
-							"id": 57,
+							"id": 56,
 							"name": "emit",
 							"kind": 4096,
 							"kindString": "Call signature",
 							"flags": {},
 							"typeParameter": [
 								{
-									"id": 58,
+									"id": 57,
 									"name": "E",
 									"kind": 131072,
 									"kindString": "Type parameter",
@@ -2618,7 +2618,7 @@
 							],
 							"parameters": [
 								{
-									"id": 59,
+									"id": 58,
 									"name": "event",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -2628,7 +2628,7 @@
 										"typeArguments": [
 											{
 												"type": "reference",
-												"id": 58,
+												"id": 57,
 												"name": "E"
 											},
 											{
@@ -2636,7 +2636,7 @@
 												"operator": "keyof",
 												"target": {
 													"type": "reference",
-													"id": 13,
+													"id": 12,
 													"name": "RecipleClientEvents"
 												}
 											}
@@ -2647,7 +2647,7 @@
 									}
 								},
 								{
-									"id": 60,
+									"id": 59,
 									"name": "args",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -2676,7 +2676,118 @@
 					}
 				},
 				{
-					"id": 116,
+					"id": 120,
+					"name": "findCommand",
+					"kind": 2048,
+					"kindString": "Method",
+					"flags": {
+						"isPublic": true
+					},
+					"sources": [
+						{
+							"fileName": "reciple/classes/RecipleClient.ts",
+							"line": 279,
+							"character": 11
+						}
+					],
+					"signatures": [
+						{
+							"id": 121,
+							"name": "findCommand",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"comment": {
+								"shortText": "Get command builder by name or alias if it's a message command"
+							},
+							"parameters": [
+								{
+									"id": 122,
+									"name": "command",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"type": {
+										"type": "intrinsic",
+										"name": "string"
+									}
+								},
+								{
+									"id": 123,
+									"name": "type",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"type": {
+										"type": "literal",
+										"value": "MESSAGE_COMMAND"
+									}
+								}
+							],
+							"type": {
+								"type": "union",
+								"types": [
+									{
+										"type": "intrinsic",
+										"name": "undefined"
+									},
+									{
+										"type": "reference",
+										"id": 244,
+										"name": "MessageCommandBuilder"
+									}
+								]
+							}
+						},
+						{
+							"id": 124,
+							"name": "findCommand",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"parameters": [
+								{
+									"id": 125,
+									"name": "command",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"type": {
+										"type": "intrinsic",
+										"name": "string"
+									}
+								},
+								{
+									"id": 126,
+									"name": "type",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"type": {
+										"type": "literal",
+										"value": "INTERACTION_COMMAND"
+									}
+								}
+							],
+							"type": {
+								"type": "union",
+								"types": [
+									{
+										"type": "intrinsic",
+										"name": "undefined"
+									},
+									{
+										"type": "reference",
+										"id": 213,
+										"name": "InteractionCommandBuilder"
+									}
+								]
+							}
+						}
+					]
+				},
+				{
+					"id": 115,
 					"name": "getMessage",
 					"kind": 2048,
 					"kindString": "Method",
@@ -2686,13 +2797,13 @@
 					"sources": [
 						{
 							"fileName": "reciple/classes/RecipleClient.ts",
-							"line": 274,
+							"line": 272,
 							"character": 11
 						}
 					],
 					"signatures": [
 						{
-							"id": 117,
+							"id": 116,
 							"name": "getMessage",
 							"kind": 4096,
 							"kindString": "Call signature",
@@ -2702,7 +2813,7 @@
 							},
 							"typeParameter": [
 								{
-									"id": 118,
+									"id": 117,
 									"name": "T",
 									"kind": 131072,
 									"kindString": "Type parameter",
@@ -2715,7 +2826,7 @@
 							],
 							"parameters": [
 								{
-									"id": 119,
+									"id": 118,
 									"name": "messageKey",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -2726,7 +2837,7 @@
 									}
 								},
 								{
-									"id": 120,
+									"id": 119,
 									"name": "defaultMessage",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -2735,21 +2846,21 @@
 									},
 									"type": {
 										"type": "reference",
-										"id": 118,
+										"id": 117,
 										"name": "T"
 									}
 								}
 							],
 							"type": {
 								"type": "reference",
-								"id": 118,
+								"id": 117,
 								"name": "T"
 							}
 						}
 					]
 				},
 				{
-					"id": 113,
+					"id": 112,
 					"name": "interactionCommandExecute",
 					"kind": 2048,
 					"kindString": "Method",
@@ -2759,13 +2870,13 @@
 					"sources": [
 						{
 							"fileName": "reciple/classes/RecipleClient.ts",
-							"line": 247,
+							"line": 245,
 							"character": 17
 						}
 					],
 					"signatures": [
 						{
-							"id": 114,
+							"id": 113,
 							"name": "interactionCommandExecute",
 							"kind": 4096,
 							"kindString": "Call signature",
@@ -2775,7 +2886,7 @@
 							},
 							"parameters": [
 								{
-									"id": 115,
+									"id": 114,
 									"name": "interaction",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -2827,7 +2938,7 @@
 											},
 											{
 												"type": "reference",
-												"id": 202,
+												"id": 208,
 												"name": "RecipleInteractionCommandExecute"
 											}
 										]
@@ -2841,7 +2952,7 @@
 					]
 				},
 				{
-					"id": 121,
+					"id": 127,
 					"name": "isClientLogsEnabled",
 					"kind": 2048,
 					"kindString": "Method",
@@ -2851,13 +2962,13 @@
 					"sources": [
 						{
 							"fileName": "reciple/classes/RecipleClient.ts",
-							"line": 281,
+							"line": 299,
 							"character": 11
 						}
 					],
 					"signatures": [
 						{
-							"id": 122,
+							"id": 128,
 							"name": "isClientLogsEnabled",
 							"kind": 4096,
 							"kindString": "Call signature",
@@ -2873,14 +2984,14 @@
 					]
 				},
 				{
-					"id": 82,
+					"id": 81,
 					"name": "isReady",
 					"kind": 2048,
 					"kindString": "Method",
 					"flags": {},
 					"signatures": [
 						{
-							"id": 83,
+							"id": 82,
 							"name": "isReady",
 							"kind": 4096,
 							"kindString": "Call signature",
@@ -2891,7 +3002,7 @@
 								"asserts": false,
 								"targetType": {
 									"type": "reference",
-									"id": 17,
+									"id": 16,
 									"typeArguments": [
 										{
 											"type": "literal",
@@ -2913,7 +3024,7 @@
 					}
 				},
 				{
-					"id": 93,
+					"id": 92,
 					"name": "loadModules",
 					"kind": 2048,
 					"kindString": "Method",
@@ -2929,7 +3040,7 @@
 					],
 					"signatures": [
 						{
-							"id": 94,
+							"id": 93,
 							"name": "loadModules",
 							"kind": 4096,
 							"kindString": "Call signature",
@@ -2942,11 +3053,11 @@
 								"typeArguments": [
 									{
 										"type": "reference",
-										"id": 17,
+										"id": 16,
 										"typeArguments": [
 											{
 												"type": "reference",
-												"id": 20,
+												"id": 19,
 												"name": "Ready"
 											}
 										],
@@ -2961,7 +3072,7 @@
 					]
 				},
 				{
-					"id": 109,
+					"id": 108,
 					"name": "messageCommandExecute",
 					"kind": 2048,
 					"kindString": "Method",
@@ -2971,13 +3082,13 @@
 					"sources": [
 						{
 							"fileName": "reciple/classes/RecipleClient.ts",
-							"line": 193,
+							"line": 195,
 							"character": 17
 						}
 					],
 					"signatures": [
 						{
-							"id": 110,
+							"id": 109,
 							"name": "messageCommandExecute",
 							"kind": 4096,
 							"kindString": "Call signature",
@@ -2987,7 +3098,7 @@
 							},
 							"parameters": [
 								{
-									"id": 111,
+									"id": 110,
 									"name": "message",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -3006,7 +3117,7 @@
 									}
 								},
 								{
-									"id": 112,
+									"id": 111,
 									"name": "prefix",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -3031,7 +3142,7 @@
 											},
 											{
 												"type": "reference",
-												"id": 226,
+												"id": 232,
 												"name": "RecipleMessageCommandExecute"
 											}
 										]
@@ -3045,21 +3156,21 @@
 					]
 				},
 				{
-					"id": 61,
+					"id": 60,
 					"name": "off",
 					"kind": 2048,
 					"kindString": "Method",
 					"flags": {},
 					"signatures": [
 						{
-							"id": 62,
+							"id": 61,
 							"name": "off",
 							"kind": 4096,
 							"kindString": "Call signature",
 							"flags": {},
 							"typeParameter": [
 								{
-									"id": 63,
+									"id": 62,
 									"name": "E",
 									"kind": 131072,
 									"kindString": "Type parameter",
@@ -3069,7 +3180,7 @@
 										"operator": "keyof",
 										"target": {
 											"type": "reference",
-											"id": 13,
+											"id": 12,
 											"name": "RecipleClientEvents"
 										}
 									}
@@ -3077,19 +3188,19 @@
 							],
 							"parameters": [
 								{
-									"id": 64,
+									"id": 63,
 									"name": "event",
 									"kind": 32768,
 									"kindString": "Parameter",
 									"flags": {},
 									"type": {
 										"type": "reference",
-										"id": 63,
+										"id": 62,
 										"name": "E"
 									}
 								},
 								{
-									"id": 65,
+									"id": 64,
 									"name": "listener",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -3097,21 +3208,21 @@
 									"type": {
 										"type": "reflection",
 										"declaration": {
-											"id": 66,
+											"id": 65,
 											"name": "__type",
 											"kind": 65536,
 											"kindString": "Type literal",
 											"flags": {},
 											"signatures": [
 												{
-													"id": 67,
+													"id": 66,
 													"name": "__type",
 													"kind": 4096,
 													"kindString": "Call signature",
 													"flags": {},
 													"parameters": [
 														{
-															"id": 68,
+															"id": 67,
 															"name": "args",
 															"kind": 32768,
 															"kindString": "Parameter",
@@ -3122,12 +3233,12 @@
 																"type": "indexedAccess",
 																"indexType": {
 																	"type": "reference",
-																	"id": 63,
+																	"id": 62,
 																	"name": "E"
 																},
 																"objectType": {
 																	"type": "reference",
-																	"id": 13,
+																	"id": 12,
 																	"name": "RecipleClientEvents"
 																}
 															}
@@ -3153,11 +3264,11 @@
 							],
 							"type": {
 								"type": "reference",
-								"id": 17,
+								"id": 16,
 								"typeArguments": [
 									{
 										"type": "reference",
-										"id": 20,
+										"id": 19,
 										"name": "Ready"
 									}
 								],
@@ -3169,14 +3280,14 @@
 							}
 						},
 						{
-							"id": 69,
+							"id": 68,
 							"name": "off",
 							"kind": 4096,
 							"kindString": "Call signature",
 							"flags": {},
 							"typeParameter": [
 								{
-									"id": 70,
+									"id": 69,
 									"name": "E",
 									"kind": 131072,
 									"kindString": "Type parameter",
@@ -3198,7 +3309,7 @@
 							],
 							"parameters": [
 								{
-									"id": 71,
+									"id": 70,
 									"name": "event",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -3208,7 +3319,7 @@
 										"typeArguments": [
 											{
 												"type": "reference",
-												"id": 70,
+												"id": 69,
 												"name": "E"
 											},
 											{
@@ -3216,7 +3327,7 @@
 												"operator": "keyof",
 												"target": {
 													"type": "reference",
-													"id": 13,
+													"id": 12,
 													"name": "RecipleClientEvents"
 												}
 											}
@@ -3227,7 +3338,7 @@
 									}
 								},
 								{
-									"id": 72,
+									"id": 71,
 									"name": "listener",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -3235,21 +3346,21 @@
 									"type": {
 										"type": "reflection",
 										"declaration": {
-											"id": 73,
+											"id": 72,
 											"name": "__type",
 											"kind": 65536,
 											"kindString": "Type literal",
 											"flags": {},
 											"signatures": [
 												{
-													"id": 74,
+													"id": 73,
 													"name": "__type",
 													"kind": 4096,
 													"kindString": "Call signature",
 													"flags": {},
 													"parameters": [
 														{
-															"id": 75,
+															"id": 74,
 															"name": "args",
 															"kind": 32768,
 															"kindString": "Parameter",
@@ -3282,11 +3393,11 @@
 							],
 							"type": {
 								"type": "reference",
-								"id": 17,
+								"id": 16,
 								"typeArguments": [
 									{
 										"type": "reference",
-										"id": 20,
+										"id": 19,
 										"name": "Ready"
 									}
 								],
@@ -3304,21 +3415,21 @@
 					}
 				},
 				{
-					"id": 22,
+					"id": 21,
 					"name": "on",
 					"kind": 2048,
 					"kindString": "Method",
 					"flags": {},
 					"signatures": [
 						{
-							"id": 23,
+							"id": 22,
 							"name": "on",
 							"kind": 4096,
 							"kindString": "Call signature",
 							"flags": {},
 							"typeParameter": [
 								{
-									"id": 24,
+									"id": 23,
 									"name": "E",
 									"kind": 131072,
 									"kindString": "Type parameter",
@@ -3328,7 +3439,7 @@
 										"operator": "keyof",
 										"target": {
 											"type": "reference",
-											"id": 13,
+											"id": 12,
 											"name": "RecipleClientEvents"
 										}
 									}
@@ -3336,19 +3447,19 @@
 							],
 							"parameters": [
 								{
-									"id": 25,
+									"id": 24,
 									"name": "event",
 									"kind": 32768,
 									"kindString": "Parameter",
 									"flags": {},
 									"type": {
 										"type": "reference",
-										"id": 24,
+										"id": 23,
 										"name": "E"
 									}
 								},
 								{
-									"id": 26,
+									"id": 25,
 									"name": "listener",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -3356,21 +3467,21 @@
 									"type": {
 										"type": "reflection",
 										"declaration": {
-											"id": 27,
+											"id": 26,
 											"name": "__type",
 											"kind": 65536,
 											"kindString": "Type literal",
 											"flags": {},
 											"signatures": [
 												{
-													"id": 28,
+													"id": 27,
 													"name": "__type",
 													"kind": 4096,
 													"kindString": "Call signature",
 													"flags": {},
 													"parameters": [
 														{
-															"id": 29,
+															"id": 28,
 															"name": "args",
 															"kind": 32768,
 															"kindString": "Parameter",
@@ -3381,12 +3492,12 @@
 																"type": "indexedAccess",
 																"indexType": {
 																	"type": "reference",
-																	"id": 24,
+																	"id": 23,
 																	"name": "E"
 																},
 																"objectType": {
 																	"type": "reference",
-																	"id": 13,
+																	"id": 12,
 																	"name": "RecipleClientEvents"
 																}
 															}
@@ -3412,11 +3523,11 @@
 							],
 							"type": {
 								"type": "reference",
-								"id": 17,
+								"id": 16,
 								"typeArguments": [
 									{
 										"type": "reference",
-										"id": 20,
+										"id": 19,
 										"name": "Ready"
 									}
 								],
@@ -3428,14 +3539,14 @@
 							}
 						},
 						{
-							"id": 30,
+							"id": 29,
 							"name": "on",
 							"kind": 4096,
 							"kindString": "Call signature",
 							"flags": {},
 							"typeParameter": [
 								{
-									"id": 31,
+									"id": 30,
 									"name": "E",
 									"kind": 131072,
 									"kindString": "Type parameter",
@@ -3457,7 +3568,7 @@
 							],
 							"parameters": [
 								{
-									"id": 32,
+									"id": 31,
 									"name": "event",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -3467,7 +3578,7 @@
 										"typeArguments": [
 											{
 												"type": "reference",
-												"id": 31,
+												"id": 30,
 												"name": "E"
 											},
 											{
@@ -3475,7 +3586,7 @@
 												"operator": "keyof",
 												"target": {
 													"type": "reference",
-													"id": 13,
+													"id": 12,
 													"name": "RecipleClientEvents"
 												}
 											}
@@ -3486,7 +3597,7 @@
 									}
 								},
 								{
-									"id": 33,
+									"id": 32,
 									"name": "listener",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -3494,21 +3605,21 @@
 									"type": {
 										"type": "reflection",
 										"declaration": {
-											"id": 34,
+											"id": 33,
 											"name": "__type",
 											"kind": 65536,
 											"kindString": "Type literal",
 											"flags": {},
 											"signatures": [
 												{
-													"id": 35,
+													"id": 34,
 													"name": "__type",
 													"kind": 4096,
 													"kindString": "Call signature",
 													"flags": {},
 													"parameters": [
 														{
-															"id": 36,
+															"id": 35,
 															"name": "args",
 															"kind": 32768,
 															"kindString": "Parameter",
@@ -3541,11 +3652,11 @@
 							],
 							"type": {
 								"type": "reference",
-								"id": 17,
+								"id": 16,
 								"typeArguments": [
 									{
 										"type": "reference",
-										"id": 20,
+										"id": 19,
 										"name": "Ready"
 									}
 								],
@@ -3563,21 +3674,21 @@
 					}
 				},
 				{
-					"id": 37,
+					"id": 36,
 					"name": "once",
 					"kind": 2048,
 					"kindString": "Method",
 					"flags": {},
 					"signatures": [
 						{
-							"id": 38,
+							"id": 37,
 							"name": "once",
 							"kind": 4096,
 							"kindString": "Call signature",
 							"flags": {},
 							"typeParameter": [
 								{
-									"id": 39,
+									"id": 38,
 									"name": "E",
 									"kind": 131072,
 									"kindString": "Type parameter",
@@ -3587,7 +3698,7 @@
 										"operator": "keyof",
 										"target": {
 											"type": "reference",
-											"id": 13,
+											"id": 12,
 											"name": "RecipleClientEvents"
 										}
 									}
@@ -3595,19 +3706,19 @@
 							],
 							"parameters": [
 								{
-									"id": 40,
+									"id": 39,
 									"name": "event",
 									"kind": 32768,
 									"kindString": "Parameter",
 									"flags": {},
 									"type": {
 										"type": "reference",
-										"id": 39,
+										"id": 38,
 										"name": "E"
 									}
 								},
 								{
-									"id": 41,
+									"id": 40,
 									"name": "listener",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -3615,21 +3726,21 @@
 									"type": {
 										"type": "reflection",
 										"declaration": {
-											"id": 42,
+											"id": 41,
 											"name": "__type",
 											"kind": 65536,
 											"kindString": "Type literal",
 											"flags": {},
 											"signatures": [
 												{
-													"id": 43,
+													"id": 42,
 													"name": "__type",
 													"kind": 4096,
 													"kindString": "Call signature",
 													"flags": {},
 													"parameters": [
 														{
-															"id": 44,
+															"id": 43,
 															"name": "args",
 															"kind": 32768,
 															"kindString": "Parameter",
@@ -3640,12 +3751,12 @@
 																"type": "indexedAccess",
 																"indexType": {
 																	"type": "reference",
-																	"id": 39,
+																	"id": 38,
 																	"name": "E"
 																},
 																"objectType": {
 																	"type": "reference",
-																	"id": 13,
+																	"id": 12,
 																	"name": "RecipleClientEvents"
 																}
 															}
@@ -3671,11 +3782,11 @@
 							],
 							"type": {
 								"type": "reference",
-								"id": 17,
+								"id": 16,
 								"typeArguments": [
 									{
 										"type": "reference",
-										"id": 20,
+										"id": 19,
 										"name": "Ready"
 									}
 								],
@@ -3687,14 +3798,14 @@
 							}
 						},
 						{
-							"id": 45,
+							"id": 44,
 							"name": "once",
 							"kind": 4096,
 							"kindString": "Call signature",
 							"flags": {},
 							"typeParameter": [
 								{
-									"id": 46,
+									"id": 45,
 									"name": "E",
 									"kind": 131072,
 									"kindString": "Type parameter",
@@ -3908,7 +4019,7 @@
 							],
 							"parameters": [
 								{
-									"id": 47,
+									"id": 46,
 									"name": "event",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -3918,7 +4029,7 @@
 										"typeArguments": [
 											{
 												"type": "reference",
-												"id": 46,
+												"id": 45,
 												"name": "E"
 											},
 											{
@@ -3926,7 +4037,7 @@
 												"operator": "keyof",
 												"target": {
 													"type": "reference",
-													"id": 13,
+													"id": 12,
 													"name": "RecipleClientEvents"
 												}
 											}
@@ -3937,7 +4048,7 @@
 									}
 								},
 								{
-									"id": 48,
+									"id": 47,
 									"name": "listener",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -3945,21 +4056,21 @@
 									"type": {
 										"type": "reflection",
 										"declaration": {
-											"id": 49,
+											"id": 48,
 											"name": "__type",
 											"kind": 65536,
 											"kindString": "Type literal",
 											"flags": {},
 											"signatures": [
 												{
-													"id": 50,
+													"id": 49,
 													"name": "__type",
 													"kind": 4096,
 													"kindString": "Call signature",
 													"flags": {},
 													"parameters": [
 														{
-															"id": 51,
+															"id": 50,
 															"name": "args",
 															"kind": 32768,
 															"kindString": "Parameter",
@@ -3992,11 +4103,11 @@
 							],
 							"type": {
 								"type": "reference",
-								"id": 17,
+								"id": 16,
 								"typeArguments": [
 									{
 										"type": "reference",
-										"id": 20,
+										"id": 19,
 										"name": "Ready"
 									}
 								],
@@ -4014,21 +4125,21 @@
 					}
 				},
 				{
-					"id": 76,
+					"id": 75,
 					"name": "removeAllListeners",
 					"kind": 2048,
 					"kindString": "Method",
 					"flags": {},
 					"signatures": [
 						{
-							"id": 77,
+							"id": 76,
 							"name": "removeAllListeners",
 							"kind": 4096,
 							"kindString": "Call signature",
 							"flags": {},
 							"typeParameter": [
 								{
-									"id": 78,
+									"id": 77,
 									"name": "E",
 									"kind": 131072,
 									"kindString": "Type parameter",
@@ -4038,7 +4149,7 @@
 										"operator": "keyof",
 										"target": {
 											"type": "reference",
-											"id": 13,
+											"id": 12,
 											"name": "RecipleClientEvents"
 										}
 									}
@@ -4046,7 +4157,7 @@
 							],
 							"parameters": [
 								{
-									"id": 79,
+									"id": 78,
 									"name": "event",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -4055,18 +4166,18 @@
 									},
 									"type": {
 										"type": "reference",
-										"id": 78,
+										"id": 77,
 										"name": "E"
 									}
 								}
 							],
 							"type": {
 								"type": "reference",
-								"id": 17,
+								"id": 16,
 								"typeArguments": [
 									{
 										"type": "reference",
-										"id": 20,
+										"id": 19,
 										"name": "Ready"
 									}
 								],
@@ -4078,14 +4189,14 @@
 							}
 						},
 						{
-							"id": 80,
+							"id": 79,
 							"name": "removeAllListeners",
 							"kind": 4096,
 							"kindString": "Call signature",
 							"flags": {},
 							"parameters": [
 								{
-									"id": 81,
+									"id": 80,
 									"name": "event",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -4109,11 +4220,11 @@
 							],
 							"type": {
 								"type": "reference",
-								"id": 17,
+								"id": 16,
 								"typeArguments": [
 									{
 										"type": "reference",
-										"id": 20,
+										"id": 19,
 										"name": "Ready"
 									}
 								],
@@ -4131,8 +4242,8 @@
 					}
 				},
 				{
-					"id": 123,
-					"name": "replpyError",
+					"id": 129,
+					"name": "replyError",
 					"kind": 2048,
 					"kindString": "Method",
 					"flags": {
@@ -4141,27 +4252,30 @@
 					"sources": [
 						{
 							"fileName": "reciple/classes/RecipleClient.ts",
-							"line": 285,
+							"line": 306,
 							"character": 12
 						}
 					],
 					"signatures": [
 						{
-							"id": 124,
-							"name": "replpyError",
+							"id": 130,
+							"name": "replyError",
 							"kind": 4096,
 							"kindString": "Call signature",
 							"flags": {},
+							"comment": {
+								"shortText": "Emits the \"recipleReplyError\" event"
+							},
 							"parameters": [
 								{
-									"id": 125,
+									"id": 131,
 									"name": "error",
 									"kind": 32768,
 									"kindString": "Parameter",
 									"flags": {},
 									"type": {
 										"type": "intrinsic",
-										"name": "any"
+										"name": "unknown"
 									}
 								}
 							],
@@ -4173,7 +4287,7 @@
 					]
 				},
 				{
-					"id": 90,
+					"id": 89,
 					"name": "startModules",
 					"kind": 2048,
 					"kindString": "Method",
@@ -4189,7 +4303,7 @@
 					],
 					"signatures": [
 						{
-							"id": 91,
+							"id": 90,
 							"name": "startModules",
 							"kind": 4096,
 							"kindString": "Call signature",
@@ -4199,7 +4313,7 @@
 							},
 							"parameters": [
 								{
-									"id": 92,
+									"id": 91,
 									"name": "folder",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -4217,11 +4331,11 @@
 								"typeArguments": [
 									{
 										"type": "reference",
-										"id": 17,
+										"id": 16,
 										"typeArguments": [
 											{
 												"type": "reference",
-												"id": 20,
+												"id": 19,
 												"name": "Ready"
 											}
 										],
@@ -4241,42 +4355,43 @@
 					"title": "Constructors",
 					"kind": 512,
 					"children": [
-						18
+						17
 					]
 				},
 				{
 					"title": "Properties",
 					"kind": 1024,
 					"children": [
-						85,
 						84,
-						88,
+						83,
 						87,
 						86,
-						89
+						85,
+						88
 					]
 				},
 				{
 					"title": "Methods",
 					"kind": 2048,
 					"children": [
-						126,
-						104,
-						107,
-						95,
-						52,
-						116,
-						113,
-						121,
-						82,
-						93,
-						109,
-						61,
-						22,
-						37,
-						76,
-						123,
-						90
+						132,
+						103,
+						106,
+						94,
+						51,
+						120,
+						115,
+						112,
+						127,
+						81,
+						92,
+						108,
+						60,
+						21,
+						36,
+						75,
+						129,
+						89
 					]
 				}
 			],
@@ -4289,7 +4404,7 @@
 			],
 			"typeParameter": [
 				{
-					"id": 130,
+					"id": 136,
 					"name": "Ready",
 					"kind": 131072,
 					"kindString": "Type parameter",
@@ -4310,7 +4425,7 @@
 					"typeArguments": [
 						{
 							"type": "reference",
-							"id": 20,
+							"id": 19,
 							"name": "Ready"
 						}
 					],
@@ -4321,14 +4436,14 @@
 			]
 		},
 		{
-			"id": 182,
+			"id": 188,
 			"name": "RecipleConfig",
 			"kind": 128,
 			"kindString": "Class",
 			"flags": {},
 			"children": [
 				{
-					"id": 186,
+					"id": 192,
 					"name": "constructor",
 					"kind": 512,
 					"kindString": "Constructor",
@@ -4342,14 +4457,14 @@
 					],
 					"signatures": [
 						{
-							"id": 187,
+							"id": 193,
 							"name": "new RecipleConfig",
 							"kind": 16384,
 							"kindString": "Constructor signature",
 							"flags": {},
 							"parameters": [
 								{
-									"id": 188,
+									"id": 194,
 									"name": "configPath",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -4362,14 +4477,14 @@
 							],
 							"type": {
 								"type": "reference",
-								"id": 182,
+								"id": 188,
 								"name": "RecipleConfig"
 							}
 						}
 					]
 				},
 				{
-					"id": 189,
+					"id": 195,
 					"name": "config",
 					"kind": 1024,
 					"kindString": "Property",
@@ -4386,12 +4501,12 @@
 					],
 					"type": {
 						"type": "reference",
-						"id": 134,
+						"id": 140,
 						"name": "Config"
 					}
 				},
 				{
-					"id": 190,
+					"id": 196,
 					"name": "configPath",
 					"kind": 1024,
 					"kindString": "Property",
@@ -4412,7 +4527,7 @@
 					"defaultValue": "'./reciple.yml'"
 				},
 				{
-					"id": 183,
+					"id": 189,
 					"name": "defaultConfigPath",
 					"kind": 1024,
 					"kindString": "Property",
@@ -4434,7 +4549,7 @@
 					"defaultValue": "..."
 				},
 				{
-					"id": 200,
+					"id": 206,
 					"name": "askToken",
 					"kind": 2048,
 					"kindString": "Method",
@@ -4450,7 +4565,7 @@
 					],
 					"signatures": [
 						{
-							"id": 201,
+							"id": 207,
 							"name": "askToken",
 							"kind": 4096,
 							"kindString": "Call signature",
@@ -4475,7 +4590,7 @@
 					]
 				},
 				{
-					"id": 193,
+					"id": 199,
 					"name": "getConfig",
 					"kind": 2048,
 					"kindString": "Method",
@@ -4491,7 +4606,7 @@
 					],
 					"signatures": [
 						{
-							"id": 194,
+							"id": 200,
 							"name": "getConfig",
 							"kind": 4096,
 							"kindString": "Call signature",
@@ -4501,14 +4616,14 @@
 							},
 							"type": {
 								"type": "reference",
-								"id": 134,
+								"id": 140,
 								"name": "Config"
 							}
 						}
 					]
 				},
 				{
-					"id": 198,
+					"id": 204,
 					"name": "isSupportedConfig",
 					"kind": 2048,
 					"kindString": "Method",
@@ -4524,7 +4639,7 @@
 					],
 					"signatures": [
 						{
-							"id": 199,
+							"id": 205,
 							"name": "isSupportedConfig",
 							"kind": 4096,
 							"kindString": "Call signature",
@@ -4540,7 +4655,7 @@
 					]
 				},
 				{
-					"id": 191,
+					"id": 197,
 					"name": "parseConfig",
 					"kind": 2048,
 					"kindString": "Method",
@@ -4556,7 +4671,7 @@
 					],
 					"signatures": [
 						{
-							"id": 192,
+							"id": 198,
 							"name": "parseConfig",
 							"kind": 4096,
 							"kindString": "Call signature",
@@ -4566,14 +4681,14 @@
 							},
 							"type": {
 								"type": "reference",
-								"id": 182,
+								"id": 188,
 								"name": "RecipleConfig"
 							}
 						}
 					]
 				},
 				{
-					"id": 195,
+					"id": 201,
 					"name": "parseToken",
 					"kind": 2048,
 					"kindString": "Method",
@@ -4589,7 +4704,7 @@
 					],
 					"signatures": [
 						{
-							"id": 196,
+							"id": 202,
 							"name": "parseToken",
 							"kind": 4096,
 							"kindString": "Call signature",
@@ -4599,7 +4714,7 @@
 							},
 							"parameters": [
 								{
-									"id": 197,
+									"id": 203,
 									"name": "askIfNull",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -4628,7 +4743,7 @@
 					]
 				},
 				{
-					"id": 184,
+					"id": 190,
 					"name": "getDefaultConfig",
 					"kind": 2048,
 					"kindString": "Method",
@@ -4645,7 +4760,7 @@
 					],
 					"signatures": [
 						{
-							"id": 185,
+							"id": 191,
 							"name": "getDefaultConfig",
 							"kind": 4096,
 							"kindString": "Call signature",
@@ -4655,7 +4770,7 @@
 							},
 							"type": {
 								"type": "reference",
-								"id": 134,
+								"id": 140,
 								"name": "Config"
 							}
 						}
@@ -4667,28 +4782,28 @@
 					"title": "Constructors",
 					"kind": 512,
 					"children": [
-						186
+						192
 					]
 				},
 				{
 					"title": "Properties",
 					"kind": 1024,
 					"children": [
-						189,
-						190,
-						183
+						195,
+						196,
+						189
 					]
 				},
 				{
 					"title": "Methods",
 					"kind": 2048,
 					"children": [
-						200,
-						193,
-						198,
-						191,
-						195,
-						184
+						206,
+						199,
+						204,
+						197,
+						201,
+						190
 					]
 				}
 			],
@@ -4701,35 +4816,35 @@
 			]
 		},
 		{
-			"id": 370,
+			"id": 376,
 			"name": "RecipleScript",
 			"kind": 128,
 			"kindString": "Class",
 			"flags": {},
 			"children": [
 				{
-					"id": 371,
+					"id": 377,
 					"name": "constructor",
 					"kind": 512,
 					"kindString": "Constructor",
 					"flags": {},
 					"signatures": [
 						{
-							"id": 372,
+							"id": 378,
 							"name": "new RecipleScript",
 							"kind": 16384,
 							"kindString": "Constructor signature",
 							"flags": {},
 							"type": {
 								"type": "reference",
-								"id": 370,
+								"id": 376,
 								"name": "RecipleScript"
 							}
 						}
 					]
 				},
 				{
-					"id": 374,
+					"id": 380,
 					"name": "commands",
 					"kind": 1024,
 					"kindString": "Property",
@@ -4748,13 +4863,13 @@
 						"type": "array",
 						"elementType": {
 							"type": "reference",
-							"id": 364,
+							"id": 370,
 							"name": "recipleCommandBuilders"
 						}
 					}
 				},
 				{
-					"id": 373,
+					"id": 379,
 					"name": "versions",
 					"kind": 1024,
 					"kindString": "Property",
@@ -4786,7 +4901,7 @@
 					}
 				},
 				{
-					"id": 375,
+					"id": 381,
 					"name": "onLoad",
 					"kind": 2048,
 					"kindString": "Method",
@@ -4803,21 +4918,21 @@
 					],
 					"signatures": [
 						{
-							"id": 376,
+							"id": 382,
 							"name": "onLoad",
 							"kind": 4096,
 							"kindString": "Call signature",
 							"flags": {},
 							"parameters": [
 								{
-									"id": 377,
+									"id": 383,
 									"name": "reciple",
 									"kind": 32768,
 									"kindString": "Parameter",
 									"flags": {},
 									"type": {
 										"type": "reference",
-										"id": 17,
+										"id": 16,
 										"typeArguments": [
 											{
 												"type": "intrinsic",
@@ -4853,7 +4968,7 @@
 					]
 				},
 				{
-					"id": 378,
+					"id": 384,
 					"name": "onStart",
 					"kind": 2048,
 					"kindString": "Method",
@@ -4869,21 +4984,21 @@
 					],
 					"signatures": [
 						{
-							"id": 379,
+							"id": 385,
 							"name": "onStart",
 							"kind": 4096,
 							"kindString": "Call signature",
 							"flags": {},
 							"parameters": [
 								{
-									"id": 380,
+									"id": 386,
 									"name": "reciple",
 									"kind": 32768,
 									"kindString": "Parameter",
 									"flags": {},
 									"type": {
 										"type": "reference",
-										"id": 17,
+										"id": 16,
 										"typeArguments": [
 											{
 												"type": "intrinsic",
@@ -4924,23 +5039,23 @@
 					"title": "Constructors",
 					"kind": 512,
 					"children": [
-						371
+						377
 					]
 				},
 				{
 					"title": "Properties",
 					"kind": 1024,
 					"children": [
-						374,
-						373
+						380,
+						379
 					]
 				},
 				{
 					"title": "Methods",
 					"kind": 2048,
 					"children": [
-						375,
-						378
+						381,
+						384
 					]
 				}
 			],
@@ -4953,14 +5068,14 @@
 			]
 		},
 		{
-			"id": 134,
+			"id": 140,
 			"name": "Config",
 			"kind": 256,
 			"kindString": "Interface",
 			"flags": {},
 			"children": [
 				{
-					"id": 174,
+					"id": 180,
 					"name": "client",
 					"kind": 1024,
 					"kindString": "Property",
@@ -4980,7 +5095,7 @@
 					}
 				},
 				{
-					"id": 137,
+					"id": 143,
 					"name": "commands",
 					"kind": 1024,
 					"kindString": "Property",
@@ -4995,14 +5110,14 @@
 					"type": {
 						"type": "reflection",
 						"declaration": {
-							"id": 138,
+							"id": 144,
 							"name": "__type",
 							"kind": 65536,
 							"kindString": "Type literal",
 							"flags": {},
 							"children": [
 								{
-									"id": 145,
+									"id": 151,
 									"name": "interactionCommand",
 									"kind": 1024,
 									"kindString": "Property",
@@ -5017,14 +5132,14 @@
 									"type": {
 										"type": "reflection",
 										"declaration": {
-											"id": 146,
+											"id": 152,
 											"name": "__type",
 											"kind": 65536,
 											"kindString": "Type literal",
 											"flags": {},
 											"children": [
 												{
-													"id": 147,
+													"id": 153,
 													"name": "enabled",
 													"kind": 1024,
 													"kindString": "Property",
@@ -5042,7 +5157,7 @@
 													}
 												},
 												{
-													"id": 151,
+													"id": 157,
 													"name": "guilds",
 													"kind": 1024,
 													"kindString": "Property",
@@ -5072,7 +5187,7 @@
 													}
 												},
 												{
-													"id": 149,
+													"id": 155,
 													"name": "registerCommands",
 													"kind": 1024,
 													"kindString": "Property",
@@ -5090,7 +5205,7 @@
 													}
 												},
 												{
-													"id": 148,
+													"id": 154,
 													"name": "replyOnError",
 													"kind": 1024,
 													"kindString": "Property",
@@ -5108,7 +5223,7 @@
 													}
 												},
 												{
-													"id": 150,
+													"id": 156,
 													"name": "setRequiredPermissions",
 													"kind": 1024,
 													"kindString": "Property",
@@ -5131,11 +5246,11 @@
 													"title": "Properties",
 													"kind": 1024,
 													"children": [
-														147,
-														151,
-														149,
-														148,
-														150
+														153,
+														157,
+														155,
+														154,
+														156
 													]
 												}
 											]
@@ -5143,7 +5258,7 @@
 									}
 								},
 								{
-									"id": 139,
+									"id": 145,
 									"name": "messageCommand",
 									"kind": 1024,
 									"kindString": "Property",
@@ -5158,14 +5273,14 @@
 									"type": {
 										"type": "reflection",
 										"declaration": {
-											"id": 140,
+											"id": 146,
 											"name": "__type",
 											"kind": 65536,
 											"kindString": "Type literal",
 											"flags": {},
 											"children": [
 												{
-													"id": 143,
+													"id": 149,
 													"name": "allowCommandAlias",
 													"kind": 1024,
 													"kindString": "Property",
@@ -5183,7 +5298,7 @@
 													}
 												},
 												{
-													"id": 144,
+													"id": 150,
 													"name": "commandArgumentSeparator",
 													"kind": 1024,
 													"kindString": "Property",
@@ -5201,7 +5316,7 @@
 													}
 												},
 												{
-													"id": 141,
+													"id": 147,
 													"name": "enabled",
 													"kind": 1024,
 													"kindString": "Property",
@@ -5219,7 +5334,7 @@
 													}
 												},
 												{
-													"id": 142,
+													"id": 148,
 													"name": "replyOnError",
 													"kind": 1024,
 													"kindString": "Property",
@@ -5242,10 +5357,10 @@
 													"title": "Properties",
 													"kind": 1024,
 													"children": [
-														143,
-														144,
-														141,
-														142
+														149,
+														150,
+														147,
+														148
 													]
 												}
 											]
@@ -5258,8 +5373,8 @@
 									"title": "Properties",
 									"kind": 1024,
 									"children": [
-										145,
-										139
+										151,
+										145
 									]
 								}
 							]
@@ -5267,7 +5382,7 @@
 					}
 				},
 				{
-					"id": 167,
+					"id": 173,
 					"name": "fileLogging",
 					"kind": 1024,
 					"kindString": "Property",
@@ -5282,14 +5397,14 @@
 					"type": {
 						"type": "reflection",
 						"declaration": {
-							"id": 168,
+							"id": 174,
 							"name": "__type",
 							"kind": 65536,
 							"kindString": "Type literal",
 							"flags": {},
 							"children": [
 								{
-									"id": 171,
+									"id": 177,
 									"name": "clientLogs",
 									"kind": 1024,
 									"kindString": "Property",
@@ -5307,7 +5422,7 @@
 									}
 								},
 								{
-									"id": 170,
+									"id": 176,
 									"name": "debugmode",
 									"kind": 1024,
 									"kindString": "Property",
@@ -5325,7 +5440,7 @@
 									}
 								},
 								{
-									"id": 169,
+									"id": 175,
 									"name": "enabled",
 									"kind": 1024,
 									"kindString": "Property",
@@ -5343,7 +5458,7 @@
 									}
 								},
 								{
-									"id": 173,
+									"id": 179,
 									"name": "logFilePath",
 									"kind": 1024,
 									"kindString": "Property",
@@ -5361,7 +5476,7 @@
 									}
 								},
 								{
-									"id": 172,
+									"id": 178,
 									"name": "stringifyLoggedJSON",
 									"kind": 1024,
 									"kindString": "Property",
@@ -5384,11 +5499,11 @@
 									"title": "Properties",
 									"kind": 1024,
 									"children": [
-										171,
-										170,
-										169,
-										173,
-										172
+										177,
+										176,
+										175,
+										179,
+										178
 									]
 								}
 							]
@@ -5396,7 +5511,7 @@
 					}
 				},
 				{
-					"id": 162,
+					"id": 168,
 					"name": "ignoredChannels",
 					"kind": 1024,
 					"kindString": "Property",
@@ -5411,14 +5526,14 @@
 					"type": {
 						"type": "reflection",
 						"declaration": {
-							"id": 163,
+							"id": 169,
 							"name": "__type",
 							"kind": 65536,
 							"kindString": "Type literal",
 							"flags": {},
 							"children": [
 								{
-									"id": 166,
+									"id": 172,
 									"name": "channels",
 									"kind": 1024,
 									"kindString": "Property",
@@ -5439,7 +5554,7 @@
 									}
 								},
 								{
-									"id": 165,
+									"id": 171,
 									"name": "convertToAllowList",
 									"kind": 1024,
 									"kindString": "Property",
@@ -5457,7 +5572,7 @@
 									}
 								},
 								{
-									"id": 164,
+									"id": 170,
 									"name": "enabled",
 									"kind": 1024,
 									"kindString": "Property",
@@ -5480,9 +5595,9 @@
 									"title": "Properties",
 									"kind": 1024,
 									"children": [
-										166,
-										165,
-										164
+										172,
+										171,
+										170
 									]
 								}
 							]
@@ -5490,7 +5605,7 @@
 					}
 				},
 				{
-					"id": 179,
+					"id": 185,
 					"name": "ignoredFiles",
 					"kind": 1024,
 					"kindString": "Property",
@@ -5511,7 +5626,7 @@
 					}
 				},
 				{
-					"id": 175,
+					"id": 181,
 					"name": "messages",
 					"kind": 1024,
 					"kindString": "Property",
@@ -5526,20 +5641,20 @@
 					"type": {
 						"type": "reflection",
 						"declaration": {
-							"id": 176,
+							"id": 182,
 							"name": "__type",
 							"kind": 65536,
 							"kindString": "Type literal",
 							"flags": {},
 							"indexSignature": {
-								"id": 177,
+								"id": 183,
 								"name": "__index",
 								"kind": 8192,
 								"kindString": "Index signature",
 								"flags": {},
 								"parameters": [
 									{
-										"id": 178,
+										"id": 184,
 										"name": "messageKey",
 										"kind": 32768,
 										"flags": {},
@@ -5558,7 +5673,7 @@
 					}
 				},
 				{
-					"id": 180,
+					"id": 186,
 					"name": "modulesFolder",
 					"kind": 1024,
 					"kindString": "Property",
@@ -5576,7 +5691,7 @@
 					}
 				},
 				{
-					"id": 152,
+					"id": 158,
 					"name": "permissions",
 					"kind": 1024,
 					"kindString": "Property",
@@ -5591,14 +5706,14 @@
 					"type": {
 						"type": "reflection",
 						"declaration": {
-							"id": 153,
+							"id": 159,
 							"name": "__type",
 							"kind": 65536,
 							"kindString": "Type literal",
 							"flags": {},
 							"children": [
 								{
-									"id": 158,
+									"id": 164,
 									"name": "interactionCommands",
 									"kind": 1024,
 									"kindString": "Property",
@@ -5613,14 +5728,14 @@
 									"type": {
 										"type": "reflection",
 										"declaration": {
-											"id": 159,
+											"id": 165,
 											"name": "__type",
 											"kind": 65536,
 											"kindString": "Type literal",
 											"flags": {},
 											"children": [
 												{
-													"id": 161,
+													"id": 167,
 													"name": "commands",
 													"kind": 1024,
 													"kindString": "Property",
@@ -5636,13 +5751,13 @@
 														"type": "array",
 														"elementType": {
 															"type": "reference",
-															"id": 131,
+															"id": 137,
 															"name": "ConfigCommandPermissions"
 														}
 													}
 												},
 												{
-													"id": 160,
+													"id": 166,
 													"name": "enabled",
 													"kind": 1024,
 													"kindString": "Property",
@@ -5665,8 +5780,8 @@
 													"title": "Properties",
 													"kind": 1024,
 													"children": [
-														161,
-														160
+														167,
+														166
 													]
 												}
 											]
@@ -5674,7 +5789,7 @@
 									}
 								},
 								{
-									"id": 154,
+									"id": 160,
 									"name": "messageCommands",
 									"kind": 1024,
 									"kindString": "Property",
@@ -5689,14 +5804,14 @@
 									"type": {
 										"type": "reflection",
 										"declaration": {
-											"id": 155,
+											"id": 161,
 											"name": "__type",
 											"kind": 65536,
 											"kindString": "Type literal",
 											"flags": {},
 											"children": [
 												{
-													"id": 157,
+													"id": 163,
 													"name": "commands",
 													"kind": 1024,
 													"kindString": "Property",
@@ -5712,13 +5827,13 @@
 														"type": "array",
 														"elementType": {
 															"type": "reference",
-															"id": 131,
+															"id": 137,
 															"name": "ConfigCommandPermissions"
 														}
 													}
 												},
 												{
-													"id": 156,
+													"id": 162,
 													"name": "enabled",
 													"kind": 1024,
 													"kindString": "Property",
@@ -5741,8 +5856,8 @@
 													"title": "Properties",
 													"kind": 1024,
 													"children": [
-														157,
-														156
+														163,
+														162
 													]
 												}
 											]
@@ -5755,8 +5870,8 @@
 									"title": "Properties",
 									"kind": 1024,
 									"children": [
-										158,
-										154
+										164,
+										160
 									]
 								}
 							]
@@ -5764,7 +5879,7 @@
 					}
 				},
 				{
-					"id": 136,
+					"id": 142,
 					"name": "prefix",
 					"kind": 1024,
 					"kindString": "Property",
@@ -5782,7 +5897,7 @@
 					}
 				},
 				{
-					"id": 135,
+					"id": 141,
 					"name": "token",
 					"kind": 1024,
 					"kindString": "Property",
@@ -5800,7 +5915,7 @@
 					}
 				},
 				{
-					"id": 181,
+					"id": 187,
 					"name": "version",
 					"kind": 1024,
 					"kindString": "Property",
@@ -5823,17 +5938,17 @@
 					"title": "Properties",
 					"kind": 1024,
 					"children": [
-						174,
-						137,
-						167,
-						162,
-						179,
-						175,
 						180,
-						152,
-						136,
-						135,
-						181
+						143,
+						173,
+						168,
+						185,
+						181,
+						186,
+						158,
+						142,
+						141,
+						187
 					]
 				}
 			],
@@ -5846,14 +5961,14 @@
 			]
 		},
 		{
-			"id": 131,
+			"id": 137,
 			"name": "ConfigCommandPermissions",
 			"kind": 256,
 			"kindString": "Interface",
 			"flags": {},
 			"children": [
 				{
-					"id": 132,
+					"id": 138,
 					"name": "command",
 					"kind": 1024,
 					"kindString": "Property",
@@ -5871,7 +5986,7 @@
 					}
 				},
 				{
-					"id": 133,
+					"id": 139,
 					"name": "permissions",
 					"kind": 1024,
 					"kindString": "Property",
@@ -5910,8 +6025,8 @@
 					"title": "Properties",
 					"kind": 1024,
 					"children": [
-						132,
-						133
+						138,
+						139
 					]
 				}
 			],
@@ -5924,14 +6039,14 @@
 			]
 		},
 		{
-			"id": 232,
+			"id": 238,
 			"name": "MessageCommandValidatedOption",
 			"kind": 256,
 			"kindString": "Interface",
 			"flags": {},
 			"children": [
 				{
-					"id": 236,
+					"id": 242,
 					"name": "invalid",
 					"kind": 1024,
 					"kindString": "Property",
@@ -5949,7 +6064,7 @@
 					}
 				},
 				{
-					"id": 237,
+					"id": 243,
 					"name": "missing",
 					"kind": 1024,
 					"kindString": "Property",
@@ -5967,7 +6082,7 @@
 					}
 				},
 				{
-					"id": 233,
+					"id": 239,
 					"name": "name",
 					"kind": 1024,
 					"kindString": "Property",
@@ -5985,7 +6100,7 @@
 					}
 				},
 				{
-					"id": 235,
+					"id": 241,
 					"name": "required",
 					"kind": 1024,
 					"kindString": "Property",
@@ -6003,7 +6118,7 @@
 					}
 				},
 				{
-					"id": 234,
+					"id": 240,
 					"name": "value",
 					"kind": 1024,
 					"kindString": "Property",
@@ -6035,11 +6150,11 @@
 					"title": "Properties",
 					"kind": 1024,
 					"children": [
-						236,
-						237,
-						233,
-						235,
-						234
+						242,
+						243,
+						239,
+						241,
+						240
 					]
 				}
 			],
@@ -6052,14 +6167,14 @@
 			]
 		},
 		{
-			"id": 4,
+			"id": 3,
 			"name": "RecipleClientCommands",
 			"kind": 256,
 			"kindString": "Interface",
 			"flags": {},
 			"children": [
 				{
-					"id": 9,
+					"id": 8,
 					"name": "INTERACTION_COMMANDS",
 					"kind": 1024,
 					"kindString": "Property",
@@ -6074,20 +6189,20 @@
 					"type": {
 						"type": "reflection",
 						"declaration": {
-							"id": 10,
+							"id": 9,
 							"name": "__type",
 							"kind": 65536,
 							"kindString": "Type literal",
 							"flags": {},
 							"indexSignature": {
-								"id": 11,
+								"id": 10,
 								"name": "__index",
 								"kind": 8192,
 								"kindString": "Index signature",
 								"flags": {},
 								"parameters": [
 									{
-										"id": 12,
+										"id": 11,
 										"name": "commandName",
 										"kind": 32768,
 										"flags": {},
@@ -6099,7 +6214,7 @@
 								],
 								"type": {
 									"type": "reference",
-									"id": 207,
+									"id": 213,
 									"name": "InteractionCommandBuilder"
 								}
 							}
@@ -6107,7 +6222,7 @@
 					}
 				},
 				{
-					"id": 5,
+					"id": 4,
 					"name": "MESSAGE_COMMANDS",
 					"kind": 1024,
 					"kindString": "Property",
@@ -6122,20 +6237,20 @@
 					"type": {
 						"type": "reflection",
 						"declaration": {
-							"id": 6,
+							"id": 5,
 							"name": "__type",
 							"kind": 65536,
 							"kindString": "Type literal",
 							"flags": {},
 							"indexSignature": {
-								"id": 7,
+								"id": 6,
 								"name": "__index",
 								"kind": 8192,
 								"kindString": "Index signature",
 								"flags": {},
 								"parameters": [
 									{
-										"id": 8,
+										"id": 7,
 										"name": "commandName",
 										"kind": 32768,
 										"flags": {},
@@ -6147,7 +6262,7 @@
 								],
 								"type": {
 									"type": "reference",
-									"id": 238,
+									"id": 244,
 									"name": "MessageCommandBuilder"
 								}
 							}
@@ -6160,8 +6275,8 @@
 					"title": "Properties",
 					"kind": 1024,
 					"children": [
-						9,
-						5
+						8,
+						4
 					]
 				}
 			],
@@ -6174,14 +6289,14 @@
 			]
 		},
 		{
-			"id": 13,
+			"id": 12,
 			"name": "RecipleClientEvents",
 			"kind": 256,
 			"kindString": "Interface",
 			"flags": {},
 			"children": [
 				{
-					"id": 15,
+					"id": 14,
 					"name": "recipleInteractionCommandCreate",
 					"kind": 1024,
 					"kindString": "Property",
@@ -6202,7 +6317,7 @@
 								"isOptional": false,
 								"element": {
 									"type": "reference",
-									"id": 202,
+									"id": 208,
 									"name": "RecipleInteractionCommandExecute"
 								}
 							}
@@ -6210,7 +6325,7 @@
 					}
 				},
 				{
-					"id": 14,
+					"id": 13,
 					"name": "recipleMessageCommandCreate",
 					"kind": 1024,
 					"kindString": "Property",
@@ -6231,7 +6346,7 @@
 								"isOptional": false,
 								"element": {
 									"type": "reference",
-									"id": 226,
+									"id": 232,
 									"name": "RecipleMessageCommandExecute"
 								}
 							}
@@ -6239,7 +6354,7 @@
 					}
 				},
 				{
-					"id": 16,
+					"id": 15,
 					"name": "recipleReplyError",
 					"kind": 1024,
 					"kindString": "Property",
@@ -6260,7 +6375,7 @@
 								"isOptional": false,
 								"element": {
 									"type": "intrinsic",
-									"name": "any"
+									"name": "unknown"
 								}
 							}
 						]
@@ -6272,9 +6387,9 @@
 					"title": "Properties",
 					"kind": 1024,
 					"children": [
-						15,
 						14,
-						16
+						13,
+						15
 					]
 				}
 			],
@@ -6295,14 +6410,14 @@
 			]
 		},
 		{
-			"id": 2,
+			"id": 1,
 			"name": "RecipleClientOptions",
 			"kind": 256,
 			"kindString": "Interface",
 			"flags": {},
 			"children": [
 				{
-					"id": 3,
+					"id": 2,
 					"name": "config",
 					"kind": 1024,
 					"kindString": "Property",
@@ -6318,7 +6433,7 @@
 					],
 					"type": {
 						"type": "reference",
-						"id": 134,
+						"id": 140,
 						"name": "Config"
 					}
 				}
@@ -6328,7 +6443,7 @@
 					"title": "Properties",
 					"kind": 1024,
 					"children": [
-						3
+						2
 					]
 				}
 			],
@@ -6349,14 +6464,14 @@
 			]
 		},
 		{
-			"id": 202,
+			"id": 208,
 			"name": "RecipleInteractionCommandExecute",
 			"kind": 256,
 			"kindString": "Interface",
 			"flags": {},
 			"children": [
 				{
-					"id": 205,
+					"id": 211,
 					"name": "builder",
 					"kind": 1024,
 					"kindString": "Property",
@@ -6370,12 +6485,12 @@
 					],
 					"type": {
 						"type": "reference",
-						"id": 207,
+						"id": 213,
 						"name": "InteractionCommandBuilder"
 					}
 				},
 				{
-					"id": 206,
+					"id": 212,
 					"name": "client",
 					"kind": 1024,
 					"kindString": "Property",
@@ -6389,7 +6504,7 @@
 					],
 					"type": {
 						"type": "reference",
-						"id": 17,
+						"id": 16,
 						"typeArguments": [
 							{
 								"type": "literal",
@@ -6400,7 +6515,7 @@
 					}
 				},
 				{
-					"id": 204,
+					"id": 210,
 					"name": "command",
 					"kind": 1024,
 					"kindString": "Property",
@@ -6414,12 +6529,12 @@
 					],
 					"type": {
 						"type": "reference",
-						"id": 207,
+						"id": 213,
 						"name": "InteractionCommandBuilder"
 					}
 				},
 				{
-					"id": 203,
+					"id": 209,
 					"name": "interaction",
 					"kind": 1024,
 					"kindString": "Property",
@@ -6452,10 +6567,10 @@
 					"title": "Properties",
 					"kind": 1024,
 					"children": [
-						205,
-						206,
-						204,
-						203
+						211,
+						212,
+						210,
+						209
 					]
 				}
 			],
@@ -6468,14 +6583,14 @@
 			]
 		},
 		{
-			"id": 226,
+			"id": 232,
 			"name": "RecipleMessageCommandExecute",
 			"kind": 256,
 			"kindString": "Interface",
 			"flags": {},
 			"children": [
 				{
-					"id": 230,
+					"id": 236,
 					"name": "builder",
 					"kind": 1024,
 					"kindString": "Property",
@@ -6489,12 +6604,12 @@
 					],
 					"type": {
 						"type": "reference",
-						"id": 238,
+						"id": 244,
 						"name": "MessageCommandBuilder"
 					}
 				},
 				{
-					"id": 231,
+					"id": 237,
 					"name": "client",
 					"kind": 1024,
 					"kindString": "Property",
@@ -6508,7 +6623,7 @@
 					],
 					"type": {
 						"type": "reference",
-						"id": 17,
+						"id": 16,
 						"typeArguments": [
 							{
 								"type": "literal",
@@ -6519,7 +6634,7 @@
 					}
 				},
 				{
-					"id": 229,
+					"id": 235,
 					"name": "command",
 					"kind": 1024,
 					"kindString": "Property",
@@ -6539,7 +6654,7 @@
 					}
 				},
 				{
-					"id": 227,
+					"id": 233,
 					"name": "message",
 					"kind": 1024,
 					"kindString": "Property",
@@ -6565,7 +6680,7 @@
 					}
 				},
 				{
-					"id": 228,
+					"id": 234,
 					"name": "options",
 					"kind": 1024,
 					"kindString": "Property",
@@ -6579,7 +6694,7 @@
 					],
 					"type": {
 						"type": "reference",
-						"id": 315,
+						"id": 321,
 						"name": "MessageCommandOptions"
 					}
 				}
@@ -6589,11 +6704,11 @@
 					"title": "Properties",
 					"kind": 1024,
 					"children": [
-						230,
-						231,
-						229,
-						227,
-						228
+						236,
+						237,
+						235,
+						233,
+						234
 					]
 				}
 			],
@@ -6606,14 +6721,14 @@
 			]
 		},
 		{
-			"id": 381,
+			"id": 387,
 			"name": "RecipleModule",
 			"kind": 256,
 			"kindString": "Interface",
 			"flags": {},
 			"children": [
 				{
-					"id": 383,
+					"id": 389,
 					"name": "info",
 					"kind": 1024,
 					"kindString": "Property",
@@ -6628,14 +6743,14 @@
 					"type": {
 						"type": "reflection",
 						"declaration": {
-							"id": 384,
+							"id": 390,
 							"name": "__type",
 							"kind": 65536,
 							"kindString": "Type literal",
 							"flags": {},
 							"children": [
 								{
-									"id": 385,
+									"id": 391,
 									"name": "filename",
 									"kind": 1024,
 									"kindString": "Property",
@@ -6655,7 +6770,7 @@
 									}
 								},
 								{
-									"id": 387,
+									"id": 393,
 									"name": "path",
 									"kind": 1024,
 									"kindString": "Property",
@@ -6675,7 +6790,7 @@
 									}
 								},
 								{
-									"id": 386,
+									"id": 392,
 									"name": "versions",
 									"kind": 1024,
 									"kindString": "Property",
@@ -6701,9 +6816,9 @@
 									"title": "Properties",
 									"kind": 1024,
 									"children": [
-										385,
-										387,
-										386
+										391,
+										393,
+										392
 									]
 								}
 							]
@@ -6711,7 +6826,7 @@
 					}
 				},
 				{
-					"id": 382,
+					"id": 388,
 					"name": "script",
 					"kind": 1024,
 					"kindString": "Property",
@@ -6725,7 +6840,7 @@
 					],
 					"type": {
 						"type": "reference",
-						"id": 370,
+						"id": 376,
 						"name": "RecipleScript"
 					}
 				}
@@ -6735,8 +6850,8 @@
 					"title": "Properties",
 					"kind": 1024,
 					"children": [
-						383,
-						382
+						389,
+						388
 					]
 				}
 			],
@@ -6749,7 +6864,7 @@
 			]
 		},
 		{
-			"id": 393,
+			"id": 399,
 			"name": "interactionCommandBuilders",
 			"kind": 4194304,
 			"kindString": "Type alias",
@@ -6766,7 +6881,7 @@
 				"types": [
 					{
 						"type": "reference",
-						"id": 207,
+						"id": 213,
 						"name": "InteractionCommandBuilder"
 					},
 					{
@@ -6809,7 +6924,7 @@
 			}
 		},
 		{
-			"id": 366,
+			"id": 372,
 			"name": "loadedModules",
 			"kind": 4194304,
 			"kindString": "Type alias",
@@ -6824,14 +6939,14 @@
 			"type": {
 				"type": "reflection",
 				"declaration": {
-					"id": 367,
+					"id": 373,
 					"name": "__type",
 					"kind": 65536,
 					"kindString": "Type literal",
 					"flags": {},
 					"children": [
 						{
-							"id": 368,
+							"id": 374,
 							"name": "commands",
 							"kind": 1024,
 							"kindString": "Property",
@@ -6847,13 +6962,13 @@
 								"type": "array",
 								"elementType": {
 									"type": "reference",
-									"id": 364,
+									"id": 370,
 									"name": "recipleCommandBuilders"
 								}
 							}
 						},
 						{
-							"id": 369,
+							"id": 375,
 							"name": "modules",
 							"kind": 1024,
 							"kindString": "Property",
@@ -6869,7 +6984,7 @@
 								"type": "array",
 								"elementType": {
 									"type": "reference",
-									"id": 381,
+									"id": 387,
 									"name": "RecipleModule"
 								}
 							}
@@ -6880,8 +6995,8 @@
 							"title": "Properties",
 							"kind": 1024,
 							"children": [
-								368,
-								369
+								374,
+								375
 							]
 						}
 					],
@@ -6896,7 +7011,7 @@
 			}
 		},
 		{
-			"id": 364,
+			"id": 370,
 			"name": "recipleCommandBuilders",
 			"kind": 4194304,
 			"kindString": "Type alias",
@@ -6913,19 +7028,19 @@
 				"types": [
 					{
 						"type": "reference",
-						"id": 238,
+						"id": 244,
 						"name": "MessageCommandBuilder"
 					},
 					{
 						"type": "reference",
-						"id": 207,
+						"id": 213,
 						"name": "InteractionCommandBuilder"
 					}
 				]
 			}
 		},
 		{
-			"id": 365,
+			"id": 371,
 			"name": "recipleCommandBuildersExecute",
 			"kind": 4194304,
 			"kindString": "Type alias",
@@ -6942,42 +7057,19 @@
 				"types": [
 					{
 						"type": "reference",
-						"id": 202,
+						"id": 208,
 						"name": "RecipleInteractionCommandExecute"
 					},
 					{
 						"type": "reference",
-						"id": 226,
+						"id": 232,
 						"name": "RecipleMessageCommandExecute"
 					}
 				]
 			}
 		},
 		{
-			"id": 1,
-			"name": "discordjs",
-			"kind": 32,
-			"kindString": "Variable",
-			"flags": {
-				"isConst": true
-			},
-			"sources": [
-				{
-					"fileName": "index.ts",
-					"line": 3,
-					"character": 13
-				}
-			],
-			"type": {
-				"type": "reference",
-				"qualifiedName": "/home/ghextercortes/Documents/GitHub/reciple/node_modules/discord.js/typings/index\"",
-				"package": "discord.js",
-				"name": "__module"
-			},
-			"defaultValue": "discord"
-		},
-		{
-			"id": 345,
+			"id": 351,
 			"name": "flags",
 			"kind": 32,
 			"kindString": "Variable",
@@ -7003,7 +7095,7 @@
 			"defaultValue": "..."
 		},
 		{
-			"id": 346,
+			"id": 352,
 			"name": "token",
 			"kind": 32,
 			"kindString": "Variable",
@@ -7036,7 +7128,7 @@
 			"defaultValue": "flags.token"
 		},
 		{
-			"id": 408,
+			"id": 414,
 			"name": "version",
 			"kind": 32,
 			"kindString": "Variable",
@@ -7060,7 +7152,7 @@
 			"defaultValue": "..."
 		},
 		{
-			"id": 333,
+			"id": 339,
 			"name": "hasPermissions",
 			"kind": 64,
 			"kindString": "Function",
@@ -7074,7 +7166,7 @@
 			],
 			"signatures": [
 				{
-					"id": 334,
+					"id": 340,
 					"name": "hasPermissions",
 					"kind": 4096,
 					"kindString": "Call signature",
@@ -7084,7 +7176,7 @@
 					},
 					"parameters": [
 						{
-							"id": 335,
+							"id": 341,
 							"name": "commandName",
 							"kind": 32768,
 							"kindString": "Parameter",
@@ -7095,7 +7187,7 @@
 							}
 						},
 						{
-							"id": 336,
+							"id": 342,
 							"name": "memberPermissions",
 							"kind": 32768,
 							"kindString": "Parameter",
@@ -7110,7 +7202,7 @@
 							}
 						},
 						{
-							"id": 337,
+							"id": 343,
 							"name": "configConmmandPermissions",
 							"kind": 32768,
 							"kindString": "Parameter",
@@ -7123,14 +7215,14 @@
 									{
 										"type": "reflection",
 										"declaration": {
-											"id": 338,
+											"id": 344,
 											"name": "__type",
 											"kind": 65536,
 											"kindString": "Type literal",
 											"flags": {},
 											"children": [
 												{
-													"id": 340,
+													"id": 346,
 													"name": "commands",
 													"kind": 1024,
 													"kindString": "Property",
@@ -7146,13 +7238,13 @@
 														"type": "array",
 														"elementType": {
 															"type": "reference",
-															"id": 131,
+															"id": 137,
 															"name": "ConfigCommandPermissions"
 														}
 													}
 												},
 												{
-													"id": 339,
+													"id": 345,
 													"name": "enabled",
 													"kind": 1024,
 													"kindString": "Property",
@@ -7175,8 +7267,8 @@
 													"title": "Properties",
 													"kind": 1024,
 													"children": [
-														340,
-														339
+														346,
+														345
 													]
 												}
 											]
@@ -7185,14 +7277,14 @@
 									{
 										"type": "reflection",
 										"declaration": {
-											"id": 341,
+											"id": 347,
 											"name": "__type",
 											"kind": 65536,
 											"kindString": "Type literal",
 											"flags": {},
 											"children": [
 												{
-													"id": 343,
+													"id": 349,
 													"name": "commands",
 													"kind": 1024,
 													"kindString": "Property",
@@ -7208,13 +7300,13 @@
 														"type": "array",
 														"elementType": {
 															"type": "reference",
-															"id": 131,
+															"id": 137,
 															"name": "ConfigCommandPermissions"
 														}
 													}
 												},
 												{
-													"id": 342,
+													"id": 348,
 													"name": "enabled",
 													"kind": 1024,
 													"kindString": "Property",
@@ -7237,8 +7329,8 @@
 													"title": "Properties",
 													"kind": 1024,
 													"children": [
-														343,
-														342
+														349,
+														348
 													]
 												}
 											]
@@ -7248,7 +7340,7 @@
 							}
 						},
 						{
-							"id": 344,
+							"id": 350,
 							"name": "builder",
 							"kind": 32768,
 							"kindString": "Parameter",
@@ -7257,7 +7349,7 @@
 							},
 							"type": {
 								"type": "reference",
-								"id": 364,
+								"id": 370,
 								"name": "recipleCommandBuilders"
 							}
 						}
@@ -7270,7 +7362,7 @@
 			]
 		},
 		{
-			"id": 347,
+			"id": 353,
 			"name": "isIgnoredChannel",
 			"kind": 64,
 			"kindString": "Function",
@@ -7284,7 +7376,7 @@
 			],
 			"signatures": [
 				{
-					"id": 348,
+					"id": 354,
 					"name": "isIgnoredChannel",
 					"kind": 4096,
 					"kindString": "Call signature",
@@ -7294,7 +7386,7 @@
 					},
 					"parameters": [
 						{
-							"id": 349,
+							"id": 355,
 							"name": "channelId",
 							"kind": 32768,
 							"kindString": "Parameter",
@@ -7305,7 +7397,7 @@
 							}
 						},
 						{
-							"id": 350,
+							"id": 356,
 							"name": "ignoredChannelsConfig",
 							"kind": 32768,
 							"kindString": "Parameter",
@@ -7315,14 +7407,14 @@
 							"type": {
 								"type": "reflection",
 								"declaration": {
-									"id": 351,
+									"id": 357,
 									"name": "__type",
 									"kind": 65536,
 									"kindString": "Type literal",
 									"flags": {},
 									"children": [
 										{
-											"id": 354,
+											"id": 360,
 											"name": "channels",
 											"kind": 1024,
 											"kindString": "Property",
@@ -7343,7 +7435,7 @@
 											}
 										},
 										{
-											"id": 353,
+											"id": 359,
 											"name": "convertToAllowList",
 											"kind": 1024,
 											"kindString": "Property",
@@ -7361,7 +7453,7 @@
 											}
 										},
 										{
-											"id": 352,
+											"id": 358,
 											"name": "enabled",
 											"kind": 1024,
 											"kindString": "Property",
@@ -7384,9 +7476,9 @@
 											"title": "Properties",
 											"kind": 1024,
 											"children": [
-												354,
-												353,
-												352
+												360,
+												359,
+												358
 											]
 										}
 									]
@@ -7402,7 +7494,7 @@
 			]
 		},
 		{
-			"id": 404,
+			"id": 410,
 			"name": "isSupportedVersion",
 			"kind": 64,
 			"kindString": "Function",
@@ -7416,7 +7508,7 @@
 			],
 			"signatures": [
 				{
-					"id": 405,
+					"id": 411,
 					"name": "isSupportedVersion",
 					"kind": 4096,
 					"kindString": "Call signature",
@@ -7426,7 +7518,7 @@
 					},
 					"parameters": [
 						{
-							"id": 406,
+							"id": 412,
 							"name": "versionRange",
 							"kind": 32768,
 							"kindString": "Parameter",
@@ -7437,7 +7529,7 @@
 							}
 						},
 						{
-							"id": 407,
+							"id": 413,
 							"name": "supportedVersion",
 							"kind": 32768,
 							"kindString": "Parameter",
@@ -7458,7 +7550,7 @@
 			]
 		},
 		{
-			"id": 394,
+			"id": 400,
 			"name": "isValidVersion",
 			"kind": 64,
 			"kindString": "Function",
@@ -7472,7 +7564,7 @@
 			],
 			"signatures": [
 				{
-					"id": 395,
+					"id": 401,
 					"name": "isValidVersion",
 					"kind": 4096,
 					"kindString": "Call signature",
@@ -7482,7 +7574,7 @@
 					},
 					"parameters": [
 						{
-							"id": 396,
+							"id": 402,
 							"name": "ver",
 							"kind": 32768,
 							"kindString": "Parameter",
@@ -7501,7 +7593,7 @@
 			]
 		},
 		{
-			"id": 360,
+			"id": 366,
 			"name": "loadModules",
 			"kind": 64,
 			"kindString": "Function",
@@ -7515,7 +7607,7 @@
 			],
 			"signatures": [
 				{
-					"id": 361,
+					"id": 367,
 					"name": "loadModules",
 					"kind": 4096,
 					"kindString": "Call signature",
@@ -7525,14 +7617,14 @@
 					},
 					"parameters": [
 						{
-							"id": 362,
+							"id": 368,
 							"name": "client",
 							"kind": 32768,
 							"kindString": "Parameter",
 							"flags": {},
 							"type": {
 								"type": "reference",
-								"id": 17,
+								"id": 16,
 								"typeArguments": [
 									{
 										"type": "intrinsic",
@@ -7543,7 +7635,7 @@
 							}
 						},
 						{
-							"id": 363,
+							"id": 369,
 							"name": "folder",
 							"kind": 32768,
 							"kindString": "Parameter",
@@ -7561,7 +7653,7 @@
 						"typeArguments": [
 							{
 								"type": "reference",
-								"id": 366,
+								"id": 372,
 								"name": "loadedModules"
 							}
 						],
@@ -7573,7 +7665,7 @@
 			]
 		},
 		{
-			"id": 355,
+			"id": 361,
 			"name": "logger",
 			"kind": 64,
 			"kindString": "Function",
@@ -7587,7 +7679,7 @@
 			],
 			"signatures": [
 				{
-					"id": 356,
+					"id": 362,
 					"name": "logger",
 					"kind": 4096,
 					"kindString": "Call signature",
@@ -7597,7 +7689,7 @@
 					},
 					"parameters": [
 						{
-							"id": 357,
+							"id": 363,
 							"name": "stringifyJSON",
 							"kind": 32768,
 							"kindString": "Parameter",
@@ -7608,7 +7700,7 @@
 							}
 						},
 						{
-							"id": 358,
+							"id": 364,
 							"name": "debugmode",
 							"kind": 32768,
 							"kindString": "Parameter",
@@ -7620,7 +7712,7 @@
 							"defaultValue": "false"
 						},
 						{
-							"id": 359,
+							"id": 365,
 							"name": "colorizeMessage",
 							"kind": 32768,
 							"kindString": "Parameter",
@@ -7642,7 +7734,7 @@
 			]
 		},
 		{
-			"id": 397,
+			"id": 403,
 			"name": "parseVersion",
 			"kind": 64,
 			"kindString": "Function",
@@ -7656,7 +7748,7 @@
 			],
 			"signatures": [
 				{
-					"id": 398,
+					"id": 404,
 					"name": "parseVersion",
 					"kind": 4096,
 					"kindString": "Call signature",
@@ -7666,7 +7758,7 @@
 					},
 					"parameters": [
 						{
-							"id": 399,
+							"id": 405,
 							"name": "ver",
 							"kind": 32768,
 							"kindString": "Parameter",
@@ -7680,14 +7772,14 @@
 					"type": {
 						"type": "reflection",
 						"declaration": {
-							"id": 400,
+							"id": 406,
 							"name": "__type",
 							"kind": 65536,
 							"kindString": "Type literal",
 							"flags": {},
 							"children": [
 								{
-									"id": 401,
+									"id": 407,
 									"name": "major",
 									"kind": 1024,
 									"kindString": "Property",
@@ -7706,7 +7798,7 @@
 									"defaultValue": "..."
 								},
 								{
-									"id": 402,
+									"id": 408,
 									"name": "minor",
 									"kind": 1024,
 									"kindString": "Property",
@@ -7725,7 +7817,7 @@
 									"defaultValue": "..."
 								},
 								{
-									"id": 403,
+									"id": 409,
 									"name": "patch",
 									"kind": 1024,
 									"kindString": "Property",
@@ -7749,9 +7841,9 @@
 									"title": "Properties",
 									"kind": 1024,
 									"children": [
-										401,
-										402,
-										403
+										407,
+										408,
+										409
 									]
 								}
 							]
@@ -7761,7 +7853,7 @@
 			]
 		},
 		{
-			"id": 388,
+			"id": 394,
 			"name": "registerInteractionCommands",
 			"kind": 64,
 			"kindString": "Function",
@@ -7775,7 +7867,7 @@
 			],
 			"signatures": [
 				{
-					"id": 389,
+					"id": 395,
 					"name": "registerInteractionCommands",
 					"kind": 4096,
 					"kindString": "Call signature",
@@ -7785,14 +7877,14 @@
 					},
 					"parameters": [
 						{
-							"id": 390,
+							"id": 396,
 							"name": "client",
 							"kind": 32768,
 							"kindString": "Parameter",
 							"flags": {},
 							"type": {
 								"type": "reference",
-								"id": 17,
+								"id": 16,
 								"typeArguments": [
 									{
 										"type": "intrinsic",
@@ -7803,7 +7895,7 @@
 							}
 						},
 						{
-							"id": 391,
+							"id": 397,
 							"name": "cmds",
 							"kind": 32768,
 							"kindString": "Parameter",
@@ -7817,7 +7909,7 @@
 									"types": [
 										{
 											"type": "reference",
-											"id": 393,
+											"id": 399,
 											"name": "interactionCommandBuilders"
 										},
 										{
@@ -7831,7 +7923,7 @@
 							}
 						},
 						{
-							"id": 392,
+							"id": 398,
 							"name": "overwriteGuilds",
 							"kind": 32768,
 							"kindString": "Parameter",
@@ -7877,62 +7969,61 @@
 			"title": "Classes",
 			"kind": 128,
 			"children": [
-				207,
-				238,
-				290,
-				315,
-				17,
-				182,
-				370
+				213,
+				244,
+				296,
+				321,
+				16,
+				188,
+				376
 			]
 		},
 		{
 			"title": "Interfaces",
 			"kind": 256,
 			"children": [
-				134,
-				131,
+				140,
+				137,
+				238,
+				3,
+				12,
+				1,
+				208,
 				232,
-				4,
-				13,
-				2,
-				202,
-				226,
-				381
+				387
 			]
 		},
 		{
 			"title": "Type Aliases",
 			"kind": 4194304,
 			"children": [
-				393,
-				366,
-				364,
-				365
+				399,
+				372,
+				370,
+				371
 			]
 		},
 		{
 			"title": "Variables",
 			"kind": 32,
 			"children": [
-				1,
-				345,
-				346,
-				408
+				351,
+				352,
+				414
 			]
 		},
 		{
 			"title": "Functions",
 			"kind": 64,
 			"children": [
-				333,
-				347,
-				404,
-				394,
-				360,
-				355,
-				397,
-				388
+				339,
+				353,
+				410,
+				400,
+				366,
+				361,
+				403,
+				394
 			]
 		}
 	],
