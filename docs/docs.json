@@ -1,6 +1,6 @@
 {
 	"id": 0,
-	"name": "Reciple - v3.0.1",
+	"name": "Reciple - v3.0.2",
 	"kind": 1,
 	"kindString": "Project",
 	"flags": {},
@@ -4208,9 +4208,9 @@
 														"name": "CacheType"
 													}
 												],
-												"qualifiedName": "CommandInteraction",
+												"qualifiedName": "Interaction",
 												"package": "discord.js",
-												"name": "CommandInteraction"
+												"name": "Interaction"
 											},
 											{
 												"type": "reference",
@@ -4222,9 +4222,9 @@
 														"name": "CacheType"
 													}
 												],
-												"qualifiedName": "Interaction",
+												"qualifiedName": "CommandInteraction",
 												"package": "discord.js",
-												"name": "Interaction"
+												"name": "CommandInteraction"
 											}
 										]
 									}
@@ -9159,9 +9159,9 @@
 								"name": "CacheType"
 							}
 						],
-						"qualifiedName": "CommandInteraction",
+						"qualifiedName": "ChatInputCommandInteraction",
 						"package": "discord.js",
-						"name": "CommandInteraction"
+						"name": "ChatInputCommandInteraction"
 					}
 				}
 			],
