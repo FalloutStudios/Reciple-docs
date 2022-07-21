@@ -1,34 +1,242 @@
 {
 	"id": 0,
-	"name": "Reciple - v2.0.2",
+	"name": "Reciple - v3.0.0",
 	"kind": 1,
 	"kindString": "Project",
 	"flags": {},
 	"originalName": "Reciple",
 	"children": [
 		{
-			"id": 233,
+			"id": 368,
+			"name": "RecipleCommandBuilderType",
+			"kind": 8,
+			"kindString": "Enumeration",
+			"flags": {},
+			"children": [
+				{
+					"id": 370,
+					"name": "InteractionCommand",
+					"kind": 16,
+					"kindString": "Enumeration Member",
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "reciple/types/builders.ts",
+							"line": 9,
+							"character": 4
+						}
+					],
+					"type": {
+						"type": "literal",
+						"value": 1
+					},
+					"defaultValue": "1"
+				},
+				{
+					"id": 369,
+					"name": "MessageCommand",
+					"kind": 16,
+					"kindString": "Enumeration Member",
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "reciple/types/builders.ts",
+							"line": 8,
+							"character": 4
+						}
+					],
+					"type": {
+						"type": "literal",
+						"value": 0
+					},
+					"defaultValue": "0"
+				}
+			],
+			"groups": [
+				{
+					"title": "Enumeration Members",
+					"kind": 16,
+					"children": [
+						370,
+						369
+					]
+				}
+			],
+			"sources": [
+				{
+					"fileName": "reciple/types/builders.ts",
+					"line": 7,
+					"character": 12
+				}
+			]
+		},
+		{
+			"id": 409,
+			"name": "RecipleHaltedCommandReason",
+			"kind": 8,
+			"kindString": "Enumeration",
+			"flags": {},
+			"children": [
+				{
+					"id": 411,
+					"name": "Cooldown",
+					"kind": 16,
+					"kindString": "Enumeration Member",
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "reciple/types/commands.ts",
+							"line": 31,
+							"character": 4
+						}
+					],
+					"type": {
+						"type": "literal",
+						"value": 1
+					},
+					"defaultValue": "1"
+				},
+				{
+					"id": 410,
+					"name": "Error",
+					"kind": 16,
+					"kindString": "Enumeration Member",
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "reciple/types/commands.ts",
+							"line": 30,
+							"character": 4
+						}
+					],
+					"type": {
+						"type": "literal",
+						"value": 0
+					},
+					"defaultValue": "0"
+				},
+				{
+					"id": 412,
+					"name": "InvalidArguments",
+					"kind": 16,
+					"kindString": "Enumeration Member",
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "reciple/types/commands.ts",
+							"line": 32,
+							"character": 4
+						}
+					],
+					"type": {
+						"type": "literal",
+						"value": 2
+					},
+					"defaultValue": "2"
+				},
+				{
+					"id": 413,
+					"name": "MissingArguments",
+					"kind": 16,
+					"kindString": "Enumeration Member",
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "reciple/types/commands.ts",
+							"line": 33,
+							"character": 4
+						}
+					],
+					"type": {
+						"type": "literal",
+						"value": 3
+					},
+					"defaultValue": "3"
+				},
+				{
+					"id": 415,
+					"name": "MissingBotPermissions",
+					"kind": 16,
+					"kindString": "Enumeration Member",
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "reciple/types/commands.ts",
+							"line": 35,
+							"character": 4
+						}
+					],
+					"type": {
+						"type": "literal",
+						"value": 5
+					},
+					"defaultValue": "5"
+				},
+				{
+					"id": 414,
+					"name": "MissingMemberPermissions",
+					"kind": 16,
+					"kindString": "Enumeration Member",
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "reciple/types/commands.ts",
+							"line": 34,
+							"character": 4
+						}
+					],
+					"type": {
+						"type": "literal",
+						"value": 4
+					},
+					"defaultValue": "4"
+				}
+			],
+			"groups": [
+				{
+					"title": "Enumeration Members",
+					"kind": 16,
+					"children": [
+						411,
+						410,
+						412,
+						413,
+						415,
+						414
+					]
+				}
+			],
+			"sources": [
+				{
+					"fileName": "reciple/types/commands.ts",
+					"line": 29,
+					"character": 12
+				}
+			]
+		},
+		{
+			"id": 225,
 			"name": "InteractionCommandBuilder",
 			"kind": 128,
 			"kindString": "Class",
 			"flags": {},
 			"children": [
 				{
-					"id": 234,
+					"id": 226,
 					"name": "constructor",
 					"kind": 512,
 					"kindString": "Constructor",
 					"flags": {},
 					"signatures": [
 						{
-							"id": 235,
+							"id": 227,
 							"name": "new InteractionCommandBuilder",
 							"kind": 16384,
 							"kindString": "Constructor signature",
 							"flags": {},
 							"type": {
 								"type": "reference",
-								"id": 233,
+								"id": 225,
 								"name": "InteractionCommandBuilder"
 							},
 							"inheritedFrom": {
@@ -43,8 +251,239 @@
 					}
 				},
 				{
-					"id": 239,
+					"id": 231,
 					"name": "RequiredUserPermissions",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {
+						"isPublic": true
+					},
+					"sources": [
+						{
+							"fileName": "reciple/classes/builders/InteractionCommandBuilder.ts",
+							"line": 17,
+							"character": 11
+						}
+					],
+					"type": {
+						"type": "array",
+						"elementType": {
+							"type": "reference",
+							"qualifiedName": "PermissionResolvable",
+							"package": "discord.js",
+							"name": "PermissionResolvable"
+						}
+					},
+					"defaultValue": "[]"
+				},
+				{
+					"id": 232,
+					"name": "allowExecuteInDM",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {
+						"isPublic": true
+					},
+					"sources": [
+						{
+							"fileName": "reciple/classes/builders/InteractionCommandBuilder.ts",
+							"line": 18,
+							"character": 11
+						}
+					],
+					"type": {
+						"type": "intrinsic",
+						"name": "boolean"
+					},
+					"defaultValue": "true"
+				},
+				{
+					"id": 228,
+					"name": "builder",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {
+						"isPublic": true,
+						"isReadonly": true
+					},
+					"sources": [
+						{
+							"fileName": "reciple/classes/builders/InteractionCommandBuilder.ts",
+							"line": 14,
+							"character": 20
+						}
+					],
+					"type": {
+						"type": "reference",
+						"id": 370,
+						"name": "InteractionCommand"
+					},
+					"defaultValue": "RecipleCommandBuilderType.InteractionCommand"
+				},
+				{
+					"id": 229,
+					"name": "cooldown",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {
+						"isPublic": true
+					},
+					"sources": [
+						{
+							"fileName": "reciple/classes/builders/InteractionCommandBuilder.ts",
+							"line": 15,
+							"character": 11
+						}
+					],
+					"type": {
+						"type": "intrinsic",
+						"name": "number"
+					},
+					"defaultValue": "0"
+				},
+				{
+					"id": 237,
+					"name": "execute",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {
+						"isPublic": true
+					},
+					"sources": [
+						{
+							"fileName": "reciple/classes/builders/InteractionCommandBuilder.ts",
+							"line": 20,
+							"character": 11
+						}
+					],
+					"type": {
+						"type": "reflection",
+						"declaration": {
+							"id": 238,
+							"name": "__type",
+							"kind": 65536,
+							"kindString": "Type literal",
+							"flags": {},
+							"signatures": [
+								{
+									"id": 239,
+									"name": "__type",
+									"kind": 4096,
+									"kindString": "Call signature",
+									"flags": {},
+									"parameters": [
+										{
+											"id": 240,
+											"name": "executeData",
+											"kind": 32768,
+											"kindString": "Parameter",
+											"flags": {},
+											"type": {
+												"type": "reference",
+												"id": 221,
+												"name": "RecipleInteractionCommandExecuteData"
+											}
+										}
+									],
+									"type": {
+										"type": "reference",
+										"typeArguments": [
+											{
+												"type": "intrinsic",
+												"name": "void"
+											}
+										],
+										"qualifiedName": "Awaitable",
+										"package": "discord.js",
+										"name": "Awaitable"
+									}
+								}
+							]
+						}
+					},
+					"defaultValue": "..."
+				},
+				{
+					"id": 233,
+					"name": "halt",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {
+						"isPublic": true,
+						"isOptional": true
+					},
+					"sources": [
+						{
+							"fileName": "reciple/classes/builders/InteractionCommandBuilder.ts",
+							"line": 19,
+							"character": 11
+						}
+					],
+					"type": {
+						"type": "reflection",
+						"declaration": {
+							"id": 234,
+							"name": "__type",
+							"kind": 65536,
+							"kindString": "Type literal",
+							"flags": {},
+							"signatures": [
+								{
+									"id": 235,
+									"name": "__type",
+									"kind": 4096,
+									"kindString": "Call signature",
+									"flags": {},
+									"parameters": [
+										{
+											"id": 236,
+											"name": "haltData",
+											"kind": 32768,
+											"kindString": "Parameter",
+											"flags": {},
+											"type": {
+												"type": "reference",
+												"id": 371,
+												"typeArguments": [
+													{
+														"type": "reference",
+														"id": 225,
+														"name": "InteractionCommandBuilder"
+													}
+												],
+												"name": "RecipleHaltedCommandData"
+											}
+										}
+									],
+									"type": {
+										"type": "reference",
+										"typeArguments": [
+											{
+												"type": "union",
+												"types": [
+													{
+														"type": "intrinsic",
+														"name": "boolean"
+													},
+													{
+														"type": "intrinsic",
+														"name": "void"
+													}
+												]
+											}
+										],
+										"qualifiedName": "Awaitable",
+										"package": "discord.js",
+										"name": "Awaitable"
+									}
+								}
+							]
+						}
+					}
+				},
+				{
+					"id": 230,
+					"name": "requiredBotPermissions",
 					"kind": 1024,
 					"kindString": "Property",
 					"flags": {
@@ -69,228 +508,7 @@
 					"defaultValue": "[]"
 				},
 				{
-					"id": 240,
-					"name": "allowExecuteInDM",
-					"kind": 1024,
-					"kindString": "Property",
-					"flags": {
-						"isPublic": true
-					},
-					"sources": [
-						{
-							"fileName": "reciple/classes/builders/InteractionCommandBuilder.ts",
-							"line": 17,
-							"character": 11
-						}
-					],
-					"type": {
-						"type": "intrinsic",
-						"name": "boolean"
-					},
-					"defaultValue": "true"
-				},
-				{
-					"id": 236,
-					"name": "builder",
-					"kind": 1024,
-					"kindString": "Property",
-					"flags": {
-						"isPublic": true,
-						"isReadonly": true
-					},
-					"sources": [
-						{
-							"fileName": "reciple/classes/builders/InteractionCommandBuilder.ts",
-							"line": 13,
-							"character": 20
-						}
-					],
-					"type": {
-						"type": "literal",
-						"value": "INTERACTION_COMMAND"
-					},
-					"defaultValue": "'INTERACTION_COMMAND'"
-				},
-				{
-					"id": 237,
-					"name": "cooldown",
-					"kind": 1024,
-					"kindString": "Property",
-					"flags": {
-						"isPublic": true
-					},
-					"sources": [
-						{
-							"fileName": "reciple/classes/builders/InteractionCommandBuilder.ts",
-							"line": 14,
-							"character": 11
-						}
-					],
-					"type": {
-						"type": "intrinsic",
-						"name": "number"
-					},
-					"defaultValue": "0"
-				},
-				{
-					"id": 245,
-					"name": "execute",
-					"kind": 1024,
-					"kindString": "Property",
-					"flags": {
-						"isPublic": true
-					},
-					"sources": [
-						{
-							"fileName": "reciple/classes/builders/InteractionCommandBuilder.ts",
-							"line": 19,
-							"character": 11
-						}
-					],
-					"type": {
-						"type": "reflection",
-						"declaration": {
-							"id": 246,
-							"name": "__type",
-							"kind": 65536,
-							"kindString": "Type literal",
-							"flags": {},
-							"signatures": [
-								{
-									"id": 247,
-									"name": "__type",
-									"kind": 4096,
-									"kindString": "Call signature",
-									"flags": {},
-									"parameters": [
-										{
-											"id": 248,
-											"name": "executeData",
-											"kind": 32768,
-											"kindString": "Parameter",
-											"flags": {},
-											"type": {
-												"type": "reference",
-												"id": 229,
-												"name": "RecipleInteractionCommandExecuteData"
-											}
-										}
-									],
-									"type": {
-										"type": "reference",
-										"typeArguments": [
-											{
-												"type": "intrinsic",
-												"name": "void"
-											}
-										],
-										"qualifiedName": "Awaitable",
-										"package": "discord.js",
-										"name": "Awaitable"
-									}
-								}
-							]
-						}
-					},
-					"defaultValue": "..."
-				},
-				{
 					"id": 241,
-					"name": "halt",
-					"kind": 1024,
-					"kindString": "Property",
-					"flags": {
-						"isPublic": true,
-						"isOptional": true
-					},
-					"sources": [
-						{
-							"fileName": "reciple/classes/builders/InteractionCommandBuilder.ts",
-							"line": 18,
-							"character": 11
-						}
-					],
-					"type": {
-						"type": "reflection",
-						"declaration": {
-							"id": 242,
-							"name": "__type",
-							"kind": 65536,
-							"kindString": "Type literal",
-							"flags": {},
-							"signatures": [
-								{
-									"id": 243,
-									"name": "__type",
-									"kind": 4096,
-									"kindString": "Call signature",
-									"flags": {},
-									"parameters": [
-										{
-											"id": 244,
-											"name": "haltData",
-											"kind": 32768,
-											"kindString": "Parameter",
-											"flags": {},
-											"type": {
-												"type": "reference",
-												"id": 378,
-												"typeArguments": [
-													{
-														"type": "reference",
-														"id": 233,
-														"name": "InteractionCommandBuilder"
-													}
-												],
-												"name": "RecipleHaltedCommandData"
-											}
-										}
-									],
-									"type": {
-										"type": "reference",
-										"typeArguments": [
-											{
-												"type": "intrinsic",
-												"name": "boolean"
-											}
-										],
-										"qualifiedName": "Awaitable",
-										"package": "discord.js",
-										"name": "Awaitable"
-									}
-								}
-							]
-						}
-					}
-				},
-				{
-					"id": 238,
-					"name": "requiredBotPermissions",
-					"kind": 1024,
-					"kindString": "Property",
-					"flags": {
-						"isPublic": true
-					},
-					"sources": [
-						{
-							"fileName": "reciple/classes/builders/InteractionCommandBuilder.ts",
-							"line": 15,
-							"character": 11
-						}
-					],
-					"type": {
-						"type": "array",
-						"elementType": {
-							"type": "reference",
-							"qualifiedName": "PermissionResolvable",
-							"package": "discord.js",
-							"name": "PermissionResolvable"
-						}
-					},
-					"defaultValue": "[]"
-				},
-				{
-					"id": 249,
 					"name": "setCooldown",
 					"kind": 2048,
 					"kindString": "Method",
@@ -300,13 +518,13 @@
 					"sources": [
 						{
 							"fileName": "reciple/classes/builders/InteractionCommandBuilder.ts",
-							"line": 25,
+							"line": 26,
 							"character": 11
 						}
 					],
 					"signatures": [
 						{
-							"id": 250,
+							"id": 242,
 							"name": "setCooldown",
 							"kind": 4096,
 							"kindString": "Call signature",
@@ -316,7 +534,7 @@
 							},
 							"parameters": [
 								{
-									"id": 251,
+									"id": 243,
 									"name": "cooldown",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -329,14 +547,14 @@
 							],
 							"type": {
 								"type": "reference",
-								"id": 233,
+								"id": 225,
 								"name": "InteractionCommandBuilder"
 							}
 						}
 					]
 				},
 				{
-					"id": 261,
+					"id": 253,
 					"name": "setExecute",
 					"kind": 2048,
 					"kindString": "Method",
@@ -346,13 +564,13 @@
 					"sources": [
 						{
 							"fileName": "reciple/classes/builders/InteractionCommandBuilder.ts",
-							"line": 49,
+							"line": 50,
 							"character": 11
 						}
 					],
 					"signatures": [
 						{
-							"id": 262,
+							"id": 254,
 							"name": "setExecute",
 							"kind": 4096,
 							"kindString": "Call signature",
@@ -362,7 +580,7 @@
 							},
 							"parameters": [
 								{
-									"id": 263,
+									"id": 255,
 									"name": "execute",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -370,28 +588,28 @@
 									"type": {
 										"type": "reflection",
 										"declaration": {
-											"id": 264,
+											"id": 256,
 											"name": "__type",
 											"kind": 65536,
 											"kindString": "Type literal",
 											"flags": {},
 											"signatures": [
 												{
-													"id": 265,
+													"id": 257,
 													"name": "__type",
 													"kind": 4096,
 													"kindString": "Call signature",
 													"flags": {},
 													"parameters": [
 														{
-															"id": 266,
+															"id": 258,
 															"name": "executeData",
 															"kind": 32768,
 															"kindString": "Parameter",
 															"flags": {},
 															"type": {
 																"type": "reference",
-																"id": 229,
+																"id": 221,
 																"name": "RecipleInteractionCommandExecuteData"
 															}
 														}
@@ -408,14 +626,14 @@
 							],
 							"type": {
 								"type": "reference",
-								"id": 233,
+								"id": 225,
 								"name": "InteractionCommandBuilder"
 							}
 						}
 					]
 				},
 				{
-					"id": 255,
+					"id": 247,
 					"name": "setHalt",
 					"kind": 2048,
 					"kindString": "Method",
@@ -425,13 +643,13 @@
 					"sources": [
 						{
 							"fileName": "reciple/classes/builders/InteractionCommandBuilder.ts",
-							"line": 41,
+							"line": 42,
 							"character": 11
 						}
 					],
 					"signatures": [
 						{
-							"id": 256,
+							"id": 248,
 							"name": "setHalt",
 							"kind": 4096,
 							"kindString": "Call signature",
@@ -441,7 +659,7 @@
 							},
 							"parameters": [
 								{
-									"id": 257,
+									"id": 249,
 									"name": "halt",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -451,32 +669,32 @@
 									"type": {
 										"type": "reflection",
 										"declaration": {
-											"id": 258,
+											"id": 250,
 											"name": "__type",
 											"kind": 65536,
 											"kindString": "Type literal",
 											"flags": {},
 											"signatures": [
 												{
-													"id": 259,
+													"id": 251,
 													"name": "__type",
 													"kind": 4096,
 													"kindString": "Call signature",
 													"flags": {},
 													"parameters": [
 														{
-															"id": 260,
+															"id": 252,
 															"name": "haltData",
 															"kind": 32768,
 															"kindString": "Parameter",
 															"flags": {},
 															"type": {
 																"type": "reference",
-																"id": 378,
+																"id": 371,
 																"typeArguments": [
 																	{
 																		"type": "reference",
-																		"id": 233,
+																		"id": 225,
 																		"name": "InteractionCommandBuilder"
 																	}
 																],
@@ -488,8 +706,17 @@
 														"type": "reference",
 														"typeArguments": [
 															{
-																"type": "intrinsic",
-																"name": "boolean"
+																"type": "union",
+																"types": [
+																	{
+																		"type": "intrinsic",
+																		"name": "boolean"
+																	},
+																	{
+																		"type": "intrinsic",
+																		"name": "void"
+																	}
+																]
 															}
 														],
 														"qualifiedName": "Awaitable",
@@ -504,14 +731,14 @@
 							],
 							"type": {
 								"type": "reference",
-								"id": 233,
+								"id": 225,
 								"name": "InteractionCommandBuilder"
 							}
 						}
 					]
 				},
 				{
-					"id": 252,
+					"id": 244,
 					"name": "setRequiredMemberPermissions",
 					"kind": 2048,
 					"kindString": "Method",
@@ -521,13 +748,13 @@
 					"sources": [
 						{
 							"fileName": "reciple/classes/builders/InteractionCommandBuilder.ts",
-							"line": 33,
+							"line": 34,
 							"character": 11
 						}
 					],
 					"signatures": [
 						{
-							"id": 253,
+							"id": 245,
 							"name": "setRequiredMemberPermissions",
 							"kind": 4096,
 							"kindString": "Call signature",
@@ -537,7 +764,7 @@
 							},
 							"parameters": [
 								{
-									"id": 254,
+									"id": 246,
 									"name": "permissions",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -557,7 +784,7 @@
 							],
 							"type": {
 								"type": "reference",
-								"id": 233,
+								"id": 225,
 								"name": "InteractionCommandBuilder"
 							}
 						}
@@ -569,37 +796,37 @@
 					"title": "Constructors",
 					"kind": 512,
 					"children": [
-						234
+						226
 					]
 				},
 				{
 					"title": "Properties",
 					"kind": 1024,
 					"children": [
-						239,
-						240,
-						236,
+						231,
+						232,
+						228,
+						229,
 						237,
-						245,
-						241,
-						238
+						233,
+						230
 					]
 				},
 				{
 					"title": "Methods",
 					"kind": 2048,
 					"children": [
-						249,
-						261,
-						255,
-						252
+						241,
+						253,
+						247,
+						244
 					]
 				}
 			],
 			"sources": [
 				{
 					"fileName": "reciple/classes/builders/InteractionCommandBuilder.ts",
-					"line": 12,
+					"line": 13,
 					"character": 13
 				}
 			],
@@ -613,36 +840,371 @@
 			]
 		},
 		{
-			"id": 279,
+			"id": 271,
 			"name": "MessageCommandBuilder",
 			"kind": 128,
 			"kindString": "Class",
 			"flags": {},
 			"children": [
 				{
-					"id": 280,
+					"id": 272,
 					"name": "constructor",
 					"kind": 512,
 					"kindString": "Constructor",
 					"flags": {},
 					"signatures": [
 						{
-							"id": 281,
+							"id": 273,
 							"name": "new MessageCommandBuilder",
 							"kind": 16384,
 							"kindString": "Constructor signature",
 							"flags": {},
 							"type": {
 								"type": "reference",
-								"id": 279,
+								"id": 271,
 								"name": "MessageCommandBuilder"
 							}
 						}
 					]
 				},
 				{
-					"id": 290,
+					"id": 282,
 					"name": "RequiredUserPermissions",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {
+						"isPublic": true
+					},
+					"sources": [
+						{
+							"fileName": "reciple/classes/builders/MessageCommandBuilder.ts",
+							"line": 34,
+							"character": 11
+						}
+					],
+					"type": {
+						"type": "array",
+						"elementType": {
+							"type": "reference",
+							"qualifiedName": "PermissionResolvable",
+							"package": "discord.js",
+							"name": "PermissionResolvable"
+						}
+					},
+					"defaultValue": "[]"
+				},
+				{
+					"id": 278,
+					"name": "aliases",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {
+						"isPublic": true
+					},
+					"sources": [
+						{
+							"fileName": "reciple/classes/builders/MessageCommandBuilder.ts",
+							"line": 30,
+							"character": 11
+						}
+					],
+					"type": {
+						"type": "array",
+						"elementType": {
+							"type": "intrinsic",
+							"name": "string"
+						}
+					},
+					"defaultValue": "[]"
+				},
+				{
+					"id": 284,
+					"name": "allowExecuteByBots",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {
+						"isPublic": true
+					},
+					"sources": [
+						{
+							"fileName": "reciple/classes/builders/MessageCommandBuilder.ts",
+							"line": 36,
+							"character": 11
+						}
+					],
+					"type": {
+						"type": "intrinsic",
+						"name": "boolean"
+					},
+					"defaultValue": "false"
+				},
+				{
+					"id": 283,
+					"name": "allowExecuteInDM",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {
+						"isPublic": true
+					},
+					"sources": [
+						{
+							"fileName": "reciple/classes/builders/MessageCommandBuilder.ts",
+							"line": 35,
+							"character": 11
+						}
+					],
+					"type": {
+						"type": "intrinsic",
+						"name": "boolean"
+					},
+					"defaultValue": "true"
+				},
+				{
+					"id": 274,
+					"name": "builder",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {
+						"isPublic": true,
+						"isReadonly": true
+					},
+					"sources": [
+						{
+							"fileName": "reciple/classes/builders/MessageCommandBuilder.ts",
+							"line": 26,
+							"character": 20
+						}
+					],
+					"type": {
+						"type": "reference",
+						"id": 369,
+						"name": "MessageCommand"
+					},
+					"defaultValue": "RecipleCommandBuilderType.MessageCommand"
+				},
+				{
+					"id": 276,
+					"name": "cooldown",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {
+						"isPublic": true
+					},
+					"sources": [
+						{
+							"fileName": "reciple/classes/builders/MessageCommandBuilder.ts",
+							"line": 28,
+							"character": 11
+						}
+					],
+					"type": {
+						"type": "intrinsic",
+						"name": "number"
+					},
+					"defaultValue": "0"
+				},
+				{
+					"id": 277,
+					"name": "description",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {
+						"isPublic": true
+					},
+					"sources": [
+						{
+							"fileName": "reciple/classes/builders/MessageCommandBuilder.ts",
+							"line": 29,
+							"character": 11
+						}
+					],
+					"type": {
+						"type": "intrinsic",
+						"name": "string"
+					},
+					"defaultValue": "''"
+				},
+				{
+					"id": 289,
+					"name": "execute",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {
+						"isPublic": true
+					},
+					"sources": [
+						{
+							"fileName": "reciple/classes/builders/MessageCommandBuilder.ts",
+							"line": 38,
+							"character": 11
+						}
+					],
+					"type": {
+						"type": "reflection",
+						"declaration": {
+							"id": 290,
+							"name": "__type",
+							"kind": 65536,
+							"kindString": "Type literal",
+							"flags": {},
+							"signatures": [
+								{
+									"id": 291,
+									"name": "__type",
+									"kind": 4096,
+									"kindString": "Call signature",
+									"flags": {},
+									"parameters": [
+										{
+											"id": 292,
+											"name": "executeData",
+											"kind": 32768,
+											"kindString": "Parameter",
+											"flags": {},
+											"type": {
+												"type": "reference",
+												"id": 259,
+												"name": "RecipleMessageCommandExecuteData"
+											}
+										}
+									],
+									"type": {
+										"type": "intrinsic",
+										"name": "void"
+									}
+								}
+							]
+						}
+					},
+					"defaultValue": "..."
+				},
+				{
+					"id": 285,
+					"name": "halt",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {
+						"isPublic": true,
+						"isOptional": true
+					},
+					"sources": [
+						{
+							"fileName": "reciple/classes/builders/MessageCommandBuilder.ts",
+							"line": 37,
+							"character": 11
+						}
+					],
+					"type": {
+						"type": "reflection",
+						"declaration": {
+							"id": 286,
+							"name": "__type",
+							"kind": 65536,
+							"kindString": "Type literal",
+							"flags": {},
+							"signatures": [
+								{
+									"id": 287,
+									"name": "__type",
+									"kind": 4096,
+									"kindString": "Call signature",
+									"flags": {},
+									"parameters": [
+										{
+											"id": 288,
+											"name": "haltData",
+											"kind": 32768,
+											"kindString": "Parameter",
+											"flags": {},
+											"type": {
+												"type": "reference",
+												"id": 371,
+												"typeArguments": [
+													{
+														"type": "reference",
+														"id": 271,
+														"name": "MessageCommandBuilder"
+													}
+												],
+												"name": "RecipleHaltedCommandData"
+											}
+										}
+									],
+									"type": {
+										"type": "reference",
+										"typeArguments": [
+											{
+												"type": "union",
+												"types": [
+													{
+														"type": "intrinsic",
+														"name": "boolean"
+													},
+													{
+														"type": "intrinsic",
+														"name": "void"
+													}
+												]
+											}
+										],
+										"qualifiedName": "Awaitable",
+										"package": "discord.js",
+										"name": "Awaitable"
+									}
+								}
+							]
+						}
+					}
+				},
+				{
+					"id": 275,
+					"name": "name",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {
+						"isPublic": true
+					},
+					"sources": [
+						{
+							"fileName": "reciple/classes/builders/MessageCommandBuilder.ts",
+							"line": 27,
+							"character": 11
+						}
+					],
+					"type": {
+						"type": "intrinsic",
+						"name": "string"
+					},
+					"defaultValue": "''"
+				},
+				{
+					"id": 279,
+					"name": "options",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {
+						"isPublic": true
+					},
+					"sources": [
+						{
+							"fileName": "reciple/classes/builders/MessageCommandBuilder.ts",
+							"line": 31,
+							"character": 11
+						}
+					],
+					"type": {
+						"type": "array",
+						"elementType": {
+							"type": "reference",
+							"id": 341,
+							"name": "MessageCommandOptionBuilder"
+						}
+					},
+					"defaultValue": "[]"
+				},
+				{
+					"id": 281,
+					"name": "requiredBotPermissions",
 					"kind": 1024,
 					"kindString": "Property",
 					"flags": {
@@ -667,307 +1229,8 @@
 					"defaultValue": "[]"
 				},
 				{
-					"id": 286,
-					"name": "aliases",
-					"kind": 1024,
-					"kindString": "Property",
-					"flags": {
-						"isPublic": true
-					},
-					"sources": [
-						{
-							"fileName": "reciple/classes/builders/MessageCommandBuilder.ts",
-							"line": 29,
-							"character": 11
-						}
-					],
-					"type": {
-						"type": "array",
-						"elementType": {
-							"type": "intrinsic",
-							"name": "string"
-						}
-					},
-					"defaultValue": "[]"
-				},
-				{
-					"id": 292,
-					"name": "allowExecuteByBots",
-					"kind": 1024,
-					"kindString": "Property",
-					"flags": {
-						"isPublic": true
-					},
-					"sources": [
-						{
-							"fileName": "reciple/classes/builders/MessageCommandBuilder.ts",
-							"line": 35,
-							"character": 11
-						}
-					],
-					"type": {
-						"type": "intrinsic",
-						"name": "boolean"
-					},
-					"defaultValue": "false"
-				},
-				{
-					"id": 291,
-					"name": "allowExecuteInDM",
-					"kind": 1024,
-					"kindString": "Property",
-					"flags": {
-						"isPublic": true
-					},
-					"sources": [
-						{
-							"fileName": "reciple/classes/builders/MessageCommandBuilder.ts",
-							"line": 34,
-							"character": 11
-						}
-					],
-					"type": {
-						"type": "intrinsic",
-						"name": "boolean"
-					},
-					"defaultValue": "true"
-				},
-				{
-					"id": 282,
-					"name": "builder",
-					"kind": 1024,
-					"kindString": "Property",
-					"flags": {
-						"isPublic": true,
-						"isReadonly": true
-					},
-					"sources": [
-						{
-							"fileName": "reciple/classes/builders/MessageCommandBuilder.ts",
-							"line": 25,
-							"character": 20
-						}
-					],
-					"type": {
-						"type": "literal",
-						"value": "MESSAGE_COMMAND"
-					},
-					"defaultValue": "'MESSAGE_COMMAND'"
-				},
-				{
-					"id": 284,
-					"name": "cooldown",
-					"kind": 1024,
-					"kindString": "Property",
-					"flags": {
-						"isPublic": true
-					},
-					"sources": [
-						{
-							"fileName": "reciple/classes/builders/MessageCommandBuilder.ts",
-							"line": 27,
-							"character": 11
-						}
-					],
-					"type": {
-						"type": "intrinsic",
-						"name": "number"
-					},
-					"defaultValue": "0"
-				},
-				{
-					"id": 285,
-					"name": "description",
-					"kind": 1024,
-					"kindString": "Property",
-					"flags": {
-						"isPublic": true
-					},
-					"sources": [
-						{
-							"fileName": "reciple/classes/builders/MessageCommandBuilder.ts",
-							"line": 28,
-							"character": 11
-						}
-					],
-					"type": {
-						"type": "intrinsic",
-						"name": "string"
-					},
-					"defaultValue": "''"
-				},
-				{
-					"id": 297,
-					"name": "execute",
-					"kind": 1024,
-					"kindString": "Property",
-					"flags": {
-						"isPublic": true
-					},
-					"sources": [
-						{
-							"fileName": "reciple/classes/builders/MessageCommandBuilder.ts",
-							"line": 37,
-							"character": 11
-						}
-					],
-					"type": {
-						"type": "reflection",
-						"declaration": {
-							"id": 298,
-							"name": "__type",
-							"kind": 65536,
-							"kindString": "Type literal",
-							"flags": {},
-							"signatures": [
-								{
-									"id": 299,
-									"name": "__type",
-									"kind": 4096,
-									"kindString": "Call signature",
-									"flags": {},
-									"parameters": [
-										{
-											"id": 300,
-											"name": "executeData",
-											"kind": 32768,
-											"kindString": "Parameter",
-											"flags": {},
-											"type": {
-												"type": "reference",
-												"id": 267,
-												"name": "RecipleMessageCommandExecuteData"
-											}
-										}
-									],
-									"type": {
-										"type": "intrinsic",
-										"name": "void"
-									}
-								}
-							]
-						}
-					},
-					"defaultValue": "..."
-				},
-				{
-					"id": 293,
-					"name": "halt",
-					"kind": 1024,
-					"kindString": "Property",
-					"flags": {
-						"isPublic": true,
-						"isOptional": true
-					},
-					"sources": [
-						{
-							"fileName": "reciple/classes/builders/MessageCommandBuilder.ts",
-							"line": 36,
-							"character": 11
-						}
-					],
-					"type": {
-						"type": "reflection",
-						"declaration": {
-							"id": 294,
-							"name": "__type",
-							"kind": 65536,
-							"kindString": "Type literal",
-							"flags": {},
-							"signatures": [
-								{
-									"id": 295,
-									"name": "__type",
-									"kind": 4096,
-									"kindString": "Call signature",
-									"flags": {},
-									"parameters": [
-										{
-											"id": 296,
-											"name": "haltData",
-											"kind": 32768,
-											"kindString": "Parameter",
-											"flags": {},
-											"type": {
-												"type": "reference",
-												"id": 378,
-												"typeArguments": [
-													{
-														"type": "reference",
-														"id": 279,
-														"name": "MessageCommandBuilder"
-													}
-												],
-												"name": "RecipleHaltedCommandData"
-											}
-										}
-									],
-									"type": {
-										"type": "reference",
-										"typeArguments": [
-											{
-												"type": "intrinsic",
-												"name": "boolean"
-											}
-										],
-										"qualifiedName": "Awaitable",
-										"package": "discord.js",
-										"name": "Awaitable"
-									}
-								}
-							]
-						}
-					}
-				},
-				{
-					"id": 283,
-					"name": "name",
-					"kind": 1024,
-					"kindString": "Property",
-					"flags": {
-						"isPublic": true
-					},
-					"sources": [
-						{
-							"fileName": "reciple/classes/builders/MessageCommandBuilder.ts",
-							"line": 26,
-							"character": 11
-						}
-					],
-					"type": {
-						"type": "intrinsic",
-						"name": "string"
-					},
-					"defaultValue": "''"
-				},
-				{
-					"id": 287,
-					"name": "options",
-					"kind": 1024,
-					"kindString": "Property",
-					"flags": {
-						"isPublic": true
-					},
-					"sources": [
-						{
-							"fileName": "reciple/classes/builders/MessageCommandBuilder.ts",
-							"line": 30,
-							"character": 11
-						}
-					],
-					"type": {
-						"type": "array",
-						"elementType": {
-							"type": "reference",
-							"id": 349,
-							"name": "MessageCommandOptionBuilder"
-						}
-					},
-					"defaultValue": "[]"
-				},
-				{
-					"id": 289,
-					"name": "requiredBotPermissions",
+					"id": 280,
+					"name": "validateOptions",
 					"kind": 1024,
 					"kindString": "Property",
 					"flags": {
@@ -981,39 +1244,13 @@
 						}
 					],
 					"type": {
-						"type": "array",
-						"elementType": {
-							"type": "reference",
-							"qualifiedName": "PermissionResolvable",
-							"package": "discord.js",
-							"name": "PermissionResolvable"
-						}
-					},
-					"defaultValue": "[]"
-				},
-				{
-					"id": 288,
-					"name": "validateOptions",
-					"kind": 1024,
-					"kindString": "Property",
-					"flags": {
-						"isPublic": true
-					},
-					"sources": [
-						{
-							"fileName": "reciple/classes/builders/MessageCommandBuilder.ts",
-							"line": 31,
-							"character": 11
-						}
-					],
-					"type": {
 						"type": "intrinsic",
 						"name": "boolean"
 					},
 					"defaultValue": "false"
 				},
 				{
-					"id": 310,
+					"id": 302,
 					"name": "addAliases",
 					"kind": 2048,
 					"kindString": "Method",
@@ -1023,13 +1260,13 @@
 					"sources": [
 						{
 							"fileName": "reciple/classes/builders/MessageCommandBuilder.ts",
-							"line": 69,
+							"line": 70,
 							"character": 11
 						}
 					],
 					"signatures": [
 						{
-							"id": 311,
+							"id": 303,
 							"name": "addAliases",
 							"kind": 4096,
 							"kindString": "Call signature",
@@ -1039,7 +1276,7 @@
 							},
 							"parameters": [
 								{
-									"id": 312,
+									"id": 304,
 									"name": "aliases",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -1057,14 +1294,14 @@
 							],
 							"type": {
 								"type": "reference",
-								"id": 279,
+								"id": 271,
 								"name": "MessageCommandBuilder"
 							}
 						}
 					]
 				},
 				{
-					"id": 337,
+					"id": 329,
 					"name": "addOption",
 					"kind": 2048,
 					"kindString": "Method",
@@ -1074,13 +1311,13 @@
 					"sources": [
 						{
 							"fileName": "reciple/classes/builders/MessageCommandBuilder.ts",
-							"line": 132,
+							"line": 133,
 							"character": 11
 						}
 					],
 					"signatures": [
 						{
-							"id": 338,
+							"id": 330,
 							"name": "addOption",
 							"kind": 4096,
 							"kindString": "Call signature",
@@ -1090,7 +1327,7 @@
 							},
 							"parameters": [
 								{
-									"id": 339,
+									"id": 331,
 									"name": "option",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -1100,41 +1337,41 @@
 										"types": [
 											{
 												"type": "reference",
-												"id": 349,
+												"id": 341,
 												"name": "MessageCommandOptionBuilder"
 											},
 											{
 												"type": "reflection",
 												"declaration": {
-													"id": 340,
+													"id": 332,
 													"name": "__type",
 													"kind": 65536,
 													"kindString": "Type literal",
 													"flags": {},
 													"signatures": [
 														{
-															"id": 341,
+															"id": 333,
 															"name": "__type",
 															"kind": 4096,
 															"kindString": "Call signature",
 															"flags": {},
 															"parameters": [
 																{
-																	"id": 342,
+																	"id": 334,
 																	"name": "constructor",
 																	"kind": 32768,
 																	"kindString": "Parameter",
 																	"flags": {},
 																	"type": {
 																		"type": "reference",
-																		"id": 349,
+																		"id": 341,
 																		"name": "MessageCommandOptionBuilder"
 																	}
 																}
 															],
 															"type": {
 																"type": "reference",
-																"id": 349,
+																"id": 341,
 																"name": "MessageCommandOptionBuilder"
 															}
 														}
@@ -1147,14 +1384,14 @@
 							],
 							"type": {
 								"type": "reference",
-								"id": 279,
+								"id": 271,
 								"name": "MessageCommandBuilder"
 							}
 						}
 					]
 				},
 				{
-					"id": 346,
+					"id": 338,
 					"name": "getCommandOptionValues",
 					"kind": 2048,
 					"kindString": "Method",
@@ -1164,13 +1401,13 @@
 					"sources": [
 						{
 							"fileName": "reciple/classes/builders/MessageCommandBuilder.ts",
-							"line": 156,
+							"line": 157,
 							"character": 11
 						}
 					],
 					"signatures": [
 						{
-							"id": 347,
+							"id": 339,
 							"name": "getCommandOptionValues",
 							"kind": 4096,
 							"kindString": "Call signature",
@@ -1180,7 +1417,7 @@
 							},
 							"parameters": [
 								{
-									"id": 348,
+									"id": 340,
 									"name": "options",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -1197,7 +1434,7 @@
 								"type": "array",
 								"elementType": {
 									"type": "reference",
-									"id": 273,
+									"id": 265,
 									"name": "MessageCommandValidatedOption"
 								}
 							}
@@ -1205,7 +1442,7 @@
 					]
 				},
 				{
-					"id": 322,
+					"id": 314,
 					"name": "setAllowExecuteByBots",
 					"kind": 2048,
 					"kindString": "Method",
@@ -1215,13 +1452,13 @@
 					"sources": [
 						{
 							"fileName": "reciple/classes/builders/MessageCommandBuilder.ts",
-							"line": 106,
+							"line": 107,
 							"character": 11
 						}
 					],
 					"signatures": [
 						{
-							"id": 323,
+							"id": 315,
 							"name": "setAllowExecuteByBots",
 							"kind": 4096,
 							"kindString": "Call signature",
@@ -1231,7 +1468,7 @@
 							},
 							"parameters": [
 								{
-									"id": 324,
+									"id": 316,
 									"name": "allowExecuteByBots",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -1244,14 +1481,14 @@
 							],
 							"type": {
 								"type": "reference",
-								"id": 279,
+								"id": 271,
 								"name": "MessageCommandBuilder"
 							}
 						}
 					]
 				},
 				{
-					"id": 319,
+					"id": 311,
 					"name": "setAllowExecuteInDM",
 					"kind": 2048,
 					"kindString": "Method",
@@ -1261,13 +1498,13 @@
 					"sources": [
 						{
 							"fileName": "reciple/classes/builders/MessageCommandBuilder.ts",
-							"line": 97,
+							"line": 98,
 							"character": 11
 						}
 					],
 					"signatures": [
 						{
-							"id": 320,
+							"id": 312,
 							"name": "setAllowExecuteInDM",
 							"kind": 4096,
 							"kindString": "Call signature",
@@ -1277,7 +1514,7 @@
 							},
 							"parameters": [
 								{
-									"id": 321,
+									"id": 313,
 									"name": "allowExecuteInDM",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -1290,14 +1527,14 @@
 							],
 							"type": {
 								"type": "reference",
-								"id": 279,
+								"id": 271,
 								"name": "MessageCommandBuilder"
 							}
 						}
 					]
 				},
 				{
-					"id": 307,
+					"id": 299,
 					"name": "setCooldown",
 					"kind": 2048,
 					"kindString": "Method",
@@ -1307,13 +1544,13 @@
 					"sources": [
 						{
 							"fileName": "reciple/classes/builders/MessageCommandBuilder.ts",
-							"line": 61,
+							"line": 62,
 							"character": 11
 						}
 					],
 					"signatures": [
 						{
-							"id": 308,
+							"id": 300,
 							"name": "setCooldown",
 							"kind": 4096,
 							"kindString": "Call signature",
@@ -1323,7 +1560,7 @@
 							},
 							"parameters": [
 								{
-									"id": 309,
+									"id": 301,
 									"name": "cooldown",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -1336,14 +1573,14 @@
 							],
 							"type": {
 								"type": "reference",
-								"id": 279,
+								"id": 271,
 								"name": "MessageCommandBuilder"
 							}
 						}
 					]
 				},
 				{
-					"id": 304,
+					"id": 296,
 					"name": "setDescription",
 					"kind": 2048,
 					"kindString": "Method",
@@ -1353,13 +1590,13 @@
 					"sources": [
 						{
 							"fileName": "reciple/classes/builders/MessageCommandBuilder.ts",
-							"line": 51,
+							"line": 52,
 							"character": 11
 						}
 					],
 					"signatures": [
 						{
-							"id": 305,
+							"id": 297,
 							"name": "setDescription",
 							"kind": 4096,
 							"kindString": "Call signature",
@@ -1369,7 +1606,7 @@
 							},
 							"parameters": [
 								{
-									"id": 306,
+									"id": 298,
 									"name": "description",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -1382,14 +1619,14 @@
 							],
 							"type": {
 								"type": "reference",
-								"id": 279,
+								"id": 271,
 								"name": "MessageCommandBuilder"
 							}
 						}
 					]
 				},
 				{
-					"id": 331,
+					"id": 323,
 					"name": "setExecute",
 					"kind": 2048,
 					"kindString": "Method",
@@ -1399,13 +1636,13 @@
 					"sources": [
 						{
 							"fileName": "reciple/classes/builders/MessageCommandBuilder.ts",
-							"line": 123,
+							"line": 124,
 							"character": 11
 						}
 					],
 					"signatures": [
 						{
-							"id": 332,
+							"id": 324,
 							"name": "setExecute",
 							"kind": 4096,
 							"kindString": "Call signature",
@@ -1415,7 +1652,7 @@
 							},
 							"parameters": [
 								{
-									"id": 333,
+									"id": 325,
 									"name": "execute",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -1423,28 +1660,28 @@
 									"type": {
 										"type": "reflection",
 										"declaration": {
-											"id": 334,
+											"id": 326,
 											"name": "__type",
 											"kind": 65536,
 											"kindString": "Type literal",
 											"flags": {},
 											"signatures": [
 												{
-													"id": 335,
+													"id": 327,
 													"name": "__type",
 													"kind": 4096,
 													"kindString": "Call signature",
 													"flags": {},
 													"parameters": [
 														{
-															"id": 336,
+															"id": 328,
 															"name": "executeData",
 															"kind": 32768,
 															"kindString": "Parameter",
 															"flags": {},
 															"type": {
 																"type": "reference",
-																"id": 267,
+																"id": 259,
 																"name": "RecipleMessageCommandExecuteData"
 															}
 														}
@@ -1461,14 +1698,14 @@
 							],
 							"type": {
 								"type": "reference",
-								"id": 279,
+								"id": 271,
 								"name": "MessageCommandBuilder"
 							}
 						}
 					]
 				},
 				{
-					"id": 325,
+					"id": 317,
 					"name": "setHalt",
 					"kind": 2048,
 					"kindString": "Method",
@@ -1478,13 +1715,13 @@
 					"sources": [
 						{
 							"fileName": "reciple/classes/builders/MessageCommandBuilder.ts",
-							"line": 115,
+							"line": 116,
 							"character": 11
 						}
 					],
 					"signatures": [
 						{
-							"id": 326,
+							"id": 318,
 							"name": "setHalt",
 							"kind": 4096,
 							"kindString": "Call signature",
@@ -1494,7 +1731,7 @@
 							},
 							"parameters": [
 								{
-									"id": 327,
+									"id": 319,
 									"name": "halt",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -1504,32 +1741,32 @@
 									"type": {
 										"type": "reflection",
 										"declaration": {
-											"id": 328,
+											"id": 320,
 											"name": "__type",
 											"kind": 65536,
 											"kindString": "Type literal",
 											"flags": {},
 											"signatures": [
 												{
-													"id": 329,
+													"id": 321,
 													"name": "__type",
 													"kind": 4096,
 													"kindString": "Call signature",
 													"flags": {},
 													"parameters": [
 														{
-															"id": 330,
+															"id": 322,
 															"name": "haltData",
 															"kind": 32768,
 															"kindString": "Parameter",
 															"flags": {},
 															"type": {
 																"type": "reference",
-																"id": 378,
+																"id": 371,
 																"typeArguments": [
 																	{
 																		"type": "reference",
-																		"id": 279,
+																		"id": 271,
 																		"name": "MessageCommandBuilder"
 																	}
 																],
@@ -1541,8 +1778,17 @@
 														"type": "reference",
 														"typeArguments": [
 															{
-																"type": "intrinsic",
-																"name": "boolean"
+																"type": "union",
+																"types": [
+																	{
+																		"type": "intrinsic",
+																		"name": "boolean"
+																	},
+																	{
+																		"type": "intrinsic",
+																		"name": "void"
+																	}
+																]
 															}
 														],
 														"qualifiedName": "Awaitable",
@@ -1557,14 +1803,14 @@
 							],
 							"type": {
 								"type": "reference",
-								"id": 279,
+								"id": 271,
 								"name": "MessageCommandBuilder"
 							}
 						}
 					]
 				},
 				{
-					"id": 301,
+					"id": 293,
 					"name": "setName",
 					"kind": 2048,
 					"kindString": "Method",
@@ -1574,13 +1820,13 @@
 					"sources": [
 						{
 							"fileName": "reciple/classes/builders/MessageCommandBuilder.ts",
-							"line": 42,
+							"line": 43,
 							"character": 11
 						}
 					],
 					"signatures": [
 						{
-							"id": 302,
+							"id": 294,
 							"name": "setName",
 							"kind": 4096,
 							"kindString": "Call signature",
@@ -1590,7 +1836,7 @@
 							},
 							"parameters": [
 								{
-									"id": 303,
+									"id": 295,
 									"name": "name",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -1603,14 +1849,14 @@
 							],
 							"type": {
 								"type": "reference",
-								"id": 279,
+								"id": 271,
 								"name": "MessageCommandBuilder"
 							}
 						}
 					]
 				},
 				{
-					"id": 313,
+					"id": 305,
 					"name": "setRequiredBotPermissions",
 					"kind": 2048,
 					"kindString": "Method",
@@ -1620,13 +1866,13 @@
 					"sources": [
 						{
 							"fileName": "reciple/classes/builders/MessageCommandBuilder.ts",
-							"line": 81,
+							"line": 82,
 							"character": 11
 						}
 					],
 					"signatures": [
 						{
-							"id": 314,
+							"id": 306,
 							"name": "setRequiredBotPermissions",
 							"kind": 4096,
 							"kindString": "Call signature",
@@ -1636,7 +1882,7 @@
 							},
 							"parameters": [
 								{
-									"id": 315,
+									"id": 307,
 									"name": "permissions",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -1656,14 +1902,14 @@
 							],
 							"type": {
 								"type": "reference",
-								"id": 279,
+								"id": 271,
 								"name": "MessageCommandBuilder"
 							}
 						}
 					]
 				},
 				{
-					"id": 316,
+					"id": 308,
 					"name": "setRequiredMemberPermissions",
 					"kind": 2048,
 					"kindString": "Method",
@@ -1673,13 +1919,13 @@
 					"sources": [
 						{
 							"fileName": "reciple/classes/builders/MessageCommandBuilder.ts",
-							"line": 89,
+							"line": 90,
 							"character": 11
 						}
 					],
 					"signatures": [
 						{
-							"id": 317,
+							"id": 309,
 							"name": "setRequiredMemberPermissions",
 							"kind": 4096,
 							"kindString": "Call signature",
@@ -1689,7 +1935,7 @@
 							},
 							"parameters": [
 								{
-									"id": 318,
+									"id": 310,
 									"name": "permissions",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -1709,14 +1955,14 @@
 							],
 							"type": {
 								"type": "reference",
-								"id": 279,
+								"id": 271,
 								"name": "MessageCommandBuilder"
 							}
 						}
 					]
 				},
 				{
-					"id": 343,
+					"id": 335,
 					"name": "setValidateOptions",
 					"kind": 2048,
 					"kindString": "Method",
@@ -1726,13 +1972,13 @@
 					"sources": [
 						{
 							"fileName": "reciple/classes/builders/MessageCommandBuilder.ts",
-							"line": 147,
+							"line": 148,
 							"character": 11
 						}
 					],
 					"signatures": [
 						{
-							"id": 344,
+							"id": 336,
 							"name": "setValidateOptions",
 							"kind": 4096,
 							"kindString": "Call signature",
@@ -1742,7 +1988,7 @@
 							},
 							"parameters": [
 								{
-									"id": 345,
+									"id": 337,
 									"name": "validateOptions",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -1755,7 +2001,7 @@
 							],
 							"type": {
 								"type": "reference",
-								"id": 279,
+								"id": 271,
 								"name": "MessageCommandBuilder"
 							}
 						}
@@ -1767,86 +2013,86 @@
 					"title": "Constructors",
 					"kind": 512,
 					"children": [
-						280
+						272
 					]
 				},
 				{
 					"title": "Properties",
 					"kind": 1024,
 					"children": [
-						290,
-						286,
-						292,
-						291,
 						282,
+						278,
 						284,
-						285,
-						297,
-						293,
 						283,
-						287,
+						274,
+						276,
+						277,
 						289,
-						288
+						285,
+						275,
+						279,
+						281,
+						280
 					]
 				},
 				{
 					"title": "Methods",
 					"kind": 2048,
 					"children": [
-						310,
-						337,
-						346,
-						322,
-						319,
-						307,
-						304,
-						331,
-						325,
-						301,
-						313,
-						316,
-						343
+						302,
+						329,
+						338,
+						314,
+						311,
+						299,
+						296,
+						323,
+						317,
+						293,
+						305,
+						308,
+						335
 					]
 				}
 			],
 			"sources": [
 				{
 					"fileName": "reciple/classes/builders/MessageCommandBuilder.ts",
-					"line": 24,
+					"line": 25,
 					"character": 13
 				}
 			]
 		},
 		{
-			"id": 349,
+			"id": 341,
 			"name": "MessageCommandOptionBuilder",
 			"kind": 128,
 			"kindString": "Class",
 			"flags": {},
 			"children": [
 				{
-					"id": 350,
+					"id": 342,
 					"name": "constructor",
 					"kind": 512,
 					"kindString": "Constructor",
 					"flags": {},
 					"signatures": [
 						{
-							"id": 351,
+							"id": 343,
 							"name": "new MessageCommandOptionBuilder",
 							"kind": 16384,
 							"kindString": "Constructor signature",
 							"flags": {},
 							"type": {
 								"type": "reference",
-								"id": 349,
+								"id": 341,
 								"name": "MessageCommandOptionBuilder"
 							}
 						}
 					]
 				},
 				{
-					"id": 353,
+					"id": 345,
 					"name": "description",
 					"kind": 1024,
 					"kindString": "Property",
@@ -1867,7 +2113,7 @@
 					"defaultValue": "''"
 				},
 				{
-					"id": 352,
+					"id": 344,
 					"name": "name",
 					"kind": 1024,
 					"kindString": "Property",
@@ -1888,7 +2134,7 @@
 					"defaultValue": "''"
 				},
 				{
-					"id": 354,
+					"id": 346,
 					"name": "required",
 					"kind": 1024,
 					"kindString": "Property",
@@ -1909,7 +2155,7 @@
 					"defaultValue": "false"
 				},
 				{
-					"id": 355,
+					"id": 347,
 					"name": "validator",
 					"kind": 1024,
 					"kindString": "Property",
@@ -1926,21 +2172,21 @@
 					"type": {
 						"type": "reflection",
 						"declaration": {
-							"id": 356,
+							"id": 348,
 							"name": "__type",
 							"kind": 65536,
 							"kindString": "Type literal",
 							"flags": {},
 							"signatures": [
 								{
-									"id": 357,
+									"id": 349,
 									"name": "__type",
 									"kind": 4096,
 									"kindString": "Call signature",
 									"flags": {},
 									"parameters": [
 										{
-											"id": 358,
+											"id": 350,
 											"name": "value",
 											"kind": 32768,
 											"kindString": "Parameter",
@@ -1962,7 +2208,7 @@
 					"defaultValue": "..."
 				},
 				{
-					"id": 362,
+					"id": 354,
 					"name": "setDescription",
 					"kind": 2048,
 					"kindString": "Method",
@@ -1978,7 +2224,7 @@
 					],
 					"signatures": [
 						{
-							"id": 363,
+							"id": 355,
 							"name": "setDescription",
 							"kind": 4096,
 							"kindString": "Call signature",
@@ -1988,7 +2234,7 @@
 							},
 							"parameters": [
 								{
-									"id": 364,
+									"id": 356,
 									"name": "description",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -2001,14 +2247,14 @@
 							],
 							"type": {
 								"type": "reference",
-								"id": 349,
+								"id": 341,
 								"name": "MessageCommandOptionBuilder"
 							}
 						}
 					]
 				},
 				{
-					"id": 359,
+					"id": 351,
 					"name": "setName",
 					"kind": 2048,
 					"kindString": "Method",
@@ -2024,7 +2270,7 @@
 					],
 					"signatures": [
 						{
-							"id": 360,
+							"id": 352,
 							"name": "setName",
 							"kind": 4096,
 							"kindString": "Call signature",
@@ -2034,7 +2280,7 @@
 							},
 							"parameters": [
 								{
-									"id": 361,
+									"id": 353,
 									"name": "name",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -2047,14 +2293,14 @@
 							],
 							"type": {
 								"type": "reference",
-								"id": 349,
+								"id": 341,
 								"name": "MessageCommandOptionBuilder"
 							}
 						}
 					]
 				},
 				{
-					"id": 365,
+					"id": 357,
 					"name": "setRequired",
 					"kind": 2048,
 					"kindString": "Method",
@@ -2070,7 +2316,7 @@
 					],
 					"signatures": [
 						{
-							"id": 366,
+							"id": 358,
 							"name": "setRequired",
 							"kind": 4096,
 							"kindString": "Call signature",
@@ -2080,7 +2326,7 @@
 							},
 							"parameters": [
 								{
-									"id": 367,
+									"id": 359,
 									"name": "required",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -2093,14 +2339,14 @@
 							],
 							"type": {
 								"type": "reference",
-								"id": 349,
+								"id": 341,
 								"name": "MessageCommandOptionBuilder"
 							}
 						}
 					]
 				},
 				{
-					"id": 368,
+					"id": 360,
 					"name": "setValidator",
 					"kind": 2048,
 					"kindString": "Method",
@@ -2116,7 +2362,7 @@
 					],
 					"signatures": [
 						{
-							"id": 369,
+							"id": 361,
 							"name": "setValidator",
 							"kind": 4096,
 							"kindString": "Call signature",
@@ -2126,7 +2372,7 @@
 							},
 							"parameters": [
 								{
-									"id": 370,
+									"id": 362,
 									"name": "validator",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -2134,21 +2380,21 @@
 									"type": {
 										"type": "reflection",
 										"declaration": {
-											"id": 371,
+											"id": 363,
 											"name": "__type",
 											"kind": 65536,
 											"kindString": "Type literal",
 											"flags": {},
 											"signatures": [
 												{
-													"id": 372,
+													"id": 364,
 													"name": "__type",
 													"kind": 4096,
 													"kindString": "Call signature",
 													"flags": {},
 													"parameters": [
 														{
-															"id": 373,
+															"id": 365,
 															"name": "value",
 															"kind": 32768,
 															"kindString": "Parameter",
@@ -2171,7 +2417,7 @@
 							],
 							"type": {
 								"type": "reference",
-								"id": 349,
+								"id": 341,
 								"name": "MessageCommandOptionBuilder"
 							}
 						}
@@ -2183,27 +2429,27 @@
 					"title": "Constructors",
 					"kind": 512,
 					"children": [
-						350
+						342
 					]
 				},
 				{
 					"title": "Properties",
 					"kind": 1024,
 					"children": [
-						353,
-						352,
-						354,
-						355
+						345,
+						344,
+						346,
+						347
 					]
 				},
 				{
 					"title": "Methods",
 					"kind": 2048,
 					"children": [
-						362,
-						359,
-						365,
-						368
+						354,
+						351,
+						357,
+						360
 					]
 				}
 			],
@@ -2216,14 +2462,14 @@
 			]
 		},
 		{
-			"id": 211,
+			"id": 203,
 			"name": "MessageCommandOptionManager",
 			"kind": 128,
 			"kindString": "Class",
 			"flags": {},
 			"children": [
 				{
-					"id": 212,
+					"id": 204,
 					"name": "constructor",
 					"kind": 512,
 					"kindString": "Constructor",
@@ -2237,14 +2483,14 @@
 					],
 					"signatures": [
 						{
-							"id": 213,
+							"id": 205,
 							"name": "new MessageCommandOptionManager",
 							"kind": 16384,
 							"kindString": "Constructor signature",
 							"flags": {},
 							"parameters": [
 								{
-									"id": 214,
+									"id": 206,
 									"name": "options",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -2253,7 +2499,7 @@
 										"type": "array",
 										"elementType": {
 											"type": "reference",
-											"id": 273,
+											"id": 265,
 											"name": "MessageCommandValidatedOption"
 										}
 									}
@@ -2261,7 +2507,7 @@
 							],
 							"type": {
 								"type": "reference",
-								"id": 211,
+								"id": 203,
 								"name": "MessageCommandOptionManager"
 							},
 							"overwrites": {
@@ -2276,7 +2522,7 @@
 					}
 				},
 				{
-					"id": 215,
+					"id": 207,
 					"name": "get",
 					"kind": 2048,
 					"kindString": "Method",
@@ -2292,7 +2538,7 @@
 					],
 					"signatures": [
 						{
-							"id": 216,
+							"id": 208,
 							"name": "get",
 							"kind": 4096,
 							"kindString": "Call signature",
@@ -2302,7 +2548,7 @@
 							},
 							"parameters": [
 								{
-									"id": 217,
+									"id": 209,
 									"name": "name",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -2313,7 +2559,7 @@
 									}
 								},
 								{
-									"id": 218,
+									"id": 210,
 									"name": "requied",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -2326,19 +2572,19 @@
 							],
 							"type": {
 								"type": "reference",
-								"id": 273,
+								"id": 265,
 								"name": "MessageCommandValidatedOption"
 							}
 						},
 						{
-							"id": 219,
+							"id": 211,
 							"name": "get",
 							"kind": 4096,
 							"kindString": "Call signature",
 							"flags": {},
 							"parameters": [
 								{
-									"id": 220,
+									"id": 212,
 									"name": "name",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -2349,7 +2595,7 @@
 									}
 								},
 								{
-									"id": 221,
+									"id": 213,
 									"name": "requied",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -2371,7 +2617,7 @@
 									},
 									{
 										"type": "reference",
-										"id": 273,
+										"id": 265,
 										"name": "MessageCommandValidatedOption"
 									}
 								]
@@ -2380,7 +2626,7 @@
 					]
 				},
 				{
-					"id": 222,
+					"id": 214,
 					"name": "getValue",
 					"kind": 2048,
 					"kindString": "Method",
@@ -2396,7 +2642,7 @@
 					],
 					"signatures": [
 						{
-							"id": 223,
+							"id": 215,
 							"name": "getValue",
 							"kind": 4096,
 							"kindString": "Call signature",
@@ -2406,7 +2652,7 @@
 							},
 							"parameters": [
 								{
-									"id": 224,
+									"id": 216,
 									"name": "name",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -2417,7 +2663,7 @@
 									}
 								},
 								{
-									"id": 225,
+									"id": 217,
 									"name": "requied",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -2434,14 +2680,14 @@
 							}
 						},
 						{
-							"id": 226,
+							"id": 218,
 							"name": "getValue",
 							"kind": 4096,
 							"kindString": "Call signature",
 							"flags": {},
 							"parameters": [
 								{
-									"id": 227,
+									"id": 219,
 									"name": "name",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -2452,7 +2698,7 @@
 									}
 								},
 								{
-									"id": 228,
+									"id": 220,
 									"name": "requied",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -2487,15 +2733,15 @@
 					"title": "Constructors",
 					"kind": 512,
 					"children": [
-						212
+						204
 					]
 				},
 				{
 					"title": "Methods",
 					"kind": 2048,
 					"children": [
-						215,
-						222
+						207,
+						214
 					]
 				}
 			],
@@ -2512,7 +2758,7 @@
 					"typeArguments": [
 						{
 							"type": "reference",
-							"id": 273,
+							"id": 265,
 							"name": "MessageCommandValidatedOption"
 						}
 					],
@@ -2538,7 +2784,7 @@
 					"sources": [
 						{
 							"fileName": "reciple/classes/RecipleClient.ts",
-							"line": 69,
+							"line": 73,
 							"character": 4
 						}
 					],
@@ -2614,7 +2860,7 @@
 					"sources": [
 						{
 							"fileName": "reciple/classes/RecipleClient.ts",
-							"line": 64,
+							"line": 68,
 							"character": 11
 						}
 					],
@@ -2635,7 +2881,7 @@
 					"sources": [
 						{
 							"fileName": "reciple/classes/RecipleClient.ts",
-							"line": 62,
+							"line": 66,
 							"character": 11
 						}
 					],
@@ -2657,13 +2903,13 @@
 					"sources": [
 						{
 							"fileName": "reciple/classes/RecipleClient.ts",
-							"line": 61,
+							"line": 65,
 							"character": 11
 						}
 					],
 					"type": {
 						"type": "reference",
-						"id": 141,
+						"id": 135,
 						"name": "Config"
 					},
 					"defaultValue": "..."
@@ -2679,7 +2925,7 @@
 					"sources": [
 						{
 							"fileName": "reciple/classes/RecipleClient.ts",
-							"line": 66,
+							"line": 70,
 							"character": 11
 						}
 					],
@@ -2701,7 +2947,7 @@
 					"sources": [
 						{
 							"fileName": "reciple/classes/RecipleClient.ts",
-							"line": 65,
+							"line": 69,
 							"character": 11
 						}
 					],
@@ -2726,7 +2972,7 @@
 					"sources": [
 						{
 							"fileName": "reciple/classes/RecipleClient.ts",
-							"line": 63,
+							"line": 67,
 							"character": 11
 						}
 					],
@@ -2737,14 +2983,14 @@
 							"types": [
 								{
 									"type": "reference",
-									"id": 478,
-									"name": "InteractionBuilder"
+									"qualifiedName": "ApplicationCommandData",
+									"package": "discord.js",
+									"name": "ApplicationCommandData"
 								},
 								{
 									"type": "reference",
-									"qualifiedName": "ApplicationCommandDataResolvable",
-									"package": "discord.js",
-									"name": "ApplicationCommandDataResolvable"
+									"id": 476,
+									"name": "InteractionBuilder"
 								}
 							]
 						}
@@ -2762,7 +3008,7 @@
 					"sources": [
 						{
 							"fileName": "reciple/classes/RecipleClient.ts",
-							"line": 67,
+							"line": 71,
 							"character": 11
 						}
 					],
@@ -2773,7 +3019,7 @@
 					"defaultValue": "version"
 				},
 				{
-					"id": 133,
+					"id": 127,
 					"name": "_commandExecuteError",
 					"kind": 2048,
 					"kindString": "Method",
@@ -2783,13 +3029,13 @@
 					"sources": [
 						{
 							"fileName": "reciple/classes/RecipleClient.ts",
-							"line": 363,
+							"line": 385,
 							"character": 18
 						}
 					],
 					"signatures": [
 						{
-							"id": 134,
+							"id": 128,
 							"name": "_commandExecuteError",
 							"kind": 4096,
 							"kindString": "Call signature",
@@ -2799,7 +3045,7 @@
 							},
 							"parameters": [
 								{
-									"id": 135,
+									"id": 129,
 									"name": "err",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -2812,14 +3058,14 @@
 									}
 								},
 								{
-									"id": 136,
+									"id": 130,
 									"name": "command",
 									"kind": 32768,
 									"kindString": "Parameter",
 									"flags": {},
 									"type": {
 										"type": "reference",
-										"id": 375,
+										"id": 367,
 										"name": "RecipleCommandBuildersExecuteData"
 									}
 								}
@@ -2840,7 +3086,7 @@
 					]
 				},
 				{
-					"id": 130,
+					"id": 124,
 					"name": "_replyError",
 					"kind": 2048,
 					"kindString": "Method",
@@ -2850,13 +3096,13 @@
 					"sources": [
 						{
 							"fileName": "reciple/classes/RecipleClient.ts",
-							"line": 356,
+							"line": 378,
 							"character": 12
 						}
 					],
 					"signatures": [
 						{
-							"id": 131,
+							"id": 125,
 							"name": "_replyError",
 							"kind": 4096,
 							"kindString": "Call signature",
@@ -2866,7 +3112,7 @@
 							},
 							"parameters": [
 								{
-									"id": 132,
+									"id": 126,
 									"name": "error",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -2885,7 +3131,7 @@
 					]
 				},
 				{
-					"id": 104,
+					"id": 98,
 					"name": "addCommand",
 					"kind": 2048,
 					"kindString": "Method",
@@ -2895,13 +3141,13 @@
 					"sources": [
 						{
 							"fileName": "reciple/classes/RecipleClient.ts",
-							"line": 158,
+							"line": 173,
 							"character": 11
 						}
 					],
 					"signatures": [
 						{
-							"id": 105,
+							"id": 99,
 							"name": "addCommand",
 							"kind": 4096,
 							"kindString": "Call signature",
@@ -2911,14 +3157,14 @@
 							},
 							"parameters": [
 								{
-									"id": 106,
+									"id": 100,
 									"name": "command",
 									"kind": 32768,
 									"kindString": "Parameter",
 									"flags": {},
 									"type": {
 										"type": "reference",
-										"id": 374,
+										"id": 366,
 										"name": "RecipleCommandBuilders"
 									}
 								}
@@ -2939,7 +3185,7 @@
 					]
 				},
 				{
-					"id": 107,
+					"id": 101,
 					"name": "addCommandListeners",
 					"kind": 2048,
 					"kindString": "Method",
@@ -2949,13 +3195,13 @@
 					"sources": [
 						{
 							"fileName": "reciple/classes/RecipleClient.ts",
-							"line": 173,
+							"line": 188,
 							"character": 11
 						}
 					],
 					"signatures": [
 						{
-							"id": 108,
+							"id": 102,
 							"name": "addCommandListeners",
 							"kind": 4096,
 							"kindString": "Call signature",
@@ -2989,7 +3235,7 @@
 					"sources": [
 						{
 							"fileName": "reciple/classes/RecipleClient.ts",
-							"line": 133,
+							"line": 141,
 							"character": 17
 						}
 					],
@@ -3006,119 +3252,13 @@
 							"parameters": [
 								{
 									"id": 97,
-									"name": "script",
+									"name": "options",
 									"kind": 32768,
 									"kindString": "Parameter",
 									"flags": {},
 									"type": {
 										"type": "reference",
-										"id": 455,
-										"name": "RecipleScript"
-									}
-								},
-								{
-									"id": 98,
-									"name": "registerCommands",
-									"kind": 32768,
-									"kindString": "Parameter",
-									"flags": {},
-									"type": {
-										"type": "intrinsic",
-										"name": "boolean"
-									},
-									"defaultValue": "true"
-								},
-								{
-									"id": 99,
-									"name": "info",
-									"kind": 32768,
-									"kindString": "Parameter",
-									"flags": {
-										"isOptional": true
-									},
-									"type": {
-										"type": "reflection",
-										"declaration": {
-											"id": 100,
-											"name": "__type",
-											"kind": 65536,
-											"kindString": "Type literal",
-											"flags": {},
-											"children": [
-												{
-													"id": 101,
-													"name": "filename",
-													"kind": 1024,
-													"kindString": "Property",
-													"flags": {
-														"isOptional": true
-													},
-													"sources": [
-														{
-															"fileName": "reciple/modules.ts",
-															"line": 20,
-															"character": 8
-														}
-													],
-													"type": {
-														"type": "intrinsic",
-														"name": "string"
-													}
-												},
-												{
-													"id": 103,
-													"name": "path",
-													"kind": 1024,
-													"kindString": "Property",
-													"flags": {
-														"isOptional": true
-													},
-													"sources": [
-														{
-															"fileName": "reciple/modules.ts",
-															"line": 22,
-															"character": 8
-														}
-													],
-													"type": {
-														"type": "intrinsic",
-														"name": "string"
-													}
-												},
-												{
-													"id": 102,
-													"name": "versions",
-													"kind": 1024,
-													"kindString": "Property",
-													"flags": {},
-													"sources": [
-														{
-															"fileName": "reciple/modules.ts",
-															"line": 21,
-															"character": 8
-														}
-													],
-													"type": {
-														"type": "array",
-														"elementType": {
-															"type": "intrinsic",
-															"name": "string"
-														}
-													}
-												}
-											],
-											"groups": [
-												{
-													"title": "Properties",
-													"kind": 1024,
-													"children": [
-														101,
-														103,
-														102
-													]
-												}
-											]
-										}
+										"name": "AddModuleOptions"
 									}
 								}
 							],
@@ -3301,7 +3441,7 @@
 					}
 				},
 				{
-					"id": 121,
+					"id": 115,
 					"name": "findCommand",
 					"kind": 2048,
 					"kindString": "Method",
@@ -3311,13 +3451,13 @@
 					"sources": [
 						{
 							"fileName": "reciple/classes/RecipleClient.ts",
-							"line": 329,
+							"line": 351,
 							"character": 11
 						}
 					],
 					"signatures": [
 						{
-							"id": 122,
+							"id": 116,
 							"name": "findCommand",
 							"kind": 4096,
 							"kindString": "Call signature",
@@ -3327,7 +3467,7 @@
 							},
 							"parameters": [
 								{
-									"id": 123,
+									"id": 117,
 									"name": "command",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -3338,14 +3478,15 @@
 									}
 								},
 								{
-									"id": 124,
+									"id": 118,
 									"name": "type",
 									"kind": 32768,
 									"kindString": "Parameter",
 									"flags": {},
 									"type": {
-										"type": "literal",
-										"value": "MESSAGE_COMMAND"
+										"type": "reference",
+										"id": 369,
+										"name": "MessageCommand"
 									}
 								}
 							],
@@ -3358,21 +3499,21 @@
 									},
 									{
 										"type": "reference",
-										"id": 279,
+										"id": 271,
 										"name": "MessageCommandBuilder"
 									}
 								]
 							}
 						},
 						{
-							"id": 125,
+							"id": 119,
 							"name": "findCommand",
 							"kind": 4096,
 							"kindString": "Call signature",
 							"flags": {},
 							"parameters": [
 								{
-									"id": 126,
+									"id": 120,
 									"name": "command",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -3383,14 +3524,15 @@
 									}
 								},
 								{
-									"id": 127,
+									"id": 121,
 									"name": "type",
 									"kind": 32768,
 									"kindString": "Parameter",
 									"flags": {},
 									"type": {
-										"type": "literal",
-										"value": "INTERACTION_COMMAND"
+										"type": "reference",
+										"id": 370,
+										"name": "InteractionCommand"
 									}
 								}
 							],
@@ -3403,7 +3545,7 @@
 									},
 									{
 										"type": "reference",
-										"id": 233,
+										"id": 225,
 										"name": "InteractionCommandBuilder"
 									}
 								]
@@ -3412,7 +3554,7 @@
 					]
 				},
 				{
-					"id": 116,
+					"id": 110,
 					"name": "getMessage",
 					"kind": 2048,
 					"kindString": "Method",
@@ -3422,13 +3564,13 @@
 					"sources": [
 						{
 							"fileName": "reciple/classes/RecipleClient.ts",
-							"line": 322,
+							"line": 344,
 							"character": 11
 						}
 					],
 					"signatures": [
 						{
-							"id": 117,
+							"id": 111,
 							"name": "getMessage",
 							"kind": 4096,
 							"kindString": "Call signature",
@@ -3438,7 +3580,7 @@
 							},
 							"typeParameter": [
 								{
-									"id": 118,
+									"id": 112,
 									"name": "T",
 									"kind": 131072,
 									"kindString": "Type parameter",
@@ -3451,7 +3593,7 @@
 							],
 							"parameters": [
 								{
-									"id": 119,
+									"id": 113,
 									"name": "messageKey",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -3462,7 +3604,7 @@
 									}
 								},
 								{
-									"id": 120,
+									"id": 114,
 									"name": "defaultMessage",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -3471,21 +3613,21 @@
 									},
 									"type": {
 										"type": "reference",
-										"id": 118,
+										"id": 112,
 										"name": "T"
 									}
 								}
 							],
 							"type": {
 								"type": "reference",
-								"id": 118,
+								"id": 112,
 								"name": "T"
 							}
 						}
 					]
 				},
 				{
-					"id": 113,
+					"id": 107,
 					"name": "interactionCommandExecute",
 					"kind": 2048,
 					"kindString": "Method",
@@ -3495,13 +3637,13 @@
 					"sources": [
 						{
 							"fileName": "reciple/classes/RecipleClient.ts",
-							"line": 266,
+							"line": 284,
 							"character": 17
 						}
 					],
 					"signatures": [
 						{
-							"id": 114,
+							"id": 108,
 							"name": "interactionCommandExecute",
 							"kind": 4096,
 							"kindString": "Call signature",
@@ -3511,7 +3653,7 @@
 							},
 							"parameters": [
 								{
-									"id": 115,
+									"id": 109,
 									"name": "interaction",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -3563,7 +3705,7 @@
 											},
 											{
 												"type": "reference",
-												"id": 229,
+												"id": 221,
 												"name": "RecipleInteractionCommandExecuteData"
 											}
 										]
@@ -3577,7 +3719,7 @@
 					]
 				},
 				{
-					"id": 128,
+					"id": 122,
 					"name": "isClientLogsEnabled",
 					"kind": 2048,
 					"kindString": "Method",
@@ -3587,13 +3729,13 @@
 					"sources": [
 						{
 							"fileName": "reciple/classes/RecipleClient.ts",
-							"line": 349,
+							"line": 371,
 							"character": 11
 						}
 					],
 					"signatures": [
 						{
-							"id": 129,
+							"id": 123,
 							"name": "isClientLogsEnabled",
 							"kind": 4096,
 							"kindString": "Call signature",
@@ -3659,7 +3801,7 @@
 					"sources": [
 						{
 							"fileName": "reciple/classes/RecipleClient.ts",
-							"line": 96,
+							"line": 100,
 							"character": 17
 						}
 					],
@@ -3697,7 +3839,7 @@
 					]
 				},
 				{
-					"id": 109,
+					"id": 103,
 					"name": "messageCommandExecute",
 					"kind": 2048,
 					"kindString": "Method",
@@ -3707,13 +3849,13 @@
 					"sources": [
 						{
 							"fileName": "reciple/classes/RecipleClient.ts",
-							"line": 183,
+							"line": 198,
 							"character": 17
 						}
 					],
 					"signatures": [
 						{
-							"id": 110,
+							"id": 104,
 							"name": "messageCommandExecute",
 							"kind": 4096,
 							"kindString": "Call signature",
@@ -3723,7 +3865,7 @@
 							},
 							"parameters": [
 								{
-									"id": 111,
+									"id": 105,
 									"name": "message",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -3742,7 +3884,7 @@
 									}
 								},
 								{
-									"id": 112,
+									"id": 106,
 									"name": "prefix",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -3767,7 +3909,7 @@
 											},
 											{
 												"type": "reference",
-												"id": 267,
+												"id": 259,
 												"name": "RecipleMessageCommandExecuteData"
 											}
 										]
@@ -4877,7 +5019,7 @@
 					"sources": [
 						{
 							"fileName": "reciple/classes/RecipleClient.ts",
-							"line": 83,
+							"line": 87,
 							"character": 17
 						}
 					],
@@ -4889,7 +5031,7 @@
 							"kindString": "Call signature",
 							"flags": {},
 							"comment": {
-								"shortText": "Load modules"
+								"shortText": "Load modules from modules folder"
 							},
 							"parameters": [
 								{
@@ -4955,19 +5097,19 @@
 					"title": "Methods",
 					"kind": 2048,
 					"children": [
-						133,
-						130,
-						104,
-						107,
+						127,
+						124,
+						98,
+						101,
 						95,
 						51,
-						121,
-						116,
-						113,
-						128,
+						115,
+						110,
+						107,
+						122,
 						81,
 						93,
-						109,
+						103,
 						60,
 						21,
 						36,
@@ -4979,13 +5121,13 @@
 			"sources": [
 				{
 					"fileName": "reciple/classes/RecipleClient.ts",
-					"line": 60,
+					"line": 64,
 					"character": 13
 				}
 			],
 			"typeParameter": [
 				{
-					"id": 137,
+					"id": 131,
 					"name": "Ready",
 					"kind": 131072,
 					"kindString": "Type parameter",
@@ -5017,14 +5159,14 @@
 			]
 		},
 		{
-			"id": 191,
+			"id": 183,
 			"name": "RecipleConfig",
 			"kind": 128,
 			"kindString": "Class",
 			"flags": {},
 			"children": [
 				{
-					"id": 195,
+					"id": 187,
 					"name": "constructor",
 					"kind": 512,
 					"kindString": "Constructor",
@@ -5032,20 +5174,20 @@
 					"sources": [
 						{
 							"fileName": "reciple/classes/RecipleConfig.ts",
-							"line": 70,
+							"line": 68,
 							"character": 4
 						}
 					],
 					"signatures": [
 						{
-							"id": 196,
+							"id": 188,
 							"name": "new RecipleConfig",
 							"kind": 16384,
 							"kindString": "Constructor signature",
 							"flags": {},
 							"parameters": [
 								{
-									"id": 197,
+									"id": 189,
 									"name": "configPath",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -5058,14 +5200,14 @@
 							],
 							"type": {
 								"type": "reference",
-								"id": 191,
+								"id": 183,
 								"name": "RecipleConfig"
 							}
 						}
 					]
 				},
 				{
-					"id": 198,
+					"id": 190,
 					"name": "config",
 					"kind": 1024,
 					"kindString": "Property",
@@ -5076,18 +5218,18 @@
 					"sources": [
 						{
 							"fileName": "reciple/classes/RecipleConfig.ts",
-							"line": 66,
+							"line": 64,
 							"character": 11
 						}
 					],
 					"type": {
 						"type": "reference",
-						"id": 141,
+						"id": 135,
 						"name": "Config"
 					}
 				},
 				{
-					"id": 199,
+					"id": 191,
 					"name": "configPath",
 					"kind": 1024,
 					"kindString": "Property",
@@ -5097,7 +5239,7 @@
 					"sources": [
 						{
 							"fileName": "reciple/classes/RecipleConfig.ts",
-							"line": 67,
+							"line": 65,
 							"character": 11
 						}
 					],
@@ -5108,7 +5250,7 @@
 					"defaultValue": "'./reciple.yml'"
 				},
 				{
-					"id": 192,
+					"id": 184,
 					"name": "defaultConfigPath",
 					"kind": 1024,
 					"kindString": "Property",
@@ -5119,7 +5261,7 @@
 					"sources": [
 						{
 							"fileName": "reciple/classes/RecipleConfig.ts",
-							"line": 68,
+							"line": 66,
 							"character": 18
 						}
 					],
@@ -5130,7 +5272,7 @@
 					"defaultValue": "..."
 				},
 				{
-					"id": 209,
+					"id": 201,
 					"name": "askToken",
 					"kind": 2048,
 					"kindString": "Method",
@@ -5140,13 +5282,13 @@
 					"sources": [
 						{
 							"fileName": "reciple/classes/RecipleConfig.ts",
-							"line": 147,
+							"line": 145,
 							"character": 12
 						}
 					],
 					"signatures": [
 						{
-							"id": 210,
+							"id": 202,
 							"name": "askToken",
 							"kind": 4096,
 							"kindString": "Call signature",
@@ -5171,7 +5313,7 @@
 					]
 				},
 				{
-					"id": 202,
+					"id": 194,
 					"name": "getConfig",
 					"kind": 2048,
 					"kindString": "Method",
@@ -5181,13 +5323,13 @@
 					"sources": [
 						{
 							"fileName": "reciple/classes/RecipleConfig.ts",
-							"line": 110,
+							"line": 108,
 							"character": 11
 						}
 					],
 					"signatures": [
 						{
-							"id": 203,
+							"id": 195,
 							"name": "getConfig",
 							"kind": 4096,
 							"kindString": "Call signature",
@@ -5197,14 +5339,14 @@
 							},
 							"type": {
 								"type": "reference",
-								"id": 141,
+								"id": 135,
 								"name": "Config"
 							}
 						}
 					]
 				},
 				{
-					"id": 207,
+					"id": 199,
 					"name": "isSupportedConfig",
 					"kind": 2048,
 					"kindString": "Method",
@@ -5214,13 +5356,13 @@
 					"sources": [
 						{
 							"fileName": "reciple/classes/RecipleConfig.ts",
-							"line": 140,
+							"line": 138,
 							"character": 12
 						}
 					],
 					"signatures": [
 						{
-							"id": 208,
+							"id": 200,
 							"name": "isSupportedConfig",
 							"kind": 4096,
 							"kindString": "Call signature",
@@ -5236,7 +5378,7 @@
 					]
 				},
 				{
-					"id": 200,
+					"id": 192,
 					"name": "parseConfig",
 					"kind": 2048,
 					"kindString": "Method",
@@ -5246,13 +5388,13 @@
 					"sources": [
 						{
 							"fileName": "reciple/classes/RecipleConfig.ts",
-							"line": 78,
+							"line": 76,
 							"character": 11
 						}
 					],
 					"signatures": [
 						{
-							"id": 201,
+							"id": 193,
 							"name": "parseConfig",
 							"kind": 4096,
 							"kindString": "Call signature",
@@ -5262,14 +5404,14 @@
 							},
 							"type": {
 								"type": "reference",
-								"id": 191,
+								"id": 183,
 								"name": "RecipleConfig"
 							}
 						}
 					]
 				},
 				{
-					"id": 204,
+					"id": 196,
 					"name": "parseToken",
 					"kind": 2048,
 					"kindString": "Method",
@@ -5279,13 +5421,13 @@
 					"sources": [
 						{
 							"fileName": "reciple/classes/RecipleConfig.ts",
-							"line": 120,
+							"line": 118,
 							"character": 11
 						}
 					],
 					"signatures": [
 						{
-							"id": 205,
+							"id": 197,
 							"name": "parseToken",
 							"kind": 4096,
 							"kindString": "Call signature",
@@ -5295,7 +5437,7 @@
 							},
 							"parameters": [
 								{
-									"id": 206,
+									"id": 198,
 									"name": "askIfNull",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -5324,7 +5466,7 @@
 					]
 				},
 				{
-					"id": 193,
+					"id": 185,
 					"name": "getDefaultConfig",
 					"kind": 2048,
 					"kindString": "Method",
@@ -5335,13 +5477,13 @@
 					"sources": [
 						{
 							"fileName": "reciple/classes/RecipleConfig.ts",
-							"line": 154,
+							"line": 152,
 							"character": 18
 						}
 					],
 					"signatures": [
 						{
-							"id": 194,
+							"id": 186,
 							"name": "getDefaultConfig",
 							"kind": 4096,
 							"kindString": "Call signature",
@@ -5351,7 +5493,7 @@
 							},
 							"type": {
 								"type": "reference",
-								"id": 141,
+								"id": 135,
 								"name": "Config"
 							}
 						}
@@ -5363,35 +5505,35 @@
 					"title": "Constructors",
 					"kind": 512,
 					"children": [
-						195
+						187
 					]
 				},
 				{
 					"title": "Properties",
 					"kind": 1024,
 					"children": [
-						198,
-						199,
-						192
+						190,
+						191,
+						184
 					]
 				},
 				{
 					"title": "Methods",
 					"kind": 2048,
 					"children": [
-						209,
-						202,
-						207,
-						200,
-						204,
-						193
+						201,
+						194,
+						199,
+						192,
+						196,
+						185
 					]
 				}
 			],
 			"sources": [
 				{
 					"fileName": "reciple/classes/RecipleConfig.ts",
-					"line": 65,
+					"line": 63,
 					"character": 13
 				}
 			]
@@ -5444,7 +5586,7 @@
 						"type": "array",
 						"elementType": {
 							"type": "reference",
-							"id": 374,
+							"id": 366,
 							"name": "RecipleCommandBuilders"
 						}
 					}
@@ -5649,14 +5791,14 @@
 			]
 		},
 		{
-			"id": 388,
+			"id": 381,
 			"name": "CommandCooldownData",
 			"kind": 256,
 			"kindString": "Interface",
 			"flags": {},
 			"children": [
 				{
-					"id": 395,
+					"id": 388,
 					"name": "channel",
 					"kind": 1024,
 					"kindString": "Property",
@@ -5682,7 +5824,7 @@
 					}
 				},
 				{
-					"id": 392,
+					"id": 385,
 					"name": "command",
 					"kind": 1024,
 					"kindString": "Property",
@@ -5704,7 +5846,7 @@
 					}
 				},
 				{
-					"id": 390,
+					"id": 383,
 					"name": "executeData",
 					"kind": 1024,
 					"kindString": "Property",
@@ -5712,7 +5854,7 @@
 					"sources": [
 						{
 							"fileName": "reciple/types/commands.ts",
-							"line": 10,
+							"line": 9,
 							"character": 79
 						}
 					],
@@ -5720,33 +5862,33 @@
 						"type": "conditional",
 						"checkType": {
 							"type": "reference",
-							"id": 397,
+							"id": 390,
 							"name": "Builder"
 						},
 						"extendsType": {
 							"type": "reference",
-							"id": 233,
+							"id": 225,
 							"name": "InteractionCommandBuilder"
 						},
 						"trueType": {
 							"type": "reference",
-							"id": 229,
+							"id": 221,
 							"name": "RecipleInteractionCommandExecuteData"
 						},
 						"falseType": {
 							"type": "reference",
-							"id": 267,
+							"id": 259,
 							"name": "RecipleMessageCommandExecuteData"
 						}
 					},
 					"inheritedFrom": {
 						"type": "reference",
-						"id": 381,
+						"id": 374,
 						"name": "CommandHaltBaseData.executeData"
 					}
 				},
 				{
-					"id": 396,
+					"id": 389,
 					"name": "expireTime",
 					"kind": 1024,
 					"kindString": "Property",
@@ -5768,7 +5910,7 @@
 					}
 				},
 				{
-					"id": 394,
+					"id": 387,
 					"name": "guild",
 					"kind": 1024,
 					"kindString": "Property",
@@ -5803,7 +5945,7 @@
 					}
 				},
 				{
-					"id": 389,
+					"id": 382,
 					"name": "reason",
 					"kind": 1024,
 					"kindString": "Property",
@@ -5811,17 +5953,18 @@
 					"sources": [
 						{
 							"fileName": "reciple/types/commands.ts",
-							"line": 12,
-							"character": 131
+							"line": 14,
+							"character": 4
 						}
 					],
 					"type": {
-						"type": "literal",
-						"value": "COOLDOWN"
+						"type": "reference",
+						"id": 411,
+						"name": "Cooldown"
 					}
 				},
 				{
-					"id": 393,
+					"id": 386,
 					"name": "type",
 					"kind": 1024,
 					"kindString": "Property",
@@ -5834,17 +5977,9 @@
 						}
 					],
 					"type": {
-						"type": "union",
-						"types": [
-							{
-								"type": "literal",
-								"value": "MESSAGE_COMMAND"
-							},
-							{
-								"type": "literal",
-								"value": "INTERACTION_COMMAND"
-							}
-						]
+						"type": "reference",
+						"id": 368,
+						"name": "RecipleCommandBuilderType"
 					},
 					"inheritedFrom": {
 						"type": "reference",
@@ -5852,7 +5987,7 @@
 					}
 				},
 				{
-					"id": 391,
+					"id": 384,
 					"name": "user",
 					"kind": 1024,
 					"kindString": "Property",
@@ -5881,393 +6016,14 @@
 					"title": "Properties",
 					"kind": 1024,
 					"children": [
-						395,
-						392,
-						390,
-						396,
-						394,
-						389,
-						393,
-						391
-					]
-				}
-			],
-			"sources": [
-				{
-					"fileName": "reciple/types/commands.ts",
-					"line": 12,
-					"character": 17
-				}
-			],
-			"typeParameter": [
-				{
-					"id": 397,
-					"name": "Builder",
-					"kind": 131072,
-					"kindString": "Type parameter",
-					"flags": {},
-					"type": {
-						"type": "reference",
-						"id": 374,
-						"name": "RecipleCommandBuilders"
-					}
-				}
-			],
-			"extendedTypes": [
-				{
-					"type": "reference",
-					"id": 380,
-					"typeArguments": [
-						{
-							"type": "reference",
-							"id": 397,
-							"name": "Builder"
-						}
-					],
-					"name": "CommandHaltBaseData"
-				},
-				{
-					"type": "reference",
-					"name": "CooledDownUser"
-				}
-			]
-		},
-		{
-			"id": 383,
-			"name": "CommandErrorData",
-			"kind": 256,
-			"kindString": "Interface",
-			"flags": {},
-			"children": [
-				{
-					"id": 385,
-					"name": "error",
-					"kind": 1024,
-					"kindString": "Property",
-					"flags": {},
-					"sources": [
-						{
-							"fileName": "reciple/types/commands.ts",
-							"line": 11,
-							"character": 130
-						}
-					],
-					"type": {
-						"type": "intrinsic",
-						"name": "any"
-					}
-				},
-				{
-					"id": 386,
-					"name": "executeData",
-					"kind": 1024,
-					"kindString": "Property",
-					"flags": {},
-					"sources": [
-						{
-							"fileName": "reciple/types/commands.ts",
-							"line": 10,
-							"character": 79
-						}
-					],
-					"type": {
-						"type": "conditional",
-						"checkType": {
-							"type": "reference",
-							"id": 387,
-							"name": "Builder"
-						},
-						"extendsType": {
-							"type": "reference",
-							"id": 233,
-							"name": "InteractionCommandBuilder"
-						},
-						"trueType": {
-							"type": "reference",
-							"id": 229,
-							"name": "RecipleInteractionCommandExecuteData"
-						},
-						"falseType": {
-							"type": "reference",
-							"id": 267,
-							"name": "RecipleMessageCommandExecuteData"
-						}
-					},
-					"inheritedFrom": {
-						"type": "reference",
-						"id": 381,
-						"name": "CommandHaltBaseData.executeData"
-					}
-				},
-				{
-					"id": 384,
-					"name": "reason",
-					"kind": 1024,
-					"kindString": "Property",
-					"flags": {},
-					"sources": [
-						{
-							"fileName": "reciple/types/commands.ts",
-							"line": 11,
-							"character": 113
-						}
-					],
-					"type": {
-						"type": "literal",
-						"value": "ERROR"
-					}
-				}
-			],
-			"groups": [
-				{
-					"title": "Properties",
-					"kind": 1024,
-					"children": [
+						388,
 						385,
+						383,
+						389,
+						387,
+						382,
 						386,
 						384
-					]
-				}
-			],
-			"sources": [
-				{
-					"fileName": "reciple/types/commands.ts",
-					"line": 11,
-					"character": 17
-				}
-			],
-			"typeParameter": [
-				{
-					"id": 387,
-					"name": "Builder",
-					"kind": 131072,
-					"kindString": "Type parameter",
-					"flags": {},
-					"type": {
-						"type": "reference",
-						"id": 374,
-						"name": "RecipleCommandBuilders"
-					}
-				}
-			],
-			"extendedTypes": [
-				{
-					"type": "reference",
-					"id": 380,
-					"typeArguments": [
-						{
-							"type": "reference",
-							"id": 387,
-							"name": "Builder"
-						}
-					],
-					"name": "CommandHaltBaseData"
-				}
-			]
-		},
-		{
-			"id": 380,
-			"name": "CommandHaltBaseData",
-			"kind": 256,
-			"kindString": "Interface",
-			"flags": {},
-			"children": [
-				{
-					"id": 381,
-					"name": "executeData",
-					"kind": 1024,
-					"kindString": "Property",
-					"flags": {},
-					"sources": [
-						{
-							"fileName": "reciple/types/commands.ts",
-							"line": 10,
-							"character": 79
-						}
-					],
-					"type": {
-						"type": "conditional",
-						"checkType": {
-							"type": "reference",
-							"id": 382,
-							"name": "Builder"
-						},
-						"extendsType": {
-							"type": "reference",
-							"id": 233,
-							"name": "InteractionCommandBuilder"
-						},
-						"trueType": {
-							"type": "reference",
-							"id": 229,
-							"name": "RecipleInteractionCommandExecuteData"
-						},
-						"falseType": {
-							"type": "reference",
-							"id": 267,
-							"name": "RecipleMessageCommandExecuteData"
-						}
-					}
-				}
-			],
-			"groups": [
-				{
-					"title": "Properties",
-					"kind": 1024,
-					"children": [
-						381
-					]
-				}
-			],
-			"sources": [
-				{
-					"fileName": "reciple/types/commands.ts",
-					"line": 10,
-					"character": 17
-				}
-			],
-			"typeParameter": [
-				{
-					"id": 382,
-					"name": "Builder",
-					"kind": 131072,
-					"kindString": "Type parameter",
-					"flags": {},
-					"type": {
-						"type": "reference",
-						"id": 374,
-						"name": "RecipleCommandBuilders"
-					}
-				}
-			],
-			"extendedBy": [
-				{
-					"type": "reference",
-					"id": 383,
-					"name": "CommandErrorData"
-				},
-				{
-					"type": "reference",
-					"id": 388,
-					"name": "CommandCooldownData"
-				},
-				{
-					"type": "reference",
-					"id": 398,
-					"name": "CommandInvalidArguments"
-				},
-				{
-					"type": "reference",
-					"id": 403,
-					"name": "CommandMissingArguments"
-				},
-				{
-					"type": "reference",
-					"id": 408,
-					"name": "CommandMissingMemberPermissions"
-				},
-				{
-					"type": "reference",
-					"id": 412,
-					"name": "CommandMissingBotPermissions"
-				}
-			]
-		},
-		{
-			"id": 398,
-			"name": "CommandInvalidArguments",
-			"kind": 256,
-			"kindString": "Interface",
-			"flags": {},
-			"children": [
-				{
-					"id": 401,
-					"name": "executeData",
-					"kind": 1024,
-					"kindString": "Property",
-					"flags": {},
-					"sources": [
-						{
-							"fileName": "reciple/types/commands.ts",
-							"line": 10,
-							"character": 79
-						}
-					],
-					"type": {
-						"type": "conditional",
-						"checkType": {
-							"type": "reference",
-							"id": 402,
-							"name": "Builder"
-						},
-						"extendsType": {
-							"type": "reference",
-							"id": 233,
-							"name": "InteractionCommandBuilder"
-						},
-						"trueType": {
-							"type": "reference",
-							"id": 229,
-							"name": "RecipleInteractionCommandExecuteData"
-						},
-						"falseType": {
-							"type": "reference",
-							"id": 267,
-							"name": "RecipleMessageCommandExecuteData"
-						}
-					},
-					"inheritedFrom": {
-						"type": "reference",
-						"id": 381,
-						"name": "CommandHaltBaseData.executeData"
-					}
-				},
-				{
-					"id": 400,
-					"name": "invalidArguments",
-					"kind": 1024,
-					"kindString": "Property",
-					"flags": {},
-					"sources": [
-						{
-							"fileName": "reciple/types/commands.ts",
-							"line": 13,
-							"character": 149
-						}
-					],
-					"type": {
-						"type": "reference",
-						"id": 211,
-						"name": "MessageCommandOptionManager"
-					}
-				},
-				{
-					"id": 399,
-					"name": "reason",
-					"kind": 1024,
-					"kindString": "Property",
-					"flags": {},
-					"sources": [
-						{
-							"fileName": "reciple/types/commands.ts",
-							"line": 13,
-							"character": 120
-						}
-					],
-					"type": {
-						"type": "literal",
-						"value": "INVALID_ARGUMENTS"
-					}
-				}
-			],
-			"groups": [
-				{
-					"title": "Properties",
-					"kind": 1024,
-					"children": [
-						401,
-						400,
-						399
 					]
 				}
 			],
@@ -6280,14 +6036,14 @@
 			],
 			"typeParameter": [
 				{
-					"id": 402,
+					"id": 390,
 					"name": "Builder",
 					"kind": 131072,
 					"kindString": "Type parameter",
 					"flags": {},
 					"type": {
 						"type": "reference",
-						"id": 374,
+						"id": 366,
 						"name": "RecipleCommandBuilders"
 					}
 				}
@@ -6295,27 +6051,49 @@
 			"extendedTypes": [
 				{
 					"type": "reference",
-					"id": 380,
+					"id": 373,
 					"typeArguments": [
 						{
 							"type": "reference",
-							"id": 402,
+							"id": 390,
 							"name": "Builder"
 						}
 					],
 					"name": "CommandHaltBaseData"
+				},
+				{
+					"type": "reference",
+					"name": "CooledDownUser"
 				}
 			]
 		},
 		{
-			"id": 403,
-			"name": "CommandMissingArguments",
+			"id": 376,
+			"name": "CommandErrorData",
 			"kind": 256,
 			"kindString": "Interface",
 			"flags": {},
 			"children": [
 				{
-					"id": 406,
+					"id": 378,
+					"name": "error",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "reciple/types/commands.ts",
+							"line": 11,
+							"character": 46
+						}
+					],
+					"type": {
+						"type": "intrinsic",
+						"name": "any"
+					}
+				},
+				{
+					"id": 379,
 					"name": "executeData",
 					"kind": 1024,
 					"kindString": "Property",
@@ -6323,7 +6101,7 @@
 					"sources": [
 						{
 							"fileName": "reciple/types/commands.ts",
-							"line": 10,
+							"line": 9,
 							"character": 79
 						}
 					],
@@ -6331,52 +6109,33 @@
 						"type": "conditional",
 						"checkType": {
 							"type": "reference",
-							"id": 407,
+							"id": 380,
 							"name": "Builder"
 						},
 						"extendsType": {
 							"type": "reference",
-							"id": 233,
+							"id": 225,
 							"name": "InteractionCommandBuilder"
 						},
 						"trueType": {
 							"type": "reference",
-							"id": 229,
+							"id": 221,
 							"name": "RecipleInteractionCommandExecuteData"
 						},
 						"falseType": {
 							"type": "reference",
-							"id": 267,
+							"id": 259,
 							"name": "RecipleMessageCommandExecuteData"
 						}
 					},
 					"inheritedFrom": {
 						"type": "reference",
-						"id": 381,
+						"id": 374,
 						"name": "CommandHaltBaseData.executeData"
 					}
 				},
 				{
-					"id": 405,
-					"name": "missingArguments",
-					"kind": 1024,
-					"kindString": "Property",
-					"flags": {},
-					"sources": [
-						{
-							"fileName": "reciple/types/commands.ts",
-							"line": 14,
-							"character": 149
-						}
-					],
-					"type": {
-						"type": "reference",
-						"id": 211,
-						"name": "MessageCommandOptionManager"
-					}
-				},
-				{
-					"id": 404,
+					"id": 377,
 					"name": "reason",
 					"kind": 1024,
 					"kindString": "Property",
@@ -6384,13 +6143,14 @@
 					"sources": [
 						{
 							"fileName": "reciple/types/commands.ts",
-							"line": 14,
-							"character": 120
+							"line": 11,
+							"character": 4
 						}
 					],
 					"type": {
-						"type": "literal",
-						"value": "MISSING_ARGUMENTS"
+						"type": "reference",
+						"id": 410,
+						"name": "Error"
 					}
 				}
 			],
@@ -6399,29 +6159,29 @@
 					"title": "Properties",
 					"kind": 1024,
 					"children": [
-						406,
-						405,
-						404
+						378,
+						379,
+						377
 					]
 				}
 			],
 			"sources": [
 				{
 					"fileName": "reciple/types/commands.ts",
-					"line": 14,
+					"line": 10,
 					"character": 17
 				}
 			],
 			"typeParameter": [
 				{
-					"id": 407,
+					"id": 380,
 					"name": "Builder",
 					"kind": 131072,
 					"kindString": "Type parameter",
 					"flags": {},
 					"type": {
 						"type": "reference",
-						"id": 374,
+						"id": 366,
 						"name": "RecipleCommandBuilders"
 					}
 				}
@@ -6429,11 +6189,11 @@
 			"extendedTypes": [
 				{
 					"type": "reference",
-					"id": 380,
+					"id": 373,
 					"typeArguments": [
 						{
 							"type": "reference",
-							"id": 407,
+							"id": 380,
 							"name": "Builder"
 						}
 					],
@@ -6442,14 +6202,14 @@
 			]
 		},
 		{
-			"id": 412,
-			"name": "CommandMissingBotPermissions",
+			"id": 373,
+			"name": "CommandHaltBaseData",
 			"kind": 256,
 			"kindString": "Interface",
 			"flags": {},
 			"children": [
 				{
-					"id": 414,
+					"id": 374,
 					"name": "executeData",
 					"kind": 1024,
 					"kindString": "Property",
@@ -6457,7 +6217,7 @@
 					"sources": [
 						{
 							"fileName": "reciple/types/commands.ts",
-							"line": 10,
+							"line": 9,
 							"character": 79
 						}
 					],
@@ -6465,47 +6225,24 @@
 						"type": "conditional",
 						"checkType": {
 							"type": "reference",
-							"id": 415,
+							"id": 375,
 							"name": "Builder"
 						},
 						"extendsType": {
 							"type": "reference",
-							"id": 233,
+							"id": 225,
 							"name": "InteractionCommandBuilder"
 						},
 						"trueType": {
 							"type": "reference",
-							"id": 229,
+							"id": 221,
 							"name": "RecipleInteractionCommandExecuteData"
 						},
 						"falseType": {
 							"type": "reference",
-							"id": 267,
+							"id": 259,
 							"name": "RecipleMessageCommandExecuteData"
 						}
-					},
-					"inheritedFrom": {
-						"type": "reference",
-						"id": 381,
-						"name": "CommandHaltBaseData.executeData"
-					}
-				},
-				{
-					"id": 413,
-					"name": "reason",
-					"kind": 1024,
-					"kindString": "Property",
-					"flags": {},
-					"sources": [
-						{
-							"fileName": "reciple/types/commands.ts",
-							"line": 16,
-							"character": 125
-						}
-					],
-					"type": {
-						"type": "literal",
-						"value": "MISSING_BOT_PERMISSIONS"
 					}
 				}
 			],
@@ -6514,8 +6251,160 @@
 					"title": "Properties",
 					"kind": 1024,
 					"children": [
-						414,
-						413
+						374
+					]
+				}
+			],
+			"sources": [
+				{
+					"fileName": "reciple/types/commands.ts",
+					"line": 9,
+					"character": 17
+				}
+			],
+			"typeParameter": [
+				{
+					"id": 375,
+					"name": "Builder",
+					"kind": 131072,
+					"kindString": "Type parameter",
+					"flags": {},
+					"type": {
+						"type": "reference",
+						"id": 366,
+						"name": "RecipleCommandBuilders"
+					}
+				}
+			],
+			"extendedBy": [
+				{
+					"type": "reference",
+					"id": 376,
+					"name": "CommandErrorData"
+				},
+				{
+					"type": "reference",
+					"id": 381,
+					"name": "CommandCooldownData"
+				},
+				{
+					"type": "reference",
+					"id": 391,
+					"name": "CommandInvalidArguments"
+				},
+				{
+					"type": "reference",
+					"id": 396,
+					"name": "CommandMissingArguments"
+				},
+				{
+					"type": "reference",
+					"id": 401,
+					"name": "CommandMissingMemberPermissions"
+				},
+				{
+					"type": "reference",
+					"id": 405,
+					"name": "CommandMissingBotPermissions"
+				}
+			]
+		},
+		{
+			"id": 391,
+			"name": "CommandInvalidArguments",
+			"kind": 256,
+			"kindString": "Interface",
+			"flags": {},
+			"children": [
+				{
+					"id": 394,
+					"name": "executeData",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "reciple/types/commands.ts",
+							"line": 9,
+							"character": 79
+						}
+					],
+					"type": {
+						"type": "conditional",
+						"checkType": {
+							"type": "reference",
+							"id": 395,
+							"name": "Builder"
+						},
+						"extendsType": {
+							"type": "reference",
+							"id": 225,
+							"name": "InteractionCommandBuilder"
+						},
+						"trueType": {
+							"type": "reference",
+							"id": 221,
+							"name": "RecipleInteractionCommandExecuteData"
+						},
+						"falseType": {
+							"type": "reference",
+							"id": 259,
+							"name": "RecipleMessageCommandExecuteData"
+						}
+					},
+					"inheritedFrom": {
+						"type": "reference",
+						"id": 374,
+						"name": "CommandHaltBaseData.executeData"
+					}
+				},
+				{
+					"id": 393,
+					"name": "invalidArguments",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "reciple/types/commands.ts",
+							"line": 17,
+							"character": 57
+						}
+					],
+					"type": {
+						"type": "reference",
+						"id": 203,
+						"name": "MessageCommandOptionManager"
+					}
+				},
+				{
+					"id": 392,
+					"name": "reason",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "reciple/types/commands.ts",
+							"line": 17,
+							"character": 4
+						}
+					],
+					"type": {
+						"type": "reference",
+						"id": 412,
+						"name": "InvalidArguments"
+					}
+				}
+			],
+			"groups": [
+				{
+					"title": "Properties",
+					"kind": 1024,
+					"children": [
+						394,
+						393,
+						392
 					]
 				}
 			],
@@ -6528,14 +6417,14 @@
 			],
 			"typeParameter": [
 				{
-					"id": 415,
+					"id": 395,
 					"name": "Builder",
 					"kind": 131072,
 					"kindString": "Type parameter",
 					"flags": {},
 					"type": {
 						"type": "reference",
-						"id": 374,
+						"id": 366,
 						"name": "RecipleCommandBuilders"
 					}
 				}
@@ -6543,11 +6432,11 @@
 			"extendedTypes": [
 				{
 					"type": "reference",
-					"id": 380,
+					"id": 373,
 					"typeArguments": [
 						{
 							"type": "reference",
-							"id": 415,
+							"id": 395,
 							"name": "Builder"
 						}
 					],
@@ -6556,14 +6445,14 @@
 			]
 		},
 		{
-			"id": 408,
-			"name": "CommandMissingMemberPermissions",
+			"id": 396,
+			"name": "CommandMissingArguments",
 			"kind": 256,
 			"kindString": "Interface",
 			"flags": {},
 			"children": [
 				{
-					"id": 410,
+					"id": 399,
 					"name": "executeData",
 					"kind": 1024,
 					"kindString": "Property",
@@ -6571,7 +6460,7 @@
 					"sources": [
 						{
 							"fileName": "reciple/types/commands.ts",
-							"line": 10,
+							"line": 9,
 							"character": 79
 						}
 					],
@@ -6579,33 +6468,52 @@
 						"type": "conditional",
 						"checkType": {
 							"type": "reference",
-							"id": 411,
+							"id": 400,
 							"name": "Builder"
 						},
 						"extendsType": {
 							"type": "reference",
-							"id": 233,
+							"id": 225,
 							"name": "InteractionCommandBuilder"
 						},
 						"trueType": {
 							"type": "reference",
-							"id": 229,
+							"id": 221,
 							"name": "RecipleInteractionCommandExecuteData"
 						},
 						"falseType": {
 							"type": "reference",
-							"id": 267,
+							"id": 259,
 							"name": "RecipleMessageCommandExecuteData"
 						}
 					},
 					"inheritedFrom": {
 						"type": "reference",
-						"id": 381,
+						"id": 374,
 						"name": "CommandHaltBaseData.executeData"
 					}
 				},
 				{
-					"id": 409,
+					"id": 398,
+					"name": "missingArguments",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "reciple/types/commands.ts",
+							"line": 20,
+							"character": 57
+						}
+					],
+					"type": {
+						"type": "reference",
+						"id": 203,
+						"name": "MessageCommandOptionManager"
+					}
+				},
+				{
+					"id": 397,
 					"name": "reason",
 					"kind": 1024,
 					"kindString": "Property",
@@ -6613,13 +6521,14 @@
 					"sources": [
 						{
 							"fileName": "reciple/types/commands.ts",
-							"line": 15,
-							"character": 128
+							"line": 20,
+							"character": 4
 						}
 					],
 					"type": {
-						"type": "literal",
-						"value": "MISSING_MEMBER_PERMISSIONS"
+						"type": "reference",
+						"id": 413,
+						"name": "MissingArguments"
 					}
 				}
 			],
@@ -6628,28 +6537,29 @@
 					"title": "Properties",
 					"kind": 1024,
 					"children": [
-						410,
-						409
+						399,
+						398,
+						397
 					]
 				}
 			],
 			"sources": [
 				{
 					"fileName": "reciple/types/commands.ts",
-					"line": 15,
+					"line": 19,
 					"character": 17
 				}
 			],
 			"typeParameter": [
 				{
-					"id": 411,
+					"id": 400,
 					"name": "Builder",
 					"kind": 131072,
 					"kindString": "Type parameter",
 					"flags": {},
 					"type": {
 						"type": "reference",
-						"id": 374,
+						"id": 366,
 						"name": "RecipleCommandBuilders"
 					}
 				}
@@ -6657,11 +6567,11 @@
 			"extendedTypes": [
 				{
 					"type": "reference",
-					"id": 380,
+					"id": 373,
 					"typeArguments": [
 						{
 							"type": "reference",
-							"id": 411,
+							"id": 400,
 							"name": "Builder"
 						}
 					],
@@ -6670,14 +6580,244 @@
 			]
 		},
 		{
-			"id": 141,
+			"id": 405,
+			"name": "CommandMissingBotPermissions",
+			"kind": 256,
+			"kindString": "Interface",
+			"flags": {},
+			"children": [
+				{
+					"id": 407,
+					"name": "executeData",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "reciple/types/commands.ts",
+							"line": 9,
+							"character": 79
+						}
+					],
+					"type": {
+						"type": "conditional",
+						"checkType": {
+							"type": "reference",
+							"id": 408,
+							"name": "Builder"
+						},
+						"extendsType": {
+							"type": "reference",
+							"id": 225,
+							"name": "InteractionCommandBuilder"
+						},
+						"trueType": {
+							"type": "reference",
+							"id": 221,
+							"name": "RecipleInteractionCommandExecuteData"
+						},
+						"falseType": {
+							"type": "reference",
+							"id": 259,
+							"name": "RecipleMessageCommandExecuteData"
+						}
+					},
+					"inheritedFrom": {
+						"type": "reference",
+						"id": 374,
+						"name": "CommandHaltBaseData.executeData"
+					}
+				},
+				{
+					"id": 406,
+					"name": "reason",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "reciple/types/commands.ts",
+							"line": 26,
+							"character": 4
+						}
+					],
+					"type": {
+						"type": "reference",
+						"id": 415,
+						"name": "MissingBotPermissions"
+					}
+				}
+			],
+			"groups": [
+				{
+					"title": "Properties",
+					"kind": 1024,
+					"children": [
+						407,
+						406
+					]
+				}
+			],
+			"sources": [
+				{
+					"fileName": "reciple/types/commands.ts",
+					"line": 25,
+					"character": 17
+				}
+			],
+			"typeParameter": [
+				{
+					"id": 408,
+					"name": "Builder",
+					"kind": 131072,
+					"kindString": "Type parameter",
+					"flags": {},
+					"type": {
+						"type": "reference",
+						"id": 366,
+						"name": "RecipleCommandBuilders"
+					}
+				}
+			],
+			"extendedTypes": [
+				{
+					"type": "reference",
+					"id": 373,
+					"typeArguments": [
+						{
+							"type": "reference",
+							"id": 408,
+							"name": "Builder"
+						}
+					],
+					"name": "CommandHaltBaseData"
+				}
+			]
+		},
+		{
+			"id": 401,
+			"name": "CommandMissingMemberPermissions",
+			"kind": 256,
+			"kindString": "Interface",
+			"flags": {},
+			"children": [
+				{
+					"id": 403,
+					"name": "executeData",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "reciple/types/commands.ts",
+							"line": 9,
+							"character": 79
+						}
+					],
+					"type": {
+						"type": "conditional",
+						"checkType": {
+							"type": "reference",
+							"id": 404,
+							"name": "Builder"
+						},
+						"extendsType": {
+							"type": "reference",
+							"id": 225,
+							"name": "InteractionCommandBuilder"
+						},
+						"trueType": {
+							"type": "reference",
+							"id": 221,
+							"name": "RecipleInteractionCommandExecuteData"
+						},
+						"falseType": {
+							"type": "reference",
+							"id": 259,
+							"name": "RecipleMessageCommandExecuteData"
+						}
+					},
+					"inheritedFrom": {
+						"type": "reference",
+						"id": 374,
+						"name": "CommandHaltBaseData.executeData"
+					}
+				},
+				{
+					"id": 402,
+					"name": "reason",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "reciple/types/commands.ts",
+							"line": 23,
+							"character": 4
+						}
+					],
+					"type": {
+						"type": "reference",
+						"id": 414,
+						"name": "MissingMemberPermissions"
+					}
+				}
+			],
+			"groups": [
+				{
+					"title": "Properties",
+					"kind": 1024,
+					"children": [
+						403,
+						402
+					]
+				}
+			],
+			"sources": [
+				{
+					"fileName": "reciple/types/commands.ts",
+					"line": 22,
+					"character": 17
+				}
+			],
+			"typeParameter": [
+				{
+					"id": 404,
+					"name": "Builder",
+					"kind": 131072,
+					"kindString": "Type parameter",
+					"flags": {},
+					"type": {
+						"type": "reference",
+						"id": 366,
+						"name": "RecipleCommandBuilders"
+					}
+				}
+			],
+			"extendedTypes": [
+				{
+					"type": "reference",
+					"id": 373,
+					"typeArguments": [
+						{
+							"type": "reference",
+							"id": 404,
+							"name": "Builder"
+						}
+					],
+					"name": "CommandHaltBaseData"
+				}
+			]
+		},
+		{
+			"id": 135,
 			"name": "Config",
 			"kind": 256,
 			"kindString": "Interface",
 			"flags": {},
 			"children": [
 				{
-					"id": 183,
+					"id": 175,
 					"name": "client",
 					"kind": 1024,
 					"kindString": "Property",
@@ -6685,7 +6825,7 @@
 					"sources": [
 						{
 							"fileName": "reciple/classes/RecipleConfig.ts",
-							"line": 56,
+							"line": 54,
 							"character": 4
 						}
 					],
@@ -6697,7 +6837,7 @@
 					}
 				},
 				{
-					"id": 144,
+					"id": 137,
 					"name": "commands",
 					"kind": 1024,
 					"kindString": "Property",
@@ -6705,21 +6845,21 @@
 					"sources": [
 						{
 							"fileName": "reciple/classes/RecipleConfig.ts",
-							"line": 17,
+							"line": 16,
 							"character": 4
 						}
 					],
 					"type": {
 						"type": "reflection",
 						"declaration": {
-							"id": 145,
+							"id": 138,
 							"name": "__type",
 							"kind": 65536,
 							"kindString": "Type literal",
 							"flags": {},
 							"children": [
 								{
-									"id": 153,
+									"id": 151,
 									"name": "interactionCommand",
 									"kind": 1024,
 									"kindString": "Property",
@@ -6727,21 +6867,21 @@
 									"sources": [
 										{
 											"fileName": "reciple/classes/RecipleConfig.ts",
-											"line": 25,
+											"line": 29,
 											"character": 8
 										}
 									],
 									"type": {
 										"type": "reflection",
 										"declaration": {
-											"id": 154,
+											"id": 152,
 											"name": "__type",
 											"kind": 65536,
 											"kindString": "Type literal",
 											"flags": {},
 											"children": [
 												{
-													"id": 158,
+													"id": 156,
 													"name": "enableCooldown",
 													"kind": 1024,
 													"kindString": "Property",
@@ -6749,7 +6889,7 @@
 													"sources": [
 														{
 															"fileName": "reciple/classes/RecipleConfig.ts",
-															"line": 29,
+															"line": 33,
 															"character": 12
 														}
 													],
@@ -6759,7 +6899,7 @@
 													}
 												},
 												{
-													"id": 155,
+													"id": 153,
 													"name": "enabled",
 													"kind": 1024,
 													"kindString": "Property",
@@ -6767,7 +6907,7 @@
 													"sources": [
 														{
 															"fileName": "reciple/classes/RecipleConfig.ts",
-															"line": 26,
+															"line": 30,
 															"character": 12
 														}
 													],
@@ -6777,15 +6917,17 @@
 													}
 												},
 												{
-													"id": 160,
+													"id": 158,
 													"name": "guilds",
 													"kind": 1024,
 													"kindString": "Property",
-													"flags": {},
+													"flags": {
+														"isOptional": true
+													},
 													"sources": [
 														{
 															"fileName": "reciple/classes/RecipleConfig.ts",
-															"line": 31,
+															"line": 35,
 															"character": 12
 														}
 													],
@@ -6807,7 +6949,83 @@
 													}
 												},
 												{
-													"id": 157,
+													"id": 159,
+													"name": "permissions",
+													"kind": 1024,
+													"kindString": "Property",
+													"flags": {},
+													"sources": [
+														{
+															"fileName": "reciple/classes/RecipleConfig.ts",
+															"line": 36,
+															"character": 12
+														}
+													],
+													"type": {
+														"type": "reflection",
+														"declaration": {
+															"id": 160,
+															"name": "__type",
+															"kind": 65536,
+															"kindString": "Type literal",
+															"flags": {},
+															"children": [
+																{
+																	"id": 162,
+																	"name": "commands",
+																	"kind": 1024,
+																	"kindString": "Property",
+																	"flags": {},
+																	"sources": [
+																		{
+																			"fileName": "reciple/classes/RecipleConfig.ts",
+																			"line": 38,
+																			"character": 16
+																		}
+																	],
+																	"type": {
+																		"type": "array",
+																		"elementType": {
+																			"type": "reference",
+																			"id": 132,
+																			"name": "ConfigCommandPermissions"
+																		}
+																	}
+																},
+																{
+																	"id": 161,
+																	"name": "enabled",
+																	"kind": 1024,
+																	"kindString": "Property",
+																	"flags": {},
+																	"sources": [
+																		{
+																			"fileName": "reciple/classes/RecipleConfig.ts",
+																			"line": 37,
+																			"character": 16
+																		}
+																	],
+																	"type": {
+																		"type": "intrinsic",
+																		"name": "boolean"
+																	}
+																}
+															],
+															"groups": [
+																{
+																	"title": "Properties",
+																	"kind": 1024,
+																	"children": [
+																		162,
+																		161
+																	]
+																}
+															]
+														}
+													}
+												},
+												{
+													"id": 155,
 													"name": "registerCommands",
 													"kind": 1024,
 													"kindString": "Property",
@@ -6815,7 +7033,7 @@
 													"sources": [
 														{
 															"fileName": "reciple/classes/RecipleConfig.ts",
-															"line": 28,
+															"line": 32,
 															"character": 12
 														}
 													],
@@ -6825,7 +7043,7 @@
 													}
 												},
 												{
-													"id": 156,
+													"id": 154,
 													"name": "replyOnError",
 													"kind": 1024,
 													"kindString": "Property",
@@ -6833,7 +7051,7 @@
 													"sources": [
 														{
 															"fileName": "reciple/classes/RecipleConfig.ts",
-															"line": 27,
+															"line": 31,
 															"character": 12
 														}
 													],
@@ -6843,7 +7061,7 @@
 													}
 												},
 												{
-													"id": 159,
+													"id": 157,
 													"name": "setRequiredPermissions",
 													"kind": 1024,
 													"kindString": "Property",
@@ -6851,7 +7069,7 @@
 													"sources": [
 														{
 															"fileName": "reciple/classes/RecipleConfig.ts",
-															"line": 30,
+															"line": 34,
 															"character": 12
 														}
 													],
@@ -6866,12 +7084,13 @@
 													"title": "Properties",
 													"kind": 1024,
 													"children": [
-														158,
-														155,
-														160,
-														157,
 														156,
-														159
+														153,
+														158,
+														159,
+														155,
+														154,
+														157
 													]
 												}
 											]
@@ -6879,7 +7098,7 @@
 									}
 								},
 								{
-									"id": 146,
+									"id": 139,
 									"name": "messageCommand",
 									"kind": 1024,
 									"kindString": "Property",
@@ -6887,21 +7106,21 @@
 									"sources": [
 										{
 											"fileName": "reciple/classes/RecipleConfig.ts",
-											"line": 18,
+											"line": 17,
 											"character": 8
 										}
 									],
 									"type": {
 										"type": "reflection",
 										"declaration": {
-											"id": 147,
+											"id": 140,
 											"name": "__type",
 											"kind": 65536,
 											"kindString": "Type literal",
 											"flags": {},
 											"children": [
 												{
-													"id": 150,
+													"id": 144,
 													"name": "allowCommandAlias",
 													"kind": 1024,
 													"kindString": "Property",
@@ -6919,7 +7138,7 @@
 													}
 												},
 												{
-													"id": 152,
+													"id": 146,
 													"name": "commandArgumentSeparator",
 													"kind": 1024,
 													"kindString": "Property",
@@ -6937,7 +7156,7 @@
 													}
 												},
 												{
-													"id": 151,
+													"id": 145,
 													"name": "enableCooldown",
 													"kind": 1024,
 													"kindString": "Property",
@@ -6955,7 +7174,7 @@
 													}
 												},
 												{
-													"id": 148,
+													"id": 141,
 													"name": "enabled",
 													"kind": 1024,
 													"kindString": "Property",
@@ -6963,7 +7182,7 @@
 													"sources": [
 														{
 															"fileName": "reciple/classes/RecipleConfig.ts",
-															"line": 19,
+															"line": 18,
 															"character": 12
 														}
 													],
@@ -6973,7 +7192,103 @@
 													}
 												},
 												{
-													"id": 149,
+													"id": 147,
+													"name": "permissions",
+													"kind": 1024,
+													"kindString": "Property",
+													"flags": {},
+													"sources": [
+														{
+															"fileName": "reciple/classes/RecipleConfig.ts",
+															"line": 24,
+															"character": 12
+														}
+													],
+													"type": {
+														"type": "reflection",
+														"declaration": {
+															"id": 148,
+															"name": "__type",
+															"kind": 65536,
+															"kindString": "Type literal",
+															"flags": {},
+															"children": [
+																{
+																	"id": 150,
+																	"name": "commands",
+																	"kind": 1024,
+																	"kindString": "Property",
+																	"flags": {},
+																	"sources": [
+																		{
+																			"fileName": "reciple/classes/RecipleConfig.ts",
+																			"line": 26,
+																			"character": 16
+																		}
+																	],
+																	"type": {
+																		"type": "array",
+																		"elementType": {
+																			"type": "reference",
+																			"id": 132,
+																			"name": "ConfigCommandPermissions"
+																		}
+																	}
+																},
+																{
+																	"id": 149,
+																	"name": "enabled",
+																	"kind": 1024,
+																	"kindString": "Property",
+																	"flags": {},
+																	"sources": [
+																		{
+																			"fileName": "reciple/classes/RecipleConfig.ts",
+																			"line": 25,
+																			"character": 16
+																		}
+																	],
+																	"type": {
+																		"type": "intrinsic",
+																		"name": "boolean"
+																	}
+																}
+															],
+															"groups": [
+																{
+																	"title": "Properties",
+																	"kind": 1024,
+																	"children": [
+																		150,
+																		149
+																	]
+																}
+															]
+														}
+													}
+												},
+												{
+													"id": 142,
+													"name": "prefix",
+													"kind": 1024,
+													"kindString": "Property",
+													"flags": {
+														"isOptional": true
+													},
+													"sources": [
+														{
+															"fileName": "reciple/classes/RecipleConfig.ts",
+															"line": 19,
+															"character": 12
+														}
+													],
+													"type": {
+														"type": "intrinsic",
+														"name": "string"
+													}
+												},
+												{
+													"id": 143,
 													"name": "replyOnError",
 													"kind": 1024,
 													"kindString": "Property",
@@ -6996,11 +7311,13 @@
 													"title": "Properties",
 													"kind": 1024,
 													"children": [
-														150,
-														152,
-														151,
-														148,
-														149
+														144,
+														146,
+														145,
+														141,
+														147,
+														142,
+														143
 													]
 												}
 											]
@@ -7013,8 +7330,8 @@
 									"title": "Properties",
 									"kind": 1024,
 									"children": [
-										153,
-										146
+										151,
+										139
 									]
 								}
 							]
@@ -7022,7 +7339,7 @@
 					}
 				},
 				{
-					"id": 176,
+					"id": 168,
 					"name": "fileLogging",
 					"kind": 1024,
 					"kindString": "Property",
@@ -7030,58 +7347,22 @@
 					"sources": [
 						{
 							"fileName": "reciple/classes/RecipleConfig.ts",
-							"line": 49,
+							"line": 47,
 							"character": 4
 						}
 					],
 					"type": {
 						"type": "reflection",
 						"declaration": {
-							"id": 177,
+							"id": 169,
 							"name": "__type",
 							"kind": 65536,
 							"kindString": "Type literal",
 							"flags": {},
 							"children": [
 								{
-									"id": 180,
+									"id": 172,
 									"name": "clientLogs",
-									"kind": 1024,
-									"kindString": "Property",
-									"flags": {},
-									"sources": [
-										{
-											"fileName": "reciple/classes/RecipleConfig.ts",
-											"line": 52,
-											"character": 8
-										}
-									],
-									"type": {
-										"type": "intrinsic",
-										"name": "boolean"
-									}
-								},
-								{
-									"id": 179,
-									"name": "debugmode",
-									"kind": 1024,
-									"kindString": "Property",
-									"flags": {},
-									"sources": [
-										{
-											"fileName": "reciple/classes/RecipleConfig.ts",
-											"line": 51,
-											"character": 8
-										}
-									],
-									"type": {
-										"type": "intrinsic",
-										"name": "boolean"
-									}
-								},
-								{
-									"id": 178,
-									"name": "enabled",
 									"kind": 1024,
 									"kindString": "Property",
 									"flags": {},
@@ -7098,7 +7379,43 @@
 									}
 								},
 								{
-									"id": 182,
+									"id": 171,
+									"name": "debugmode",
+									"kind": 1024,
+									"kindString": "Property",
+									"flags": {},
+									"sources": [
+										{
+											"fileName": "reciple/classes/RecipleConfig.ts",
+											"line": 49,
+											"character": 8
+										}
+									],
+									"type": {
+										"type": "intrinsic",
+										"name": "boolean"
+									}
+								},
+								{
+									"id": 170,
+									"name": "enabled",
+									"kind": 1024,
+									"kindString": "Property",
+									"flags": {},
+									"sources": [
+										{
+											"fileName": "reciple/classes/RecipleConfig.ts",
+											"line": 48,
+											"character": 8
+										}
+									],
+									"type": {
+										"type": "intrinsic",
+										"name": "boolean"
+									}
+								},
+								{
+									"id": 174,
 									"name": "logFilePath",
 									"kind": 1024,
 									"kindString": "Property",
@@ -7106,7 +7423,7 @@
 									"sources": [
 										{
 											"fileName": "reciple/classes/RecipleConfig.ts",
-											"line": 54,
+											"line": 52,
 											"character": 8
 										}
 									],
@@ -7116,7 +7433,7 @@
 									}
 								},
 								{
-									"id": 181,
+									"id": 173,
 									"name": "stringifyLoggedJSON",
 									"kind": 1024,
 									"kindString": "Property",
@@ -7124,7 +7441,7 @@
 									"sources": [
 										{
 											"fileName": "reciple/classes/RecipleConfig.ts",
-											"line": 53,
+											"line": 51,
 											"character": 8
 										}
 									],
@@ -7139,11 +7456,11 @@
 									"title": "Properties",
 									"kind": 1024,
 									"children": [
-										180,
-										179,
-										178,
-										182,
-										181
+										172,
+										171,
+										170,
+										174,
+										173
 									]
 								}
 							]
@@ -7151,7 +7468,7 @@
 					}
 				},
 				{
-					"id": 171,
+					"id": 163,
 					"name": "ignoredChannels",
 					"kind": 1024,
 					"kindString": "Property",
@@ -7159,21 +7476,21 @@
 					"sources": [
 						{
 							"fileName": "reciple/classes/RecipleConfig.ts",
-							"line": 44,
+							"line": 42,
 							"character": 4
 						}
 					],
 					"type": {
 						"type": "reflection",
 						"declaration": {
-							"id": 172,
+							"id": 164,
 							"name": "__type",
 							"kind": 65536,
 							"kindString": "Type literal",
 							"flags": {},
 							"children": [
 								{
-									"id": 175,
+									"id": 167,
 									"name": "channels",
 									"kind": 1024,
 									"kindString": "Property",
@@ -7181,7 +7498,7 @@
 									"sources": [
 										{
 											"fileName": "reciple/classes/RecipleConfig.ts",
-											"line": 47,
+											"line": 45,
 											"character": 8
 										}
 									],
@@ -7194,7 +7511,7 @@
 									}
 								},
 								{
-									"id": 174,
+									"id": 166,
 									"name": "convertToAllowList",
 									"kind": 1024,
 									"kindString": "Property",
@@ -7202,7 +7519,7 @@
 									"sources": [
 										{
 											"fileName": "reciple/classes/RecipleConfig.ts",
-											"line": 46,
+											"line": 44,
 											"character": 8
 										}
 									],
@@ -7212,7 +7529,7 @@
 									}
 								},
 								{
-									"id": 173,
+									"id": 165,
 									"name": "enabled",
 									"kind": 1024,
 									"kindString": "Property",
@@ -7220,7 +7537,7 @@
 									"sources": [
 										{
 											"fileName": "reciple/classes/RecipleConfig.ts",
-											"line": 45,
+											"line": 43,
 											"character": 8
 										}
 									],
@@ -7235,9 +7552,9 @@
 									"title": "Properties",
 									"kind": 1024,
 									"children": [
-										175,
-										174,
-										173
+										167,
+										166,
+										165
 									]
 								}
 							]
@@ -7245,7 +7562,7 @@
 					}
 				},
 				{
-					"id": 188,
+					"id": 180,
 					"name": "ignoredFiles",
 					"kind": 1024,
 					"kindString": "Property",
@@ -7253,7 +7570,7 @@
 					"sources": [
 						{
 							"fileName": "reciple/classes/RecipleConfig.ts",
-							"line": 60,
+							"line": 58,
 							"character": 4
 						}
 					],
@@ -7266,7 +7583,7 @@
 					}
 				},
 				{
-					"id": 184,
+					"id": 176,
 					"name": "messages",
 					"kind": 1024,
 					"kindString": "Property",
@@ -7274,27 +7591,27 @@
 					"sources": [
 						{
 							"fileName": "reciple/classes/RecipleConfig.ts",
-							"line": 57,
+							"line": 55,
 							"character": 4
 						}
 					],
 					"type": {
 						"type": "reflection",
 						"declaration": {
-							"id": 185,
+							"id": 177,
 							"name": "__type",
 							"kind": 65536,
 							"kindString": "Type literal",
 							"flags": {},
 							"indexSignature": {
-								"id": 186,
+								"id": 178,
 								"name": "__index",
 								"kind": 8192,
 								"kindString": "Index signature",
 								"flags": {},
 								"parameters": [
 									{
-										"id": 187,
+										"id": 179,
 										"name": "messageKey",
 										"kind": 32768,
 										"flags": {},
@@ -7313,7 +7630,7 @@
 					}
 				},
 				{
-					"id": 189,
+					"id": 181,
 					"name": "modulesFolder",
 					"kind": 1024,
 					"kindString": "Property",
@@ -7321,7 +7638,7 @@
 					"sources": [
 						{
 							"fileName": "reciple/classes/RecipleConfig.ts",
-							"line": 61,
+							"line": 59,
 							"character": 4
 						}
 					],
@@ -7331,213 +7648,7 @@
 					}
 				},
 				{
-					"id": 161,
-					"name": "permissions",
-					"kind": 1024,
-					"kindString": "Property",
-					"flags": {},
-					"sources": [
-						{
-							"fileName": "reciple/classes/RecipleConfig.ts",
-							"line": 34,
-							"character": 4
-						}
-					],
-					"type": {
-						"type": "reflection",
-						"declaration": {
-							"id": 162,
-							"name": "__type",
-							"kind": 65536,
-							"kindString": "Type literal",
-							"flags": {},
-							"children": [
-								{
-									"id": 167,
-									"name": "interactionCommands",
-									"kind": 1024,
-									"kindString": "Property",
-									"flags": {},
-									"sources": [
-										{
-											"fileName": "reciple/classes/RecipleConfig.ts",
-											"line": 39,
-											"character": 8
-										}
-									],
-									"type": {
-										"type": "reflection",
-										"declaration": {
-											"id": 168,
-											"name": "__type",
-											"kind": 65536,
-											"kindString": "Type literal",
-											"flags": {},
-											"children": [
-												{
-													"id": 170,
-													"name": "commands",
-													"kind": 1024,
-													"kindString": "Property",
-													"flags": {},
-													"sources": [
-														{
-															"fileName": "reciple/classes/RecipleConfig.ts",
-															"line": 41,
-															"character": 12
-														}
-													],
-													"type": {
-														"type": "array",
-														"elementType": {
-															"type": "reference",
-															"id": 138,
-															"name": "ConfigCommandPermissions"
-														}
-													}
-												},
-												{
-													"id": 169,
-													"name": "enabled",
-													"kind": 1024,
-													"kindString": "Property",
-													"flags": {},
-													"sources": [
-														{
-															"fileName": "reciple/classes/RecipleConfig.ts",
-															"line": 40,
-															"character": 12
-														}
-													],
-													"type": {
-														"type": "intrinsic",
-														"name": "boolean"
-													}
-												}
-											],
-											"groups": [
-												{
-													"title": "Properties",
-													"kind": 1024,
-													"children": [
-														170,
-														169
-													]
-												}
-											]
-										}
-									}
-								},
-								{
-									"id": 163,
-									"name": "messageCommands",
-									"kind": 1024,
-									"kindString": "Property",
-									"flags": {},
-									"sources": [
-										{
-											"fileName": "reciple/classes/RecipleConfig.ts",
-											"line": 35,
-											"character": 8
-										}
-									],
-									"type": {
-										"type": "reflection",
-										"declaration": {
-											"id": 164,
-											"name": "__type",
-											"kind": 65536,
-											"kindString": "Type literal",
-											"flags": {},
-											"children": [
-												{
-													"id": 166,
-													"name": "commands",
-													"kind": 1024,
-													"kindString": "Property",
-													"flags": {},
-													"sources": [
-														{
-															"fileName": "reciple/classes/RecipleConfig.ts",
-															"line": 37,
-															"character": 12
-														}
-													],
-													"type": {
-														"type": "array",
-														"elementType": {
-															"type": "reference",
-															"id": 138,
-															"name": "ConfigCommandPermissions"
-														}
-													}
-												},
-												{
-													"id": 165,
-													"name": "enabled",
-													"kind": 1024,
-													"kindString": "Property",
-													"flags": {},
-													"sources": [
-														{
-															"fileName": "reciple/classes/RecipleConfig.ts",
-															"line": 36,
-															"character": 12
-														}
-													],
-													"type": {
-														"type": "intrinsic",
-														"name": "boolean"
-													}
-												}
-											],
-											"groups": [
-												{
-													"title": "Properties",
-													"kind": 1024,
-													"children": [
-														166,
-														165
-													]
-												}
-											]
-										}
-									}
-								}
-							],
-							"groups": [
-								{
-									"title": "Properties",
-									"kind": 1024,
-									"children": [
-										167,
-										163
-									]
-								}
-							]
-						}
-					}
-				},
-				{
-					"id": 143,
-					"name": "prefix",
-					"kind": 1024,
-					"kindString": "Property",
-					"flags": {},
-					"sources": [
-						{
-							"fileName": "reciple/classes/RecipleConfig.ts",
-							"line": 16,
-							"character": 4
-						}
-					],
-					"type": {
-						"type": "intrinsic",
-						"name": "string"
-					}
-				},
-				{
-					"id": 142,
+					"id": 136,
 					"name": "token",
 					"kind": 1024,
 					"kindString": "Property",
@@ -7555,7 +7666,7 @@
 					}
 				},
 				{
-					"id": 190,
+					"id": 182,
 					"name": "version",
 					"kind": 1024,
 					"kindString": "Property",
@@ -7563,7 +7674,7 @@
 					"sources": [
 						{
 							"fileName": "reciple/classes/RecipleConfig.ts",
-							"line": 62,
+							"line": 60,
 							"character": 4
 						}
 					],
@@ -7578,17 +7689,15 @@
 					"title": "Properties",
 					"kind": 1024,
 					"children": [
-						183,
-						144,
+						175,
+						137,
+						168,
+						163,
+						180,
 						176,
-						171,
-						188,
-						184,
-						189,
-						161,
-						143,
-						142,
-						190
+						181,
+						136,
+						182
 					]
 				}
 			],
@@ -7601,14 +7710,14 @@
 			]
 		},
 		{
-			"id": 138,
+			"id": 132,
 			"name": "ConfigCommandPermissions",
 			"kind": 256,
 			"kindString": "Interface",
 			"flags": {},
 			"children": [
 				{
-					"id": 139,
+					"id": 133,
 					"name": "command",
 					"kind": 1024,
 					"kindString": "Property",
@@ -7626,7 +7735,7 @@
 					}
 				},
 				{
-					"id": 140,
+					"id": 134,
 					"name": "permissions",
 					"kind": 1024,
 					"kindString": "Property",
@@ -7654,8 +7763,8 @@
 					"title": "Properties",
 					"kind": 1024,
 					"children": [
-						139,
-						140
+						133,
+						134
 					]
 				}
 			],
@@ -7668,33 +7777,15 @@
 			]
 		},
 		{
-			"id": 273,
+			"id": 265,
 			"name": "MessageCommandValidatedOption",
 			"kind": 256,
 			"kindString": "Interface",
 			"flags": {},
 			"children": [
 				{
-					"id": 277,
+					"id": 269,
 					"name": "invalid",
-					"kind": 1024,
-					"kindString": "Property",
-					"flags": {},
-					"sources": [
-						{
-							"fileName": "reciple/classes/builders/MessageCommandBuilder.ts",
-							"line": 20,
-							"character": 4
-						}
-					],
-					"type": {
-						"type": "intrinsic",
-						"name": "boolean"
-					}
-				},
-				{
-					"id": 278,
-					"name": "missing",
 					"kind": 1024,
 					"kindString": "Property",
 					"flags": {},
@@ -7711,33 +7802,15 @@
 					}
 				},
 				{
-					"id": 274,
-					"name": "name",
+					"id": 270,
+					"name": "missing",
 					"kind": 1024,
 					"kindString": "Property",
 					"flags": {},
 					"sources": [
 						{
 							"fileName": "reciple/classes/builders/MessageCommandBuilder.ts",
-							"line": 17,
-							"character": 4
-						}
-					],
-					"type": {
-						"type": "intrinsic",
-						"name": "string"
-					}
-				},
-				{
-					"id": 276,
-					"name": "required",
-					"kind": 1024,
-					"kindString": "Property",
-					"flags": {},
-					"sources": [
-						{
-							"fileName": "reciple/classes/builders/MessageCommandBuilder.ts",
-							"line": 19,
+							"line": 22,
 							"character": 4
 						}
 					],
@@ -7747,8 +7820,8 @@
 					}
 				},
 				{
-					"id": 275,
-					"name": "value",
+					"id": 266,
+					"name": "name",
 					"kind": 1024,
 					"kindString": "Property",
 					"flags": {},
@@ -7756,6 +7829,42 @@
 						{
 							"fileName": "reciple/classes/builders/MessageCommandBuilder.ts",
 							"line": 18,
+							"character": 4
+						}
+					],
+					"type": {
+						"type": "intrinsic",
+						"name": "string"
+					}
+				},
+				{
+					"id": 268,
+					"name": "required",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "reciple/classes/builders/MessageCommandBuilder.ts",
+							"line": 20,
+							"character": 4
+						}
+					],
+					"type": {
+						"type": "intrinsic",
+						"name": "boolean"
+					}
+				},
+				{
+					"id": 267,
+					"name": "value",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "reciple/classes/builders/MessageCommandBuilder.ts",
+							"line": 19,
 							"character": 4
 						}
 					],
@@ -7779,18 +7888,18 @@
 					"title": "Properties",
 					"kind": 1024,
 					"children": [
-						277,
-						278,
-						274,
-						276,
-						275
+						269,
+						270,
+						266,
+						268,
+						267
 					]
 				}
 			],
 			"sources": [
 				{
 					"fileName": "reciple/classes/builders/MessageCommandBuilder.ts",
-					"line": 16,
+					"line": 17,
 					"character": 17
 				}
 			]
@@ -7804,14 +7913,14 @@
 			"children": [
 				{
 					"id": 8,
-					"name": "INTERACTION_COMMANDS",
+					"name": "interactionCommands",
 					"kind": 1024,
 					"kindString": "Property",
 					"flags": {},
 					"sources": [
 						{
 							"fileName": "reciple/classes/RecipleClient.ts",
-							"line": 32,
+							"line": 36,
 							"character": 4
 						}
 					],
@@ -7843,7 +7952,7 @@
 								],
 								"type": {
 									"type": "reference",
-									"id": 233,
+									"id": 225,
 									"name": "InteractionCommandBuilder"
 								}
 							}
@@ -7852,14 +7961,14 @@
 				},
 				{
 					"id": 4,
-					"name": "MESSAGE_COMMANDS",
+					"name": "messageCommands",
 					"kind": 1024,
 					"kindString": "Property",
 					"flags": {},
 					"sources": [
 						{
 							"fileName": "reciple/classes/RecipleClient.ts",
-							"line": 31,
+							"line": 35,
 							"character": 4
 						}
 					],
@@ -7891,7 +8000,7 @@
 								],
 								"type": {
 									"type": "reference",
-									"id": 279,
+									"id": 271,
 									"name": "MessageCommandBuilder"
 								}
 							}
@@ -7912,7 +8021,7 @@
 			"sources": [
 				{
 					"fileName": "reciple/classes/RecipleClient.ts",
-					"line": 30,
+					"line": 34,
 					"character": 17
 				}
 			]
@@ -7933,7 +8042,7 @@
 					"sources": [
 						{
 							"fileName": "reciple/classes/RecipleClient.ts",
-							"line": 37,
+							"line": 41,
 							"character": 4
 						}
 					],
@@ -7946,7 +8055,7 @@
 								"isOptional": false,
 								"element": {
 									"type": "reference",
-									"id": 229,
+									"id": 221,
 									"name": "RecipleInteractionCommandExecuteData"
 								}
 							}
@@ -7962,7 +8071,7 @@
 					"sources": [
 						{
 							"fileName": "reciple/classes/RecipleClient.ts",
-							"line": 36,
+							"line": 40,
 							"character": 4
 						}
 					],
@@ -7975,7 +8084,7 @@
 								"isOptional": false,
 								"element": {
 									"type": "reference",
-									"id": 267,
+									"id": 259,
 									"name": "RecipleMessageCommandExecuteData"
 								}
 							}
@@ -7991,7 +8100,7 @@
 					"sources": [
 						{
 							"fileName": "reciple/classes/RecipleClient.ts",
-							"line": 38,
+							"line": 42,
 							"character": 4
 						}
 					],
@@ -8025,7 +8134,7 @@
 			"sources": [
 				{
 					"fileName": "reciple/classes/RecipleClient.ts",
-					"line": 35,
+					"line": 39,
 					"character": 17
 				}
 			],
@@ -8056,13 +8165,13 @@
 					"sources": [
 						{
 							"fileName": "reciple/classes/RecipleClient.ts",
-							"line": 28,
+							"line": 32,
 							"character": 62
 						}
 					],
 					"type": {
 						"type": "reference",
-						"id": 141,
+						"id": 135,
 						"name": "Config"
 					}
 				}
@@ -8079,7 +8188,7 @@
 			"sources": [
 				{
 					"fileName": "reciple/classes/RecipleClient.ts",
-					"line": 28,
+					"line": 32,
 					"character": 17
 				}
 			],
@@ -8093,14 +8202,14 @@
 			]
 		},
 		{
-			"id": 229,
+			"id": 221,
 			"name": "RecipleInteractionCommandExecuteData",
 			"kind": 256,
 			"kindString": "Interface",
 			"flags": {},
 			"children": [
 				{
-					"id": 231,
+					"id": 223,
 					"name": "builder",
 					"kind": 1024,
 					"kindString": "Property",
@@ -8108,18 +8217,18 @@
 					"sources": [
 						{
 							"fileName": "reciple/classes/builders/InteractionCommandBuilder.ts",
-							"line": 8,
+							"line": 9,
 							"character": 4
 						}
 					],
 					"type": {
 						"type": "reference",
-						"id": 233,
+						"id": 225,
 						"name": "InteractionCommandBuilder"
 					}
 				},
 				{
-					"id": 232,
+					"id": 224,
 					"name": "client",
 					"kind": 1024,
 					"kindString": "Property",
@@ -8127,7 +8236,7 @@
 					"sources": [
 						{
 							"fileName": "reciple/classes/builders/InteractionCommandBuilder.ts",
-							"line": 9,
+							"line": 10,
 							"character": 4
 						}
 					],
@@ -8144,7 +8253,7 @@
 					}
 				},
 				{
-					"id": 230,
+					"id": 222,
 					"name": "interaction",
 					"kind": 1024,
 					"kindString": "Property",
@@ -8152,7 +8261,7 @@
 					"sources": [
 						{
 							"fileName": "reciple/classes/builders/InteractionCommandBuilder.ts",
-							"line": 7,
+							"line": 8,
 							"character": 4
 						}
 					],
@@ -8177,29 +8286,29 @@
 					"title": "Properties",
 					"kind": 1024,
 					"children": [
-						231,
-						232,
-						230
+						223,
+						224,
+						222
 					]
 				}
 			],
 			"sources": [
 				{
 					"fileName": "reciple/classes/builders/InteractionCommandBuilder.ts",
-					"line": 6,
+					"line": 7,
 					"character": 17
 				}
 			]
 		},
 		{
-			"id": 267,
+			"id": 259,
 			"name": "RecipleMessageCommandExecuteData",
 			"kind": 256,
 			"kindString": "Interface",
 			"flags": {},
 			"children": [
 				{
-					"id": 271,
+					"id": 263,
 					"name": "builder",
 					"kind": 1024,
 					"kindString": "Property",
@@ -8207,18 +8316,18 @@
 					"sources": [
 						{
 							"fileName": "reciple/classes/builders/MessageCommandBuilder.ts",
-							"line": 12,
+							"line": 13,
 							"character": 4
 						}
 					],
 					"type": {
 						"type": "reference",
-						"id": 279,
+						"id": 271,
 						"name": "MessageCommandBuilder"
 					}
 				},
 				{
-					"id": 272,
+					"id": 264,
 					"name": "client",
 					"kind": 1024,
 					"kindString": "Property",
@@ -8226,7 +8335,7 @@
 					"sources": [
 						{
 							"fileName": "reciple/classes/builders/MessageCommandBuilder.ts",
-							"line": 13,
+							"line": 14,
 							"character": 4
 						}
 					],
@@ -8243,7 +8352,7 @@
 					}
 				},
 				{
-					"id": 270,
+					"id": 262,
 					"name": "command",
 					"kind": 1024,
 					"kindString": "Property",
@@ -8251,7 +8360,7 @@
 					"sources": [
 						{
 							"fileName": "reciple/classes/builders/MessageCommandBuilder.ts",
-							"line": 11,
+							"line": 12,
 							"character": 4
 						}
 					],
@@ -8263,7 +8372,7 @@
 					}
 				},
 				{
-					"id": 268,
+					"id": 260,
 					"name": "message",
 					"kind": 1024,
 					"kindString": "Property",
@@ -8271,7 +8380,7 @@
 					"sources": [
 						{
 							"fileName": "reciple/classes/builders/MessageCommandBuilder.ts",
-							"line": 9,
+							"line": 10,
 							"character": 4
 						}
 					],
@@ -8289,7 +8398,7 @@
 					}
 				},
 				{
-					"id": 269,
+					"id": 261,
 					"name": "options",
 					"kind": 1024,
 					"kindString": "Property",
@@ -8297,13 +8406,13 @@
 					"sources": [
 						{
 							"fileName": "reciple/classes/builders/MessageCommandBuilder.ts",
-							"line": 10,
+							"line": 11,
 							"character": 4
 						}
 					],
 					"type": {
 						"type": "reference",
-						"id": 211,
+						"id": 203,
 						"name": "MessageCommandOptionManager"
 					}
 				}
@@ -8313,18 +8422,18 @@
 					"title": "Properties",
 					"kind": 1024,
 					"children": [
-						271,
-						272,
-						270,
-						268,
-						269
+						263,
+						264,
+						262,
+						260,
+						261
 					]
 				}
 			],
 			"sources": [
 				{
 					"fileName": "reciple/classes/builders/MessageCommandBuilder.ts",
-					"line": 8,
+					"line": 9,
 					"character": 17
 				}
 			]
@@ -8473,54 +8582,7 @@
 			]
 		},
 		{
-			"id": 376,
-			"name": "CommandHaltReason",
-			"kind": 4194304,
-			"kindString": "Type alias",
-			"flags": {},
-			"sources": [
-				{
-					"fileName": "reciple/types/commands.ts",
-					"line": 7,
-					"character": 12
-				}
-			],
-			"typeParameter": [
-				{
-					"id": 377,
-					"name": "Builder",
-					"kind": 131072,
-					"kindString": "Type parameter",
-					"flags": {},
-					"type": {
-						"type": "reference",
-						"id": 374,
-						"name": "RecipleCommandBuilders"
-					}
-				}
-			],
-			"type": {
-				"type": "indexedAccess",
-				"indexType": {
-					"type": "literal",
-					"value": "reason"
-				},
-				"objectType": {
-					"type": "reference",
-					"id": 378,
-					"typeArguments": [
-						{
-							"type": "reference",
-							"id": 377,
-							"name": "Builder"
-						}
-					],
-					"name": "RecipleHaltedCommandData"
-				}
-			}
-		},
-		{
-			"id": 478,
+			"id": 476,
 			"name": "InteractionBuilder",
 			"kind": 4194304,
 			"kindString": "Type alias",
@@ -8528,7 +8590,7 @@
 			"sources": [
 				{
 					"fileName": "reciple/registerInteractionCommands.ts",
-					"line": 14,
+					"line": 7,
 					"character": 12
 				}
 			],
@@ -8537,44 +8599,20 @@
 				"types": [
 					{
 						"type": "reference",
-						"id": 233,
-						"name": "InteractionCommandBuilder"
-					},
-					{
-						"type": "reference",
 						"qualifiedName": "ContextMenuCommandBuilder",
 						"package": "@discordjs/builders",
 						"name": "ContextMenuCommandBuilder"
 					},
 					{
 						"type": "reference",
+						"id": 225,
+						"name": "InteractionCommandBuilder"
+					},
+					{
+						"type": "reference",
 						"qualifiedName": "SlashCommandBuilder",
 						"package": "@discordjs/builders",
 						"name": "SlashCommandBuilder"
-					},
-					{
-						"type": "reference",
-						"qualifiedName": "SlashCommandSubcommandBuilder",
-						"package": "@discordjs/builders",
-						"name": "SlashCommandSubcommandBuilder"
-					},
-					{
-						"type": "reference",
-						"qualifiedName": "SlashCommandOptionsOnlyBuilder",
-						"package": "@discordjs/builders",
-						"name": "SlashCommandOptionsOnlyBuilder"
-					},
-					{
-						"type": "reference",
-						"qualifiedName": "SlashCommandSubcommandGroupBuilder",
-						"package": "@discordjs/builders",
-						"name": "SlashCommandSubcommandGroupBuilder"
-					},
-					{
-						"type": "reference",
-						"qualifiedName": "SlashCommandSubcommandsOnlyBuilder",
-						"package": "@discordjs/builders",
-						"name": "SlashCommandSubcommandsOnlyBuilder"
 					}
 				]
 			}
@@ -8618,7 +8656,7 @@
 								"type": "array",
 								"elementType": {
 									"type": "reference",
-									"id": 374,
+									"id": 366,
 									"name": "RecipleCommandBuilders"
 								}
 							}
@@ -8667,7 +8705,7 @@
 			}
 		},
 		{
-			"id": 374,
+			"id": 366,
 			"name": "RecipleCommandBuilders",
 			"kind": 4194304,
 			"kindString": "Type alias",
@@ -8684,19 +8722,19 @@
 				"types": [
 					{
 						"type": "reference",
-						"id": 279,
+						"id": 271,
 						"name": "MessageCommandBuilder"
 					},
 					{
 						"type": "reference",
-						"id": 233,
+						"id": 225,
 						"name": "InteractionCommandBuilder"
 					}
 				]
 			}
 		},
 		{
-			"id": 375,
+			"id": 367,
 			"name": "RecipleCommandBuildersExecuteData",
 			"kind": 4194304,
 			"kindString": "Type alias",
@@ -8713,19 +8751,19 @@
 				"types": [
 					{
 						"type": "reference",
-						"id": 229,
+						"id": 221,
 						"name": "RecipleInteractionCommandExecuteData"
 					},
 					{
 						"type": "reference",
-						"id": 267,
+						"id": 259,
 						"name": "RecipleMessageCommandExecuteData"
 					}
 				]
 			}
 		},
 		{
-			"id": 378,
+			"id": 371,
 			"name": "RecipleHaltedCommandData",
 			"kind": 4194304,
 			"kindString": "Type alias",
@@ -8733,20 +8771,20 @@
 			"sources": [
 				{
 					"fileName": "reciple/types/commands.ts",
-					"line": 8,
+					"line": 7,
 					"character": 12
 				}
 			],
 			"typeParameter": [
 				{
-					"id": 379,
+					"id": 372,
 					"name": "Builder",
 					"kind": 131072,
 					"kindString": "Type parameter",
 					"flags": {},
 					"type": {
 						"type": "reference",
-						"id": 374,
+						"id": 366,
 						"name": "RecipleCommandBuilders"
 					}
 				}
@@ -8756,11 +8794,11 @@
 				"types": [
 					{
 						"type": "reference",
-						"id": 383,
+						"id": 376,
 						"typeArguments": [
 							{
 								"type": "reference",
-								"id": 379,
+								"id": 372,
 								"name": "Builder"
 							}
 						],
@@ -8768,47 +8806,69 @@
 					},
 					{
 						"type": "reference",
-						"id": 388,
+						"id": 381,
 						"typeArguments": [
 							{
 								"type": "reference",
-								"id": 379,
+								"id": 372,
 								"name": "Builder"
 							}
 						],
 						"name": "CommandCooldownData"
 					},
 					{
-						"type": "reference",
-						"id": 398,
-						"typeArguments": [
-							{
-								"type": "reference",
-								"id": 379,
-								"name": "Builder"
-							}
-						],
-						"name": "CommandInvalidArguments"
+						"type": "conditional",
+						"checkType": {
+							"type": "reference",
+							"id": 372,
+							"name": "Builder"
+						},
+						"extendsType": {
+							"type": "reference",
+							"id": 225,
+							"name": "InteractionCommandBuilder"
+						},
+						"trueType": {
+							"type": "intrinsic",
+							"name": "never"
+						},
+						"falseType": {
+							"type": "union",
+							"types": [
+								{
+									"type": "reference",
+									"id": 391,
+									"typeArguments": [
+										{
+											"type": "reference",
+											"id": 372,
+											"name": "Builder"
+										}
+									],
+									"name": "CommandInvalidArguments"
+								},
+								{
+									"type": "reference",
+									"id": 396,
+									"typeArguments": [
+										{
+											"type": "reference",
+											"id": 372,
+											"name": "Builder"
+										}
+									],
+									"name": "CommandMissingArguments"
+								}
+							]
+						}
 					},
 					{
 						"type": "reference",
-						"id": 403,
+						"id": 401,
 						"typeArguments": [
 							{
 								"type": "reference",
-								"id": 379,
-								"name": "Builder"
-							}
-						],
-						"name": "CommandMissingArguments"
-					},
-					{
-						"type": "reference",
-						"id": 408,
-						"typeArguments": [
-							{
-								"type": "reference",
-								"id": 379,
+								"id": 372,
 								"name": "Builder"
 							}
 						],
@@ -8816,11 +8876,11 @@
 					},
 					{
 						"type": "reference",
-						"id": 412,
+						"id": 405,
 						"typeArguments": [
 							{
 								"type": "reference",
-								"id": 379,
+								"id": 372,
 								"name": "Builder"
 							}
 						],
@@ -8889,7 +8949,7 @@
 			"defaultValue": "flags.token"
 		},
 		{
-			"id": 493,
+			"id": 491,
 			"name": "version",
 			"kind": 32,
 			"kindString": "Variable",
@@ -9035,7 +9095,7 @@
 											"sources": [
 												{
 													"fileName": "reciple/classes/RecipleConfig.ts",
-													"line": 47,
+													"line": 45,
 													"character": 8
 												}
 											],
@@ -9056,7 +9116,7 @@
 											"sources": [
 												{
 													"fileName": "reciple/classes/RecipleConfig.ts",
-													"line": 46,
+													"line": 44,
 													"character": 8
 												}
 											],
@@ -9074,7 +9134,7 @@
 											"sources": [
 												{
 													"fileName": "reciple/classes/RecipleConfig.ts",
-													"line": 45,
+													"line": 43,
 													"character": 8
 												}
 											],
@@ -9107,7 +9167,7 @@
 			]
 		},
 		{
-			"id": 489,
+			"id": 487,
 			"name": "isSupportedVersion",
 			"kind": 64,
 			"kindString": "Function",
@@ -9121,7 +9181,7 @@
 			],
 			"signatures": [
 				{
-					"id": 490,
+					"id": 488,
 					"name": "isSupportedVersion",
 					"kind": 4096,
 					"kindString": "Call signature",
@@ -9131,7 +9191,7 @@
 					},
 					"parameters": [
 						{
-							"id": 491,
+							"id": 489,
 							"name": "versionRange",
 							"kind": 32768,
 							"kindString": "Parameter",
@@ -9142,7 +9202,7 @@
 							}
 						},
 						{
-							"id": 492,
+							"id": 490,
 							"name": "supportedVersion",
 							"kind": 32768,
 							"kindString": "Parameter",
@@ -9163,7 +9223,7 @@
 			]
 		},
 		{
-			"id": 479,
+			"id": 477,
 			"name": "isValidVersion",
 			"kind": 64,
 			"kindString": "Function",
@@ -9177,7 +9237,7 @@
 			],
 			"signatures": [
 				{
-					"id": 480,
+					"id": 478,
 					"name": "isValidVersion",
 					"kind": 4096,
 					"kindString": "Call signature",
@@ -9187,7 +9247,7 @@
 					},
 					"parameters": [
 						{
-							"id": 481,
+							"id": 479,
 							"name": "ver",
 							"kind": 32768,
 							"kindString": "Parameter",
@@ -9347,7 +9407,7 @@
 			]
 		},
 		{
-			"id": 482,
+			"id": 480,
 			"name": "parseVersion",
 			"kind": 64,
 			"kindString": "Function",
@@ -9361,7 +9421,7 @@
 			],
 			"signatures": [
 				{
-					"id": 483,
+					"id": 481,
 					"name": "parseVersion",
 					"kind": 4096,
 					"kindString": "Call signature",
@@ -9371,7 +9431,7 @@
 					},
 					"parameters": [
 						{
-							"id": 484,
+							"id": 482,
 							"name": "ver",
 							"kind": 32768,
 							"kindString": "Parameter",
@@ -9385,14 +9445,14 @@
 					"type": {
 						"type": "reflection",
 						"declaration": {
-							"id": 485,
+							"id": 483,
 							"name": "__type",
 							"kind": 65536,
 							"kindString": "Type literal",
 							"flags": {},
 							"children": [
 								{
-									"id": 486,
+									"id": 484,
 									"name": "major",
 									"kind": 1024,
 									"kindString": "Property",
@@ -9411,7 +9471,7 @@
 									"defaultValue": "..."
 								},
 								{
-									"id": 487,
+									"id": 485,
 									"name": "minor",
 									"kind": 1024,
 									"kindString": "Property",
@@ -9430,7 +9490,7 @@
 									"defaultValue": "..."
 								},
 								{
-									"id": 488,
+									"id": 486,
 									"name": "patch",
 									"kind": 1024,
 									"kindString": "Property",
@@ -9454,9 +9514,9 @@
 									"title": "Properties",
 									"kind": 1024,
 									"children": [
-										486,
-										487,
-										488
+										484,
+										485,
+										486
 									]
 								}
 							]
@@ -9474,7 +9534,7 @@
 			"sources": [
 				{
 					"fileName": "reciple/registerInteractionCommands.ts",
-					"line": 22,
+					"line": 12,
 					"character": 22
 				}
 			],
@@ -9491,73 +9551,13 @@
 					"parameters": [
 						{
 							"id": 475,
-							"name": "client",
+							"name": "options",
 							"kind": 32768,
 							"kindString": "Parameter",
 							"flags": {},
 							"type": {
 								"type": "reference",
-								"id": 16,
-								"typeArguments": [
-									{
-										"type": "intrinsic",
-										"name": "boolean"
-									}
-								],
-								"name": "RecipleClient"
-							}
-						},
-						{
-							"id": 476,
-							"name": "cmds",
-							"kind": 32768,
-							"kindString": "Parameter",
-							"flags": {
-								"isOptional": true
-							},
-							"type": {
-								"type": "array",
-								"elementType": {
-									"type": "union",
-									"types": [
-										{
-											"type": "reference",
-											"id": 478,
-											"name": "InteractionBuilder"
-										},
-										{
-											"type": "reference",
-											"qualifiedName": "ApplicationCommandDataResolvable",
-											"package": "discord.js",
-											"name": "ApplicationCommandDataResolvable"
-										}
-									]
-								}
-							}
-						},
-						{
-							"id": 477,
-							"name": "overwriteGuilds",
-							"kind": 32768,
-							"kindString": "Parameter",
-							"flags": {
-								"isOptional": true
-							},
-							"type": {
-								"type": "union",
-								"types": [
-									{
-										"type": "intrinsic",
-										"name": "string"
-									},
-									{
-										"type": "array",
-										"elementType": {
-											"type": "intrinsic",
-											"name": "string"
-										}
-									}
-								]
+								"name": "RegisterInteractionCommandsOptions"
 							}
 						}
 					],
@@ -9621,9 +9621,9 @@
 							},
 							"type": {
 								"type": "reference",
-								"qualifiedName": "Permissions",
+								"qualifiedName": "PermissionsBitField",
 								"package": "discord.js",
-								"name": "Permissions"
+								"name": "PermissionsBitField"
 							}
 						},
 						{
@@ -9655,15 +9655,15 @@
 													"sources": [
 														{
 															"fileName": "reciple/classes/RecipleConfig.ts",
-															"line": 37,
-															"character": 12
+															"line": 26,
+															"character": 16
 														}
 													],
 													"type": {
 														"type": "array",
 														"elementType": {
 															"type": "reference",
-															"id": 138,
+															"id": 132,
 															"name": "ConfigCommandPermissions"
 														}
 													}
@@ -9677,8 +9677,8 @@
 													"sources": [
 														{
 															"fileName": "reciple/classes/RecipleConfig.ts",
-															"line": 36,
-															"character": 12
+															"line": 25,
+															"character": 16
 														}
 													],
 													"type": {
@@ -9717,15 +9717,15 @@
 													"sources": [
 														{
 															"fileName": "reciple/classes/RecipleConfig.ts",
-															"line": 41,
-															"character": 12
+															"line": 38,
+															"character": 16
 														}
 													],
 													"type": {
 														"type": "array",
 														"elementType": {
 															"type": "reference",
-															"id": 138,
+															"id": 132,
 															"name": "ConfigCommandPermissions"
 														}
 													}
@@ -9739,8 +9739,8 @@
 													"sources": [
 														{
 															"fileName": "reciple/classes/RecipleConfig.ts",
-															"line": 40,
-															"character": 12
+															"line": 37,
+															"character": 16
 														}
 													],
 													"type": {
@@ -9774,7 +9774,7 @@
 							},
 							"type": {
 								"type": "reference",
-								"id": 374,
+								"id": 366,
 								"name": "RecipleCommandBuilders"
 							}
 						}
@@ -9789,15 +9789,23 @@
 	],
 	"groups": [
 		{
+			"title": "Enumerations",
+			"kind": 8,
+			"children": [
+				368,
+				409
+			]
+		},
+		{
 			"title": "Classes",
 			"kind": 128,
 			"children": [
-				233,
-				279,
-				349,
-				211,
+				225,
+				271,
+				341,
+				203,
 				16,
-				191,
+				183,
 				455
 			]
 		},
@@ -9805,21 +9813,21 @@
 			"title": "Interfaces",
 			"kind": 256,
 			"children": [
-				388,
-				383,
-				380,
-				398,
-				403,
-				412,
-				408,
-				141,
-				138,
-				273,
+				381,
+				376,
+				373,
+				391,
+				396,
+				405,
+				401,
+				135,
+				132,
+				265,
 				3,
 				12,
 				1,
-				229,
-				267,
+				221,
+				259,
 				466
 			]
 		},
@@ -9827,12 +9835,11 @@
 			"title": "Type Aliases",
 			"kind": 4194304,
 			"children": [
-				376,
-				478,
+				476,
 				451,
-				374,
-				375,
-				378
+				366,
+				367,
+				371
 			]
 		},
 		{
@@ -9841,7 +9848,7 @@
 			"children": [
 				432,
 				433,
-				493
+				491
 			]
 		},
 		{
@@ -9850,11 +9857,11 @@
 			"children": [
 				428,
 				434,
-				489,
-				479,
+				487,
+				477,
 				447,
 				442,
-				482,
+				480,
 				473,
 				416
 			]
