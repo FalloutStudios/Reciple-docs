@@ -2,8 +2,8 @@
   "name": "docs",
   "private": true,
   "scripts": {
-    "watch": "npx typedoc --watch",
-    "build": "npx typedoc",
+    "watch": "yarn exec typedoc --watch",
+    "build": "yarn exec typedoc",
     "update": "git add . && git commit -a -m \"Update docs\" && git pull && git push"
   },
   "devDependencies": {

@@ -3,7 +3,7 @@
   "entryPoints": [
     "../src/index.ts"
   ],
-  "entryPointStrategy": "resolve",
+  "entryPointStrategy": "expand",
   "out": "docs",
   "plugin": [
     "typedoc-plugin-mdn-links",
