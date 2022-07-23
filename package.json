@@ -1,4 +1,6 @@
 {
+  "name": "docs",
+  "private": true,
   "scripts": {
     "watch": "npx typedoc --watch",
     "build": "npx typedoc",
@@ -10,6 +12,6 @@
     "typedoc-plugin-djs-links": "^1.2.0",
     "typedoc-plugin-header-links": "^1.0.0",
     "typedoc-plugin-mdn-links": "^2.0.0",
-    "typescript": "^4.7.4"
+    "typescript": "*"
   }
 }
