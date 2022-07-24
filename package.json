@@ -4,7 +4,7 @@
   "scripts": {
     "watch": "npx typedoc --watch",
     "build": "npx typedoc",
-    "update": "git add . && git commit -a -m \"Update docs\" && git pull && git push"
+    "update": "git add . && git commit -a -m \"Update docs\" && git pull origin main && git push"
   },
   "devDependencies": {
     "typedoc": "0.22.18",
