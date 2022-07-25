@@ -2,16 +2,6 @@
   "name": "docs",
   "private": true,
   "scripts": {
-    "watch": "npx typedoc --watch",
-    "build": "npx typedoc",
     "update": "git add . && git commit -a -m \"Update docs\" && git pull origin main && git push"
-  },
-  "devDependencies": {
-    "typedoc": "0.22.18",
-    "typedoc-plugin-discord-types": "^1.0.2",
-    "typedoc-plugin-djs-links": "^1.2.0",
-    "typedoc-plugin-header-links": "^1.0.0",
-    "typedoc-plugin-mdn-links": "^2.0.0",
-    "typescript": "*"
   }
 }
