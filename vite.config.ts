@@ -27,7 +27,7 @@ export default defineConfig({
 		VitePWA({
 			srcDir: 'src',
 			filename: 'sw.ts',
-			base: '/reciple-docs/',
+			base: '/',
 			strategies: 'injectManifest',
 			registerType: 'autoUpdate',
 			manifest: {
