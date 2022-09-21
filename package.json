@@ -1,7 +1,0 @@
-{
-  "name": "docs",
-  "private": true,
-  "scripts": {
-    "update": "git add . && git commit -a -m \"Update docs\" && git pull origin main && git push"
-  }
-}
