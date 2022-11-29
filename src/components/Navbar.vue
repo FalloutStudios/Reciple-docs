@@ -152,7 +152,7 @@
 							to="/"
 							class="text-gray-200 hover:bg-discord-blurple-630 hover:text-white block rounded-md py-2 px-3 text-base font-semibold"
 							@click="isOpen = !isOpen"
-							>discord.js</router-link
+							>reciple.js</router-link
 						>
 
 						<router-link
