@@ -79,6 +79,18 @@
 
                 .buttons {
                     margin-top: 2rem;
+
+                    :global(a) {
+                        margin: 0 10px;
+
+                        &:first-child {
+                            margin-left: 0;
+                        }
+
+                        &:last-child {
+                            margin-right: 0;
+                        }
+                    }
                 }
             }
 
@@ -97,7 +109,7 @@
     <div class="home-container">
         <div class="introduction section">
             <div class="title">
-                <a href="https://discord.js.org/" class="highlight">Discord.js</a> command handler that just works.
+                Another <a href="https://discord.js.org/" class="highlight">Discord.js</a> command handler that just works.
             </div>
             <div class="description">
                 Reciple is a simple command handler with message command (aka prefix command), slash commands and context menu support. Reciple makes Discord.js command handling simple and cleaner using our built-in CLI tool.
