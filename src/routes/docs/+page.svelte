@@ -1,5 +1,6 @@
 <script lang="ts">
     import '../../assets/styles/main.scss';
+    import Nav from '../../components/Nav.svelte';
 </script>
 
-<h1>Docs bitch</h1>
+<Nav></Nav>
