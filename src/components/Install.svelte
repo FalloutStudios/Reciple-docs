@@ -33,7 +33,7 @@
         overflow: hidden;
         border-radius: 5px;
         background: rgba($color: #FFF, $alpha: 0.05);
-        width: 370px;
+        width: 100%;
 
         .tabs {
             display: flex;
@@ -90,7 +90,7 @@
     }
 </style>
 
-<div class="container">
+<div class="install-command container">
     <div class="tabs">
         <button class:active={packageManager == 'npm'} class="tab npm" on:click={(() => packageManager = 'npm')}>npm</button>
         <button class:active={packageManager == 'yarn'} class="tab yarn" on:click={(() => packageManager = 'yarn')}>yarn</button>

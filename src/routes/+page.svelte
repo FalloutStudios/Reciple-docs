@@ -11,11 +11,11 @@
 
     .home {
         display: flex;
-        height: 100%;
+        min-height: 100%;
         width: 100%;
         align-items: center;
         justify-content: center;
-        padding: 2rem 5rem;
+        padding: 5rem;
 
         .home-container {
             display: flex;
@@ -25,10 +25,12 @@
 
             .introduction {
                 width: 100%;
+                margin-right: 1rem;
 
                 .title {
                     font-family: 'Archivo Black', sans-serif;
                     font-size: 3rem;
+                    font-weight: 500;
                     line-height: 3.4rem;
                     padding-bottom: 10px;
                     color: #fff;
@@ -100,6 +102,50 @@
                 display: flex;
                 align-items: center;
                 justify-content: center;
+
+                :global(.install-command) {
+                    max-width: 400px;
+                }
+            }
+        }
+    }
+
+    @media (max-width: 885px) {
+        .home {
+            .home-container {
+                flex-direction: column;
+
+                .introduction {
+                    margin-right: 0;
+                    margin-bottom: 2rem;
+
+                    @media (max-width: 590px) {
+                        .title {
+                            font-size: 2rem;
+                            line-height: 2.5rem;
+                        }
+                    }
+                }
+
+                .install-section {
+                    width: 100%;
+
+                    :global(.install-command) {
+                        max-width: 100%;
+                    }
+                }
+            }
+        }
+
+        @media (max-width: 480px) {
+            .home {
+                padding: 3rem;
+            }
+        }
+
+        @media (max-width: 375px) {
+            .home {
+                padding: 2.4rem;
             }
         }
     }
@@ -108,11 +154,11 @@
 <div class="home">
     <div class="home-container">
         <div class="introduction section">
-            <div class="title">
+            <h1 class="title">
                 Another <a href="https://discord.js.org/" class="highlight">Discord.js</a> command handler that just works.
-            </div>
+            </h1>
             <div class="description">
-                Reciple is a simple command handler with message command (aka prefix command), slash commands and context menu support. Reciple makes Discord.js command handling simple and cleaner using our built-in CLI tool.
+                Reciple is a command handler with message command (aka prefix command), slash command, and context menu support. Reciple makes Discord.js command handling simple and cleaner using our built-in CLI tool.
             </div>
             <div class="buttons">
                 <HomeButton style="Blue" href="/docs">Docs</HomeButton>
