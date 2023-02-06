@@ -20,7 +20,7 @@
         .home-container {
             display: flex;
             align-items: center;
-            max-width: 1200px;
+            max-width: 1000px;
             width: 100%;
 
             .introduction {
