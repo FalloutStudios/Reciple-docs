@@ -151,6 +151,10 @@
     }
 </style>
 
+<svelte:head>
+    <title>Reciple</title>
+</svelte:head>
+
 <div class="home">
     <div class="home-container">
         <div class="introduction section">
