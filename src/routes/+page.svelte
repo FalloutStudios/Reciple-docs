@@ -3,7 +3,7 @@
     import HomeButton from '../components/HomeButton.svelte';
     import Install from '../components/Install.svelte';
     import Icon from '@iconify/svelte';
-  import { githubHome } from '../scripts/data';
+  import { githubHome, npmHome } from '../scripts/data';
 </script>
 
 <style lang="scss">
@@ -167,6 +167,7 @@
             <div class="buttons">
                 <HomeButton style="Blue" href="/docs">Docs</HomeButton>
                 <HomeButton href={githubHome} target="_blank">GitHub<Icon icon="mingcute:external-link-line"/></HomeButton>
+                <HomeButton href={npmHome} target="_blank">NPM<Icon icon="mingcute:external-link-line"/></HomeButton>
             </div>
         </div>
         <div class="install-section section">
