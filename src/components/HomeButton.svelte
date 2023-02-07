@@ -35,4 +35,4 @@
     }
 </style>
 
-<a class:blue={style == 'Blue'} on:click {...$$props}><slot>Link</slot></a>
+<a class:blue={style == 'Blue'} on:click on:focus on:blur {...$$props}><slot>Link</slot></a>

@@ -16,6 +16,7 @@
         align-items: center;
         justify-content: center;
         padding: 5rem;
+        margin-top: -1rem;
 
         .home-container {
             display: flex;

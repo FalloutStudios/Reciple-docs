@@ -33,6 +33,7 @@
         overflow: hidden;
         border-radius: 5px;
         background: rgba($color: #FFF, $alpha: 0.05);
+        border: 1px solid rgba(60, 60, 60, 1.0);
         width: 100%;
 
         .tabs {

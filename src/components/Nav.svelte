@@ -1,11 +1,13 @@
 <script lang="ts">
     import { githubHome } from '../scripts/data';
     import Icon from '@iconify/svelte';
+
+    export let title = '';
 </script>
 
 <style lang="scss">
     :global(body) {
-        padding-top: 68.32px;
+        padding-top: 4rem;
     }
 
     .nav {
@@ -18,12 +20,18 @@
         width: 100%;
         background: #181818;
         border-bottom: 1px solid #3c3c3c;
+        height: 4rem;
 
         .nav-container {
             display: flex;
             align-items: center;
             width: 100%;
             padding: 0.5rem 2rem;
+
+            .nav-title {
+                margin-right: 4rem;
+                font-weight: 500;
+            }
 
             .nav-links {
                 display: flex;
@@ -61,20 +69,22 @@
                 flex-shrink: 0;
 
                 .nav-search {
-                    border: 1px solid rgba(60, 60, 60, 0.415);
-                    background: #303030;
+                    border: 1px solid #3c3c3c;
+                    background: #161616;
                     color: #fff;
                     display: flex;
                     align-items: center;
-                    padding: 1rem 1rem;
+                    padding: 0.5rem 1rem;
                     border-radius: 5px;
                     cursor: pointer;
+                    width: 200px;
 
                     .placeholder {
                         width: 100%;
                         opacity: 0.5;
                         font-size: 1rem;
-                        padding-right: 3rem;
+                        padding-left: 1rem;
+                        text-align: left;
                     }
                 }
             }
@@ -84,6 +94,9 @@
 
 <div class="nav">
     <div class="nav-container">
+        {#if title}
+            <div class="nav-title">{title}</div>
+        {/if}
         <div class="nav-links">
             <a href="/">Reciple</a>
             <a href="/docs">Documentation</a>
@@ -93,11 +106,11 @@
         <div class="nav-whitespace"></div>
         <div class="nav-utils">
             <button class="nav-search">
-                <span class="placeholder">
-                    Search docs
-                </span>
                 <span class="icon">
                     <Icon icon="uil:search" class="icon"/>
+                </span>
+                <span class="placeholder">
+                    Search docs
                 </span>
             </button>
         </div>

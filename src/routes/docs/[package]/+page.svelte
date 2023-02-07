@@ -5,10 +5,10 @@
     import packages from '../../../scripts/packages';
     import type { DocsData } from '../../../data/DocsData'
 
-    export let data: { slug: string; };
+    export let data: { package: string; };
 
-    let pkg: DocsData = packages[data.slug as keyof typeof packages];
-    let tags: Promise<string[]> = pkg.fetchTags();
+    let pkg: DocsData = packages[data.package as keyof typeof packages];
+    let tags: Promise<string[]> = Promise.resolve(!pkg.tags.length ? pkg.fetchTags() : pkg.tags);
 </script>
 
 <style lang="scss">
