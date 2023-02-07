@@ -166,8 +166,8 @@
             </div>
             <div class="buttons">
                 <HomeButton style="Blue" href="/docs">Docs</HomeButton>
-                <HomeButton href={githubHome} target="_blank">GitHub<Icon icon="mingcute:external-link-line"/></HomeButton>
-                <HomeButton href={npmHome} target="_blank">NPM<Icon icon="mingcute:external-link-line"/></HomeButton>
+                <HomeButton href={githubHome} target="_blank">GitHub <Icon icon="mingcute:external-link-line"/></HomeButton>
+                <HomeButton href={npmHome} target="_blank">NPM <Icon icon="mingcute:external-link-line"/></HomeButton>
             </div>
         </div>
         <div class="install-section section">

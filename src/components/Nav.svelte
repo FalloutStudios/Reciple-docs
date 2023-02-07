@@ -4,6 +4,10 @@
 </script>
 
 <style lang="scss">
+    :global(body) {
+        padding-top: 68.32px;
+    }
+
     .nav {
         display: flex;
         justify-content: center;

@@ -1,7 +1,5 @@
 <script lang="ts">
     export let style: 'Blue'|'Normal' = 'Normal';
-    export let href: string = '#';
-    export let target: ''|'_blank' = '';
 </script>
 
 <style lang="scss">
@@ -17,11 +15,24 @@
         font-size: 1.1rem;
         font-weight: bold;
 
+        &:hover,
+        &:focus {
+            background: rgb(43, 43, 43);
+        }
+
+        &:focus-visible {
+            outline: 4px #5865f2 solid;
+        }
+
         &.blue {
             background: #5865f2;
             border-color: #5865f2;
+
+            &:focus-visible {
+                outline-color: #fff;
+            }
         }
     }
 </style>
 
-<a class:blue={style == 'Blue'} on:click href={href} target={target}><slot>Link</slot></a>
+<a class:blue={style == 'Blue'} on:click {...$$props}><slot>Link</slot></a>

@@ -32,19 +32,22 @@ export class DocsData {
 
     public tags: string[] = [];
 
+    public currentTag: string|null = null;
+
     get source() { return `https://github.com/${this.options.repository}/blob/docs/${this.options.package}/`; }
 
     constructor (public options: DocsDataOptions) {}
 
     public async fetchTags(): Promise<string[]> {
         const files: APIGitHubRepositoryContent<'file'>[] = await fetch(`https://api.github.com/repos/${this.options.repository}/contents/${this.options.package}?ref=docs`).then(res => this.resJson(res));
+        const tags: string[] = []
 
         let versions = files.filter(f => semver.valid(f.name.replace('.json', ''))).map(f => f.name.replace('.json', ''));
         let branches = files.filter(f => !versions.some(e => e === f.name.replace('.json', ''))).map(f => f.name.replace('.json', ''));
 
         for (const branch of branches) {
             if (this.options.tagFilter && !this.options.tagFilter(branch)) continue;
-            this.tags.push(branch);
+            tags.push(branch);
         }
 
         const latestPatches: { [key: string]: number } = {};
@@ -63,8 +66,10 @@ export class DocsData {
             const patch = semver.patch(version);
             if (patch < latestPatches[majorMinor]) continue;
 
-            this.tags.push(version);
+            tags.push(version);
         }
+
+        this.tags = tags;
 
         return this.tags;
     }
@@ -72,6 +77,7 @@ export class DocsData {
     public async fetchDocs(tag?: string|null): Promise<this> {
         await this.fetchTags();
 
+        this.currentTag = tag ?? this.options.defaultTag;
         this.data = await fetch(`https://raw.githubusercontent.com/${this.options.repository}/docs/${this.options.package}/${tag ?? this.options.defaultTag}.json`).then(res => this.resJson(res));
 
         return this;

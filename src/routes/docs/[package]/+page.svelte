@@ -1,8 +1,14 @@
 <script lang="ts">
-    import '../../assets/styles/main.scss';
+    import '../../../assets/styles/main.scss';
     import Icon from '@iconify/svelte';
-    import HomeButton from '../../components/HomeButton.svelte';
-    import packages from '../../scripts/packages';
+    import HomeButton from '../../../components/HomeButton.svelte';
+    import packages from '../../../scripts/packages';
+    import type { DocsData } from '../../../data/DocsData'
+
+    export let data: { slug: string; };
+
+    let pkg: DocsData = packages[data.slug as keyof typeof packages];
+    let tags: Promise<string[]> = pkg.fetchTags();
 </script>
 
 <style lang="scss">
@@ -65,23 +71,25 @@
 
 <div class="container">
     <div class="center">
-        <div class="title">
-            Select a package:
-        </div>
-        <div class="content">
-            {#each Object.keys(packages) as pkg}
-                <HomeButton href="/docs/{pkg}">
-                    <span><Icon icon="ph:package-bold" class="icon"/> {pkg}</span>
-                    <Icon icon="ic:round-arrow-forward" class="arrow"/>
-                </HomeButton>
-            {/each}
-            <HomeButton href="https://discord.js.org" target="_blank">
-                <span><Icon icon="ph:package-bold" class="icon"/> discord.js</span>
-                <Icon icon="mingcute:external-link-line" class="arrow"/>
-            </HomeButton>
-        </div>
+        {#await tags}
+            <div class="title" style="text-align: center;">
+                Loading Tags...
+            </div>
+        {:then tags} 
+            <div class="title">
+                Select a version:
+            </div>
+            <div class="content">
+                {#each tags as tag}
+                    <HomeButton href="/docs/{pkg.options.package}/{tag}">
+                        <span><Icon icon="tabler:versions" class="icon"/> {tag}</span>
+                        <Icon icon="ic:round-arrow-forward" class="arrow"/>
+                    </HomeButton>
+                {/each}
+            </div>
+        {/await}
         <div class="back">
-            <HomeButton style="Blue" href="/">
+            <HomeButton style="Blue" href="/docs">
                 <Icon icon="ic:round-arrow-back" /> Back
             </HomeButton>
         </div>
