@@ -75,9 +75,17 @@
                 {/await}
             </div>
             {#await fetchDocs then e}
-                <Accordion label="Classes" icon="codicon:symbol-class" contents={docs.data.classes?.map(e => ({ value: e.name, href: `/docs/${docs.options.package}/${tag}/classes/${e.name}`, selected: false })) ?? []}></Accordion>
-                <Accordion label="Functions" icon="codicon:symbol-method" contents={docs.data.functions?.map(e => ({ value: e.name, href: `/docs/${docs.options.package}/${tag}/functions/${e.name}`, selected: false })) ?? []}></Accordion>
-                <Accordion label="Typedefs" icon="codicon:symbol-field" contents={docs.data.typedefs?.map(e => ({ value: e.name, href: `/docs/${docs.options.package}/${tag}/typedefs/${e.name}`, selected: false })) ?? []}></Accordion>
+                {#if docs.data.classes?.length}
+                    <Accordion label="Classes" icon="codicon:symbol-class" contents={docs.data.classes?.map(e => ({ value: e.name, href: `/docs/${docs.options.package}/${tag}/classes/${e.name}`, selected: false })) ?? []}></Accordion>
+                {/if}
+
+                {#if docs.data.functions?.length}
+                    <Accordion label="Functions" icon="codicon:symbol-method" contents={docs.data.functions?.map(e => ({ value: e.name, href: `/docs/${docs.options.package}/${tag}/functions/${e.name}`, selected: false })) ?? []}></Accordion>
+                {/if}
+
+                {#if docs.data.typedefs?.length}
+                    <Accordion label="Typedefs" icon="codicon:symbol-field" contents={docs.data.typedefs?.map(e => ({ value: e.name, href: `/docs/${docs.options.package}/${tag}/typedefs/${e.name}`, selected: false })) ?? []}></Accordion>
+                {/if}
             {/await}
         </div>
     </div>
