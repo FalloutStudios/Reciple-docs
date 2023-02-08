@@ -83,6 +83,7 @@ export class DocsData {
         }
 
         this.tags = tags;
+        this.tagsFetched = true;
 
         return this.tags;
     }
