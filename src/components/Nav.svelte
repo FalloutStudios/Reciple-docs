@@ -1,8 +1,10 @@
 <script lang="ts">
     import { githubHome } from '../scripts/data';
     import Icon from '@iconify/svelte';
+    import type { DocsData } from '../data/DocsData';
 
     export let title = '';
+    export let docs: DocsData|null = null;
 </script>
 
 <style lang="scss">
@@ -110,7 +112,7 @@
                     <Icon icon="uil:search" class="icon"/>
                 </span>
                 <span class="placeholder">
-                    Search docs
+                    Search...
                 </span>
             </button>
         </div>

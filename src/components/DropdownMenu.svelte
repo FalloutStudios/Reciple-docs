@@ -1,6 +1,9 @@
 <script lang="ts">
     import Icon from '@iconify/svelte';
     import HomeButton from './HomeButton.svelte';
+    import { createEventDispatcher } from 'svelte';
+
+    const dispatch = createEventDispatcher();
 
     export let values: { value: string; href: string; selected?: boolean; }[];
     export let icon: string = '';
@@ -16,6 +19,10 @@
 
     export function changeSelected(value: typeof values[0]) {
         selected = value;
+        isClosed = true;
+        dispatch('change', {
+            value: value.value
+        });
     }
 
     export function openDropdown() {
@@ -44,7 +51,7 @@
         flex-direction: column;
 
         :global(.selector) {
-            padding: 0.4rem 1.5rem;
+            padding: 0.4rem 1rem;
             display: flex;
             align-items: center;
             vertical-align: middle;
@@ -53,6 +60,10 @@
                 font-size: 1.4rem;
                 margin-right: 1rem;
                 flex-shrink: 0;
+            }
+
+            :global(.arrow) {
+                font-size: 1.5rem;
             }
 
             :global(.selected) {
@@ -110,9 +121,9 @@
         {#if icon}<Icon {icon} class="icon"/>{/if}
         <span class="selected">{@html selected.value}</span>
         {#if isClosed}
-            <Icon icon="ph:caret-down" />
+            <Icon icon="ph:caret-down" class="arrow"/>
         {:else}
-            <Icon icon="ph:caret-up" />
+            <Icon icon="ph:caret-up" class="arrow"/>
         {/if}
     </HomeButton>
     <div class="selections">

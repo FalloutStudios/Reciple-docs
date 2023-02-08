@@ -63,6 +63,10 @@
     }
 </style>
 
+<svelte:head>
+    <title>Choose a package</title>
+</svelte:head>
+
 <div class="container">
     <div class="center">
         <div class="title">

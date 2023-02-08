@@ -4,6 +4,7 @@
     import HomeButton from '../../../components/HomeButton.svelte';
     import packages from '../../../scripts/packages';
     import type { DocsData } from '../../../data/DocsData'
+    import { page } from '$app/stores';
 
     export let data: { package: string; };
 
@@ -68,6 +69,10 @@
         }
     }
 </style>
+
+<svelte:head>
+    <title>Choose a version</title>
+</svelte:head>
 
 <div class="container">
     <div class="center">

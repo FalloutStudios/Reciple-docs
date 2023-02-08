@@ -1,5 +1,7 @@
 <script lang="ts">
+    import { goto } from '$app/navigation';
     import '../../../../assets/styles/main.scss';
+    import Markdown from '../../../../components/docs/Markdown.svelte';
     import Nav from "../../../../components/Nav.svelte";
     import SideNav from '../../../../components/SideNav.svelte';
     import type { DocsData } from '../../../../data/DocsData';
@@ -13,8 +15,11 @@
     $: pkg = data.package;
 </script>
 
-<Nav title="{pkg}@{tag}"></Nav>
+<svelte:head>
+    <title>Docs | {pkg}@{tag}</title>
+</svelte:head>
+
+<Nav title="{pkg}@{tag}" {docs}></Nav>
 <SideNav {docs} {tag}></SideNav>
 
-<div class="docsContent">
-</div>
+<div class="docsContent"></div>
