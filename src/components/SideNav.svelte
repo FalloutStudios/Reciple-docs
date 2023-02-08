@@ -3,7 +3,7 @@
     import packages from '../scripts/packages';
     import DropdownMenu from './DropdownMenu.svelte';
     import { Svrollbar } from 'svrollbar';
-  import Accordion from './docs/Accordion.svelte';
+    import Accordion from './docs/Accordion.svelte';
 
     export let docs: DocsData;
     export let tag: string;
@@ -11,6 +11,7 @@
     let fetchDocs: Promise<DocsData> = Promise.resolve(docs.fetchDocs(tag));
     let Sidebar: Element;
     let SidebarContents: Element;
+    let accordionSelected: { type: 'class'|'function'|'typedef', name: string; }|null = null;
 
     $: docs.data = docs.data;
 
@@ -76,15 +77,39 @@
             </div>
             {#await fetchDocs then e}
                 {#if docs.data.classes?.length}
-                    <Accordion label="Classes" icon="codicon:symbol-class" contents={docs.data.classes?.map(e => ({ value: e.name, href: `/docs/${docs.options.package}/${tag}/classes/${e.name}`, selected: false })) ?? []}></Accordion>
+                    <Accordion
+                        label="Classes"
+                        icon="codicon:symbol-class"
+                        contents={docs.data.classes?.map(e => ({
+                            value: e.name,
+                            href: `/docs/${docs.options.package}/${tag}/classes/${e.name}`,
+                            selected: !!accordionSelected && accordionSelected.type === 'class' && accordionSelected.name === e.name
+                        })) ?? []}
+                    ></Accordion>
                 {/if}
 
                 {#if docs.data.functions?.length}
-                    <Accordion label="Functions" icon="codicon:symbol-method" contents={docs.data.functions?.map(e => ({ value: e.name, href: `/docs/${docs.options.package}/${tag}/functions/${e.name}`, selected: false })) ?? []}></Accordion>
+                    <Accordion
+                        label="Functions"
+                        icon="codicon:symbol-method"
+                        contents={docs.data.functions?.map(e => ({
+                            value: e.name,
+                            href: `/docs/${docs.options.package}/${tag}/functions/${e.name}`,
+                            selected: !!accordionSelected && accordionSelected.type === 'function' && accordionSelected.name === e.name
+                        })) ?? []}
+                    ></Accordion>
                 {/if}
 
                 {#if docs.data.typedefs?.length}
-                    <Accordion label="Typedefs" icon="codicon:symbol-field" contents={docs.data.typedefs?.map(e => ({ value: e.name, href: `/docs/${docs.options.package}/${tag}/typedefs/${e.name}`, selected: false })) ?? []}></Accordion>
+                    <Accordion
+                        label="Typedefs"
+                        icon="codicon:symbol-field"
+                        contents={docs.data.typedefs?.map(e => ({
+                            value: e.name,
+                            href: `/docs/${docs.options.package}/${tag}/typedefs/${e.name}`,
+                            selected: !!accordionSelected && accordionSelected.type === 'typedef' && accordionSelected.name === e.name
+                        })) ?? []}
+                    ></Accordion>
                 {/if}
             {/await}
         </div>

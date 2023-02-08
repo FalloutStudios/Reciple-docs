@@ -1,15 +1,19 @@
 <script lang="ts">
     import Icon from '@iconify/svelte';
+  import { onMount } from 'svelte';
     import HomeButton from "../HomeButton.svelte";
 
     export let icon: string|null = '';
     export let label: string;
 
-    export let contents: { value: string; href: string; selected: boolean; }[] = [];
+    export let contents: { value: string; href: string; selected: boolean; element?: Element }[] = [];
 
     export let isClosed: boolean = false;
 
     $: contents = contents;
+    $: selected = contents.find(e => e.selected);
+
+    onMount(() => selected?.element?.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'center' }));
 
 </script>
 
@@ -63,6 +67,11 @@
                     border-color: currentColor;
                 }
 
+                &:focus-visible {
+                    outline: 4px solid #5865f2;
+                    border-radius: 3px;
+                }
+
                 &:hover {
                     background: #3c3c3c;
                 }
@@ -97,7 +106,7 @@
     </HomeButton>
     <div class="contents">
         {#each contents as content}
-            <a href={content.href} class="content" class:selected={content.selected}>{content.value}</a>
+            <a href={content.href} class="content" class:selected={content.selected}  title={content.value} bind:this={content.element}>{content.value}</a>
         {/each}
     </div>
 </div>
