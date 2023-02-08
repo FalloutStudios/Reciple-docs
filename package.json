@@ -28,6 +28,7 @@
 		"@types/semver": "^7.3.13",
 		"semver": "^7.3.8",
 		"showdown": "^2.1.0",
+		"showdown-highlight": "^3.1.0",
 		"svrollbar": "^0.12.0"
 	}
 }

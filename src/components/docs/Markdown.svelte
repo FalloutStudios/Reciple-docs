@@ -1,5 +1,6 @@
 <script lang="ts">
     import '../../assets/styles/markdown.scss';
+    import highlighter from 'showdown-highlight';
     import { Converter } from 'showdown';
     export let content: string;
 </script>
@@ -23,6 +24,12 @@
         tables: true,
         tablesHeaderId: true,
         tasklists: true,
-        underline: true
+        underline: true,
+        extensions: [
+            highlighter({
+                auto_detection: true,
+                pre: true
+            })
+        ]
     })).makeHtml(content)}
 </div>
