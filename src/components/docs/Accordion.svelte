@@ -60,6 +60,7 @@
                 text-overflow: ellipsis;
                 color: #fff;
                 text-decoration: none;
+                font-size: 0.9rem;
 
                 &.selected {
                     color: #5865f2;
