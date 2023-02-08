@@ -38,7 +38,6 @@
         notFocused = true;
 
         closing = setTimeout(() => {
-            console.log(notFocused);
             if (notFocused) isClosed = true;
         }, 500);
     }

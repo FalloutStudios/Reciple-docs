@@ -1,0 +1,64 @@
+.markdown {
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        font-weight: 600;
+        line-height: 1.25;
+        margin: 1.25em 0 0.5em;
+        scroll-margin-top: 6.5rem;
+    }
+
+    p {
+        display: block;
+        line-height: 1.75;
+        margin: 0.5em 0;
+    }
+
+    a {
+        text-decoration: none;
+        color: #5865f2;
+
+        &:visited {
+            color: #4529c0;
+        }
+
+        &:hover,
+        &:focus {
+            text-decoration: underline;
+        }
+    }
+
+    ul {
+        list-style-position: outside;
+        padding-left: 2rem;
+    }
+
+    code {
+        white-space: pre;
+        word-spacing: normal;
+        word-break: normal;
+        word-wrap: normal;
+        -moz-tab-size: 4;
+        tab-size: 4;
+        -webkit-hyphens: none;
+        hyphens: none;
+        background: rgba(34, 34, 34, 0.345);
+    }
+
+    pre {
+        background: #1e1e1e;
+        display: block;
+        padding: 1em;
+        overflow-x: auto;
+        border-radius: 4px;
+        line-height: 1.5;
+    }
+
+    hr {
+        margin: 2rem 0 0.5rem 0;
+        border: solid 0.5px #3c3c3c;
+    }
+}

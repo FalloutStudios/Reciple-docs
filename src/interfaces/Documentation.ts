@@ -108,7 +108,7 @@ export interface DocumentationCustomFile {
 	path: string;
 }
 
-interface DocumentationCustom {
+export interface DocumentationCustom {
 	[key: string]: {
 		name: string;
 		files: {
@@ -161,7 +161,7 @@ export type ParameterUnion =
 
 export interface Documentation {
 	classes: DocumentationClass[];
-	custom: DocumentationCustom[];
+	custom: DocumentationCustom;
 	externals: DocumentationExternal[];
 	functions?: DocumentationClassMethod[];
 	global: string;

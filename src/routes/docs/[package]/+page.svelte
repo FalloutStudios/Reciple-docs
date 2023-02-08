@@ -3,13 +3,12 @@
     import Icon from '@iconify/svelte';
     import HomeButton from '../../../components/HomeButton.svelte';
     import packages from '../../../scripts/packages';
-    import type { DocsData } from '../../../data/DocsData'
-    import { page } from '$app/stores';
+    import type { DocsData } from '../../../data/DocsData';
 
     export let data: { package: string; };
 
     let pkg: DocsData = packages[data.package as keyof typeof packages];
-    let tags: Promise<string[]> = Promise.resolve(!pkg.tags.length ? pkg.fetchTags() : pkg.tags);
+    let tags: Promise<string[]> = pkg.resolveTags();
 </script>
 
 <style lang="scss">
@@ -91,6 +90,10 @@
                         <Icon icon="ic:round-arrow-forward" class="arrow"/>
                     </HomeButton>
                 {/each}
+            </div>
+        {:catch err}
+            <div class="title" style="text-align: center;">
+                Couldn't fetch tags from Github
             </div>
         {/await}
         <div class="back">

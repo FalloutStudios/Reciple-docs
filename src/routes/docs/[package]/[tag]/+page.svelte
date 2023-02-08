@@ -1,5 +1,4 @@
 <script lang="ts">
-    import { goto } from '$app/navigation';
     import '../../../../assets/styles/main.scss';
     import Markdown from '../../../../components/docs/Markdown.svelte';
     import Nav from "../../../../components/Nav.svelte";
@@ -13,6 +12,12 @@
 
     $: tag = data.tag;
     $: pkg = data.package;
+
+    let fetchDocs = docs.resolveSelf(data.tag);
+
+    async function changeTag(tag: CustomEvent<string>) {
+        docs = await docs.resolveSelf(tag.detail);
+    }
 </script>
 
 <svelte:head>
@@ -20,6 +25,14 @@
 </svelte:head>
 
 <Nav title="{pkg}@{tag}" {docs}></Nav>
-<SideNav {docs} {tag}></SideNav>
+<SideNav {docs} {tag} on:tagChange={changeTag}></SideNav>
 
-<div class="docsContent"></div>
+<div class="docsContent">
+    <div class="contents" style="padding: 2.5rem">
+        {#await fetchDocs then e}
+            {#if docs.defaultPage}
+                <Markdown content={docs.defaultPage?.content} style=""></Markdown>
+            {/if}
+        {/await}
+    </div>
+</div>

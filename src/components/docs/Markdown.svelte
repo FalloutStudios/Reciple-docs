@@ -1,21 +1,28 @@
 <script lang="ts">
-    import { marked, Renderer } from 'marked';
+    import '../../assets/styles/markdown.scss';
+    import { Converter } from 'showdown';
     export let content: string;
 </script>
 
-<div class="markdown-section">
-    {@html marked(content, {
-            headerIds: true,
-            sanitize: true,
-            mangle: true,
-            breaks: true,
-            gfm: true,
-            pedantic: true,
-            smartLists: true,
-            smartypants: true,
-            langPrefix: '',
-            silent: false,
-            renderer: new Renderer()
-        })
-    }
+<div class="markdown-section markdown" {...$$props}>
+    {@html (new Converter({
+        backslashEscapesHTMLTags: true,
+        completeHTMLDocument: false,
+        disableForced4SpacesIndentedSublists: true,
+        ellipsis: false,
+        emoji: true,
+        encodeEmails: true,
+        ghCodeBlocks: true,
+        ghCompatibleHeaderId: true,
+        omitExtraWLInCodeBlocks: true,
+        openLinksInNewWindow: true,
+        simpleLineBreaks: true,
+        simplifiedAutoLink: true,
+        smartIndentationFix: true,
+        strikethrough: true,
+        tables: true,
+        tablesHeaderId: true,
+        tasklists: true,
+        underline: true
+    })).makeHtml(content)}
 </div>

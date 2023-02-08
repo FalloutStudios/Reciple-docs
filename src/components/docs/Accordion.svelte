@@ -1,6 +1,6 @@
 <script lang="ts">
     import Icon from '@iconify/svelte';
-  import { onMount } from 'svelte';
+    import { onMount } from 'svelte';
     import HomeButton from "../HomeButton.svelte";
 
     export let icon: string|null = '';

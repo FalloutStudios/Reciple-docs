@@ -4,19 +4,23 @@
     import DropdownMenu from './DropdownMenu.svelte';
     import { Svrollbar } from 'svrollbar';
     import Accordion from './docs/Accordion.svelte';
+    import { createEventDispatcher } from 'svelte';
 
     export let docs: DocsData;
     export let tag: string;
 
-    let fetchDocs: Promise<DocsData> = Promise.resolve(docs.fetchDocs(tag));
+    let fetchDocs: Promise<DocsData> = docs.resolveSelf(tag);
     let Sidebar: Element;
     let SidebarContents: Element;
     let accordionSelected: { type: 'class'|'function'|'typedef', name: string; }|null = null;
 
     $: docs.data = docs.data;
 
+    const dispatch = createEventDispatcher();
+
     async function handleTagChange(tag: CustomEvent<{ value: string; }>) {
-        docs = await docs.fetchDocs(tag.detail.value);
+        docs = await docs.resolveSelf(tag.detail.value);
+        dispatch('tagChange', tag.detail.value);
     }
 </script>
 

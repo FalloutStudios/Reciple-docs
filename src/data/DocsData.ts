@@ -1,5 +1,6 @@
-import type { Documentation } from '../interfaces/Documentation';
+import type { Documentation, DocumentationCustom, DocumentationCustomFile } from '../interfaces/Documentation';
 import semver from 'semver';
+import { addToCache, getFromCache } from '../scripts/localStorage';
 
 export interface APIGitHubRepositoryContent<Type extends 'file'|'dir' = 'file'|'dir'> {
     name: string;
@@ -28,6 +29,9 @@ export interface DocsDataOptions {
 }
 
 export class DocsData {
+    protected fetched: boolean = false;
+    protected tagsFetched: boolean = false;
+
     public data: Partial<Documentation> = {};
 
     public tags: string[] = [];
@@ -35,11 +39,20 @@ export class DocsData {
     public currentTag: string|null = null;
 
     get source() { return `https://github.com/${this.options.repository}/blob/docs/${this.options.package}/`; }
+    get defaultPage(): DocumentationCustomFile|undefined {
+        if (!this.data.custom) return;
+
+        const key = Object.keys(this.data?.custom ?? {});
+        if (!key.length) return;
+
+        return Object.values(Object.values(this.data?.custom)[0]?.files ?? [])[0];
+    }
 
     constructor (public options: DocsDataOptions) {}
 
     public async fetchTags(): Promise<string[]> {
-        const files: APIGitHubRepositoryContent<'file'>[] = await fetch(`https://api.github.com/repos/${this.options.repository}/contents/${this.options.package}?ref=docs`).then(res => this.resJson(res));
+        const url = `https://api.github.com/repos/${this.options.repository}/contents/${this.options.package}?ref=docs`;
+        const files: APIGitHubRepositoryContent<'file'>[] = await fetch(url).then(res => this.resJson(res, url));
         const tags: string[] = []
 
         let versions = files.filter(f => semver.valid(f.name.replace('.json', ''))).map(f => f.name.replace('.json', ''));
@@ -75,16 +88,47 @@ export class DocsData {
     }
 
     public async fetchDocs(tag?: string|null): Promise<this> {
-        await this.fetchTags();
+        await this.resolveTags();
 
+        const url = `https://raw.githubusercontent.com/${this.options.repository}/docs/${this.options.package}/${tag ?? this.options.defaultTag}.json`;
+
+        this.data = await fetch(url).then(res => this.resJson(res, url));
         this.currentTag = tag ?? this.options.defaultTag;
-        this.data = await fetch(`https://raw.githubusercontent.com/${this.options.repository}/docs/${this.options.package}/${tag ?? this.options.defaultTag}.json`).then(res => this.resJson(res));
+        this.fetched = true;
 
         return this;
 	}
 
-    protected resJson<T = 'unknown'>(res: Response): Promise<T> {
-        if (!res.ok) throw new Error('Failed to fetch docs data file from GitHub');
-        return res.json();
+    public async resolveTags(): Promise<string[]> {
+        if (!this.tagsFetched) return this.fetchTags();
+
+        return this.tags;
+    }
+
+    public async resolveSelf(tag?: string|null): Promise<this> {
+        if (tag !== this.currentTag || !this.fetched) return this.fetchDocs(tag);
+        return this;
+    }
+
+    protected async resJson<T = 'unknown'>(res: Response, url?: string): Promise<T> {
+        if (!res.ok) {
+            let cache: T|null = null;
+
+            if (url) {
+                cache = getFromCache(url);
+                console.warn(`Retrieving data from cached response for: ${url}`, cache);
+
+                if (cache) return cache;
+            }
+            if (!cache) throw new Error('Failed to fetch docs data file from GitHub');
+        }
+
+        const json = await res.json();
+        if (url && res.ok) {
+            addToCache(url, json);
+            console.log(`Added to localstorage response from: ${url}`);
+        }
+
+        return json;
     }
 }
