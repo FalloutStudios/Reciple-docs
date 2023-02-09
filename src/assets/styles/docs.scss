@@ -1,0 +1,106 @@
+.docsContent {
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        font-weight: 600;
+        line-height: 1.25;
+        margin: 0.5em 0;
+        scroll-margin-top: 6.5rem;
+    }
+
+    p {
+        display: block;
+        line-height: 1.75;
+        margin: 0.5em 0;
+    }
+
+    a {
+        text-decoration: none;
+        color: #5865f2;
+
+        &:visited {
+            color: #4529c0;
+        }
+
+        &:hover,
+        &:focus {
+            text-decoration: underline;
+        }
+    }
+
+    code {
+        white-space: pre;
+        word-spacing: normal;
+        word-break: normal;
+        word-wrap: normal;
+        -moz-tab-size: 4;
+        tab-size: 4;
+        -webkit-hyphens: none;
+        hyphens: none;
+        background: rgba(34, 34, 34, 0.345);
+    }
+
+    blockquote {
+        display: block;
+        background: rgba(70, 70, 70, 0.3);
+        border-left: 5px solid #606060;
+        border-radius: 5px;
+        padding: 1rem;
+    }
+
+    pre {
+        background: #1e1e1e;
+        display: block;
+        padding: 1em;
+        overflow-x: auto;
+        border-radius: 4px;
+        line-height: 1.5;
+
+        .hljs-comment,
+        .hljs-title {
+            color: #999999;
+        }
+
+        .hljs-variable,
+        .hljs-attribute,
+        .hljs-attr,
+        .hljs-tag,
+        .hljs-regexp,
+        .hljs-property {
+            color: #f2777a;
+        }
+
+        .hljs-number,
+        .hljs-literal,
+        .hljs-params,
+        .hljs-constant {
+            color: #f99157;
+        }
+
+        .class_,
+        .hljs-built_in {
+            color: #ffcc66;
+        }
+
+        .hljs-string,
+        .hljs-value,
+        .hljs-inheritance,
+        .hljs-header {
+            color: #99cc99;
+        }
+
+        .function_,
+        .js .hljs-title {
+            color: #6699cc;
+        }
+
+        .hljs-keyword,
+        .hljs-function,
+        .function_ {
+            color: #cc99cc;
+        }
+    }
+}
