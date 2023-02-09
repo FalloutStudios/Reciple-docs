@@ -8,12 +8,12 @@
 
     export let docs: DocsData;
     export let tag: string;
+    export let accordionSelected: { type: 'class'|'function'|'typedef', name: string; }|null = null;
 
     let fetchDocs: Promise<DocsData> = docs.resolveSelf(tag);
     let Sidebar: Element;
     let SidebarContents: Element;
-    let accordionSelected: { type: 'class'|'function'|'typedef', name: string; }|null = null;
-
+    
     $: docs.data = docs.data;
 
     const dispatch = createEventDispatcher();
