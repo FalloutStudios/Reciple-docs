@@ -1,6 +1,7 @@
-import type { Documentation, DocumentationCustom, DocumentationCustomFile } from '../interfaces/Documentation';
+import type { Documentation, DocumentationClass, DocumentationClassMethod, DocumentationCustom, DocumentationCustomFile, DocumentationTypeDefinition } from '../interfaces/Documentation';
 import semver from 'semver';
 import { addToCache, getFromCache } from '../scripts/localStorage';
+import { typeKey } from '../scripts/typeKey';
 
 export interface APIGitHubRepositoryContent<Type extends 'file'|'dir' = 'file'|'dir'> {
     name: string;
@@ -111,6 +112,21 @@ export class DocsData {
         return this;
     }
 
+    public findType(query: string): { type: 'class'|'function'|'typedef', name: string; data: DocumentationClass|DocumentationClassMethod|DocumentationTypeDefinition; }|undefined {
+        const class_ = this.data.classes?.find(q => q.name === query);
+        if (class_) return { type: 'class', name: class_.name, data: class_ };
+
+        const function_ = this.data.functions?.find(f => f.name === query);
+        if (function_) return { type: 'function', name: function_.name, data: function_ };
+
+        const typedef = this.data.typedefs?.find(t => t.name === query);
+        if (typedef) return { type: 'typedef', name: typedef.name, data: typedef };
+    }
+
+    public typeKey(type: string[][], ...ignoreType: string[]): string {
+        return typeKey(type, this, ignoreType);
+    }
+
     protected async resJson<T = 'unknown'>(res: Response, url?: string): Promise<T> {
         if (!res.ok) {
             let cache: T|null = null;
@@ -121,6 +137,8 @@ export class DocsData {
 
                 if (cache) return cache;
             }
+
+            if (typeof window === 'undefined') return [] as T;
             if (!cache) throw new Error('Failed to fetch docs data file from GitHub');
         }
 

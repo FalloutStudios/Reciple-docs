@@ -6,6 +6,8 @@
     import type { DocsData } from '../../../../../../data/DocsData';
     import packages from '../../../../../../scripts/packages';
   import Title from '../../../../../../components/docs/Title.svelte';
+  import Markdown from '../../../../../../components/docs/Markdown.svelte';
+  import { typeKey } from '../../../../../../scripts/typeKey';
 
     export let data: { package: keyof typeof packages; tag: string; class: string; };
 
@@ -15,6 +17,7 @@
     $: pkg = data.package;
     $: class_ = data.class;
     $: docsData = docs.data.classes?.find(e => e.name === class_);
+    $: xtnds = docsData?.extends?.map((t: string[][]) => docs.typeKey(t, docsData!.name)).join('') ?? [];
 
     let fetchDocs = docs.resolveSelf(data.tag).then(e => { docs = e; });
 
@@ -33,7 +36,8 @@
 {#if docsData}
     <div class="docsContent">
         <div class="contents" style="padding: 2.5rem">
-            <Title icon="codicon:symbol-class" source={docsData.meta.url}>{docsData.name}</Title>
+            <Title icon="codicon:symbol-class" source={docsData.meta.url} subTitle={docsData.extends ? `Extends ${xtnds}` : ''}>{docsData.name}</Title>
+            <Markdown content={'```js\n'+  docsData.construct.name +'\n```' + (docsData?.description ? '\n> ' + docsData?.description : '')}/>
         </div>
     </div>
 {/if}
