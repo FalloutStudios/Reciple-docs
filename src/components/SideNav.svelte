@@ -13,7 +13,7 @@
     let fetchDocs: Promise<DocsData> = docs.resolveSelf(tag);
     let Sidebar: Element;
     let SidebarContents: Element;
-    
+
     $: docs.data = docs.data;
 
     const dispatch = createEventDispatcher();
@@ -79,40 +79,40 @@
                     <DropdownMenu class="dropdown" on:change={handleTagChange} values={docs.tags.map(v => ({ value: v, href: `/docs/${docs.options.package}/${v}`, selected: v === tag }))} icon="tabler:versions" id="tag-select"></DropdownMenu>
                 {/await}
             </div>
-            {#await fetchDocs then e}
-                {#if docs.data.classes?.length}
+            {#await fetchDocs then newDocs}
+                {#if newDocs.classes.size}
                     <Accordion
                         label="Classes"
                         icon="codicon:symbol-class"
-                        contents={docs.data.classes?.map(e => ({
+                        selectedValue={accordionSelected?.type === 'class' ? accordionSelected.name : null}
+                        contents={newDocs.classes.map(e => ({
                             value: e.name,
-                            href: `/docs/${docs.options.package}/${tag}/classes/${e.name}`,
-                            selected: !!accordionSelected && accordionSelected.type === 'class' && accordionSelected.name === e.name
-                        })) ?? []}
+                            href: `/docs/${newDocs.options.package}/${tag}/classes/${e.name}`
+                        }))}
                     ></Accordion>
                 {/if}
 
-                {#if docs.data.functions?.length}
+                {#if newDocs.functions.size}
                     <Accordion
                         label="Functions"
                         icon="codicon:symbol-method"
-                        contents={docs.data.functions?.map(e => ({
+                        selectedValue={accordionSelected?.type === 'function' ? accordionSelected.name : null}
+                        contents={newDocs.functions.map(e => ({
                             value: e.name,
-                            href: `/docs/${docs.options.package}/${tag}/functions/${e.name}`,
-                            selected: !!accordionSelected && accordionSelected.type === 'function' && accordionSelected.name === e.name
-                        })) ?? []}
+                            href: `/docs/${newDocs.options.package}/${tag}/functions/${e.name}`
+                        }))}
                     ></Accordion>
                 {/if}
 
-                {#if docs.data.typedefs?.length}
+                {#if newDocs.typedefs.size}
                     <Accordion
                         label="Typedefs"
                         icon="codicon:symbol-field"
-                        contents={docs.data.typedefs?.map(e => ({
+                        selectedValue={accordionSelected?.type === 'typedef' ? accordionSelected.name : null}
+                        contents={newDocs.typedefs.map(e => ({
                             value: e.name,
-                            href: `/docs/${docs.options.package}/${tag}/typedefs/${e.name}`,
-                            selected: !!accordionSelected && accordionSelected.type === 'typedef' && accordionSelected.name === e.name
-                        })) ?? []}
+                            href: `/docs/${newDocs.options.package}/${tag}/typedefs/${e.name}`
+                        }))}
                     ></Accordion>
                 {/if}
             {/await}

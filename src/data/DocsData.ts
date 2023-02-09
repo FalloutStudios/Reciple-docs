@@ -2,6 +2,7 @@ import type { Documentation, DocumentationClass, DocumentationClassMethod, Docum
 import semver from 'semver';
 import { addToCache, getFromCache } from '../scripts/localStorage';
 import { typeKey } from '../scripts/typeKey';
+import { Collection } from '@discordjs/collection';
 
 export interface APIGitHubRepositoryContent<Type extends 'file'|'dir' = 'file'|'dir'> {
     name: string;
@@ -38,6 +39,10 @@ export class DocsData {
     public tags: string[] = [];
 
     public currentTag: string|null = null;
+
+    public classes: Collection<string, DocumentationClass> = new Collection();
+    public functions: Collection<string, DocumentationClassMethod> = new Collection();
+    public typedefs: Collection<string, DocumentationTypeDefinition> = new Collection();
 
     get source() { return `https://github.com/${this.options.repository}/blob/docs/${this.options.package}/`; }
     get defaultPage(): DocumentationCustomFile|undefined {
@@ -96,6 +101,15 @@ export class DocsData {
 
         this.data = await fetch(url).then(res => this.resJson(res, url));
         this.currentTag = tag ?? this.options.defaultTag;
+
+        this.classes.clear();
+        this.functions.clear();
+        this.typedefs.clear();
+
+        this.data.classes?.forEach(e => this.classes.set(e.name, e));
+        this.data.functions?.forEach(e => this.functions.set(e.name, e));
+        this.data.typedefs?.forEach(e => this.typedefs.set(e.name, e));
+
         this.fetched = true;
 
         return this;

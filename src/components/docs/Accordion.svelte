@@ -3,15 +3,12 @@
     import { onMount } from 'svelte';
     import HomeButton from "../HomeButton.svelte";
 
+    export let selectedValue: string|null = null;
     export let icon: string|null = '';
     export let label: string;
 
-    export let contents: { value: string; href: string; selected: boolean; element?: Element }[] = [];
-
+    export let contents: { value: string; href: string; element?: Element }[] = [];
     export let isClosed: boolean = false;
-
-    $: contents = contents;
-    $: selected = contents.find(e => e.selected);
 
     function scrollIntoView(element: Element) {
         element.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'center' });
@@ -19,6 +16,7 @@
 
     onMount(() => {
         setTimeout(() => {
+            let selected = contents.find(e => e.value === selectedValue);
             if (selected?.element) scrollIntoView(selected?.element);
         }, 500);
     });
@@ -114,8 +112,8 @@
         </span>
     </HomeButton>
     <div class="contents">
-        {#each contents as content}
-            <a href={content.href} class="content" class:selected={content.selected}  title={content.value} bind:this={content.element}>{content.value}</a>
+        {#each contents.sort((a, b) => a.value.toLowerCase() < b.value.toLowerCase() ? -1 : 1) as content}
+            <a href={content.href} class="content" class:selected={content.value === selectedValue}  title={content.value} bind:this={content.element}>{content.value}</a>
         {/each}
     </div>
 </div>
