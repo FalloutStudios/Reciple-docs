@@ -13,7 +13,15 @@
     $: contents = contents;
     $: selected = contents.find(e => e.selected);
 
-    onMount(() => selected?.element?.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'center' }));
+    function scrollIntoView(element: Element) {
+        element.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'center' });
+    }
+
+    onMount(() => {
+        setTimeout(() => {
+            if (selected?.element) scrollIntoView(selected?.element);
+        }, 500);
+    });
 
 </script>
 
