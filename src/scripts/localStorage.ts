@@ -1,5 +1,5 @@
 export function addToCache(id: string, value: string|any[]|{}): void {
-    if (!localStorage) return;
+    if (typeof window == 'undefined') return;
 
     value = typeof value === 'string'
         ? `string:${value}`
@@ -11,7 +11,7 @@ export function addToCache(id: string, value: string|any[]|{}): void {
 }
 
 export function getFromCache<T = unknown>(id: string): T|null {
-    if (!localStorage) return null;
+    if (typeof window == 'undefined') return null;
 
     const data = localStorage?.getItem(id);
     if (!data) return null;
