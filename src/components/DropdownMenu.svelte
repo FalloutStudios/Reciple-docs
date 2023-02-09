@@ -15,8 +15,6 @@
     let notFocused: boolean = true;
     let closing: NodeJS.Timer|null = null;
 
-    $: isClosed, notFocused, closing;
-
     export function changeSelected(value: typeof values[0]) {
         selected = value;
         isClosed = true;
