@@ -1,4 +1,4 @@
-import type { Documentation, DocumentationClass, DocumentationClassMethod, DocumentationCustom, DocumentationCustomFile, DocumentationTypeDefinition } from '../interfaces/Documentation';
+import type { Documentation, DocumentationClass, DocumentationClassMethod, DocumentationCustom, DocumentationCustomFile, DocumentationParameter, DocumentationTypeDefinition } from '../interfaces/Documentation';
 import semver from 'semver';
 import { addToCache, getFromCache } from '../scripts/localStorage';
 import { typeKey } from '../scripts/typeKey';
@@ -123,8 +123,14 @@ export class DocsData {
         if (typedef) return { type: 'typedef', name: typedef.name, data: typedef };
     }
 
-    public typeKey(type: string[][], ...ignoreType: string[]): string {
-        return typeKey(type, this, ignoreType);
+    public typeKey(type: string[][], dontAtTypes?: boolean, escapeHtml?: boolean): string;
+    public typeKey(type: string[][], ignoreType?: string[], escapeHtml?: boolean): string;
+    public typeKey(type: string[][], options?: string[]|boolean, escapeHtml: boolean = true): string {
+        return typeKey(type, this, escapeHtml, options);
+    }
+
+    public parseParamTypes(params: DocumentationParameter[], options?: { ignoreTypes?: string[]; disableTypeAnchors?: boolean; escapeHtml?: boolean; }): string {
+        return params.map(t => `${t.name}${t.optional ? '?' : ''}: ${t.type.map(p => this.typeKey(p, options?.disableTypeAnchors ?? <unknown>options?.ignoreTypes as boolean ?? true , options?.escapeHtml ?? false))}`).join(', ')
     }
 
     protected async resJson<T = 'unknown'>(res: Response, url?: string): Promise<T> {

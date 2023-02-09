@@ -18,7 +18,7 @@ type DocumentationExternalMeta = DocumentationClassMeta;
 type DocumentationTypeDefinitionMeta = DocumentationClassMeta;
 type DocumentationTypeDefinitionParameterMeta = DocumentationClassMeta;
 
-interface DocumentationParameter {
+export interface DocumentationParameter {
 	name: string;
 	description?: string;
 	default: string;

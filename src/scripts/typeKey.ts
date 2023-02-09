@@ -1,13 +1,13 @@
 import { escape } from 'svelte/internal';
 import type { DocsData } from '../data/DocsData';
 
-export function typeKey(type: string[][], docs?: DocsData, ignoreType: string[] = []) {
+export function typeKey(type: string[][], docs?: DocsData, escapeHtml: boolean = true, ignoreTypesOrDisable: string[]|boolean = true) {
 	const result = type.map(e => e
 		.map(s => {
-			if (!docs || ignoreType.includes(s)) return escape(s);
+			if (!docs || ignoreTypesOrDisable === true || (Array.isArray(ignoreTypesOrDisable) && ignoreTypesOrDisable.includes(s))) return escapeHtml ? escape(s) : s;
 
 			const dataType = docs.findType(s);
-			if (!dataType) return escape(s);
+			if (!dataType) return escapeHtml ? escape(s) : s;
 
 			const routeType = dataType.type === 'class'
 				? 'classes'
