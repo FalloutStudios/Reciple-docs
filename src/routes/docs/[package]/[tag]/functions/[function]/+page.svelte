@@ -11,8 +11,9 @@
 
     let docs: DocsData = packages[data.package];
 
-    $: tag = data.tag;
-    $: pkg = data.package;
+    let tag = data.tag;
+    let pkg = data.package;
+
     $: func = data.function;
     $: docsData = docs.data.functions?.find(e => e.name === func);
 

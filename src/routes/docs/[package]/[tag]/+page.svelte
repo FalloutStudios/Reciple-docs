@@ -10,8 +10,8 @@
 
     let docs: DocsData = packages[data.package];
 
-    $: tag = data.tag;
-    $: pkg = data.package;
+    let tag = data.tag;
+    let pkg = data.package;
 
     let fetchDocs = docs.resolveSelf(data.tag);
 

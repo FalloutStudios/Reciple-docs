@@ -5,16 +5,17 @@
     import SideNav from '../../../../../../components/SideNav.svelte';
     import type { DocsData } from '../../../../../../data/DocsData';
     import packages from '../../../../../../scripts/packages';
-  import Title from '../../../../../../components/docs/Title.svelte';
-  import Markdown from '../../../../../../components/docs/Markdown.svelte';
-  import { typeKey } from '../../../../../../scripts/typeKey';
+    import Title from '../../../../../../components/docs/Title.svelte';
+    import Markdown from '../../../../../../components/docs/Markdown.svelte';
+    import { typeKey } from '../../../../../../scripts/typeKey';
 
     export let data: { package: keyof typeof packages; tag: string; class: string; };
 
     let docs: DocsData = packages[data.package];
 
-    $: tag = data.tag;
-    $: pkg = data.package;
+    let tag = data.tag;
+    let pkg = data.package;
+
     $: class_ = data.class;
     $: docsData = docs.data.classes?.find(e => e.name === class_);
     $: xtnds = docsData?.extends?.map((t: string[][]) => docs.typeKey(t, [docsData!.name])).join('') ?? [];
