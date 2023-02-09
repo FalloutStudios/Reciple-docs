@@ -7,17 +7,17 @@
     export let icon: string|null = '';
     export let label: string;
 
-    export let contents: { value: string; href: string; element?: Element }[] = [];
+    export let contents: { value: string; href: string; }[] = [];
     export let isClosed: boolean = false;
 
-    function scrollIntoView(element: Element) {
-        element.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'center' });
-    }
+    $: contents = contents.sort((a, b) => a.value.toLowerCase() < b.value.toLowerCase() ? -1 : 1);
+
+    const selectedId = `s-${Math.random() / 100}`.replace('.','_');
 
     onMount(() => {
         setTimeout(() => {
-            let selected = contents.find(e => e.value === selectedValue);
-            if (selected?.element) scrollIntoView(selected?.element);
+            const selected = document.querySelector(`#${selectedId}`);
+            if (selected) selected.scrollIntoView({ behavior: 'smooth', block: 'center', inline: 'center' });
         }, 500);
     });
 
@@ -112,8 +112,8 @@
         </span>
     </HomeButton>
     <div class="contents">
-        {#each contents.sort((a, b) => a.value.toLowerCase() < b.value.toLowerCase() ? -1 : 1) as content}
-            <a href={content.href} class="content" class:selected={content.value === selectedValue}  title={content.value} bind:this={content.element}>{content.value}</a>
+        {#each contents as content}
+            <a href={content.href} class="content" id={content.value === selectedValue ? selectedId : null} class:selected={content.value === selectedValue}  title={content.value}>{content.value}</a>
         {/each}
     </div>
 </div>

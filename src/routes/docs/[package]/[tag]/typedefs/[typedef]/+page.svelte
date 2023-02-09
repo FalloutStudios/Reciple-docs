@@ -5,7 +5,7 @@
     import SideNav from '../../../../../../components/SideNav.svelte';
     import type { DocsData } from '../../../../../../data/DocsData';
     import packages from '../../../../../../scripts/packages';
-  import Title from '../../../../../../components/docs/Title.svelte';
+    import Title from '../../../../../../components/docs/Title.svelte';
 
     export let data: { package: keyof typeof packages; tag: string; typedef: string; };
 

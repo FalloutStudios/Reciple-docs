@@ -5,7 +5,7 @@
     import SideNav from '../../../../../../components/SideNav.svelte';
     import type { DocsData } from '../../../../../../data/DocsData';
     import packages from '../../../../../../scripts/packages';
-  import Title from '../../../../../../components/docs/Title.svelte';
+    import Title from '../../../../../../components/docs/Title.svelte';
 
     export let data: { package: keyof typeof packages; tag: string; function: string; };
 
@@ -30,7 +30,7 @@
 <Nav title="{pkg}@{tag}" {docs}></Nav>
 <SideNav {docs} {tag} on:tagChange={changeTag} accordionSelected={{ name: func, type: 'function' }}></SideNav>
 
-{#if  docsData}
+{#if docsData}
     <div class="docsContent">
         <div class="contents" style="padding: 2.5rem">
             <Title icon="codicon:symbol-method" source={docsData.meta.url}>{docsData.name}</Title>

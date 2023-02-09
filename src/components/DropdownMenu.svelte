@@ -9,7 +9,7 @@
     export let icon: string = '';
     export let id: string;
 
-    $: selected = values.find(v => v.selected) ?? values[0];
+    $: selected = values.find(v => v.selected) ?? values[0] as typeof values[0]|undefined;
 
     let isClosed: boolean = true;
     let notFocused: boolean = true;
@@ -118,7 +118,7 @@
         on:click={(() => isClosed = !isClosed)}
     >
         {#if icon}<Icon {icon} class="icon"/>{/if}
-        <span class="selected">{@html selected.value}</span>
+        <span class="selected">{@html selected?.value ?? 'No chosen option'}</span>
         {#if isClosed}
             <Icon icon="ph:caret-down" class="arrow"/>
         {:else}
@@ -133,8 +133,8 @@
                 on:focus={openDropdown}
                 on:blur={closeDropdown}
                 on:click={() => changeSelected(val)}
-                class:selected={selected.value === val.value}
-                tabindex={selected.value === val.value ? -1 : null}
+                class:selected={selected?.value === val.value}
+                tabindex={selected?.value === val.value ? -1 : null}
             >{val.value}</a>
         {/each}
     </div>

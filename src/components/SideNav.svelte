@@ -10,16 +10,13 @@
     export let tag: string;
     export let accordionSelected: { type: 'class'|'function'|'typedef', name: string; }|null = null;
 
-    let fetchDocs: Promise<DocsData> = docs.resolveSelf(tag);
+    docs.resolveSelf(tag).then(e => docs = e);
     let Sidebar: Element;
     let SidebarContents: Element;
-
-    $: docs.data = docs.data;
 
     const dispatch = createEventDispatcher();
 
     async function handleTagChange(tag: CustomEvent<{ value: string; }>) {
-        docs = await docs.resolveSelf(tag.detail.value);
         dispatch('tagChange', tag.detail.value);
     }
 </script>
@@ -75,47 +72,46 @@
         <div class="contents" bind:this={SidebarContents}>
             <div class="settings">
                 <DropdownMenu class="dropdown" values={Object.keys(packages).map(v => ({ value: v, href: `/docs/${v}`, selected: v === docs.options.package }))} icon="ph:package-bold" id="package-select"></DropdownMenu>
-                {#await fetchDocs then e}
-                    <DropdownMenu class="dropdown" on:change={handleTagChange} values={docs.tags.map(v => ({ value: v, href: `/docs/${docs.options.package}/${v}`, selected: v === tag }))} icon="tabler:versions" id="tag-select"></DropdownMenu>
+                {#await docs.resolveSelf(tag) then self}
+                    <DropdownMenu class="dropdown" on:change={handleTagChange} values={self.tags.map(v => ({ value: v, href: `/docs/${docs.options.package}/${v}`, selected: v === tag }))} icon="tabler:versions" id="tag-select"></DropdownMenu>
                 {/await}
             </div>
-            {#await fetchDocs then newDocs}
-                {#if newDocs.classes.size}
-                    <Accordion
-                        label="Classes"
-                        icon="codicon:symbol-class"
-                        selectedValue={accordionSelected?.type === 'class' ? accordionSelected.name : null}
-                        contents={newDocs.classes.map(e => ({
-                            value: e.name,
-                            href: `/docs/${newDocs.options.package}/${tag}/classes/${e.name}`
-                        }))}
-                    ></Accordion>
-                {/if}
 
-                {#if newDocs.functions.size}
-                    <Accordion
-                        label="Functions"
-                        icon="codicon:symbol-method"
-                        selectedValue={accordionSelected?.type === 'function' ? accordionSelected.name : null}
-                        contents={newDocs.functions.map(e => ({
-                            value: e.name,
-                            href: `/docs/${newDocs.options.package}/${tag}/functions/${e.name}`
-                        }))}
-                    ></Accordion>
-                {/if}
+            {#if docs.classes?.size}
+                <Accordion
+                    label="Classes"
+                    icon="codicon:symbol-class"
+                    selectedValue={accordionSelected?.type === 'class' ? accordionSelected.name : null}
+                    contents={docs.classes.map(e => ({
+                        value: e.name,
+                        href: `/docs/${docs.options.package}/${tag}/classes/${e.name}`
+                    }))}
+                ></Accordion>
+            {/if}
 
-                {#if newDocs.typedefs.size}
-                    <Accordion
-                        label="Typedefs"
-                        icon="codicon:symbol-field"
-                        selectedValue={accordionSelected?.type === 'typedef' ? accordionSelected.name : null}
-                        contents={newDocs.typedefs.map(e => ({
-                            value: e.name,
-                            href: `/docs/${newDocs.options.package}/${tag}/typedefs/${e.name}`
-                        }))}
-                    ></Accordion>
-                {/if}
-            {/await}
+            {#if docs.functions?.size}
+                <Accordion
+                    label="Functions"
+                    icon="codicon:symbol-method"
+                    selectedValue={accordionSelected?.type === 'function' ? accordionSelected.name : null}
+                    contents={docs.functions.map(e => ({
+                        value: e.name,
+                        href: `/docs/${docs.options.package}/${tag}/functions/${e.name}`
+                    }))}
+                ></Accordion>
+            {/if}
+
+            {#if docs.typedefs?.size}
+                <Accordion
+                    label="Typedefs"
+                    icon="codicon:symbol-field"
+                    selectedValue={accordionSelected?.type === 'typedef' ? accordionSelected.name : null}
+                    contents={docs.typedefs.map(e => ({
+                        value: e.name,
+                        href: `/docs/${docs.options.package}/${tag}/typedefs/${e.name}`
+                    }))}
+                ></Accordion>
+            {/if}
         </div>
     </div>
     <Svrollbar viewport={Sidebar} contents={SidebarContents}/>
