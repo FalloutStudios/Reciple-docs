@@ -1,15 +1,19 @@
 export function addToCache(id: string, value: string|any[]|{}): void {
+    if (!localStorage) return;
+
     value = typeof value === 'string'
         ? `string:${value}`
         : typeof value === 'object'
             ? `object:${JSON.stringify(value)}`
             : `string:${String(value)}`;
 
-    localStorage.setItem(id, value as string);
+    localStorage?.setItem(id, value as string);
 }
 
 export function getFromCache<T = unknown>(id: string): T|null {
-    const data = localStorage.getItem(id);
+    if (!localStorage) return null;
+
+    const data = localStorage?.getItem(id);
     if (!data) return null;
 
     if (data.startsWith('string:')) {
