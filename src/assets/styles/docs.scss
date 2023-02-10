@@ -105,11 +105,41 @@
 
     .content-description {
         margin-bottom: 1rem;
+        color: #cbcbcb;
     }
 
     hr {
         margin: 2rem 0 0.5rem 0;
         border: none;
         border-bottom: solid 0.5px #3c3c3c;
+    }
+
+    .content-label {
+        font-size: 1.8rem;
+        font-weight: 600;
+        margin: 1rem 0;
+    }
+
+    .deprecation-warning {
+        padding: 0.5rem;
+        margin: 1rem 0;
+        background: rgba(190, 42, 42, 0.3);
+        border-radius: 5px;
+        border-left: 5px solid rgba(190, 42, 42, 1);
+
+        a {
+            color: currentColor;
+            text-decoration: underline;
+        }
+    }
+
+    .nowrap-code-md {
+        pre {
+            white-space: normal !important;
+
+            code {
+                white-space: inherit !important;
+            }
+        }
     }
 }

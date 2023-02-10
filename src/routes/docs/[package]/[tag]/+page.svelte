@@ -31,7 +31,7 @@
     <div class="contents" style="padding: 2.5rem">
         {#await fetchDocs then e}
             {#if docs.defaultPage}
-                <Markdown content={docs.defaultPage?.content} style=""></Markdown>
+                <Markdown content={docs.defaultPage?.content} {docs}></Markdown>
             {/if}
         {/await}
     </div>

@@ -64,11 +64,6 @@ export class DocsData {
         let versions = files.filter(f => semver.valid(f.name.replace('.json', ''))).map(f => f.name.replace('.json', ''));
         let branches = files.filter(f => !versions.some(e => e === f.name.replace('.json', ''))).map(f => f.name.replace('.json', ''));
 
-        for (const branch of branches) {
-            if (this.options.tagFilter && !this.options.tagFilter(branch)) continue;
-            tags.push(branch);
-        }
-
         const latestPatches: { [key: string]: number } = {};
         for (const version of versions) {
             const majorMinor = `${semver.major(version)}.${semver.minor(version)}`;
@@ -88,7 +83,12 @@ export class DocsData {
             tags.push(version);
         }
 
-        this.tags = tags;
+        for (const branch of branches) {
+            if (this.options.tagFilter && !this.options.tagFilter(branch)) continue;
+            tags.push(branch);
+        }
+
+        this.tags = tags.reverse();
         this.tagsFetched = true;
 
         return this.tags;

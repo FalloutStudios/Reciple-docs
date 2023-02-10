@@ -10,6 +10,8 @@
     import { typeKey } from '../../../../../../scripts/typeKey';
   import PropMethods from '../../../../../../components/docs/PropMethods.svelte';
   import ParamsTable from '../../../../../../components/docs/ParamsTable.svelte';
+  import PropertyDocs from '../../../../../../components/docs/PropertyDocs.svelte';
+  import MethodDocs from '../../../../../../components/docs/MethodDocs.svelte';
 
     export let data: { package: keyof typeof packages; tag: string; class: string; };
 
@@ -41,12 +43,31 @@
     <div class="docsContent">
         <div class="contents" style="padding: 2.5rem">
             <Title icon="codicon:symbol-class" source={docsData.meta.url} subTitle={(xtnds ? `extends ${xtnds} ` : '') + (mplmnts ? `implements ${mplmnts}` : '')}>{docsData.name}</Title>
-            {#if docsData?.description}<p class="content-description">{docsData?.description}</p>{/if}
-            <Markdown content={'```js\n'+  docsData.construct.name +'('+ (docsData.construct.params ? docs.parseParamTypes(docsData.construct.params) : '') +')\n```'}/>
+            {#if docsData?.description}<Markdown class="content-description" {docs} content={docsData?.description} />{/if}
+            <Markdown {docs} content={'```js\n'+  docsData.construct.name +'('+ (docsData.construct.params ? docs.parseParamTypes(docsData.construct.params) : '') +')\n```'}/>
             {#if docsData.construct.params}
                 <ParamsTable params={docsData.construct.params} {docs}></ParamsTable>
             {/if}
             <PropMethods properties={docsData.props} methods={docsData.methods}></PropMethods>
+            <hr>
+
+            {#if docsData.props?.length}
+                <h1 class="content-label">Properties</h1>
+                <div class="properties">
+                    {#each docsData.props as prop}
+                        <PropertyDocs property={prop} {docs}></PropertyDocs>
+                    {/each}
+                </div>
+            {/if}
+
+            {#if docsData.methods.length}
+                <h1 class="content-label">Methods</h1>
+                <div class="methods">
+                    {#each docsData.methods as method}
+                        <MethodDocs {method} {docs}></MethodDocs>
+                    {/each}
+                </div>
+            {/if}
         </div>
     </div>
 {/if}

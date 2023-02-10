@@ -8,7 +8,7 @@
     import Title from '../../../../../../components/docs/Title.svelte';
     import PropMethods from '../../../../../../components/docs/PropMethods.svelte';
     import Markdown from '../../../../../../components/docs/Markdown.svelte';
-    import { typeKey } from '../../../../../../scripts/typeKey';
+    import PropertyDocs from '../../../../../../components/docs/PropertyDocs.svelte';
 
     export let data: { package: keyof typeof packages; tag: string; typedef: string; };
 
@@ -38,10 +38,20 @@
     <div class="docsContent">
         <div class="contents" style="padding: 2.5rem">
             <Title icon="codicon:symbol-field" source={docsData.meta.url}>{docsData.name}</Title>
-            {#if docsData.description}<p class="content-description">{docsData.description}</p>{/if}
-            {#if docsData.type}<Markdown content={'```ts\n'+ docsData.type.map(e => docs.typeKey(e, true, false)).join('') + '\n```'}/>{/if}
+            {#if docsData?.description}<Markdown class="content-description" {docs} content={docsData?.description} />{/if}
+            {#if docsData.type}<Markdown {docs} content={'```ts\n'+ docsData.type.map(e => docs.typeKey(e, true, false)).join('') + '\n```'}/>{/if}
 
             <PropMethods properties={docsData?.props ?? []}></PropMethods>
+            <hr>
+
+            {#if docsData.props?.length}
+                <h1>Properties</h1>
+                <div class="properties">
+                    {#each docsData.props as prop}
+                        <PropertyDocs property={prop} {docs}></PropertyDocs>
+                    {/each}
+                </div>
+            {/if}
         </div>
     </div>
 {/if}

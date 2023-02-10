@@ -2,7 +2,11 @@
     import '../../assets/styles/markdown.scss';
     import highlighter from 'showdown-highlight';
     import { Converter } from 'showdown';
+    import type { DocsData } from '../../data/DocsData';
+  import { convertLinks } from '../../scripts/convertLinks';
+
     export let content: string;
+    export let docs: DocsData|null = null;
 </script>
 
 <div class="markdown-section markdown" {...$$props}>
@@ -29,7 +33,7 @@
             highlighter({
                 auto_detection: true,
                 pre: true
-            })
+            }),
         ]
-    })).makeHtml(content)}
+    })).makeHtml(!docs ? content : convertLinks(content, docs))}
 </div>

@@ -12,6 +12,12 @@
         padding-top: 4rem;
     }
 
+    :global(body),
+    :global(html) {
+        scroll-padding-top: 1rem;
+        scroll-behavior: smooth;
+    }
+
     .nav {
         display: flex;
         justify-content: center;
@@ -23,6 +29,7 @@
         background: #181818;
         border-bottom: 1px solid #3c3c3c;
         height: 4rem;
+        z-index: 10;
 
         .nav-container {
             display: flex;

@@ -38,6 +38,7 @@
         height: calc(100% - 4rem);
         width: 300px;
         max-width: 100%;
+        z-index: 9;
 
         .sidenav {
             position: relative;

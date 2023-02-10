@@ -19,7 +19,7 @@
 
     $: func = data.function;
     $: docsData = docs.data.functions?.find(e => e.name === func);
-    $: returns = docsData?.returns.map((e: string[][][]) => e.map(i => docs.typeKey(i, true, false)).join('')).join('');
+    $: returns = docsData?.returns?.map((e: string[][][]) => Array.isArray(e) ? e.map(i => docs.typeKey(i, true, false)).join('') : '').join('');
 
     let fetchDocs = docs.resolveSelf(data.tag).then(e => { docs = e; });
 
@@ -38,14 +38,20 @@
 {#if docsData}
     <div class="docsContent">
         <div class="contents" style="padding: 2.5rem">
-            <Title icon="codicon:symbol-method" source={docsData.meta.url}>{docsData.name}</Title>
-            {#if docsData.description}<p class="content-description">{docsData.description}</p>{/if}
+            <Title icon="codicon:symbol-method" source={docsData.meta.url}>{docsData.name}()</Title>
+            {#if docsData?.description}<Markdown {docs} class="content-description" content={docsData?.description} />{/if}
+
+            <h3>Construct</h3>
+            <Markdown class="nowrap-code-md" content={'```ts\n'+ docsData.name + `(${ docsData.params ? docs.parseParamTypes(docsData.params, { escapeHtml: false, disableTypeAnchors: true }) : '' }): ${returns || 'unknown'}` +'\n```'}></Markdown>
+
             {#if docsData.params}
                 <ParamsTable params={docsData.params} {docs}></ParamsTable>
             {/if}
-            <h3>Returns</h3>
-            {#if docsData.returnsDescription}<p class="content-description">{docsData.returnsDescription}</p>{/if}
-            <Markdown content={'```js\n' + returns + '\n```'}></Markdown>
+            {#if returns}
+                <h3>Returns</h3>
+                {#if docsData.returnsDescription}<Markdown {docs} class="content-description" content={docsData.returnsDescription}/>{/if}
+                <Markdown content={'```js\n' + returns + '\n```'} {docs}></Markdown>
+            {/if}
         </div>
     </div>
 {/if}
