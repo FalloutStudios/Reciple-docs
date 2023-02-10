@@ -6,6 +6,8 @@
     import type { DocsData } from '../../../../../../data/DocsData';
     import packages from '../../../../../../scripts/packages';
     import Title from '../../../../../../components/docs/Title.svelte';
+  import Markdown from '../../../../../../components/docs/Markdown.svelte';
+  import ParamsTable from '../../../../../../components/docs/ParamsTable.svelte';
 
     export let data: { package: keyof typeof packages; tag: string; function: string; };
 
@@ -35,6 +37,12 @@
     <div class="docsContent">
         <div class="contents" style="padding: 2.5rem">
             <Title icon="codicon:symbol-method" source={docsData.meta.url}>{docsData.name}</Title>
+            {#if docsData.description}
+                <Markdown content={`> ${docsData.description}`}></Markdown>
+            {/if}
+            {#if docsData.params}
+                <ParamsTable params={docsData.params} {docs}></ParamsTable>
+            {/if}
         </div>
     </div>
 {/if}

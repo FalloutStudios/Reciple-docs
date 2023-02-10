@@ -9,6 +9,7 @@
     import Markdown from '../../../../../../components/docs/Markdown.svelte';
     import { typeKey } from '../../../../../../scripts/typeKey';
   import PropMethods from '../../../../../../components/docs/PropMethods.svelte';
+  import ParamsTable from '../../../../../../components/docs/ParamsTable.svelte';
 
     export let data: { package: keyof typeof packages; tag: string; class: string; };
 
@@ -41,6 +42,9 @@
         <div class="contents" style="padding: 2.5rem">
             <Title icon="codicon:symbol-class" source={docsData.meta.url} subTitle={(xtnds ? `extends ${xtnds} ` : '') + (mplmnts ? `implements ${mplmnts}` : '')}>{docsData.name}</Title>
             <Markdown content={'```js\n'+  docsData.construct.name +'('+ (docsData.construct.params ? docs.parseParamTypes(docsData.construct.params) : '') +')\n```' + (docsData?.description ? '\n> ' + docsData?.description : '')}/>
+            {#if docsData.construct.params}
+                <ParamsTable params={docsData.construct.params} {docs}></ParamsTable>
+            {/if}
             <PropMethods properties={docsData.props} methods={docsData.methods}></PropMethods>
         </div>
     </div>

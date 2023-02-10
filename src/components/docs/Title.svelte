@@ -8,7 +8,7 @@
 
 <style lang="scss">
     .title {
-        margin: 0.5rem;
+        margin: 0.5rem 0;
         margin-bottom: 1.5rem;
         border-bottom: 1px solid #3c3c3c;
 
