@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { onMount } from 'svelte';
     import '../../../../assets/styles/main.scss';
     import Markdown from '../../../../components/docs/Markdown.svelte';
     import Nav from "../../../../components/Nav.svelte";
@@ -13,7 +14,9 @@
     let tag = data.tag;
     let pkg = data.package;
 
-    let fetchDocs = docs.resolveSelf(data.tag);
+    onMount(async () => {
+        docs = await docs.resolveSelf(tag);
+    });
 
     async function changeTag(tag: CustomEvent<string>) {
         docs = await docs.resolveSelf(tag.detail);
@@ -29,10 +32,8 @@
 
 <div class="docsContent">
     <div class="contents" style="padding: 2.5rem">
-        {#await fetchDocs then e}
-            {#if docs.defaultPage}
-                <Markdown content={docs.defaultPage?.content} {docs}></Markdown>
-            {/if}
-        {/await}
+        {#if docs?.defaultPage}
+            <Markdown content={docs.defaultPage?.content} {docs}></Markdown>
+        {/if}
     </div>
 </div>

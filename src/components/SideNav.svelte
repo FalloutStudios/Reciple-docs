@@ -4,13 +4,15 @@
     import DropdownMenu from './DropdownMenu.svelte';
     import { Svrollbar } from 'svrollbar';
     import Accordion from './docs/Accordion.svelte';
-    import { createEventDispatcher } from 'svelte';
+    import { createEventDispatcher, onMount } from 'svelte';
 
     export let docs: DocsData;
     export let tag: string;
     export let accordionSelected: { type: 'class'|'function'|'typedef', name: string; }|null = null;
 
-    docs.resolveSelf(tag).then(e => docs = e);
+    onMount(async () => {
+        docs = await docs.resolveSelf(tag);
+    });
 
     let Sidebar: Element;
     let SidebarContents: Element;

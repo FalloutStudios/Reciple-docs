@@ -7,11 +7,11 @@
     import packages from '../../../../../../scripts/packages';
     import Title from '../../../../../../components/docs/Title.svelte';
     import Markdown from '../../../../../../components/docs/Markdown.svelte';
-    import { typeKey } from '../../../../../../scripts/typeKey';
-  import PropMethods from '../../../../../../components/docs/PropMethods.svelte';
-  import ParamsTable from '../../../../../../components/docs/ParamsTable.svelte';
-  import PropertyDocs from '../../../../../../components/docs/PropertyDocs.svelte';
-  import MethodDocs from '../../../../../../components/docs/MethodDocs.svelte';
+    import PropMethods from '../../../../../../components/docs/PropMethods.svelte';
+    import ParamsTable from '../../../../../../components/docs/ParamsTable.svelte';
+    import PropertyDocs from '../../../../../../components/docs/PropertyDocs.svelte';
+    import MethodDocs from '../../../../../../components/docs/MethodDocs.svelte';
+    import { onMount } from 'svelte';
 
     export let data: { package: keyof typeof packages; tag: string; class: string; };
 
@@ -25,7 +25,9 @@
     $: xtnds = docsData?.extends?.map((t: string[][]) => docs.typeKey(t, [docsData!.name])).join('');
     $: mplmnts = docsData?.implements?.map((t: string[][]) => docs.typeKey(t, [docsData!.name])).join('');
 
-    let fetchDocs = docs.resolveSelf(data.tag).then(e => { docs = e; });
+    onMount(async () => {
+        docs = await docs.resolveSelf(tag);
+    });
 
     async function changeTag(tag: CustomEvent<string>) {
         docs = await docs.resolveSelf(tag.detail);

@@ -9,6 +9,7 @@
     import Markdown from '../../../../../../components/docs/Markdown.svelte';
     import ParamsTable from '../../../../../../components/docs/ParamsTable.svelte';
     import { typeKey } from '../../../../../../scripts/typeKey';
+  import { onMount } from 'svelte';
 
     export let data: { package: keyof typeof packages; tag: string; function: string; };
 
@@ -21,7 +22,9 @@
     $: docsData = docs.data.functions?.find(e => e.name === func);
     $: returns = docsData?.returns?.map((e: string[][][]) => Array.isArray(e) ? e.map(i => docs.typeKey(i, true, false)).join('') : '').join('');
 
-    let fetchDocs = docs.resolveSelf(data.tag).then(e => { docs = e; });
+    onMount(async () => {
+        docs = await docs.resolveSelf(tag);
+    });
 
     async function changeTag(tag: CustomEvent<string>) {
         docs = await docs.resolveSelf(tag.detail);

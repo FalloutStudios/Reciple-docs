@@ -9,6 +9,7 @@
     import PropMethods from '../../../../../../components/docs/PropMethods.svelte';
     import Markdown from '../../../../../../components/docs/Markdown.svelte';
     import PropertyDocs from '../../../../../../components/docs/PropertyDocs.svelte';
+  import { onMount } from 'svelte';
 
     export let data: { package: keyof typeof packages; tag: string; typedef: string; };
 
@@ -21,7 +22,9 @@
     $: docsData = docs.data.typedefs?.find(e => e.name == typedef);
     $: returns = docsData?.returns?.map((e: string[][][]) => Array.isArray(e) ? e.map(i => docs.typeKey(i, true, false)).join('') : '').join('');
 
-    let fetchDocs = docs.resolveSelf(data.tag).then(e => { docs = e; });
+    onMount(async () => {
+        docs = await docs.resolveSelf(tag);
+    });
 
     async function changeTag(tag: CustomEvent<string>) {
         docs = await docs.resolveSelf(tag.detail);
