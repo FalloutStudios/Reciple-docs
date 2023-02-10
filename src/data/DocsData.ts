@@ -143,7 +143,7 @@ export class DocsData {
         return typeKey(type, this, escapeHtml, options);
     }
 
-    public parseParamTypes(params: DocumentationParameter[], options?: { ignoreTypes?: string[]; disableTypeAnchors?: boolean; escapeHtml?: boolean; }): string {
+    public parseParamTypes(params: { name: string; optional?: boolean; type: string[][][]; }[], options?: { ignoreTypes?: string[]; disableTypeAnchors?: boolean; escapeHtml?: boolean; }): string {
         return params.map(t => `${t.name}${t.optional ? '?' : ''}: ${t.type.map(p => this.typeKey(p, options?.disableTypeAnchors ?? <unknown>options?.ignoreTypes as boolean ?? true , options?.escapeHtml ?? false))}`).join(', ')
     }
 

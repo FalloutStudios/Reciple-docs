@@ -55,6 +55,7 @@ import type { DocumentationClassMethod, DocumentationProperty } from '../../inte
                     overflow: hidden;
                     text-overflow: ellipsis;
                     margin-bottom: 0.2rem;
+                    margin-left: 1.8rem;
                 }
             }
         }
