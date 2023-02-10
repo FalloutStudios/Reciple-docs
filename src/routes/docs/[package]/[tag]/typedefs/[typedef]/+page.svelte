@@ -38,7 +38,8 @@
     <div class="docsContent">
         <div class="contents" style="padding: 2.5rem">
             <Title icon="codicon:symbol-field" source={docsData.meta.url}>{docsData.name}</Title>
-            <Markdown content={(docsData.description ? `> ${docsData.description}\n` : '') + (docsData.type ? '```ts\n'+ docsData.type.map(e => docs.typeKey(e, true, false)).join('') + '\n```' : '')}/>
+            {#if docsData.description}<p class="content-description">{docsData.description}</p>{/if}
+            {#if docsData.type}<Markdown content={'```ts\n'+ docsData.type.map(e => docs.typeKey(e, true, false)).join('') + '\n```'}/>{/if}
 
             <PropMethods properties={docsData?.props ?? []}></PropMethods>
         </div>

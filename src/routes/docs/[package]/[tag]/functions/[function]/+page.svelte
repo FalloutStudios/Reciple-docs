@@ -39,14 +39,13 @@
     <div class="docsContent">
         <div class="contents" style="padding: 2.5rem">
             <Title icon="codicon:symbol-method" source={docsData.meta.url}>{docsData.name}</Title>
-            {#if docsData.description}
-                <Markdown content={`> ${docsData.description}`}></Markdown>
-            {/if}
+            {#if docsData.description}<p class="content-description">{docsData.description}</p>{/if}
             {#if docsData.params}
                 <ParamsTable params={docsData.params} {docs}></ParamsTable>
             {/if}
             <h3>Returns</h3>
-            <Markdown content={(docsData.description ? `> ${docsData.description}\n` : '' ) + '```js\n' + returns + '\n```'}></Markdown>
+            {#if docsData.returnsDescription}<p class="content-description">{docsData.returnsDescription}</p>{/if}
+            <Markdown content={'```js\n' + returns + '\n```'}></Markdown>
         </div>
     </div>
 {/if}

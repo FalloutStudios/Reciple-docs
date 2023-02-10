@@ -41,7 +41,8 @@
     <div class="docsContent">
         <div class="contents" style="padding: 2.5rem">
             <Title icon="codicon:symbol-class" source={docsData.meta.url} subTitle={(xtnds ? `extends ${xtnds} ` : '') + (mplmnts ? `implements ${mplmnts}` : '')}>{docsData.name}</Title>
-            <Markdown content={(docsData?.description ? `> ${docsData?.description}\n` : '') + '```js\n'+  docsData.construct.name +'('+ (docsData.construct.params ? docs.parseParamTypes(docsData.construct.params) : '') +')\n```'}/>
+            {#if docsData?.description}<p class="content-description">{docsData?.description}</p>{/if}
+            <Markdown content={'```js\n'+  docsData.construct.name +'('+ (docsData.construct.params ? docs.parseParamTypes(docsData.construct.params) : '') +')\n```'}/>
             {#if docsData.construct.params}
                 <ParamsTable params={docsData.construct.params} {docs}></ParamsTable>
             {/if}

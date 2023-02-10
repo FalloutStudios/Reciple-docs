@@ -91,7 +91,8 @@
         }
 
         .function_,
-        .js .hljs-title {
+        .js .hljs-title,
+        .ts .hljs-title {
             color: #6699cc;
         }
 
@@ -100,5 +101,9 @@
         .function_ {
             color: #cc99cc;
         }
+    }
+
+    .content-description {
+        margin-bottom: 1rem;
     }
 }

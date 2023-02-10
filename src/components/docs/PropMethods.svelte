@@ -17,7 +17,7 @@ import type { DocumentationClassMethod, DocumentationProperty } from '../../inte
 
         .content {
             width: 100%;
-            margin: 0.5rem;
+            margin: 0.5rem 0;
             margin-top: 0;
 
             h2 {
