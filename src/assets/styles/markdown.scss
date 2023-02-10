@@ -50,7 +50,8 @@
 
     hr {
         margin: 2rem 0 0.5rem 0;
-        border: solid 0.5px #3c3c3c;
+        border: none;
+        border-bottom: solid 0.5px #3c3c3c;
     }
 
     blockquote {
@@ -103,7 +104,8 @@
         }
 
         .function_,
-        .js .hljs-title {
+        .js .hljs-title,
+        .ts .hljs-title {
             color: #6699cc;
         }
 
