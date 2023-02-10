@@ -6,8 +6,9 @@
     import type { DocsData } from '../../../../../../data/DocsData';
     import packages from '../../../../../../scripts/packages';
     import Title from '../../../../../../components/docs/Title.svelte';
-  import Markdown from '../../../../../../components/docs/Markdown.svelte';
-  import ParamsTable from '../../../../../../components/docs/ParamsTable.svelte';
+    import Markdown from '../../../../../../components/docs/Markdown.svelte';
+    import ParamsTable from '../../../../../../components/docs/ParamsTable.svelte';
+    import { typeKey } from '../../../../../../scripts/typeKey';
 
     export let data: { package: keyof typeof packages; tag: string; function: string; };
 
@@ -18,6 +19,7 @@
 
     $: func = data.function;
     $: docsData = docs.data.functions?.find(e => e.name === func);
+    $: returns = docsData?.returns.map((e: string[][][]) => e.map(i => docs.typeKey(i, true, false)).join('')).join('');
 
     let fetchDocs = docs.resolveSelf(data.tag).then(e => { docs = e; });
 
@@ -43,6 +45,8 @@
             {#if docsData.params}
                 <ParamsTable params={docsData.params} {docs}></ParamsTable>
             {/if}
+            <h3>Returns</h3>
+            <Markdown content={(docsData.description ? `> ${docsData.description}\n` : '' ) + '```js\n' + returns + '\n```'}></Markdown>
         </div>
     </div>
 {/if}

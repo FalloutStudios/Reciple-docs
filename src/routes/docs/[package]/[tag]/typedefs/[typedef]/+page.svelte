@@ -6,9 +6,9 @@
     import type { DocsData } from '../../../../../../data/DocsData';
     import packages from '../../../../../../scripts/packages';
     import Title from '../../../../../../components/docs/Title.svelte';
-  import PropMethods from '../../../../../../components/docs/PropMethods.svelte';
-  import Markdown from '../../../../../../components/docs/Markdown.svelte';
-  import { typeKey } from '../../../../../../scripts/typeKey';
+    import PropMethods from '../../../../../../components/docs/PropMethods.svelte';
+    import Markdown from '../../../../../../components/docs/Markdown.svelte';
+    import { typeKey } from '../../../../../../scripts/typeKey';
 
     export let data: { package: keyof typeof packages; tag: string; typedef: string; };
 
@@ -38,13 +38,7 @@
     <div class="docsContent">
         <div class="contents" style="padding: 2.5rem">
             <Title icon="codicon:symbol-field" source={docsData.meta.url}>{docsData.name}</Title>
-
-            {#if docsData.type}
-                <Markdown content={'```ts\n'+ docsData.type.map(e => docs.typeKey(e, true, false)).join('') + '\n```'}/>
-            {/if}
-            {#if docsData.description}
-                <Markdown content={docsData.description}/>
-            {/if}
+            <Markdown content={(docsData.description ? `> ${docsData.description}\n` : '') + (docsData.type ? '```ts\n'+ docsData.type.map(e => docs.typeKey(e, true, false)).join('') + '\n```' : '')}/>
 
             <PropMethods properties={docsData?.props ?? []}></PropMethods>
         </div>
