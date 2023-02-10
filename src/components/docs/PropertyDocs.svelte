@@ -68,6 +68,32 @@
                 .label {
                     margin-right: 0.5rem;
                     font-weight: 600;
+                    flex-shrink: 0;
+
+                    :global(i) {
+                        color: #5865f2;
+                        font-style: normal;
+                        cursor: help;
+
+                        &:hover {
+                            position: relative;
+
+                            &::after {
+                                content: 'Optional';
+                                position: absolute;
+                                display: block;
+                                bottom: 100%;
+                                left: 50%;
+                                transform: translateX(-50%);
+                                color: #fff;
+                                background: #3c3c3c;
+                                padding: 0.2rem 0.5rem;
+                                border-radius: 5px;
+                                font-size: 0.8rem;
+                                box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+                            }
+                        }
+                    }
                 }
 
                 :global(.value) {
@@ -100,7 +126,7 @@
         {#if property.description}<Markdown class="content-description" {docs} content={property.description} />{/if}
         {#if typeof property.deprecated === 'string'}<Markdown {docs} class="deprecation-warning" content={property.deprecated}/>{/if}
         <div class="type">
-            <span class="label">Type: </span>
+            <span class="label">Type: {@html property.optional ? '<i>?</i>' : ''}</span>
             <Markdown {docs} class="value nowrap-code-md" content={'```ts\n' + property.type.map(e => docs.typeKey(e, true, false)).join('') + '\n```'}></Markdown>
         </div>
     </div>

@@ -19,6 +19,7 @@
 
     $: typedef = data.typedef;
     $: docsData = docs.data.typedefs?.find(e => e.name == typedef);
+    $: returns = docsData?.returns?.map((e: string[][][]) => Array.isArray(e) ? e.map(i => docs.typeKey(i, true, false)).join('') : '').join('');
 
     let fetchDocs = docs.resolveSelf(data.tag).then(e => { docs = e; });
 
@@ -51,6 +52,12 @@
                         <PropertyDocs property={prop} {docs}></PropertyDocs>
                     {/each}
                 </div>
+            {/if}
+
+            {#if returns}
+                <h3>Returns</h3>
+                {#if docsData.returnsDescription}<Markdown {docs} class="content-description" content={docsData.returnsDescription}/>{/if}
+                <Markdown content={'```js\n' + returns + '\n```'} {docs}></Markdown>
             {/if}
         </div>
     </div>
