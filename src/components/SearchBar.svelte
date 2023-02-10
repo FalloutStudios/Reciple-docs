@@ -91,10 +91,7 @@
     function keyup(e: KeyboardEvent) {
         if (e.key === 'Enter') {
             e.preventDefault();
-            if (selectedResult) {
-                isOpen = false;
-                goto(selectedResult?.href);
-            }
+            if (selectedResult) selectedResult.click();
         }
     }
 </script>
@@ -287,7 +284,7 @@
             {#if results.length}
                 <div class="results">
                     {#each results as result, id}
-                        <a href={result.href} title="{result.name}" on:blur={close} on:mousedown={open} on:focus={open} class:selected={selectedId == id} id="sr-{id}" class:withChild={result.name.split('#').length > 1}>
+                        <a href={result.href} title="{result.name}" on:click={() => { isOpen = false; goto(result.href); }} on:blur={close} on:mousedown={open} on:focus={open} class:selected={selectedId == id} id="sr-{id}" class:withChild={result.name.split('#').length > 1}>
                             <span class="name">
                                 {result.name.split('#')[0]}{#if result.name.split('#')[1]}<span class="separator">#</span><span class="child">{result.name.split('#')[1]}</span>{/if}
                             </span>
