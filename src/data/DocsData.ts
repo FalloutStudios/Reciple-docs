@@ -147,6 +147,59 @@ export class DocsData {
         return params.map(t => `${t.name}${t.optional ? '?' : ''}: ${t.type.map(p => this.typeKey(p, options?.disableTypeAnchors ?? <unknown>options?.ignoreTypes as boolean ?? true , options?.escapeHtml ?? false))}`).join(', ')
     }
 
+    public async search(query: string): Promise<{ name: string; href: string; }[]> {
+        query = query.trim().toLowerCase()
+
+        const result: { name: string; href: string; }[] = [];
+        const basePath = `/docs/${this.options.package}/${this.currentTag}`;
+        const isSearchChild = query.includes('#') || query.includes('.');
+
+        const filter = (e: { name: string; description?: string; }, q?: string): boolean => {
+            q = (q ?? query).toLowerCase();
+
+            if (e.name.toLowerCase() == q) return true;
+
+            const tokens = q.split(/(\s+)/gim).filter(e => e.trim());
+
+            return tokens.every(t => e.name.toLowerCase().includes(t) || e.description?.toLowerCase()?.includes(t));
+        }
+
+        if (!query || !query.replaceAll('#', '').replaceAll('.', '')) return result;
+
+        if (!isSearchChild) {
+            result.push(...this.classes.filter(e => filter(e)).map(e => ({ name: e.name, href: `${basePath}/classes/${e.name}`  })));
+            result.push(...this.functions.filter(e => filter(e)).map(e => ({ name: e.name, href: `${basePath}/functions/${e.name}`  })));
+            result.push(...this.typedefs.filter(e => filter(e)).map(e => ({ name: e.name, href: `${basePath}/typedefs/${e.name}`  })));
+        } else {
+            const [parent, child] = query.includes('.') ? query.split('.') : query.split('#');
+
+            this.data.classes?.forEach(c => {
+                if (parent && !filter(c, parent)) return;
+
+                for (const method of c?.methods ?? []) {
+                    if (!filter(method, child)) continue;
+                    result.push({ name: `${c.name}#${method.name}()`, href: `${basePath}/classes/${c.name}#${method.name}`  });
+                }
+
+                for (const prop of c?.props ?? []) {
+                    if (!filter(prop, child)) continue;
+                    result.push({ name: `${c.name}#${prop.name}`, href: `${basePath}/classes/${c.name}#${prop.name}`  });
+                }
+            });
+
+            this.data.typedefs?.forEach(c => {
+                if (parent && !filter(c, parent)) return;
+
+                for (const prop of c?.props ?? []) {
+                    if (!filter(prop, child)) return;
+                    result.push({ name: `${c.name}#${prop.name}`, href: `${basePath}/typedefs/${c.name}#${prop.name}`  });
+                }
+            });
+        }
+
+        return result;
+    }
+
     protected async resJson<T = 'unknown'>(res: Response, url?: string): Promise<T> {
         if (!res.ok) {
             let cache: T|null = null;

@@ -2,9 +2,11 @@
     import { githubHome } from '../scripts/data';
     import Icon from '@iconify/svelte';
     import type { DocsData } from '../data/DocsData';
+    import SearchBar from './SearchBar.svelte';
 
     export let title = '';
-    export let docs: DocsData|null = null;
+    export let docs: DocsData;
+    export let isSearchOpen = false;
 </script>
 
 <style lang="scss">
@@ -114,7 +116,7 @@
         </div>
         <div class="nav-whitespace"></div>
         <div class="nav-utils">
-            <button class="nav-search">
+            <button class="nav-search" on:click={() => isSearchOpen = !isSearchOpen}>
                 <span class="icon">
                     <Icon icon="uil:search" class="icon"/>
                 </span>
@@ -125,3 +127,4 @@
         </div>
     </div>
 </div>
+<SearchBar {docs} isOpen={isSearchOpen} on:close={() => isSearchOpen = false}/>

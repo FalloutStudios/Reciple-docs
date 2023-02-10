@@ -19,3 +19,12 @@ html {
     padding: 0;
     box-sizing: border-box;
 }
+
+.noScrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+
+    &::-webkit-scrollbar {
+        display: none;
+    }
+}

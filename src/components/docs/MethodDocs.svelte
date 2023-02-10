@@ -1,12 +1,23 @@
 <script lang="ts">
     import { goto } from '$app/navigation';
+    import { onMount } from 'svelte';
     import type { DocsData } from '../../data/DocsData';
     import type { DocumentationClassMethod } from '../../interfaces/Documentation';
     import Markdown from './Markdown.svelte';
-  import ParamsTable from './ParamsTable.svelte';
+    import ParamsTable from './ParamsTable.svelte';
 
     export let docs: DocsData;
     export let method: DocumentationClassMethod;
+
+    onMount(() => {
+        if (window.location.hash.substring(1) !== method.name) return;
+
+        document.querySelector(`#${method.name}`)?.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start',
+            inline: 'start'
+        });
+    });
 
     let returns = method?.returns?.map((e: string[][][]) => Array.isArray(e) ? e.map(i => docs.typeKey(i, true, false)).join('') : '').join('');
 </script>

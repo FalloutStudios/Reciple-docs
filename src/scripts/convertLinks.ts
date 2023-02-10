@@ -14,7 +14,7 @@ export function convertLinks(text: string, docs: DocsData) {
         text = text.replaceAll(link, type ? `<a href="/docs/${docs.options.package}/${docs.currentTag}/${dataType}/${type.name}">${type.name}</a>` : `<a href="${key}">${key}</a>`)
     }
 
-    for (const word of new Set(text.split(/(\s+)|\./gim).filter(e => e))) {
+    for (const word of new Set(text.split(/(\s+)|\./gim).filter(e => e?.trim()))) {
         const split = word.split(':').map(e => e.replace('(', '').replace(')', ''));
         if (!word.startsWith('(') || !word.endsWith(')') || split.length > 2 || split.length < 2) continue;
 

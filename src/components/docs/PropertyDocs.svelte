@@ -1,14 +1,22 @@
 <script lang="ts">
-  import { goto } from '$app/navigation';
-  import Icon from '@iconify/svelte';
+    import { goto } from '$app/navigation';
+    import { onMount } from 'svelte';
     import type { DocsData } from '../../data/DocsData';
     import type { DocumentationProperty } from '../../interfaces/Documentation';
-  import { typeKey } from '../../scripts/typeKey';
-  import Markdown from './Markdown.svelte';
-
+    import Markdown from './Markdown.svelte';
 
     export let docs: DocsData;
     export let property: DocumentationProperty;
+
+    onMount(() => {
+        if (window.location.hash.substring(1) !== property.name) return;
+
+        document.querySelector(`#${property.name}`)?.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start',
+            inline: 'start'
+        });
+    });
 </script>
 
 <style lang="scss">

@@ -38,7 +38,7 @@
 {#if docsData}
     <div class="docsContent">
         <div class="contents" style="padding: 2.5rem">
-            <Title icon="codicon:symbol-method" source={docsData.meta.url}>{docsData.name}()</Title>
+            <Title icon="codicon:symbol-method" source={docsData.meta.url}>{docsData.name}</Title>
             {#if docsData?.description}<Markdown {docs} class="content-description" content={docsData?.description} />{/if}
 
             <h3>Construct</h3>
