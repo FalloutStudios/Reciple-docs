@@ -19,7 +19,8 @@
 
     $: class_ = data.class;
     $: docsData = docs.data.classes?.find(e => e.name === class_);
-    $: xtnds = docsData?.extends?.map((t: string[][]) => docs.typeKey(t, [docsData!.name])).join('') ?? [];
+    $: xtnds = docsData?.extends?.map((t: string[][]) => docs.typeKey(t, [docsData!.name])).join('');
+    $: mplmnts = docsData?.implements?.map((t: string[][]) => docs.typeKey(t, [docsData!.name])).join('');
 
     let fetchDocs = docs.resolveSelf(data.tag).then(e => { docs = e; });
 
@@ -38,7 +39,7 @@
 {#if docsData}
     <div class="docsContent">
         <div class="contents" style="padding: 2.5rem">
-            <Title icon="codicon:symbol-class" source={docsData.meta.url} subTitle={docsData.extends ? `Extends ${xtnds}` : ''}>{docsData.name}</Title>
+            <Title icon="codicon:symbol-class" source={docsData.meta.url} subTitle={(xtnds ? `extends ${xtnds} ` : '') + (mplmnts ? `implements ${mplmnts}` : '')}>{docsData.name}</Title>
             <Markdown content={'```js\n'+  docsData.construct.name +'('+ (docsData.construct.params ? docs.parseParamTypes(docsData.construct.params) : '') +')\n```' + (docsData?.description ? '\n> ' + docsData?.description : '')}/>
             <PropMethods properties={docsData.props} methods={docsData.methods}></PropMethods>
         </div>
