@@ -10,8 +10,6 @@
     export let contents: { value: string; href: string; }[] = [];
     export let isClosed: boolean = false;
 
-    $: contents = contents.sort((a, b) => a.value.toLowerCase() < b.value.toLowerCase() ? -1 : 1);
-
     const selectedId = `s-${Math.random() / 100}`.replace('.','_');
 
     onMount(() => {
@@ -115,7 +113,7 @@
         </span>
     </HomeButton>
     <div class="contents">
-        {#each contents as content}
+        {#each contents.sort((a, b) => a.value.toLowerCase() < b.value.toLowerCase() ? -1 : 1) as content}
             <a href={content.href} class="content" id={content.value === selectedValue ? selectedId : null} class:selected={content.value === selectedValue}  title={content.value}>{content.value}</a>
         {/each}
     </div>
