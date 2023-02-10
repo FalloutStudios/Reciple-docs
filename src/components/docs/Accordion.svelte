@@ -16,8 +16,11 @@
 
     onMount(() => {
         setTimeout(() => {
-            const selected = document.querySelector(`#${selectedId}`);
-            if (selected) selected.scrollIntoView({ behavior: 'smooth', block: 'center', inline: 'center' });
+            const selected = document.querySelectorAll(`#${selectedId}`);
+
+            if (selected.length > 1) selected[1].remove();
+
+            if (selected[0]) selected[0].scrollIntoView({ behavior: 'smooth', block: 'center', inline: 'center' });
         }, 500);
     });
 

@@ -11,8 +11,13 @@
     export let accordionSelected: { type: 'class'|'function'|'typedef', name: string; }|null = null;
 
     docs.resolveSelf(tag).then(e => docs = e);
+
     let Sidebar: Element;
     let SidebarContents: Element;
+
+    $: classes = docs.classes.map(e => ({ value: e.name, href: `/docs/${docs.options.package}/${tag}/classes/${e.name}` }));
+    $: functions = docs.functions.map(e => ({ value: e.name, href: `/docs/${docs.options.package}/${tag}/functions/${e.name}` }))
+    $: typedefs = docs.typedefs.map(e => ({ value: e.name, href: `/docs/${docs.options.package}/${tag}/typedefs/${e.name}` }))
 
     const dispatch = createEventDispatcher();
 
@@ -77,39 +82,30 @@
                 {/await}
             </div>
 
-            {#if docs.classes?.size}
+            {#if classes.length}
                 <Accordion
                     label="Classes"
                     icon="codicon:symbol-class"
                     selectedValue={accordionSelected?.type === 'class' ? accordionSelected.name : null}
-                    contents={docs.classes.map(e => ({
-                        value: e.name,
-                        href: `/docs/${docs.options.package}/${tag}/classes/${e.name}`
-                    }))}
+                    contents={classes}
                 ></Accordion>
             {/if}
 
-            {#if docs.functions?.size}
+            {#if functions.length}
                 <Accordion
                     label="Functions"
                     icon="codicon:symbol-method"
                     selectedValue={accordionSelected?.type === 'function' ? accordionSelected.name : null}
-                    contents={docs.functions.map(e => ({
-                        value: e.name,
-                        href: `/docs/${docs.options.package}/${tag}/functions/${e.name}`
-                    }))}
+                    contents={functions}
                 ></Accordion>
             {/if}
 
-            {#if docs.typedefs?.size}
+            {#if typedefs.length}
                 <Accordion
                     label="Typedefs"
                     icon="codicon:symbol-field"
                     selectedValue={accordionSelected?.type === 'typedef' ? accordionSelected.name : null}
-                    contents={docs.typedefs.map(e => ({
-                        value: e.name,
-                        href: `/docs/${docs.options.package}/${tag}/typedefs/${e.name}`
-                    }))}
+                    contents={typedefs}
                 ></Accordion>
             {/if}
         </div>
