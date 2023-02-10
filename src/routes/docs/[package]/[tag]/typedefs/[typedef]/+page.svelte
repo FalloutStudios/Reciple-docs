@@ -6,6 +6,7 @@
     import type { DocsData } from '../../../../../../data/DocsData';
     import packages from '../../../../../../scripts/packages';
     import Title from '../../../../../../components/docs/Title.svelte';
+  import PropMethods from '../../../../../../components/docs/PropMethods.svelte';
 
     export let data: { package: keyof typeof packages; tag: string; typedef: string; };
 
@@ -15,7 +16,7 @@
     let pkg = data.package;
 
     $: typedef = data.typedef;
-    $: docsData = docs.data.typedefs?.find(e => e.name = typedef);
+    $: docsData = docs.data.typedefs?.find(e => e.name == typedef);
 
     let fetchDocs = docs.resolveSelf(data.tag).then(e => { docs = e; });
 
@@ -35,6 +36,7 @@
     <div class="docsContent">
         <div class="contents" style="padding: 2.5rem">
             <Title icon="codicon:symbol-field" source={docsData.meta.url}>{docsData.name}</Title>
+            <PropMethods properties={docsData?.props ?? []}></PropMethods>
         </div>
     </div>
 {/if}

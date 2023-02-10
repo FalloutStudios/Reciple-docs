@@ -8,6 +8,7 @@
     import Title from '../../../../../../components/docs/Title.svelte';
     import Markdown from '../../../../../../components/docs/Markdown.svelte';
     import { typeKey } from '../../../../../../scripts/typeKey';
+  import PropMethods from '../../../../../../components/docs/PropMethods.svelte';
 
     export let data: { package: keyof typeof packages; tag: string; class: string; };
 
@@ -39,6 +40,7 @@
         <div class="contents" style="padding: 2.5rem">
             <Title icon="codicon:symbol-class" source={docsData.meta.url} subTitle={docsData.extends ? `Extends ${xtnds}` : ''}>{docsData.name}</Title>
             <Markdown content={'```js\n'+  docsData.construct.name +'('+ (docsData.construct.params ? docs.parseParamTypes(docsData.construct.params) : '') +')\n```' + (docsData?.description ? '\n> ' + docsData?.description : '')}/>
+            <PropMethods properties={docsData.props} methods={docsData.methods}></PropMethods>
         </div>
     </div>
 {/if}

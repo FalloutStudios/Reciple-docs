@@ -44,7 +44,7 @@ interface DocumentationTypeDefinitionParameter extends DocumentationParameter {
 	meta: DocumentationTypeDefinitionParameterMeta;
 }
 
-interface DocumentationProperty extends DocumentationParameter {}
+export interface DocumentationProperty extends DocumentationParameter {}
 type DocumentationTypeDefinitionProperty = DocumentationProperty;
 type DocumentationClassPropertyProperty = DocumentationProperty;
 
