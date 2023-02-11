@@ -1,22 +1,16 @@
 <script lang="ts">
     import { goto } from '$app/navigation';
     import Icon from '@iconify/svelte';
-    import { onMount } from 'svelte';
     import type { DocsData } from '../../data/DocsData';
     import type { DocumentationProperty } from '../../interfaces/Documentation';
     import Markdown from './Markdown.svelte';
+    import { onMount } from 'svelte';
 
     export let docs: DocsData;
     export let property: DocumentationProperty;
 
     let anchor: HTMLAnchorElement|null = null;
-
-    onMount(() => {
-        if (window.location.hash.substring(1) !== property.name) return;
-
-        anchor?.click();
-        anchor?.focus();
-    });
+    let fragmant: string = typeof window !== 'undefined' ? window.location.hash.substring(1) : '';
 </script>
 
 <style lang="scss">
