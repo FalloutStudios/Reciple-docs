@@ -33,6 +33,7 @@
             .type {
                 display: flex;
                 align-items: center;
+                margin-bottom: 0.2rem;
 
                 .label {
                     margin-right: 0.5rem;
@@ -99,6 +100,12 @@
     <div class="contents">
         {#if property.description}<Markdown class="content-description" {docs} content={property.description} />{/if}
         {#if typeof property.deprecated === 'string'}<Markdown {docs} class="deprecation-warning" content={property.deprecated}/>{/if}
+        {#if property.default}
+            <div class="type">
+                <div class="label">Default: </div>
+                <Markdown {docs} class="value nowrap-code-md" content={'```ts\n'+ property.default +'\n```'}></Markdown>
+            </div>
+        {/if}
         <div class="type">
             <span class="label">Type: {@html property.optional ? '<i>?</i>' : ''}</span>
             <Markdown {docs} class="value nowrap-code-md" content={'```ts\n' + property.type.map(e => docs.typeKey(e, true, false)).join('') + '\n```'}></Markdown>
