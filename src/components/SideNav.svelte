@@ -15,6 +15,15 @@
     let Sidebar: Element;
     let SidebarContents: Element;
 
+    onMount(async () => {
+        if (docs.fetched) {
+            docs = docs;
+            return;
+        }
+
+        docs = await docs.resolveSelf(tag);
+    });
+
     $: classes = docs.classes.map(e => ({ value: e.name, href: `/docs/${docs.options.package}/${tag}/classes/${e.name}` }));
     $: functions = docs.functions.map(e => ({ value: e.name, href: `/docs/${docs.options.package}/${tag}/functions/${e.name}` }))
     $: typedefs = docs.typedefs.map(e => ({ value: e.name, href: `/docs/${docs.options.package}/${tag}/typedefs/${e.name}` }))
