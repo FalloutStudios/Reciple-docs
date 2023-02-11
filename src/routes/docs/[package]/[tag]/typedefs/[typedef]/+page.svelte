@@ -23,6 +23,7 @@
     $: returns = docsData?.returns?.map((e: string[][][]) => Array.isArray(e) ? e.map(i => docs.typeKey(i, true, false)).join('') : '').join('');
 
     onMount(async () => {
+        if (docs.fetched) return;
         docs = await docs.resolveSelf(tag);
     });
 

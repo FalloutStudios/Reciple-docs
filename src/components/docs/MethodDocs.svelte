@@ -10,13 +10,13 @@
     export let docs: DocsData;
     export let method: DocumentationClassMethod;
 
+    let anchor: HTMLAnchorElement|null = null;
+
     onMount(() => {
         if (window.location.hash.substring(1) !== method.name) return;
 
-        document.getElementById(method.name)?.scrollIntoView({
-            block: 'start',
-            inline: 'start'
-        });
+        anchor?.click();
+        anchor?.focus();
     });
 
     let returns = method?.returns?.map((e: string[][][]) => Array.isArray(e) ? e.map(i => docs.typeKey(i, true, false)).join('') : '').join('');
@@ -71,7 +71,7 @@
 <div class="content-method">
     <!-- svelte-ignore a11y-click-events-have-key-events -->
     <h3 id={method.name} class="content-title" on:click={() => goto(`#${method.name}`)}>
-        <a href="#{method.name}">
+        <a href="#{method.name}" bind:this={anchor}>
             .{method.name}<span class="params">(<span class="param-contents">{method.params ? method.params.map(e => e.name + (e.optional ? '?' : '')).join(', ') : ''}</span>)</span>
         </a>
         <div class="tags">

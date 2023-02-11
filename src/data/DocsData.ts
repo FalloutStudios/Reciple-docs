@@ -31,8 +31,8 @@ export interface DocsDataOptions {
 }
 
 export class DocsData {
-    protected fetched: boolean = false;
-    protected tagsFetched: boolean = false;
+    public fetched: boolean = false;
+    public tagsFetched: boolean = false;
 
     public data: Partial<Documentation> = {};
 
@@ -59,7 +59,9 @@ export class DocsData {
     public async fetchTags(): Promise<string[]> {
         const url = `https://api.github.com/repos/${this.options.repository}/contents/${this.options.package}?ref=docs`;
         const files: APIGitHubRepositoryContent<'file'>[] = await fetch(url).then(res => this.resJson(res, url));
-        const tags: string[] = []
+        const tags: string[] = [];
+
+        this.tagsFetched = true;
 
         let versions = files.filter(f => semver.valid(f.name.replace('.json', ''))).map(f => f.name.replace('.json', ''));
         let branches = files.filter(f => !versions.some(e => e === f.name.replace('.json', ''))).map(f => f.name.replace('.json', ''));
@@ -89,13 +91,14 @@ export class DocsData {
         }
 
         this.tags = tags.reverse();
-        this.tagsFetched = true;
 
         return this.tags;
     }
 
     public async fetchDocs(tag?: string|null): Promise<this> {
         await this.resolveTags();
+
+        this.fetched = true;
 
         const url = `https://raw.githubusercontent.com/${this.options.repository}/docs/${this.options.package}/${tag ?? this.options.defaultTag}.json`;
 
@@ -109,8 +112,6 @@ export class DocsData {
         this.data.classes?.forEach(e => this.classes.set(e.name, e));
         this.data.functions?.forEach(e => this.functions.set(e.name, e));
         this.data.typedefs?.forEach(e => this.typedefs.set(e.name, e));
-
-        this.fetched = true;
 
         return this;
 	}

@@ -12,10 +12,6 @@
     export let accordionSelected: { type: 'class'|'function'|'typedef', name: string; }|null = null;
     export let isOpen: boolean = false;
 
-    onMount(async () => {
-        docs = await docs.resolveSelf(tag);
-    });
-
     let Sidebar: Element;
     let SidebarContents: Element;
 
@@ -163,9 +159,9 @@
         <div class="contents" bind:this={SidebarContents}>
             <div class="settings">
                 <DropdownMenu class="dropdown" values={Object.keys(packages).map(v => ({ value: v, href: `/docs/${v}`, selected: v === docs.options.package }))} icon="ph:package-bold" id="package-select"></DropdownMenu>
-                {#await docs.resolveSelf(tag) then self}
-                    <DropdownMenu class="dropdown" on:change={handleTagChange} values={self.tags.map(v => ({ value: v, href: `/docs/${docs.options.package}/${v}`, selected: v === tag }))} icon="tabler:versions" id="tag-select"></DropdownMenu>
-                {/await}
+                {#if docs.tags.length}
+                    <DropdownMenu class="dropdown" on:change={handleTagChange} values={docs.tags.map(v => ({ value: v, href: `/docs/${docs.options.package}/${v}`, selected: v === tag }))} icon="tabler:versions" id="tag-select"></DropdownMenu>
+                {/if}
             </div>
 
             {#if classes.length}

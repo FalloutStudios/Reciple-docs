@@ -26,6 +26,7 @@
     $: mplmnts = docsData?.implements?.map((t: string[][]) => docs.typeKey(t, [docsData!.name])).join('');
 
     onMount(async () => {
+        if (docs.fetched) return;
         docs = await docs.resolveSelf(tag);
     });
 

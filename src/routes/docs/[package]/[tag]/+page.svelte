@@ -16,6 +16,7 @@
     let pkg = data.package;
 
     onMount(async () => {
+        if (docs.fetched) return;
         docs = await docs.resolveSelf(tag);
     });
 

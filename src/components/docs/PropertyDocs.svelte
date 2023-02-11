@@ -9,13 +9,13 @@
     export let docs: DocsData;
     export let property: DocumentationProperty;
 
+    let anchor: HTMLAnchorElement|null = null;
+
     onMount(() => {
         if (window.location.hash.substring(1) !== property.name) return;
 
-        document.getElementById(property.name)?.scrollIntoView({
-            block: 'start',
-            inline: 'start'
-        });
+        anchor?.click();
+        anchor?.focus();
     });
 </script>
 
@@ -82,7 +82,7 @@
 <div class="content-property">
     <!-- svelte-ignore a11y-click-events-have-key-events -->
     <h3 id={property.name} class="content-title" on:click={() => goto(`#${property.name}`)}>
-        <a href="#{property.name}">
+        <a href="#{property.name}" bind:this={anchor}>
             .{property.name}
         </a>
         <div class="tags">
