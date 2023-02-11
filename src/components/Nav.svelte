@@ -97,6 +97,16 @@
                         padding-left: 1rem;
                         text-align: left;
                     }
+
+                    .key {
+                        height: 1.8em;
+                        width: 1.8em;
+                        flex-shrink: 0;
+                        color: #c5c5c5;
+                        line-height: 1.8em;
+                        border-radius: 3px;
+                        border: 1px solid #3c3c3c;
+                    }
                 }
             }
         }
@@ -123,6 +133,7 @@
                 <span class="placeholder">
                     Search...
                 </span>
+                <span class="key">/</span>
             </button>
         </div>
     </div>

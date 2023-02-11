@@ -36,15 +36,18 @@ export interface DocumentationParameter {
 type DocumentationClassConstructorParameter = DocumentationParameter;
 type DocumentationClassEventParameter = DocumentationParameter;
 
-interface DocumentationClassMethodParameter extends DocumentationParameter {
+export interface DocumentationClassMethodParameter extends DocumentationParameter {
 	meta: DocumentationClassMethodParameterMeta;
 }
 
-interface DocumentationTypeDefinitionParameter extends DocumentationParameter {
+export interface DocumentationTypeDefinitionParameter extends DocumentationParameter {
 	meta: DocumentationTypeDefinitionParameterMeta;
 }
 
-export interface DocumentationProperty extends DocumentationParameter {}
+export interface DocumentationProperty extends DocumentationParameter {
+	meta: DocumentationTypeDefinitionParameterMeta;
+}
+
 type DocumentationTypeDefinitionProperty = DocumentationProperty;
 type DocumentationClassPropertyProperty = DocumentationProperty;
 

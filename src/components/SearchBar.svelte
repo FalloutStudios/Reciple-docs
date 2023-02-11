@@ -2,8 +2,8 @@
     import Icon from "@iconify/svelte";
     import { Svrollbar } from 'svrollbar';
     import type { DocsData } from '../data/DocsData';
-    import { createEventDispatcher } from 'svelte';
-  import { goto } from '$app/navigation';
+    import { createEventDispatcher, onDestroy, onMount } from 'svelte';
+    import { goto } from '$app/navigation';
 
     export let isOpen: boolean = true;
     export let docs: DocsData;
@@ -59,8 +59,12 @@
         closing = setTimeout(() => {
             if (!canBeClosed) return;
             isOpen = false;
+            originalValue = '';
+            results = [];
+            if (input) input.value = '';
+
             dispatch('close');
-        }, 300);
+        }, 100);
     }
 
     function open() {
@@ -92,8 +96,32 @@
         if (e.key === 'Enter') {
             e.preventDefault();
             if (selectedResult) selectedResult.click();
+        } else if (e.key === 'Escape') {
+            e.preventDefault();
+            close();
+        } else if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
+            if (selectedId <= -1) return;
+
+            e.preventDefault();
+            selectedResult?.scrollIntoView({ behavior: 'smooth', block: 'center', inline: 'center' });
         }
     }
+
+    function searchShortcut(e: KeyboardEvent) {
+        if (e.key === '/' || (e.key == 'k' && e.ctrlKey) || (!e.ctrlKey && !e.altKey && e.key.length === 1)) {
+            if (document.activeElement === input) return;
+
+            e.preventDefault();
+            if (input && e.key !== '/') {
+                input.value = e.key;
+                originalValue = e.key;
+            }
+            open();
+        }
+    }
+
+    onDestroy(() => typeof window === 'undefined' ? null : window.removeEventListener('keypress', searchShortcut));
+    onMount(() => typeof window === 'undefined' ? null : window.addEventListener('keypress', searchShortcut));
 </script>
 
 <style lang="scss">
@@ -260,7 +288,6 @@
 
 {#if isOpen}
 <style>
-    body,
     html {
         overflow: hidden;
     }

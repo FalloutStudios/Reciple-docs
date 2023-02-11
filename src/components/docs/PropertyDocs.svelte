@@ -1,5 +1,6 @@
 <script lang="ts">
     import { goto } from '$app/navigation';
+    import Icon from '@iconify/svelte';
     import { onMount } from 'svelte';
     import type { DocsData } from '../../data/DocsData';
     import type { DocumentationProperty } from '../../interfaces/Documentation';
@@ -11,8 +12,7 @@
     onMount(() => {
         if (window.location.hash.substring(1) !== property.name) return;
 
-        document.querySelector(`#${property.name}`)?.scrollIntoView({
-            behavior: 'smooth',
+        document.getElementById(property.name)?.scrollIntoView({
             block: 'start',
             inline: 'start'
         });
@@ -26,45 +26,6 @@
         position: relative;
         border-bottom: 1px solid rgba(60, 60, 60, 0.5);
         padding-bottom: 1rem;
-
-
-        .content-title {
-            display: flex;
-            align-items: center;
-            margin-bottom: 1rem;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            width: 100%;
-            scroll-padding-top: 4rem;
-
-            a {
-                text-decoration: none;
-            }
-
-            .tags {
-                display: flex;
-                align-items: center;
-                margin-left: 0.5rem;
-
-                .tag {
-                    display: inline-block;
-                    padding: 0.2rem 0.5rem;
-                    margin-right: 0.5rem;
-                    font-size: 0.7rem;
-                    border-radius: 100px;
-                    background: #5865f2;
-                    text-transform: uppercase;
-
-                    &::before {
-                        content: attr(data-content);
-                    }
-
-                    &[data-content="deprecated"] {
-                        background: rgba(190, 42, 42, 1);
-                    }
-                }
-            }
-        }
 
         .contents {
             font-size: 0.9rem;
@@ -129,6 +90,11 @@
             {#if property.readonly} <span class="tag" data-content="readonly"></span> {/if}
             {#if property.deprecated} <span class="tag" data-content="deprecated"></span> {/if}
         </div>
+        {#if property.meta.url}
+            <a href={property.meta.url} target="_blank noreferrer" class="source">
+                <Icon icon="ph:code-bold" />
+            </a>
+        {/if}
     </h3>
     <div class="contents">
         {#if property.description}<Markdown class="content-description" {docs} content={property.description} />{/if}
