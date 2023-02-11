@@ -10,7 +10,7 @@
     export let property: DocumentationProperty;
 
     let anchor: HTMLAnchorElement|null = null;
-    let fragmant: string = typeof window !== 'undefined' ? window.location.hash.substring(1) : '';
+    let fragment: string = typeof window !== 'undefined' ? window.location.hash.substring(1) : '';
 </script>
 
 <style lang="scss">

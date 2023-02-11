@@ -11,7 +11,7 @@
     export let method: DocumentationClassMethod;
 
     let anchor: HTMLAnchorElement|null = null;
-    let fragmant: string = typeof window !== 'undefined' ? window.location.hash.substring(1) : '';
+    let fragment: string = typeof window !== 'undefined' ? window.location.hash.substring(1) : '';
 
     let returns = method?.returns?.map((e: string[][][]) => Array.isArray(e) ? e.map(i => docs.typeKey(i, true, false)).join('') : '').join('');
 </script>
