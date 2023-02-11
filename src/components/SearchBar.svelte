@@ -4,6 +4,7 @@
     import type { DocsData } from '../data/DocsData';
     import { createEventDispatcher, onDestroy, onMount } from 'svelte';
     import { goto } from '$app/navigation';
+  import Markdown from './docs/Markdown.svelte';
 
     export let isOpen: boolean = true;
     export let docs: DocsData;
@@ -224,9 +225,8 @@
                 }
             }
 
-            .results {
-                display: flex;
-                flex-direction: column;
+            .results,
+            .instructions {
                 margin-top: 1rem;
                 width: 100%;
                 background: rgba(24, 24, 24, 0.7);
@@ -235,6 +235,33 @@
                 border-radius: 5px;
                 padding: 4px 0;
                 border: 2px solid #3c3c3c;
+            }
+
+            .instructions {
+                padding: 1rem;
+                font-size: 0.8rem;
+                color: #999;
+
+                :global(code) {
+                    display: inline-flex;
+                    justify-content: center;
+                    align-items: center;
+                    min-width: 1.5em;
+                    height: 1.5em;
+                    border: 2px solid #3c3c3c;
+                    border-radius: 3px;
+                    padding: 0.2rem;
+                }
+
+                :global(li) {
+                    margin-bottom: 0.5rem;
+                    line-height: 1.2rem;
+                }
+            }
+
+            .results {
+                display: flex;
+                flex-direction: column;
 
                 a {
                     color: currentColor;
@@ -322,6 +349,19 @@
                         </a>
                     {/each}
                 </div>
+            {:else}
+                {#if !loading}
+                    <div class="instructions">
+                        <Markdown content={
+                            `Type query to search for classes, functions, and typedefs.\n`+
+                            `Add \`#\` to also search for methods and properties\n`+
+                            `### Examples\n`+
+                            `- \`MessageCommandBuilder\` search for classes, functions, typedefs related to query\n`+
+                            `- \`SlashCommandBuilder#setExecute\` search for classes, typedefs with methods and properties\n`+
+                            `- \`#setName\` search for any classes and typedefs' methods and properties\n`
+                        }></Markdown>
+                    </div>
+                {/if}
             {/if}
         </div>
     </div>
