@@ -194,7 +194,7 @@
                     border: 2px solid transparent;
                     border-top-color: #cecece;
                     border-radius: 50%;
-                    animation: rotate 0.5s both infinite normal;
+                    animation: rotate 0.5s both infinite normal linear;
                 }
 
                 button {
