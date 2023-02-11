@@ -1,6 +1,6 @@
 <script lang="ts">
     import Icon from '@iconify/svelte';
-import { onDestroy, onMount } from 'svelte';
+    import { onDestroy, onMount } from 'svelte';
     import type { DocumentationClassMethod, DocumentationProperty } from '../../interfaces/Documentation';
 
 
@@ -19,7 +19,11 @@ import { onDestroy, onMount } from 'svelte';
         isMethodsClosed = true;
     }
 
-    onMount(() => typeof window === 'undefined' ? null : window.addEventListener('resize', onWindowResize));
+    onMount(() => {
+        if (typeof window !== 'undefined') window.addEventListener('resize', onWindowResize);
+        onWindowResize();
+    });
+
     onDestroy(() => typeof window === 'undefined' ? null : window.removeEventListener('resize', onWindowResize));
 </script>
 
@@ -96,7 +100,9 @@ import { onDestroy, onMount } from 'svelte';
                 </button>
             </h2>
             <div class="links" class:closed={isPropertiesClosed}>
-                {@html properties.map(e => `<a href="#${e.name}" title="${e.name}${e.deprecated ? ' (Deprecated)' : ''}" ${e.deprecated ? 'style="text-decoration: line-through; opacity: 0.4;"' : ''}>${e.name}${e.optional ? '?' : ''}</a>`).join('<br>')}
+                {#each properties as prop}
+                    <a href="#{prop.name}" class:deprecated={prop.deprecated} title="{prop.name}{prop.deprecated ? ' (Deprecated)' : ''}">{prop.name}{prop.optional ? '?' : ''}</a><br>
+                {/each}
             </div>
         </div>
     {/if}
@@ -110,7 +116,9 @@ import { onDestroy, onMount } from 'svelte';
                 </button>
             </h2>
             <div class="links" class:closed={isMethodsClosed}>
-                {@html methods.map(e => `<a href="#${e.name}" title="${e.name}${e.deprecated ? ' (Deprecated)' : ''}" ${e.deprecated ? 'style="text-decoration: line-through; opacity: 0.4;"' : ''}>${e.name}</a>`).join('<br>')}
+                {#each methods as method}
+                    <a href="#{method.name}" class:deprecated={method.deprecated} title="{method.name}{method.deprecated ? ' (Deprecated)' : ''}">{method.name}</a><br>
+                {/each}
             </div>
         </div>
     {/if}
