@@ -1,5 +1,6 @@
 <script lang="ts">
     import { onMount } from 'svelte';
+    import '../../../../assets/styles/docs.scss';
     import '../../../../assets/styles/main.scss';
     import Markdown from '../../../../components/docs/Markdown.svelte';
     import Nav from "../../../../components/Nav.svelte";
@@ -31,7 +32,7 @@
 <SideNav {docs} {tag} on:tagChange={changeTag}></SideNav>
 
 <div class="docsContent">
-    <div class="contents" style="padding: 2.5rem">
+    <div class="contents">
         {#if docs?.defaultPage}
             <Markdown content={docs.defaultPage?.content} {docs}></Markdown>
         {/if}

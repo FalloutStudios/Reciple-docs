@@ -40,7 +40,7 @@
 
 {#if docsData}
     <div class="docsContent">
-        <div class="contents" style="padding: 2.5rem">
+        <div class="contents">
             <Title icon="codicon:symbol-field" source={docsData.meta.url}>{docsData.name}</Title>
             {#if docsData?.description}<Markdown class="content-description" {docs} content={docsData?.description} />{/if}
             {#if docsData.type}<Markdown {docs} content={'```ts\n'+ docsData.type.map(e => docs.typeKey(e, true, false)).join('') + '\n```'}/>{/if}

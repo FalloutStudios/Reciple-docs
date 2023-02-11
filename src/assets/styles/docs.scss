@@ -1,6 +1,16 @@
 .docsContent {
     min-height: 100%;
 
+    > .contents {
+        padding: 2.5rem;
+    }
+
+    @media (max-width: 900px) {
+        > .contents {
+            padding: 1.5rem;
+        }
+    }
+
     h1,
     h2,
     h3,
@@ -154,14 +164,20 @@
 
         a {
             text-decoration: none;
-            flex-shrink: 0;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
 
         a.source {
+            flex-shrink: 0;
             line-height: 1;
+            width: 1.5rem;
+            text-align: right;
+            color: #828282;
         }
 
-        .params {
+        .params .param-contents {
             opacity: 0.6;
         }
 
@@ -169,7 +185,6 @@
             display: flex;
             align-items: center;
             margin-left: 0.5rem;
-            width: 100%;
 
             .tag {
                 display: inline-block;

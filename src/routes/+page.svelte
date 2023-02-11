@@ -95,6 +95,18 @@
                         }
                     }
                 }
+
+                @media (max-width: 460px) {
+                    .buttons {
+                        display: flex;
+                        flex-direction: column;
+
+                        :global(a) {
+                            margin: 0.5rem 0;
+                            text-align: center;
+                        }
+                    }
+                }
             }
 
             .install-section {

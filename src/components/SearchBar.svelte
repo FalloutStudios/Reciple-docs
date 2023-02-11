@@ -82,6 +82,9 @@
         } else if (e.key === 'ArrowUp') {
             e.preventDefault();
             selectedId = selectedId - 1 < -1 ? results.length - 1 : selectedId - 1;
+        } else if (e.key === 'Escape') {
+            e.preventDefault();
+            isOpen = false;
         }
 
         selectedResult = document.querySelector<HTMLAnchorElement>(`#sr-${selectedId}`);
@@ -97,9 +100,6 @@
         if (e.key === 'Enter') {
             e.preventDefault();
             if (selectedResult) selectedResult.click();
-        } else if (e.key === 'Escape') {
-            e.preventDefault();
-            isOpen = false;
         } else if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
             if (selectedId <= -1) return;
 
@@ -124,8 +124,8 @@
         }
     }
 
-    onDestroy(() => typeof window === 'undefined' ? null : window.removeEventListener('keypress', searchShortcut));
     onMount(() => typeof window === 'undefined' ? null : window.addEventListener('keypress', searchShortcut));
+    onDestroy(() => typeof window === 'undefined' ? null : window.removeEventListener('keypress', searchShortcut));
 </script>
 
 <style lang="scss">
@@ -151,19 +151,23 @@
     .search-container {
         width: 100%;
         height: 100%;
-        overflow: auto;
+        position: relative;
+        overflow-y: auto;
+        overflow-x: hidden;
         background: rgba(24, 24, 24, 0.5);
-        display: grid;
+        display: block;
+        text-align: center;
 
         .search {
-            display: flex;
+            display: inline-flex;
+            text-align: initial;
             flex-direction: column;
             align-items: center;
             width: 100%;
             max-width: 500px;
             padding: 4rem 2rem;
-            margin-top: 6rem;
-            justify-self: center;
+            margin-top: 8rem;
+            padding-bottom: 2rem;
 
             .form {
                 display: flex;
@@ -307,8 +311,49 @@
                         font-size: 0.8rem;
                         color: #999;
                         width: 100%;
+                        white-space: nowrap;
                         overflow: hidden;
                         text-overflow: ellipsis;
+                    }
+                }
+            }
+        }
+    }
+
+    @media (max-width: 540px) {
+        .search-container {
+            background-color: #181818;
+
+            .search {
+                max-width: unset;
+                margin-top: 0;
+                padding: 0.3rem;
+
+                .results,
+                .instructions {
+                    backdrop-filter: none;
+                    background-color: #181818;
+                    border: none;
+                    box-shadow: none;
+                    outline: none;
+                    font-size: 1rem;
+                }
+
+                .instructions {
+                    font-size: 0.85rem;
+                }
+
+                .form {
+                    position: sticky;
+                    top: 5px;
+                    font-size: 1rem;
+                    border-color: #111111;
+                }
+
+                .results {
+                    a {
+                        border-radius: 5px;
+                        margin-bottom: 5px;
                     }
                 }
             }

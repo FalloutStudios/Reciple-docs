@@ -43,7 +43,7 @@
 
 {#if docsData}
     <div class="docsContent">
-        <div class="contents" style="padding: 2.5rem">
+        <div class="contents">
             <Title icon="codicon:symbol-class" source={docsData.meta.url} subTitle={(xtnds ? `extends ${xtnds} ` : '') + (mplmnts ? `implements ${mplmnts}` : '')}>{docsData.name}</Title>
             {#if docsData?.description}<Markdown class="content-description" {docs} content={docsData?.description} />{/if}
             <Markdown {docs} content={'```js\n'+  docsData.construct.name +'('+ (docsData.construct.params ? docs.parseParamTypes(docsData.construct.params) : '') +')\n```'}/>

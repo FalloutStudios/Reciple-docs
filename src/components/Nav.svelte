@@ -108,6 +108,66 @@
                         border: 1px solid #3c3c3c;
                     }
                 }
+
+                @media (max-width: 1080px) {
+                    .nav-search {
+                        width: 2rem;
+                        height: 2rem;
+                        padding: 0;
+                        display: block;
+                        border: none;
+                        background: none;
+
+                        &:hover,
+                        &:focus {
+                            background: rgba(60, 60, 60, 0.4);
+                        }
+
+                        .icon {
+                            font-size: 1.2rem;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            flex-shrink: 0;
+                            height: 100%;
+                            width: 100%;
+                        }
+
+                        .placeholder,
+                        .key {
+                            display: none;
+                        }
+                    }
+                }
+            }
+        }
+
+        @media (max-width: 900px) {
+            .nav-container {
+                padding: 0.5rem 1.5rem;
+
+                .nav-title {
+                    display: none;
+                }
+
+                .nav-links {
+                    a {
+                        padding: 0;
+                        margin-right: 1rem;
+
+                        &:focus-visible {
+                            background: none;
+                            border-radius: 3px;
+                            outline: 4px solid #fff;
+                        }
+                    }
+
+                    @media (max-width: 515px) {
+                        a.canbehidden {
+                            display: none;
+                        }
+                    }
+                }
             }
         }
     }
@@ -121,8 +181,8 @@
         <div class="nav-links">
             <a href="/">Reciple</a>
             <a href="/docs">Documentation</a>
-            <a href={githubHome} target="_blank noreferrer">GitHub <Icon icon="mingcute:external-link-line"/></a>
-            <a href="https://discord.js.org/docs" target="_blank noreferrer">Discord.js <Icon icon="mingcute:external-link-line"/></a>
+            <a class="canbehidden" href={githubHome} target="_blank noreferrer">GitHub <Icon icon="mingcute:external-link-line"/></a>
+            <a class="canbehidden" href="https://discord.js.org/docs" target="_blank noreferrer">Discord.js <Icon icon="mingcute:external-link-line"/></a>
         </div>
         <div class="nav-whitespace"></div>
         <div class="nav-utils">

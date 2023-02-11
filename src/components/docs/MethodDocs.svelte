@@ -40,6 +40,7 @@
             .returns {
                 display: flex;
                 align-items: center;
+                flex-wrap: wrap;
 
                 .label {
                     margin-right: 0.5rem;
@@ -56,6 +57,14 @@
                 }
             }
         }
+
+        @media (max-width: 910px) {
+            .content-title {
+                .params {
+                    display: none;
+                }
+            }
+        }
     }
 </style>
 
@@ -63,7 +72,7 @@
     <!-- svelte-ignore a11y-click-events-have-key-events -->
     <h3 id={method.name} class="content-title" on:click={() => goto(`#${method.name}`)}>
         <a href="#{method.name}">
-            .{method.name}(<span class="params">{method.params ? method.params.map(e => e.name + (e.optional ? '?' : '')).join(', ') : ''}</span>)
+            .{method.name}<span class="params">(<span class="param-contents">{method.params ? method.params.map(e => e.name + (e.optional ? '?' : '')).join(', ') : ''}</span>)</span>
         </a>
         <div class="tags">
             {#if method.scope === 'static'} <span class="tag" data-content="static"></span> {/if}

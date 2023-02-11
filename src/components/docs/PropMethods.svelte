@@ -16,7 +16,7 @@
         width: 100%;
 
         .content {
-            width: 100%;
+            width: 50%;
             margin: 0.5rem 0;
             margin-top: 0;
 
@@ -53,6 +53,7 @@
                 :global(a) {
                     display: inline-block;
                     overflow: hidden;
+                    width: calc(100% - 1.8rem);
                     text-overflow: ellipsis;
                     margin-bottom: 0.2rem;
                     margin-left: 1.8rem;

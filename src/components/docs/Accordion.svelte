@@ -2,6 +2,7 @@
     import Icon from '@iconify/svelte';
     import { onMount } from 'svelte';
     import HomeButton from "../HomeButton.svelte";
+    import { createEventDispatcher } from 'svelte';
 
     export let selectedValue: string|null = null;
     export let icon: string|null = '';
@@ -9,6 +10,10 @@
 
     export let contents: { value: string; href: string; }[] = [];
     export let isClosed: boolean = false;
+
+    let dispatch = createEventDispatcher();
+
+    $: selectedValue, (() => dispatch('change'))();
 
     const selectedId = `s-${Math.random() / 100}`.replace('.','_');
 
