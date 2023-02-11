@@ -351,16 +351,22 @@
                 </div>
             {:else}
                 {#if !loading}
-                    <div class="instructions">
-                        <Markdown content={
-                            `Type query to search for classes, functions, and typedefs.\n`+
-                            `Add \`#\` to also search for methods and properties\n`+
-                            `### Examples\n`+
-                            `- \`MessageCommandBuilder\` search for classes, functions, typedefs related to query\n`+
-                            `- \`SlashCommandBuilder#setExecute\` search for classes, typedefs with methods and properties\n`+
-                            `- \`#setName\` search for any classes and typedefs' methods and properties\n`
-                        }></Markdown>
-                    </div>
+                    {#if  !(query || '').trim()}
+                        <div class="instructions">
+                            <Markdown content={
+                                `Type query to search for classes, functions, and typedefs.\n`+
+                                `Add \`#\` to also search for methods and properties\n`+
+                                `### Examples\n`+
+                                `- \`MessageCommandBuilder\` search for classes, functions, typedefs related to query\n`+
+                                `- \`SlashCommandBuilder#setExecute\` search for classes, typedefs with methods and properties\n`+
+                                `- \`#setName\` search for any classes and typedefs' methods and properties\n`
+                            }></Markdown>
+                        </div>
+                    {:else}
+                        <div class="instructions">
+                            <Markdown content={`<p align="center">No results found</p>`}></Markdown>
+                        </div>
+                    {/if}
                 {/if}
             {/if}
         </div>
