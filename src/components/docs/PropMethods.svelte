@@ -1,5 +1,6 @@
 <script lang="ts">
     import Icon from '@iconify/svelte';
+import { onDestroy, onMount } from 'svelte';
     import type { DocumentationClassMethod, DocumentationProperty } from '../../interfaces/Documentation';
 
 
@@ -8,6 +9,18 @@
 
     let isPropertiesClosed: boolean = false;
     let isMethodsClosed: boolean = false;
+
+    $: windowWidth = typeof window !== 'undefined' ? window.innerWidth : 0;
+
+    function onWindowResize() {
+        if (windowWidth > 780) return;
+
+        isPropertiesClosed = true;
+        isMethodsClosed = true;
+    }
+
+    onMount(() => typeof window === 'undefined' ? null : window.addEventListener('resize', onWindowResize));
+    onDestroy(() => typeof window === 'undefined' ? null : window.removeEventListener('resize', onWindowResize));
 </script>
 
 <style lang="scss">
@@ -58,6 +71,16 @@
                     margin-bottom: 0.2rem;
                     margin-left: 1.8rem;
                 }
+            }
+        }
+    }
+
+    @media (max-width: 780px) {
+        .container {
+            flex-direction: column;
+
+            .content {
+                width: 100%;
             }
         }
     }

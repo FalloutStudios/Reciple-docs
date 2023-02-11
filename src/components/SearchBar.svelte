@@ -402,9 +402,9 @@
                                 `Type query to search for classes, functions, and typedefs.\n`+
                                 `Add \`#\` to also search for methods and properties\n`+
                                 `### Examples\n`+
-                                `- \`MessageCommandBuilder\` search for classes, functions, typedefs related to query\n`+
+                                `- \`MessageCommandBuilder\` search for classes, functions, and typedefs\n`+
                                 `- \`SlashCommandBuilder#setExecute\` search for classes, typedefs with methods and properties\n`+
-                                `- \`#setName\` search for any classes and typedefs' methods and properties\n`
+                                `- \`#setName\` search methods or properties of any classes and typedefs\n`
                             }></Markdown>
                         </div>
                     {:else}
