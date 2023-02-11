@@ -99,7 +99,7 @@
             if (selectedResult) selectedResult.click();
         } else if (e.key === 'Escape') {
             e.preventDefault();
-            close();
+            isOpen = false;
         } else if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
             if (selectedId <= -1) return;
 
@@ -335,7 +335,7 @@
                     <Icon icon="fluent:search-12-regular"/>
                     {/if}
                 </span>
-                <input type="search" bind:value={query} on:input={inputUpdate} on:blur={close} on:focus={open} on:keydown={keydown} on:keyup={keyup} bind:this={input}>
+                <input type="search" autocomplete="off" bind:value={query} on:input={inputUpdate} on:blur={close} on:focus={open} on:keydown={keydown} on:keyup={keyup} bind:this={input}>
                 <button type="reset" on:click={close}><Icon icon="material-symbols:arrow-forward-rounded" /></button>
             </div>
             {#if results.length}
