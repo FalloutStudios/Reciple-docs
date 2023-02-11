@@ -47,7 +47,7 @@
     }
 
     async function search() {
-        results = await docs.search(query);
+        results = await docs.search(query || '');
         loading = false;
         dispatch('resultsUpdate', results);
     }
@@ -115,6 +115,9 @@
             if (input && e.key !== '/') {
                 input.value = e.key;
                 originalValue = e.key;
+                query = e.key;
+
+                inputUpdate();
             }
             open();
         }
