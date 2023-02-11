@@ -9,7 +9,7 @@
     import PropMethods from '../../../../../../components/docs/PropMethods.svelte';
     import Markdown from '../../../../../../components/docs/Markdown.svelte';
     import PropertyDocs from '../../../../../../components/docs/PropertyDocs.svelte';
-  import { onMount } from 'svelte';
+    import { onMount } from 'svelte';
 
     export let data: { package: keyof typeof packages; tag: string; typedef: string; };
 

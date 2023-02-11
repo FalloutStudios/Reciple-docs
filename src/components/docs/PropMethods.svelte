@@ -1,6 +1,6 @@
 <script lang="ts">
     import Icon from '@iconify/svelte';
-import type { DocumentationClassMethod, DocumentationProperty } from '../../interfaces/Documentation';
+    import type { DocumentationClassMethod, DocumentationProperty } from '../../interfaces/Documentation';
 
 
     export let properties: DocumentationProperty[] = [];

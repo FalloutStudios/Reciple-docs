@@ -3,7 +3,7 @@
     import highlighter from 'showdown-highlight';
     import { Converter } from 'showdown';
     import type { DocsData } from '../../data/DocsData';
-  import { convertLinks } from '../../scripts/convertLinks';
+    import { convertLinks } from '../../scripts/convertLinks';
 
     export let content: string;
     export let docs: DocsData|null = null;

@@ -8,8 +8,7 @@
     import Title from '../../../../../../components/docs/Title.svelte';
     import Markdown from '../../../../../../components/docs/Markdown.svelte';
     import ParamsTable from '../../../../../../components/docs/ParamsTable.svelte';
-    import { typeKey } from '../../../../../../scripts/typeKey';
-  import { onMount } from 'svelte';
+    import { onMount } from 'svelte';
 
     export let data: { package: keyof typeof packages; tag: string; function: string; };
 

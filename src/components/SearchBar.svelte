@@ -4,7 +4,7 @@
     import type { DocsData } from '../data/DocsData';
     import { createEventDispatcher, onDestroy, onMount } from 'svelte';
     import { goto } from '$app/navigation';
-  import Markdown from './docs/Markdown.svelte';
+    import Markdown from './docs/Markdown.svelte';
 
     export let isOpen: boolean = true;
     export let docs: DocsData;

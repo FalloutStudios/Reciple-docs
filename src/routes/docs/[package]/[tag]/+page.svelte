@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { onMount } from 'svelte';
+    import { onMount } from 'svelte';
     import '../../../../assets/styles/main.scss';
     import Markdown from '../../../../components/docs/Markdown.svelte';
     import Nav from "../../../../components/Nav.svelte";
