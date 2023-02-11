@@ -16,11 +16,6 @@
     let SidebarContents: Element;
 
     onMount(async () => {
-        if (docs.fetched) {
-            docs = docs;
-            return;
-        }
-
         docs = await docs.resolveSelf(tag);
     });
 
