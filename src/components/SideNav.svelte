@@ -25,8 +25,11 @@
 
     const dispatch = createEventDispatcher();
 
-    async function handleTagChange(tag: CustomEvent<{ value: string; }>) {
-        dispatch('tagChange', tag.detail.value);
+    async function handleTagChange(newTag: CustomEvent<{ value: string; }>) {
+        tag = newTag.detail.value;
+
+        dispatch('tagChange', tag);
+        console.log(tag);
     }
 
     $: windowWidth = typeof window !== 'undefined' ? window.innerWidth : 0;
