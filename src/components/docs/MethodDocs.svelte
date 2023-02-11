@@ -70,7 +70,7 @@
             {#if method.scope === 'private'} <span class="tag" data-content="private"></span> {/if}
             {#if method.deprecated} <span class="tag" data-content="deprecated"></span> {/if}
         </div>
-        {#if method.meta.url}
+        {#if method.meta?.url}
             <a href={method.meta.url} target="_blank noreferrer" class="source">
                 <Icon icon="ph:code-bold" />
             </a>

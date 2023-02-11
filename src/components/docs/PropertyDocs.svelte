@@ -90,7 +90,7 @@
             {#if property.readonly} <span class="tag" data-content="readonly"></span> {/if}
             {#if property.deprecated} <span class="tag" data-content="deprecated"></span> {/if}
         </div>
-        {#if property.meta.url}
+        {#if property.meta?.url}
             <a href={property.meta.url} target="_blank noreferrer" class="source">
                 <Icon icon="ph:code-bold" />
             </a>
