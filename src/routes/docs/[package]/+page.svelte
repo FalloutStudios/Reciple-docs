@@ -12,6 +12,10 @@
 </script>
 
 <style lang="scss">
+    :global(body) {
+        scroll-padding-top: 1rem;
+    }
+
     .container {
         min-height: 100%;
         width: 100%;
