@@ -20,7 +20,6 @@
         if (fragment !== method.name) return;
 
         dispatch('scrollTo', anchor);
-        anchor?.scrollIntoView();
     });
 </script>
 
@@ -73,7 +72,7 @@
 <div class="content-method">
     <!-- svelte-ignore a11y-click-events-have-key-events -->
     <h3 id={method.name} class="content-title" on:click={() => goto(`#${method.name}`)}>
-        <a href="#{method.name}" bind:this={anchor}>
+        <a href="#{method.name}" bind:this={anchor} id={fragment === method.name ? 'scrollIntoView' : null}>
             .{method.name}<span class="params">(<span class="param-contents">{method.params ? method.params.map(e => e.name + (e.optional ? '?' : '')).join(', ') : ''}</span>)</span>
         </a>
         <div class="tags">

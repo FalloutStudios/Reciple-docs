@@ -17,7 +17,6 @@
         if (fragment !== property.name) return;
 
         dispatch('scrollTo', anchor);
-        anchor?.scrollIntoView();
     });
 </script>
 
@@ -84,7 +83,7 @@
 <div class="content-property">
     <!-- svelte-ignore a11y-click-events-have-key-events -->
     <h3 id={property.name} class="content-title" on:click={() => goto(`#${property.name}`)}>
-        <a href="#{property.name}" bind:this={anchor}>
+        <a href="#{property.name}" bind:this={anchor} id={fragment === property.name ? 'scrollIntoView' : null}>
             .{property.name}
         </a>
         <div class="tags">
