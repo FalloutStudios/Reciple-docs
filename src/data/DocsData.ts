@@ -166,16 +166,8 @@ export class DocsData {
             return tokens.every(t =>
                 e.name.toLowerCase().includes(t) ||
                 e.description?.toLowerCase()?.includes(t) ||
-                e.name.toLowerCase().split(/(\s+)/gim).filter(e => e.trim()).some(e => {
-                    const i = compareTwoStrings(e, t);
-                    console.log('name', e, t, i);
-                    return i >= 0.8;
-                }) ||
-                e.description?.toLowerCase().split(/(\s+)/gim).filter(e => e.trim()).some(e => {
-                    const i = compareTwoStrings(e, t);
-                    console.log('description', e, t, i);
-                    return i >= 0.8;
-                })
+                e.name.toLowerCase().split(/(\s+)/gim).filter(e => e.trim()).some(e => compareTwoStrings(e, t) >= 0.8) ||
+                e.description?.toLowerCase().split(/(\s+)/gim).filter(e => e.trim()).some(e => compareTwoStrings(e, t) >= 0.8)
             );
         }
 
