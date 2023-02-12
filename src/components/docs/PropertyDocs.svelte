@@ -4,13 +4,21 @@
     import type { DocsData } from '../../data/DocsData';
     import type { DocumentationProperty } from '../../interfaces/Documentation';
     import Markdown from './Markdown.svelte';
-    import { onMount } from 'svelte';
+    import { createEventDispatcher, onMount } from 'svelte';
 
     export let docs: DocsData;
     export let property: DocumentationProperty;
 
     let anchor: HTMLAnchorElement|null = null;
     let fragment: string = typeof window !== 'undefined' ? window.location.hash.substring(1) : '';
+    let dispatch = createEventDispatcher();
+
+    onMount(async () => {
+        if (fragment !== property.name) return;
+
+        dispatch('scrollTo', anchor);
+        anchor?.scrollIntoView();
+    });
 </script>
 
 <style lang="scss">

@@ -5,15 +5,23 @@
     import type { DocumentationClassMethod } from '../../interfaces/Documentation';
     import Markdown from './Markdown.svelte';
     import ParamsTable from './ParamsTable.svelte';
-    import { onMount } from 'svelte';
+    import { createEventDispatcher, onMount } from 'svelte';
 
     export let docs: DocsData;
     export let method: DocumentationClassMethod;
 
     let anchor: HTMLAnchorElement|null = null;
     let fragment: string = typeof window !== 'undefined' ? window.location.hash.substring(1) : '';
+    let dispatch = createEventDispatcher();
 
     let returns = method?.returns?.map((e: string[][][]) => Array.isArray(e) ? e.map(i => docs.typeKey(i, true, false)).join('') : '').join('');
+
+    onMount(async () => {
+        if (fragment !== method.name) return;
+
+        dispatch('scrollTo', anchor);
+        anchor?.scrollIntoView();
+    });
 </script>
 
 <style lang="scss">
@@ -86,10 +94,7 @@
         <h3>Construct</h3>
         <Markdown class="nowrap-code-md construct" content={'```ts\n'+ method.name + `(${ method.params ? docs.parseParamTypes(method.params, { escapeHtml: false, disableTypeAnchors: true }) : '' }): ${returns || 'unknown'}` +'\n```'}></Markdown>
 
-        {#if method.params}
-            <h3>Params</h3>
-            <ParamsTable {docs} params={method.params}></ParamsTable>
-        {/if}
+        {#if method.params}<ParamsTable {docs} params={method.params} title="Params"></ParamsTable>{/if}
 
         {#if returns}
             <div class="returns">

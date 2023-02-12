@@ -48,7 +48,7 @@
             <Markdown class="nowrap-code-md" content={'```ts\n'+ docsData.name + `(${ docsData.params ? docs.parseParamTypes(docsData.params, { escapeHtml: false, disableTypeAnchors: true }) : '' }): ${returns || 'unknown'}` +'\n```'}></Markdown>
 
             {#if docsData.params}
-                <ParamsTable params={docsData.params} {docs}></ParamsTable>
+                <ParamsTable params={docsData.params} {docs} title="Params"></ParamsTable>
             {/if}
             {#if returns}
                 <h3>Returns</h3>
