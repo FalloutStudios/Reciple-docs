@@ -1,9 +1,11 @@
 <script lang="ts">
     import '../../assets/styles/markdown.scss';
     import highlighter from 'showdown-highlight';
-    import { Converter } from 'showdown';
+    import showdown from 'showdown';
     import type { DocsData } from '../../data/DocsData';
     import { convertLinks } from '../../scripts/convertLinks';
+
+    const { Converter } = showdown;
 
     export let content: string;
     export let docs: DocsData|null = null;
