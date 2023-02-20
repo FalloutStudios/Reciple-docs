@@ -10,16 +10,6 @@
 </script>
 
 <style lang="scss">
-    :global(body) {
-        padding-top: 4rem;
-    }
-
-    :global(body),
-    :global(html) {
-        scroll-padding-top: 1rem;
-        scroll-behavior: smooth;
-    }
-
     .nav {
         display: flex;
         justify-content: center;
@@ -174,6 +164,17 @@
 </style>
 
 <div class="nav">
+    <style>
+        body {
+            padding-top: 4rem;
+        }
+
+        body,
+        html {
+            scroll-padding-top: 1rem;
+            scroll-behavior: smooth;
+        }
+    </style>
     <div class="nav-container">
         {#if title}
             <div class="nav-title">{title}</div>
