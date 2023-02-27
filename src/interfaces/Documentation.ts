@@ -18,7 +18,7 @@ type DocumentationExternalMeta = DocumentationClassMeta;
 type DocumentationTypeDefinitionMeta = DocumentationClassMeta;
 type DocumentationTypeDefinitionParameterMeta = DocumentationClassMeta;
 
-interface DocumentationParameter {
+export interface DocumentationParameter {
 	name: string;
 	description?: string;
 	default: string;
@@ -36,15 +36,18 @@ interface DocumentationParameter {
 type DocumentationClassConstructorParameter = DocumentationParameter;
 type DocumentationClassEventParameter = DocumentationParameter;
 
-interface DocumentationClassMethodParameter extends DocumentationParameter {
+export interface DocumentationClassMethodParameter extends DocumentationParameter {
 	meta: DocumentationClassMethodParameterMeta;
 }
 
-interface DocumentationTypeDefinitionParameter extends DocumentationParameter {
+export interface DocumentationTypeDefinitionParameter extends DocumentationParameter {
 	meta: DocumentationTypeDefinitionParameterMeta;
 }
 
-interface DocumentationProperty extends DocumentationParameter {}
+export interface DocumentationProperty extends DocumentationParameter {
+	meta: DocumentationTypeDefinitionParameterMeta;
+}
+
 type DocumentationTypeDefinitionProperty = DocumentationProperty;
 type DocumentationClassPropertyProperty = DocumentationProperty;
 
@@ -108,7 +111,7 @@ export interface DocumentationCustomFile {
 	path: string;
 }
 
-interface DocumentationCustom {
+export interface DocumentationCustom {
 	[key: string]: {
 		name: string;
 		files: {
@@ -140,7 +143,7 @@ interface DocumentationLink {
 		| string;
 }
 
-interface DocumentationTypeDefinition {
+export interface DocumentationTypeDefinition {
 	name: string;
 	description: string;
 	access?: string;
@@ -161,7 +164,7 @@ export type ParameterUnion =
 
 export interface Documentation {
 	classes: DocumentationClass[];
-	custom: DocumentationCustom[];
+	custom: DocumentationCustom;
 	externals: DocumentationExternal[];
 	functions?: DocumentationClassMethod[];
 	global: string;
