@@ -64,7 +64,7 @@
 </style>
 
 <svelte:head>
-    <title>Choose a package</title>
+    <title>Choose package</title>
 </svelte:head>
 
 <div class="container">
