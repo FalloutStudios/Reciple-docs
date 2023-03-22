@@ -1,4 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
+@import './variables.scss';
+
 :root {
     color-scheme: dark;
 }
@@ -7,8 +9,8 @@ body,
 html {
     height: 100%;
     width: 100%;
-    background: #181818;
-    color: #f7f7f7;
+    background: $bg;
+    color: $white;
     font-family: 'Inter', sans-serif;
 }
 

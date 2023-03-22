@@ -46,6 +46,8 @@
 </script>
 
 <style lang="scss">
+    @import '../assets/styles/variables.scss';
+
     :global(.docsContent) {
         padding-left: 300px;
     }
@@ -66,8 +68,8 @@
         .sidenav {
             position: relative;
             width: 100%;
-            background: #181818;
-            border-right: 1px solid #3c3c3c;
+            background: $bg;
+            border-right: 1px solid $border;
             height: 100%;
             overflow-y: auto;
             overflow-x: hidden;
@@ -80,7 +82,7 @@
             }
 
             .settings {
-                border-bottom: 1px solid #3c3c3c;
+                border-bottom: 1px solid $border;
 
                 :global(.dropdown) {
                     margin-bottom: 1rem;
@@ -105,7 +107,7 @@
             left: unset;
             right: -400px;
             transition: 0.3s right;
-            box-shadow: 0px 0px 20px rgba($color: #000, $alpha: 0.5);
+            box-shadow: 0px 0px 20px rgba($color: black, $alpha: 0.5);
             max-width: 325px;
             width: 100%;
             visibility: none;
@@ -113,7 +115,7 @@
             .sidenav {
                 padding-bottom: 8rem;
                 border-right: none;
-                border-left: 1px solid #3c3c3c;
+                border-left: 1px solid $border;
             }
 
             &.open {
@@ -132,9 +134,9 @@
             right: 0;
             height: 3rem;
             width: 3rem;
-            color: #000;
-            background: #588bf2;
-            box-shadow: 0px 0px 20px rgba($color: #000, $alpha: 0.5);
+            color: $bg;
+            background: $link;
+            box-shadow: 0px 0px 20px rgba($color: black, $alpha: 0.5);
             border: none;
             border-radius: 50%;
             font-size: 1.5rem;

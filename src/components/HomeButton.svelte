@@ -3,12 +3,14 @@
 </script>
 
 <style lang="scss">
+    @import '../assets/styles/variables.scss';
+
     a {
         position: relative;
         display: inline-block;
         padding: 0.6rem 1.2rem;
-        background: rgba(34, 34, 34, 1.0);
-        border: 1px solid rgba(60, 60, 60, 1.0);
+        background: $dark;
+        border: 1px solid $border;
         text-decoration: none;
         border-radius: 5px;
         color: #fff;
@@ -17,22 +19,23 @@
 
         &:hover,
         &:focus {
-            background: rgb(43, 43, 43);
+            background: rgba($color: $border, $alpha: 0.5);
         }
 
         &:focus-visible {
-            outline: 4px #5865f2 solid;
+            outline: 4px $link solid;
         }
 
         &.blue {
-            background: #5865f2;
-            border-color: #5865f2;
+            background: $link;
+            border-color: lighten($color: $link, $amount: 3);
 
             &:focus-visible {
-                outline-color: #fff;
+                outline-color: currentColor;
             }
         }
     }
 </style>
 
+<!-- svelte-ignore a11y-missing-attribute -->
 <a class:blue={style == 'Blue'} on:click on:focus on:blur {...$$props}><slot>Link</slot></a>

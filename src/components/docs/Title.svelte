@@ -7,10 +7,12 @@
 </script>
 
 <style lang="scss">
+    @import '../../assets/styles/variables.scss';
+
     .title {
         margin: 0.5rem 0;
         margin-bottom: 1.5rem;
-        border-bottom: 1px solid #3c3c3c;
+        border-bottom: 1px solid $border;
 
         h1 {
             font-weight: bolder;

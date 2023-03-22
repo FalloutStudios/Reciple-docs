@@ -42,6 +42,8 @@
 </script>
 
 <style lang="scss">
+    @import '../assets/styles/variables.scss';
+
     .dropdown {
         position: relative;
         display: flex;
@@ -79,8 +81,8 @@
             z-index: 5;
             padding: 5px 0;
             border-radius: 5px;
-            background: rgba(34, 34, 34, 1.0);
-            border: 1px solid rgba(60, 60, 60, 1.0);
+            background: $dark;
+            border: 1px solid $border;
 
             a {
                 padding: 10px;
@@ -90,11 +92,11 @@
 
                 &:hover,
                 &:focus {
-                    background: rgb(53, 53, 53);
+                    background: rgba($color: $border, $alpha: 0.4);
                 }
 
                 &.selected {
-                    color: #5865f2;
+                    color: $link;
                 }
             }
         }

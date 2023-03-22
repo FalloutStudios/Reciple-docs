@@ -10,6 +10,8 @@
 </script>
 
 <style lang="scss">
+    @import '../assets/styles/variables.scss';
+
     .nav {
         display: flex;
         justify-content: center;
@@ -18,8 +20,8 @@
         top: 0;
         left: 0;
         width: 100%;
-        background: #181818;
-        border-bottom: 1px solid #3c3c3c;
+        background: $bg;
+        border-bottom: 1px solid $border;
         height: 4rem;
         z-index: 10;
 
@@ -40,14 +42,14 @@
                 flex-shrink: 0;
 
                 a {
-                    color: #fff;
+                    color: $white;
                     text-decoration: none;
                     padding: 1rem 2rem;
                     border-radius: 5px;
                     margin: 0 2px;
 
                     &:focus-visible {
-                        background: rgba(60, 60, 60, 0.415);
+                        background: rgba($color: $border, $alpha: 0.4);
                         outline: none;
                     }
 
@@ -70,9 +72,9 @@
                 flex-shrink: 0;
 
                 .nav-search {
-                    border: 1px solid #3c3c3c;
-                    background: #161616;
-                    color: #fff;
+                    border: 1px solid $border;
+                    background: darken($color: $bg, $amount: 1);
+                    color: $white;
                     display: flex;
                     align-items: center;
                     padding: 0.5rem 1rem;
@@ -95,7 +97,7 @@
                         color: #c5c5c5;
                         line-height: 1.8em;
                         border-radius: 3px;
-                        border: 1px solid #3c3c3c;
+                        border: 1px solid $border;
                     }
                 }
 
@@ -110,7 +112,7 @@
 
                         &:hover,
                         &:focus {
-                            background: rgba(60, 60, 60, 0.4);
+                            background: rgba($color: $border, $alpha: 0.4);
                         }
 
                         .icon {
@@ -148,7 +150,7 @@
                         &:focus-visible {
                             background: none;
                             border-radius: 3px;
-                            outline: 4px solid #fff;
+                            outline: 4px solid $white;
                         }
                     }
 

@@ -13,10 +13,12 @@
 </script>
 
 <style lang="scss">
+    @import '../../assets/styles/variables.scss';
+
     .container {
         margin: 1rem 0;
         margin-top: 0;
-        border: 1px solid #3c3c3c;
+        border: 1px solid $border;
         border-radius: 5px;
         width: 100%;
         overflow: auto;
@@ -37,7 +39,7 @@
 
                 th {
                     padding: 1rem;
-                    border-bottom: 1px solid #3c3c3c;
+                    border-bottom: 1px solid $border;
                     font-weight: 600;
                     text-transform: uppercase;
                     font-size: 0.8rem;
@@ -45,9 +47,9 @@
 
                 td {
                     padding: 0.5rem;
-                    border-left: 1px solid #3c3c3c;
+                    border-left: 1px solid $border;
                     font-size: 0.9rem;
-                    border-bottom: 1px solid rgba(60, 60, 60, 0.5);
+                    border-bottom: 1px solid rgba($color: $border, $alpha: 0.5);
 
                     &:first-child {
                         border-left: none;

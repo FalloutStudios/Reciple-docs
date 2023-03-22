@@ -129,6 +129,8 @@
 </script>
 
 <style lang="scss">
+    @import '../assets/styles/variables.scss';
+
     @keyframes rotate {
         from { transform: rotate(0deg); }
         to { transform: rotate(360deg); }
@@ -154,7 +156,7 @@
         position: relative;
         overflow-y: auto;
         overflow-x: hidden;
-        background: rgba(24, 24, 24, 0.5);
+        background: rgba($color: $bg, $alpha: 0.5);
         display: block;
         text-align: center;
 
@@ -171,14 +173,14 @@
 
             .form {
                 display: flex;
-                background: rgba(24, 24, 24, 0.7);
+                background: rgba($color: $bg, $alpha: 0.7);
                 backdrop-filter: blur(5px);
                 padding: 1rem 1rem;
                 border-radius: 5px;
-                border: 2px solid #3c3c3c;
+                border: 2px solid $border;
                 align-items: center;
                 width: 100%;
-                box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.7);
+                box-shadow: 0px 0px 5px rgba($color: black, $alpha: 0.7);
                 margin-bottom: 2px;
                 font-size: 1.2rem;
                 transition: 0.3s;
@@ -223,9 +225,9 @@
                 }
 
                 &:focus-within {
-                    border-color: #588bf2;
-                    outline: 2px solid #588bf2;
-                    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
+                    border-color: $link;
+                    outline: 2px solid $link;
+                    box-shadow: 0px 0px 20px rgba($color: black, $alpha: 0.5);
                 }
             }
 
@@ -233,12 +235,12 @@
             .instructions {
                 margin-top: 1rem;
                 width: 100%;
-                background: rgba(24, 24, 24, 0.7);
+                background: rgba($color: $bg, $alpha: 0.7);
                 backdrop-filter: blur(5px);
-                box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
+                box-shadow: 0px 0px 20px rgba($color: black, $alpha: 0.5);
                 border-radius: 5px;
                 padding: 4px 0;
-                border: 2px solid #3c3c3c;
+                border: 2px solid $border;
             }
 
             .instructions {
@@ -252,7 +254,7 @@
                     align-items: center;
                     min-width: 1.5em;
                     height: 1.5em;
-                    border: 2px solid #3c3c3c;
+                    border: 2px solid $border;
                     border-radius: 3px;
                     padding: 0.2rem;
                 }
@@ -278,13 +280,13 @@
 
                     &:hover,
                     &:focus-visible {
-                        background: rgba(69, 69, 69, 0.5);
+                        background: lighten($color: $dark, $amount: 2);
                     }
 
                     &:focus-visible,
                     &.selected {
                         border-radius: 5px;
-                        outline: 4px solid #588bf2;
+                        outline: 4px solid $link;
                     }
 
                     .name {
@@ -292,17 +294,17 @@
                         width: 100%;
                         overflow: hidden;
                         text-overflow: ellipsis;
-                        color: #588bf2;
+                        color: $link;
                         font-weight: 600;
                     }
 
                     &.withChild {
                         .name {
-                            color: rgb(129, 149, 184);
+                            color: rgba($color: lighten($color: $link, $amount: 2), $alpha: 0.6);
 
                             .separator,
                             .child {
-                                color: #588bf2;
+                                color: $link;
                             }
                         }
                     }
@@ -322,7 +324,7 @@
 
     @media (max-width: 540px) {
         .search-container {
-            background-color: #181818;
+            background-color: $bg;
 
             .search {
                 max-width: unset;
@@ -332,7 +334,7 @@
                 .results,
                 .instructions {
                     backdrop-filter: none;
-                    background-color: #181818;
+                    background-color: $bg;
                     border: none;
                     box-shadow: none;
                     outline: none;
@@ -347,7 +349,7 @@
                     position: sticky;
                     top: 5px;
                     font-size: 1rem;
-                    border-color: #111111;
+                    border-color: $border;
                 }
 
                 .results {

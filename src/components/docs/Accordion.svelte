@@ -27,6 +27,8 @@
 </script>
 
 <style lang="scss">
+    @import '../../assets/styles/variables.scss';
+
     .accordion {
         display: flex;
         flex-direction: column;
@@ -63,27 +65,27 @@
                 padding: 0.4rem;
                 padding-left: 1.7rem;
                 margin-left: 1.7rem;
-                border-left: 1px solid #3c3c3c;
+                border-left: 1px solid $border;
                 max-width: 100%;
                 overflow: hidden;
                 text-overflow: ellipsis;
-                color: #fff;
+                color: $white;
                 text-decoration: none;
                 font-size: 0.9rem;
 
                 &.selected {
-                    color: #5865f2;
+                    color: $link;
                     font-weight: 500;
                     border-color: currentColor;
                 }
 
                 &:focus-visible {
-                    outline: 4px solid #5865f2;
+                    outline: 4px solid $link;
                     border-radius: 3px;
                 }
 
                 &:hover {
-                    background: #3c3c3c;
+                    background: $border;
                 }
             }
         }

@@ -1,9 +1,9 @@
 <script>
     import '../assets/styles/main.scss';
     import HomeButton from '../components/HomeButton.svelte';
-    import Install from '../components/Install.svelte';
     import Icon from '@iconify/svelte';
     import { githubHome, npmHome } from '../scripts/data';
+    import Terminal from '../components/Terminal.svelte';
 </script>
 
 <style lang="scss">
@@ -184,7 +184,7 @@
             </div>
         </div>
         <div class="install-section section">
-            <Install></Install>
+            <Terminal/>
         </div>
     </div>
 </div>

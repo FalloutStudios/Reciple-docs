@@ -24,11 +24,13 @@
 </script>
 
 <style lang="scss">
+    @import '../../assets/styles/variables.scss';
+
     .content-method {
         width: 100%;
         margin: 2rem 0;
         position: relative;
-        border-bottom: 1px solid rgba(60, 60, 60, 0.5);
+        border-bottom: 1px solid rgba($color: $border, $alpha: 0.5);
         padding-bottom: 1rem;
 
         .contents {

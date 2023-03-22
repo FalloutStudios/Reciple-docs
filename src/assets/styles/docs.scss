@@ -1,3 +1,5 @@
+@import './variables.scss';
+
 .docsContent {
     min-height: 100%;
 
@@ -31,7 +33,7 @@
 
     a {
         text-decoration: none;
-        color: #588bf2;
+        color: $link;
 
         &:hover,
         &:focus {
@@ -48,7 +50,7 @@
         tab-size: 4;
         -webkit-hyphens: none;
         hyphens: none;
-        background: rgba(34, 34, 34, 0.345);
+        background: rgba($color: $dark, $alpha: 0.3);
     }
 
     blockquote {
@@ -60,12 +62,16 @@
     }
 
     pre {
-        background: #1e1e1e;
+        background: $dark;
         display: block;
         padding: 1em;
         overflow-x: auto;
         border-radius: 4px;
         line-height: 1.5;
+
+        code {
+            background: unset;
+        }
 
         .hljs-comment,
         .hljs-title {

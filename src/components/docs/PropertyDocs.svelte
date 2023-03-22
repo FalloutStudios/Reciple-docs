@@ -21,11 +21,13 @@
 </script>
 
 <style lang="scss">
+    @import '../../assets/styles/variables.scss';
+
     .content-property {
         width: 100%;
         margin: 2rem 0;
         position: relative;
-        border-bottom: 1px solid rgba(60, 60, 60, 0.5);
+        border-bottom: 1px solid rgba($color: $border, $alpha: 0.5);
         padding-bottom: 1rem;
 
         .contents {
@@ -42,7 +44,7 @@
                     flex-shrink: 0;
 
                     :global(i) {
-                        color: #5865f2;
+                        color: $link;
                         font-style: normal;
                         cursor: help;
 
@@ -56,12 +58,12 @@
                                 bottom: 100%;
                                 left: 50%;
                                 transform: translateX(-50%);
-                                color: #fff;
-                                background: #3c3c3c;
+                                color: $white;
+                                background: $border;
                                 padding: 0.2rem 0.5rem;
                                 border-radius: 5px;
                                 font-size: 0.8rem;
-                                box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+                                box-shadow: 0px 0px 10px rgba($color: black, $alpha: 0.1);
                             }
                         }
                     }
