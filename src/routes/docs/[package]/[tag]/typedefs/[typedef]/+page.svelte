@@ -33,7 +33,7 @@
 </script>
 
 <svelte:head>
-    <title>Class | {typedef}</title>
+    <title>Typedef | {typedef}</title>
 </svelte:head>
 
 <Nav title="{pkg}@{tag}" {docs}></Nav>

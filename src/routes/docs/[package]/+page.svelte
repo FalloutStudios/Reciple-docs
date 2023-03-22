@@ -74,7 +74,7 @@
 </style>
 
 <svelte:head>
-    <title>Choose a version</title>
+    <title>Choose version</title>
 </svelte:head>
 
 <div class="container">
