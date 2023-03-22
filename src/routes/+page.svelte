@@ -3,8 +3,7 @@
     import HomeButton from '../components/HomeButton.svelte';
     import Icon from '@iconify/svelte';
     import { githubHome, npmHome } from '../scripts/data';
-    import Terminal from '../components/Terminal.svelte';
-import Install from '../components/Install.svelte';
+    import Install from '../components/Install.svelte';
 </script>
 
 <style lang="scss">
