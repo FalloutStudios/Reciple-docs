@@ -9,6 +9,7 @@ import Install from '../components/Install.svelte';
 
 <style lang="scss">
     @import url('https://fonts.googleapis.com/css2?family=Archivo+Black&display=swap');
+    @import '../assets/styles/variables.scss';
 
     .home {
         display: flex;
@@ -35,12 +36,12 @@ import Install from '../components/Install.svelte';
                     font-weight: 500;
                     line-height: 3rem;
                     padding-bottom: 10px;
-                    color: #fff;
+                    color: $white;
 
                     .highlight {
                         text-decoration: none;
-                        color: #fff;
-                        background: #5865f2;
+                        color: $white;
+                        background: $link;
                         border-radius: 5px;
                         padding: 5px 10px;
 
@@ -52,8 +53,8 @@ import Install from '../components/Install.svelte';
                                 content: 'https://discord.js.org';
                                 position: absolute;
                                 display: block;
-                                background: #000;
-                                color: #fff;
+                                background: $bg;
+                                color: $white;
                                 font-family: 'Roboto', sans-serif;
                                 font-size: 0.8rem;
                                 padding: 5px 10px;

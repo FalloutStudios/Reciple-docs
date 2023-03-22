@@ -53,7 +53,7 @@
                 border: none;
 
                 &.active {
-                    color: lighten($color: $link, $amount: 2);
+                    color: lighten($color: $link, $amount: 10);
                     font-weight: 600;
                 }
             }
