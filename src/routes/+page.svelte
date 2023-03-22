@@ -4,6 +4,7 @@
     import Icon from '@iconify/svelte';
     import { githubHome, npmHome } from '../scripts/data';
     import Terminal from '../components/Terminal.svelte';
+import Install from '../components/Install.svelte';
 </script>
 
 <style lang="scss">
@@ -30,9 +31,9 @@
 
                 .title {
                     font-family: 'Archivo Black', sans-serif;
-                    font-size: 3rem;
+                    font-size: 2.8rem;
                     font-weight: 500;
-                    line-height: 3.4rem;
+                    line-height: 3rem;
                     padding-bottom: 10px;
                     color: #fff;
 
@@ -184,7 +185,7 @@
             </div>
         </div>
         <div class="install-section section">
-            <Terminal/>
+            <Install/>
         </div>
     </div>
 </div>

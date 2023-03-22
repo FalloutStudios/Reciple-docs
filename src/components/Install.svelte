@@ -2,9 +2,9 @@
     import Icon from '@iconify/svelte';
 
     const installScripts = {
-        npm: 'npm i reciple discord.js',
-        yarn: 'yarn add reciple discord.js',
-        pnpm: 'pnpm add reciple discord.js'
+        npm: 'npm create reciple@latest',
+        yarn: 'yarn create reciple@latest',
+        pnpm: 'pnpm create reciple@latest'
     };
 
     let packageManager: keyof typeof installScripts = 'npm';
@@ -25,6 +25,8 @@
 </script>
 
 <style lang="scss">
+    @import '../assets/styles/variables.scss';
+
     .container {
         display: block;
         position: relative;
@@ -32,8 +34,8 @@
         flex-direction: column;
         overflow: hidden;
         border-radius: 5px;
-        background: rgba($color: #FFF, $alpha: 0.05);
-        border: 1px solid rgba(60, 60, 60, 1.0);
+        background: $dark;
+        border: 1px solid $border;
         width: 100%;
 
         .tabs {
@@ -44,21 +46,22 @@
                 padding: 0.5rem 1rem;
                 color: #bcbcbc;
                 background: none;
-                font-size: 0.8rem;
+                font-size: 0.7rem;
                 font-weight: 500;
+                letter-spacing: 0.1rem;
                 text-transform: uppercase;
                 border: none;
 
                 &.active {
-                    color: #fff;
-                    background-color: rgba($color: #000, $alpha: 0.05);
+                    color: lighten($color: $link, $amount: 2);
+                    font-weight: 600;
                 }
             }
         }
 
         .content {
             padding: 10px 5px;
-            font-family: 'Courier New', Courier, monospace;
+            font-family: monospace;
             display: flex;
             width: 100%;
 
