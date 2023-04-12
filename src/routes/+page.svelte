@@ -173,7 +173,7 @@
     <div class="home-container">
         <div class="introduction section">
             <h1 class="title">
-                Cutest <a href="https://discord.js.org/" class="highlight">Discord.js</a> framework that just works <3
+                Another <a href="https://discord.js.org/" class="highlight">Discord.js</a> framework that just works &lt;3
             </h1>
             <div class="description">
                 Reciple is a command framework with message command (aka prefix command), slash command, and context menu support. Reciple makes Discord.js command handling simple and easy using our built-in CLI tool.
