@@ -19,6 +19,9 @@
     onMount(async () => {
         if (fragment !== method.name) return;
 
+        // TODO: E
+        setTimeout(() => anchor?.scrollIntoView(), 1000);
+
         dispatch('scrollTo', anchor);
     });
 </script>
