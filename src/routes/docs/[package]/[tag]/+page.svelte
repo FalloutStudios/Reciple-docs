@@ -12,8 +12,8 @@
 
     let docs: DocsData = packages[data.package];
 
-    let tag = data.tag;
-    let pkg = data.package;
+    $: tag = data.tag;
+    $: pkg = data.package;
 
     onMount(async () => {
         if (docs.fetched) return;

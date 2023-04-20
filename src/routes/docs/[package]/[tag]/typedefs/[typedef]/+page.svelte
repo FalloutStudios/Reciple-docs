@@ -15,8 +15,8 @@
 
     let docs: DocsData = packages[data.package];
 
-    let tag = data.tag;
-    let pkg = data.package;
+    $: tag = data.tag;
+    $: pkg = data.package;
 
     $: typedef = data.typedef;
     $: docsData = docs.data.typedefs?.find(e => e.name == typedef);

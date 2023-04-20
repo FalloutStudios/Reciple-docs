@@ -17,8 +17,8 @@
 
     let docs: DocsData = packages[data.package];
 
-    let tag = data.tag;
-    let pkg = data.package;
+    $: tag = data.tag;
+    $: pkg = data.package;
 
     $: class_ = data.class;
     $: docsData = docs.data.classes?.find(e => e.name === class_);
