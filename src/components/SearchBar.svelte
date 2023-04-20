@@ -173,8 +173,8 @@
 
             .form {
                 display: flex;
-                background: rgba($color: $bg, $alpha: 0.7);
-                backdrop-filter: blur(5px);
+                background: rgba($color: $bg, $alpha: 0.8);
+                backdrop-filter: blur(10px);
                 padding: 1rem 1rem;
                 border-radius: 5px;
                 border: 2px solid $border;
@@ -235,8 +235,8 @@
             .instructions {
                 margin-top: 1rem;
                 width: 100%;
-                background: rgba($color: $bg, $alpha: 0.7);
-                backdrop-filter: blur(5px);
+                background: rgba($color: $bg, $alpha: 0.8);
+                backdrop-filter: blur(10px);
                 box-shadow: 0px 0px 20px rgba($color: black, $alpha: 0.5);
                 border-radius: 5px;
                 padding: 4px 0;

@@ -20,7 +20,8 @@
         top: 0;
         left: 0;
         width: 100%;
-        background: $bg;
+        background: rgba($color: $bg, $alpha: 0.8);
+        backdrop-filter: blur(10px);
         border-bottom: 1px solid $border;
         height: 4rem;
         z-index: 10;
@@ -173,7 +174,7 @@
 
         body,
         html {
-            scroll-padding-top: 1rem;
+            scroll-padding-top: 6rem;
             scroll-behavior: smooth;
         }
     </style>
