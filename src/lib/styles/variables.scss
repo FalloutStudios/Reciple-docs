@@ -1,0 +1,12 @@
+$bg: #181818;
+$white: #f7f7f7;
+$link: #5865f2;
+$linkVisited: #4529c0;
+$dark: #222222;
+$border: #3c3c3c;
+
+@mixin BorderedButton($bg: $dark, $border: $border, $radius: 5px) {
+    background: $bg;
+    border: 1px solid $border;
+    border-radius: $radius;
+}
