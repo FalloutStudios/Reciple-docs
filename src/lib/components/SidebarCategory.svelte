@@ -5,7 +5,7 @@
     export let icon: string;
     export let open: boolean = true;
 
-    export let data: { name: string; href: string; selected?: boolean; }[] = [];
+    export let data: { name: string; href: string; deprecated?: boolean; selected?: boolean; }[] = [];
 </script>
 
 <style lang="scss">
@@ -89,6 +89,11 @@
                     border-color: currentColor;
                     font-weight: bold;
                 }
+
+                &.deprecated {
+                    text-decoration: line-through;
+                    opacity: 0.8;
+                }
             }
         }
 
@@ -112,7 +117,7 @@
     </button>
     <div class="category-content">
         {#each data as element}
-            <a href={element.href} title={element.name} class:selected={element.selected}>{element.name}</a>
+            <a href={element.href} title={element.name + (element.deprecated ? ' (Deprecated)' : '')} class:deprecated={element.deprecated} class:selected={element.selected}>{element.name}</a>
         {/each}
     </div>
 </div>
