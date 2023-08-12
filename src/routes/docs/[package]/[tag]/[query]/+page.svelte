@@ -3,6 +3,7 @@
     import type { AnyDocsElement } from '../../../../../lib/scripts/types';
     import { onMount } from 'svelte';
     import { error } from '@sveltejs/kit';
+    import Markdown from '../../../../../lib/components/Markdown.svelte';
 
     export let data: PackageQueryLoadData;
 
@@ -12,4 +13,4 @@
         if (!selected) throw error(404);
     });
 </script>
-<pre>{JSON.stringify(selected.toJSON(), null, 2)}</pre>
+<Markdown content={'```json\n' + JSON.stringify(selected.toJSON(), null, 2) + '\n```'}/>

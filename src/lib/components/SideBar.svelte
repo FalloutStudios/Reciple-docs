@@ -5,6 +5,7 @@
     import SidebarCategory from './SidebarCategory.svelte';
     import type { PackageTagLoadData } from '../../routes/docs/[package]/[tag]/+page';
     import { page } from '$app/stores';
+    import { deprecatedElementSorter, isElementDeprecated } from '../scripts/helpers';
 
     $: data = $page.data as PackageTagLoadData;
 
@@ -86,42 +87,42 @@
                         <SidebarCategory
                             name="Classes"
                             icon="codicon:symbol-class"
-                            data={data.docs.data?.classes.map(c => ({ name: c.name, href: `/docs/${data.docs.options.package}/${data.docs.currentTag}/classes:${c.name}`, deprecated: c.comment.deprecated, selected: c.id === data.selected }))}
+                            data={data.docs.data?.classes.sort(deprecatedElementSorter).map(c => ({ name: c.name, href: `/docs/${data.docs.options.package}/${data.docs.currentTag}/classes:${c.name}`, deprecated: isElementDeprecated(c), selected: c.id === data.selected }))}
                         />
                     {/if}
                     {#if data.docs.data?.enums.length}
                         <SidebarCategory
                             name="Enums"
                             icon="codicon:symbol-enum"
-                            data={data.docs.data?.enums.map(c => ({ name: c.name, href: `/docs/${data.docs.options.package}/${data.docs.currentTag}/enums:${c.name}`, deprecated: c.comment.deprecated, selected: c.id === data.selected }))}
+                            data={data.docs.data?.enums.sort(deprecatedElementSorter).map(c => ({ name: c.name, href: `/docs/${data.docs.options.package}/${data.docs.currentTag}/enums:${c.name}`, deprecated: isElementDeprecated(c), selected: c.id === data.selected }))}
                         />
                     {/if}
                     {#if data.docs.data?.interfaces.length}
                         <SidebarCategory
                             name="Interfaces"
                             icon="codicon:symbol-interface"
-                            data={data.docs.data?.interfaces.map(c => ({ name: c.name, href: `/docs/${data.docs.options.package}/${data.docs.currentTag}/interfaces:${c.name}`, deprecated: c.comment.deprecated, selected: c.id === data.selected }))}
+                            data={data.docs.data?.interfaces.sort(deprecatedElementSorter).map(c => ({ name: c.name, href: `/docs/${data.docs.options.package}/${data.docs.currentTag}/interfaces:${c.name}`, deprecated: isElementDeprecated(c), selected: c.id === data.selected }))}
                         />
                     {/if}
                     {#if data.docs.data?.typeAliases.length}
                         <SidebarCategory
                             name="Types"
                             icon="codicon:symbol-ruler"
-                            data={data.docs.data?.typeAliases.map(c => ({ name: c.name, href: `/docs/${data.docs.options.package}/${data.docs.currentTag}/typeAliases:${c.name}`, deprecated: c.comment.deprecated, selected: c.id === data.selected }))}
+                            data={data.docs.data?.typeAliases.sort(deprecatedElementSorter).map(c => ({ name: c.name, href: `/docs/${data.docs.options.package}/${data.docs.currentTag}/typeAliases:${c.name}`, deprecated: isElementDeprecated(c), selected: c.id === data.selected }))}
                         />
                     {/if}
                     {#if data.docs.data?.functions.length}
                         <SidebarCategory
                             name="Functions"
                             icon="codicon:symbol-method"
-                            data={data.docs.data?.functions.map(c => ({ name: c.name, href: `/docs/${data.docs.options.package}/${data.docs.currentTag}/functions:${c.name}`, deprecated: c.comment.deprecated, selected: c.id === data.selected }))}
+                            data={data.docs.data?.functions.sort(deprecatedElementSorter).map(c => ({ name: c.name, href: `/docs/${data.docs.options.package}/${data.docs.currentTag}/functions:${c.name}`, deprecated: isElementDeprecated(c), selected: c.id === data.selected }))}
                         />
                     {/if}
                     {#if data.docs.data?.variables.length}
                         <SidebarCategory
                             name="Interfaces"
                             icon="codicon:symbol-field"
-                            data={data.docs.data?.variables.map(c => ({ name: c.name, href: `/docs/${data.docs.options.package}/${data.docs.currentTag}/variables:${c.name}`, deprecated: c.comment.deprecated, selected: c.id === data.selected }))}
+                            data={data.docs.data?.variables.sort(deprecatedElementSorter).map(c => ({ name: c.name, href: `/docs/${data.docs.options.package}/${data.docs.currentTag}/variables:${c.name}`, deprecated: isElementDeprecated(c), selected: c.id === data.selected }))}
                         />
                     {/if}
                 </div>

@@ -7,7 +7,7 @@
     export let content: string;
     export let options: MarkedOptions = markdownOptions;
 
-    const html = markdownParser.parse(content, options);
+    $: html = markdownParser.parse(content, options);
 </script>
 
 <div class="markdown" {...$$props}>

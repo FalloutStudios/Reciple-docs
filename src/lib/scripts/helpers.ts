@@ -1,5 +1,5 @@
-import type { ProjectParser } from 'typedoc-json-parser';
-import type { DocsElementType } from './types';
+import { FunctionParser, type ProjectParser } from 'typedoc-json-parser';
+import type { AnyDocsElement, DocsElementType } from './types';
 
 export function addToCache(id: string, value: string|any[]|{}): void {
     if (typeof window == 'undefined') return;
@@ -36,4 +36,28 @@ export function findDocsElement(project: ProjectParser, find: string) {
     const parser = project[type];
 
     return parser.find(e => e.name === name || e.id.toString() === name);
+}
+
+export function getElementDescription(element: AnyDocsElement): string|null {
+    return element.comment.description;
+}
+
+export function isElementDeprecated(element: AnyDocsElement): boolean {
+    return element.comment.deprecated
+        || element.comment.blockTags.some(c => c.name === 'deprecated')
+        || (
+            element instanceof FunctionParser
+            && element.signatures.some(s => s.comment.deprecated || s.comment.blockTags.some(c => c.name === 'deprecated'))
+        );
+}
+
+export function deprecatedElementSorter(a: AnyDocsElement, b: AnyDocsElement): number {
+    const aDeprecated = isElementDeprecated(a);
+    const bDeprecated = isElementDeprecated(b);
+
+    return (aDeprecated && bDeprecated) || (!aDeprecated && !bDeprecated)
+        ? 0
+        : aDeprecated && !bDeprecated
+            ? 1
+            : -1
 }
