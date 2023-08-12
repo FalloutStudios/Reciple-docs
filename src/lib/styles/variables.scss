@@ -1,6 +1,6 @@
 $bg: #181818;
 $white: #f7f7f7;
-$link: #5865f2;
+$link: #5665e7;
 $linkVisited: #4529c0;
 $dark: #222222;
 $border: #3c3c3c;
@@ -9,4 +9,23 @@ $border: #3c3c3c;
     background: $bg;
     border: 1px solid $border;
     border-radius: $radius;
+}
+
+@mixin GlassBackdrop($blur: 15px, $bg: $dark, $alpha: 0.7) {
+    background: rgba($bg, $alpha);
+    backdrop-filter: saturate(120%) blur($blur);
+}
+
+@mixin NoScrollbar() {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    padding: 1rem 0.5rem;
+
+    &::-webkit-scrollbar {
+        display: none;
+    }
+}
+
+@mixin Transition($duration: .2s) {
+    transition: $duration;
 }
