@@ -1,3 +1,7 @@
+import { Marked, type MarkedOptions } from 'marked';
+import { markedHighlight } from 'marked-highlight';
+import hljs from 'highlight.js';
+
 export const githubHome = 'https://github.com/FalloutStudios/reciple';
 export const npmHome = 'https://npmjs.com/package/reciple';
 
@@ -17,3 +21,13 @@ export const navLinks: { name: string; href: string; blank?: boolean; }[] = [
         blank: true
     }
 ];
+
+export let markdownOptions: MarkedOptions = {};
+
+export const markdownParser = new Marked(markedHighlight({
+    langPrefix: "",
+    highlight: (code, lang) => {
+        const language = hljs.getLanguage(lang) ? lang : 'text';
+        return hljs.highlight(code, { language }).value;
+    }
+}));

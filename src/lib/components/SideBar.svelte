@@ -71,7 +71,7 @@
 <div class="sidebar-container">
     <style>
         body {
-            padding-left: var(--sidebar-width);
+            padding-left: calc(var(--sidebar-width) + 1rem);
         }
     </style>
     <div class="sidebar-viewport">
