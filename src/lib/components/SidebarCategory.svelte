@@ -75,6 +75,9 @@
                 font-size: 0.9rem;
                 text-decoration: none;
                 color: $white;
+                max-width: 100%;
+                overflow: hidden;
+                text-overflow: ellipsis;
 
                 &:hover,
                 &:focus {
@@ -83,7 +86,8 @@
 
                 &.selected {
                     color: $link;
-                    background-color: currentColor;
+                    border-color: currentColor;
+                    font-weight: bold;
                 }
             }
         }
@@ -108,7 +112,7 @@
     </button>
     <div class="category-content">
         {#each data as element}
-            <a href={element.href} class:selected={element.selected}>{element.name}</a>
+            <a href={element.href} title={element.name} class:selected={element.selected}>{element.name}</a>
         {/each}
     </div>
 </div>

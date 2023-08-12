@@ -59,6 +59,10 @@
                         margin-bottom: 0.5rem;
                     }
                 }
+
+                .sidebar-links {
+                    padding-bottom: 2rem;
+                }
             }
         }
     }
