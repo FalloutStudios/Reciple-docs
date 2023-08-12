@@ -43,7 +43,7 @@
 
             .name {
                 width: 100%;
-                font-size: 1.2em;
+                font-size: 1em;
             }
 
             .icon,
@@ -70,7 +70,7 @@
             a {
                 display: block;
                 border-left: 1px solid $border;
-                padding: 5px;
+                padding: 8px;
                 padding-left: 1.5rem;
                 font-size: 0.9rem;
                 text-decoration: none;
