@@ -1,15 +1,17 @@
 <script lang="ts">
     import { createEventDispatcher, onDestroy, onMount } from 'svelte';
     import { Svrollbar } from 'svrollbar';
-    import type { ProjectParser, SearchResult } from 'typedoc-json-parser';
+    import type { SearchResult } from 'typedoc-json-parser';
     import closeIcon from '@iconify/icons-tabler/arrow-right';
     import searchIcon from '@iconify/icons-tabler/search';
     import Icon from '@iconify/svelte';
     import { Tooltip } from 'flowbite-svelte';
-    import { getElementDisplayName, getElementIcon, isElementDeprecated } from '../scripts/helpers';
-import { goto } from '$app/navigation';
+    import { getElementDisplayName, getElementHref, getElementIcon, isElementDeprecated } from '../scripts/helpers';
+    import { goto } from '$app/navigation';
+    import type { PackageTagLoadData } from '../../routes/docs/[package]/[tag]/+page';
+    import type { DocsParser } from '../scripts/classes/DocsParser';
 
-    export let docs: ProjectParser;
+    export let docs: PackageTagLoadData & { docs: DocsParser & { data: Exclude<DocsParser['data'], undefined> } };
     export let searchInput: HTMLInputElement|null = null;
     export let query: string = '';
     export let originalValue: string = '';
@@ -74,7 +76,7 @@ import { goto } from '$app/navigation';
     }
 
     async function search() {
-        results = query.trim() ? docs.search(query).splice(0, 20) : [];
+        results = query.trim() ? (docs.docs.data?.search(query).splice(0, 20) ?? []) : [];
         loading = false;
     }
 
@@ -304,9 +306,9 @@ import { goto } from '$app/navigation';
                 {#if results.length}
                     <div class="search-results">
                         {#each results as result, index}
-                            {@const displayName = getElementDisplayName(docs, result)}
+                            {@const displayName = getElementDisplayName(docs.docs.data, result)}
                             {@const deprecated = isElementDeprecated(result)}
-                            {@const href = result.name}
+                            {@const href = getElementHref(docs, result)}
                             <a {href} id="sr-{index}" on:blur={inputBlur} on:focus={inputFocus} on:click={() => { open = false; goto(href); }} data-name={displayName.search} title={displayName.name + (deprecated ? ' (Deprecated)' : '')} class="search-result" class:deprecated={deprecated} class:active={selectedId == index}>
                                 <span class="icon">
                                     <Icon icon={getElementIcon(result)}/>

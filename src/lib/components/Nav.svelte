@@ -1,12 +1,13 @@
 <script lang="ts">
     import Icon from '@iconify/svelte';
-    import type { DocsParser } from '../scripts/classes/DocsParser';
     import { navLinks } from '../scripts/config';
     import externalLinkIcon from '@iconify/icons-tabler/external-link';
     import searchIcon from '@iconify/icons-tabler/search';
     import Search from './Search.svelte';
+    import type { PackageTagLoadData } from '../../routes/docs/[package]/[tag]/+page';
+    import type { DocsParser } from '../scripts/classes/DocsParser';
 
-    export let data: DocsParser;
+    export let data: PackageTagLoadData & { docs: DocsParser & { data: Exclude<DocsParser['data'], undefined> } };
 
     let opensearch = false;
     let searchInput: HTMLInputElement|null;
@@ -132,9 +133,7 @@
         }
     </style>
     <div class="nav-container">
-        <a href="/docs/{data.options.package}/{data.currentTag}" class="nav-home">
-            {data.options.package}@{data.currentTag}
-        </a>
+        <a href="/docs/{data.package}/{data.tag}" class="nav-home">{data.package}@{data.tag}</a>
         <div class="nav-links">
             {#if navLinks.length}
                 {#each navLinks as link}
@@ -157,4 +156,6 @@
         </div>
     </div>
 </div>
-{#if data.data}<Search docs={data.data} bind:searchInput={searchInput} bind:open={opensearch}/>{/if}
+{#if data?.docs.data}
+    <Search docs={data} bind:searchInput={searchInput} bind:open={opensearch}/>
+{/if}

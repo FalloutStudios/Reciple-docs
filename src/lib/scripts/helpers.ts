@@ -1,4 +1,4 @@
-import { ClassMethodParser, ClassParser, ClassPropertyParser, EnumMemberParser, EnumParser, FunctionParser, InterfaceMethodParser, InterfaceParser, InterfacePropertyParser, TypeAliasParser, type ProjectParser, type SearchResult, VariableParser, SignatureParser, MethodParser } from 'typedoc-json-parser';
+import { ClassMethodParser, ClassParser, ClassPropertyParser, EnumMemberParser, EnumParser, FunctionParser, InterfaceMethodParser, InterfaceParser, InterfacePropertyParser, TypeAliasParser, type ProjectParser, type SearchResult, VariableParser } from 'typedoc-json-parser';
 import type { AnyDocsElement, DocsElementType } from './types';
 import { slug } from 'github-slugger';
 import symbolClassIcon from '@iconify/icons-codicon/symbol-class';
@@ -10,6 +10,7 @@ import symbolPropertyIcon from '@iconify/icons-codicon/symbol-property';
 import symbolMethodIcon from '@iconify/icons-codicon/symbol-method';
 import symbolFieldIcon from '@iconify/icons-codicon/symbol-field';
 import symbolKey from '@iconify/icons-codicon/symbol-key';
+import type { DocsParser } from './classes/DocsParser';
 
 export function addToCache(id: string, value: string|any[]|{}): void {
     if (typeof window == 'undefined') return;
@@ -41,25 +42,27 @@ export function getFromCache<T = unknown>(id: string): T|null {
 export function findDocsElement(project: ProjectParser, find: string|number) {
     if (typeof find === 'number' || !isNaN(Number(find))) {
         const element = project.find(Number(find));
-        if (!isDocsElement(element)) return undefined;
+        if (!isDocsElement(element)) return;
         return element;
     }
 
     const [type, name] = find.split(':') as [DocsElementType, string];
-    if (!type || !name) throw new Error('Invalid find query');
-    if (!(type in project)) throw new Error('Unknown query type');
+    if (!type || !name) return;
+    if (!(type in project)) return;
 
     const parser = project[type];
 
     return parser.find(e => e.name === name || e.id.toString() === name);
 }
 
-export function getElementDescription(element: AnyDocsElement|MethodParser|SignatureParser): string|null {
-    return (element instanceof FunctionParser || element instanceof MethodParser ? element.signatures.find(s => s.comment.description)?.comment.description : element.comment?.description) || null;
+export function getElementDescription(element: SearchResult): string|null {
+    return ('signatures' in element ? element.signatures.find(s => s.comment.description)?.comment.description : ('comment' in element && element.comment?.description)) || null;
 }
 
-export function isElementDeprecated(element: AnyDocsElement|MethodParser|SignatureParser): boolean {
-    return element instanceof FunctionParser || element instanceof MethodParser ? element.signatures.some(s => isElementDeprecated(s)) : element.comment?.deprecated || element.comment?.blockTags.some(c => c.name === 'deprecated');
+export function isElementDeprecated(element: SearchResult): boolean {
+    return 'signatures' in element
+        ? element.signatures.some(s => isElementDeprecated(s))
+        : 'comment' in element && (element.comment?.deprecated || element.comment?.blockTags.some(c => c.name === 'deprecated'));
 }
 
 export function deprecatedElementSorter(a: AnyDocsElement, b: AnyDocsElement): number;
@@ -98,6 +101,24 @@ export function getElementTypeDisplayName(element: AnyDocsElement) {
     return element.constructor.name.replace('Parser', '').replace('_', '');
 }
 
+export function getElementSlugType(element: AnyDocsElement) {
+    if (element instanceof ClassParser) {
+        return 'classes';
+    } else if (element instanceof EnumParser) {
+        return 'enums';
+    } else if (element instanceof InterfaceParser) {
+        return 'interfaces';
+    } else if (element instanceof TypeAliasParser) {
+        return 'typeAliases';
+    } else if (element instanceof FunctionParser) {
+        return 'functions';
+    } else if (element instanceof VariableParser) {
+        return 'variables';
+    }
+
+    throw new Error('Unknown document type');
+}
+
 export function getElementIcon(element: SearchResult) {
     if (element instanceof ClassParser) {
         return symbolClassIcon;
@@ -127,7 +148,7 @@ export function getElementIcon(element: SearchResult) {
 }
 
 export function isDocsElement(element: unknown): element is AnyDocsElement {
-    return element instanceof ClassParser || element instanceof  EnumParser || element instanceof  FunctionParser || element instanceof  InterfaceParser || element instanceof  TypeAliasParser;
+    return element instanceof ClassParser || element instanceof  EnumParser || element instanceof  FunctionParser || element instanceof  InterfaceParser || element instanceof  TypeAliasParser || element instanceof VariableParser;
 }
 
 export function getElementDisplayName(docs: ProjectParser, element: SearchResult): { name: string; search: string; } {
@@ -142,4 +163,20 @@ export function getElementDisplayName(docs: ProjectParser, element: SearchResult
     }
 
     return { name: element.name, search: element.name };
+}
+
+export function getElementHref(data: { docs: DocsParser; package: string;  }, element: SearchResult): string {
+    let base = `/docs/${data.package}/${data.docs.currentTag ?? data.docs.options.defaultTag}`;
+
+    if (isDocsElement(element)) return base + `/${getElementSlugType(element)}:${element.name}`;
+
+    if ('parentId' in element) {
+        const parent = data.docs.data?.find(element.parentId) as InterfaceParser|ClassParser|EnumParser|null;
+        const isStatic = (element instanceof ClassMethodParser || element instanceof ClassPropertyParser) && element.static;
+        if (!parent) return base + `/${element.parentId}#${(isStatic ? 'static-' : '') + slug(element.name)}`;
+
+        return base + `/${getElementSlugType(parent)}:${parent.name}#${(isStatic ? 'static-' : '') + slug(element.name)}`;
+    }
+
+    return base + `/${element.id}`;
 }

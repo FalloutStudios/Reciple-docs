@@ -8,7 +8,7 @@
 
     export let data: PackageQueryLoadData;
 
-    $: selected = data.docs.data?.find(data.selected) ?? undefined as AnyDocsElement|undefined;
+    $: selected = (data.docs.data?.find(data.selected) ?? undefined) as AnyDocsElement;
 
     onMount(() => {
         if (!selected) throw error(404);
