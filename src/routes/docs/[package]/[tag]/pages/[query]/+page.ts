@@ -4,7 +4,7 @@ import type { PackageTagLoadData } from '../../+page';
 import type { PageLoad } from './$types';
 
 export interface PackagePagesLoadData extends Omit<PackageTagLoadData, 'page'> {
-    page: { category: string; id: string; content: string; };
+    page: { category: string; id: string; name: string; content: string; };
 }
 
 export const load = (async data => {
@@ -34,6 +34,7 @@ export const load = (async data => {
         page: {
             category: categoryId,
             id: page!.id,
+            name: page!.name,
             content: page!.content ?? ''
         }
     };

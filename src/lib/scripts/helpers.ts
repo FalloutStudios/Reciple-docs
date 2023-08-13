@@ -83,3 +83,9 @@ export function getMarkdownHeaderIds(markdown: string): { id: string; name: stri
 
     return ids;
 }
+
+export function getElementTypeDisplayName(element: AnyDocsElement) {
+    console.log(element.constructor);
+
+    return element.constructor.name.replace('Parser', '').replace('_', '');
+}

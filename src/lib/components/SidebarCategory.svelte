@@ -117,7 +117,7 @@
     <button class="category-topbar" on:click={() => open = !open}>
         <span class="icon"><Icon {icon}/></span>
         <span class="name">{name}</span>
-        <span class="caret"><Icon icon="ph:caret-up"/></span>
+        <span class="caret"><Icon icon="ph:caret-down"/></span>
     </button>
     <div class="category-content">
         {#each data as element}

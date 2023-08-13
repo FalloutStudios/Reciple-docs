@@ -4,4 +4,7 @@
 
     export let data: PackagePagesLoadData;
 </script>
+<svelte:head>
+    <title>{data.package}@{data.tag} | {data.page.name}</title>
+</svelte:head>
 <Markdown content={data.page.content}/>
