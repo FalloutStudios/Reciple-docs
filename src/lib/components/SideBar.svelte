@@ -5,7 +5,7 @@
     import SidebarCategory from './SidebarCategory.svelte';
     import type { PackageTagLoadData } from '../../routes/docs/[package]/[tag]/+page';
     import { page } from '$app/stores';
-    import { deprecatedElementSorter, isElementDeprecated } from '../scripts/helpers';
+    import { isElementDeprecated } from '../scripts/helpers';
 
     $: data = $page.data as PackageTagLoadData;
 
@@ -88,8 +88,16 @@
                             <SidebarCategory
                                 name={name}
                                 icon="codicon:file"
-                                data={pages.map(p => ({ name: p.name, href: `/docs/${data.docs.options.package}/${data.docs.currentTag}/pages/${name}:${p.id}`, selected: data.page && data.page?.category === name && data.page?.id === p.id }))}
-                                open={false}
+                                data={pages.map(p => {
+                                    const selected = data.page && data.page?.category === name && data.page?.id === p.id;
+
+                                    return {
+                                        name: p.name,
+                                        href: `/docs/${data.docs.options.package}/${data.docs.currentTag}/pages/${name}:${p.id}`,
+                                        selected
+                                    };
+                                })}
+                                open={data.page && data.page?.category === name}
                             />
                         {/each}
                     {/if}

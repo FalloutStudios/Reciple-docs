@@ -113,6 +113,11 @@
         body {
             padding-top: var(--nav-height);
         }
+
+        html,
+        body {
+            scroll-padding-top: var(--nav-height);
+        }
     </style>
     <div class="nav-container">
         <a href="/docs/{data.options.package}/{data.currentTag}" class="nav-home">

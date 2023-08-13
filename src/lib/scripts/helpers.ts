@@ -1,5 +1,6 @@
 import { FunctionParser, type ProjectParser } from 'typedoc-json-parser';
 import type { AnyDocsElement, DocsElementType } from './types';
+import { slug } from 'github-slugger';
 
 export function addToCache(id: string, value: string|any[]|{}): void {
     if (typeof window == 'undefined') return;
@@ -62,4 +63,23 @@ export function deprecatedElementSorter(a: AnyDocsElement|boolean, b: AnyDocsEle
         : aDeprecated && !bDeprecated
             ? 1
             : -1
+}
+
+export function getMarkdownHeaderIds(markdown: string): { id: string; name: string; }[] {
+    const ids: { id: string; name: string; }[] = [];
+
+    const lines = markdown.split('\n');
+    const regex = /^ {0,3}(#{1,6})(?=\s|$)(.*)(?:\n+|$)/;
+
+    for (const line of lines) {
+        const raw = regex.exec(line);
+        if (!raw) continue;
+
+        ids.push({
+            id: slug(raw[2].toLowerCase().trim().replace(/<[!\/a-z].*?>/ig, '')),
+            name: raw[2].trim()
+        });
+    }
+
+    return ids;
 }

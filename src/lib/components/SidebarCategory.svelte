@@ -70,7 +70,7 @@
             display: none;
             padding-left: 1.8rem;
 
-            a {
+            > a {
                 display: block;
                 border-left: 1px solid $border;
                 padding: 8px;
@@ -81,6 +81,7 @@
                 max-width: 100%;
                 overflow: hidden;
                 text-overflow: ellipsis;
+                white-space: nowrap;
 
                 &:hover,
                 &:focus {
