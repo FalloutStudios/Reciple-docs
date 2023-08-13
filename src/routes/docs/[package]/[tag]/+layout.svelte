@@ -3,7 +3,7 @@
     import { page } from "$app/stores";
     import Nav from '$lib/components/Nav.svelte';
     import SideBar from '$lib/components/SideBar.svelte';
-    import type { DocsParser } from '../../../../lib/scripts/classes/DocsParser';
+    import type { DocsParser } from '$lib/scripts/classes/DocsParser';
 
     $: docsData = $page.data as PackageTagLoadData & { docs: DocsParser & { data: Exclude<DocsParser['data'], undefined> } };
 </script>
