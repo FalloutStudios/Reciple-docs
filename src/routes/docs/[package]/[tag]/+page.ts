@@ -1,13 +1,14 @@
 import { error } from '@sveltejs/kit';
 import all, { packages } from '../../../../lib/scripts/packages';
 import type { PackageLoadData } from '../+page';
+import type { PageLoad } from './$types';
 
-export interface PackageTagLoadData extends PackageLoadData {
+export interface PackageTagLoadData extends Omit<PackageLoadData, 'goto'> {
     tag: string;
     selected?: number;
 }
 
-export const load = async (data: any) => {
+export const load = (async data => {
     const pkg = data.params.package as (typeof packages)[0];
     const tag = data.params.tag;
     const docs = all[pkg];
@@ -18,4 +19,4 @@ export const load = async (data: any) => {
     if (!docs.data) throw error(404);
 
     return { package: pkg, tag: docs.currentTag, docs };
-};
+}) satisfies PageLoad;

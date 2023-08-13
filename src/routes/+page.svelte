@@ -29,7 +29,7 @@
                 margin-right: 1rem;
 
                 .title {
-                    font-family: 'Archivo Black', sans-serif;
+                    font-family: 'Archivo Black', 'Inter', sans-serif;
                     font-size: 2.8rem;
                     font-weight: 500;
                     line-height: 3rem;
@@ -53,7 +53,6 @@
                                 display: block;
                                 background: $bg;
                                 color: $white;
-                                font-family: 'Roboto', sans-serif;
                                 font-size: 0.8rem;
                                 padding: 5px 10px;
                                 line-height: 1rem;
@@ -96,7 +95,7 @@
                     }
                 }
 
-                @media (max-width: 460px) {
+                @media (max-width: 520px) {
                     .buttons {
                         display: flex;
                         flex-direction: column;
@@ -123,12 +122,12 @@
         }
     }
 
-    @media (max-width: 885px) {
+    @media (max-width: 914px) {
         .home {
             .home-container {
                 flex-direction: column;
 
-                .introduction {
+                .intro {
                     margin-right: 0;
                     margin-bottom: 2rem;
 
@@ -140,7 +139,7 @@
                     }
                 }
 
-                .install-section {
+                .install {
                     width: 100%;
 
                     :global(.install-command) {

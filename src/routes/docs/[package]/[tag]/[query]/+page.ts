@@ -2,13 +2,14 @@ import { error } from '@sveltejs/kit';
 import all, { packages } from '../../../../../lib/scripts/packages';
 import type { PackageTagLoadData } from '../+page';
 import { findDocsElement } from '../../../../../lib/scripts/helpers';
+import type { PageLoad } from './$types';
 
 export interface PackageQueryLoadData extends PackageTagLoadData {
     tag: string;
     selected: number;
 }
 
-export const load = async (data: any) => {
+export const load = (async data => {
     const pkg = data.params.package as (typeof packages)[0];
     const tag = data.params.tag;
     const query = data.params.query;
@@ -25,4 +26,4 @@ export const load = async (data: any) => {
     if (!selected) throw error(404);
 
     return { package: pkg, tag: docs.currentTag, docs, selected };
-};
+}) satisfies PageLoad;

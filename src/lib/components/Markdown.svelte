@@ -1,5 +1,4 @@
 <script lang="ts">
-    import DOMPurify from 'dompurify';
     import '../styles/markdown.scss';
     import type { MarkedOptions } from 'MarkedOptions';
     import { markdownOptions, markdownParser } from '../scripts/config';
@@ -12,6 +11,6 @@
 
 <div class="markdown" {...$$props}>
     {#await html then text}
-        {@html DOMPurify.sanitize(text ?? '')}
+        {@html text ?? ''}
     {/await}
 </div>

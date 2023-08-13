@@ -51,9 +51,11 @@ export function isElementDeprecated(element: AnyDocsElement): boolean {
         );
 }
 
-export function deprecatedElementSorter(a: AnyDocsElement, b: AnyDocsElement): number {
-    const aDeprecated = isElementDeprecated(a);
-    const bDeprecated = isElementDeprecated(b);
+export function deprecatedElementSorter(a: AnyDocsElement, b: AnyDocsElement): number;
+export function deprecatedElementSorter(a: boolean, b: boolean): number;
+export function deprecatedElementSorter(a: AnyDocsElement|boolean, b: AnyDocsElement|boolean): number {
+    const aDeprecated = typeof a === 'boolean' ? a : isElementDeprecated(a);
+    const bDeprecated = typeof b === 'boolean' ? b : isElementDeprecated(b);
 
     return (aDeprecated && bDeprecated) || (!aDeprecated && !bDeprecated)
         ? 0

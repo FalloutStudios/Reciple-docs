@@ -11,6 +11,14 @@
     <title>{docsData.package}@{docsData.tag}</title>
 </svelte:head>
 
+<style lang="scss">
+    .content-container {
+        height: 100%;
+        width: 100%;
+        padding-right: 1rem;
+    }
+</style>
+
 <Nav data={docsData.docs}/><SideBar/>
 <div class="content-container">
     <div class="content">

@@ -22,7 +22,9 @@ export const navLinks: { name: string; href: string; blank?: boolean; }[] = [
     }
 ];
 
-export let markdownOptions: MarkedOptions = {};
+export let markdownOptions: MarkedOptions = {
+    smartLists: true
+};
 
 export const markdownParser = new Marked(markedHighlight({
     langPrefix: "",

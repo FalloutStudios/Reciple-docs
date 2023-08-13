@@ -1,11 +1,14 @@
 <script lang="ts">
     import Icon from '@iconify/svelte';
+    import { deprecatedElementSorter } from '../scripts/helpers';
 
     export let name: string;
     export let icon: string;
     export let open: boolean = true;
 
     export let data: { name: string; href: string; deprecated?: boolean; selected?: boolean; }[] = [];
+
+    $: data = data.sort((a, b) => deprecatedElementSorter(!!a.deprecated, !!b.deprecated));
 </script>
 
 <style lang="scss">

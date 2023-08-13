@@ -11,6 +11,7 @@ html {
     width: 100%;
     background: $bg;
     color: $white;
+    font-family: 'Inter', sans-serif;
 }
 
 *,
@@ -19,7 +20,6 @@ html {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Inter', sans-serif;
 }
 
 .noScrollbar {

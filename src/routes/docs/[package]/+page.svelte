@@ -1,13 +1,9 @@
 <script lang="ts">
     import Icon from '@iconify/svelte';
     import LinkButton from '../../../lib/components/LinkButton.svelte';
-    import type { DocsParser } from '../../../lib/scripts/classes/DocsParser';
-    import type { packages } from '../../../lib/scripts/packages';
     import type { PackageLoadData } from './+page';
 
     export let data: PackageLoadData;
-
-    let tags: Promise<string[]> = data.docs.resolveTags();
 </script>
 
 <style lang="scss">
@@ -78,17 +74,17 @@
 
 <div class="container">
     <div class="center">
-        {#await tags}
+        {#await data.docs.resolveTags()}
             <div class="title" style="text-align: center;">
                 Loading Tags...
             </div>
-        {:then tags} 
+        {:then tags}
             <div class="title">
                 Select a version:
             </div>
             <div class="content">
                 {#each tags as tag}
-                    <LinkButton href="/docs/{data.package}/{tag}">
+                    <LinkButton href="/docs/{data.package}/{tag}{data.goto ? `/${data.goto}` : ''}">
                         <span><Icon icon="tabler:versions" class="icon"/> {tag}</span>
                         <Icon icon="ic:round-arrow-forward" class="arrow"/>
                     </LinkButton>

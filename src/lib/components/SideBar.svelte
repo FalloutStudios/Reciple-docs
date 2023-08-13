@@ -83,46 +83,56 @@
                     <LinkDropdown icon="tabler:versions" items={data.docs.tags.map(t => ({ name: t, href: `/docs/${data.docs.options.package}/${t}`, selected: t === data.docs.currentTag }))}>{data.docs.currentTag}</LinkDropdown>
                 </div>
                 <div class="sidebar-links">
+                    {#if data.docs.customPages.size}
+                        {#each data.docs.customPages as [name, pages]}
+                            <SidebarCategory
+                                name={name}
+                                icon="codicon:file"
+                                data={pages.map(p => ({ name: p.name, href: `/docs/${data.docs.options.package}/${data.docs.currentTag}/pages/${name}:${p.id}` }))}
+                                open={false}
+                            />
+                        {/each}
+                    {/if}
                     {#if data.docs.data?.classes.length}
                         <SidebarCategory
                             name="Classes"
                             icon="codicon:symbol-class"
-                            data={data.docs.data?.classes.sort(deprecatedElementSorter).map(c => ({ name: c.name, href: `/docs/${data.docs.options.package}/${data.docs.currentTag}/classes:${c.name}`, deprecated: isElementDeprecated(c), selected: c.id === data.selected }))}
+                            data={data.docs.data?.classes.map(c => ({ name: c.name, href: `/docs/${data.docs.options.package}/${data.docs.currentTag}/classes:${c.name}`, deprecated: isElementDeprecated(c), selected: c.id === data.selected }))}
                         />
                     {/if}
                     {#if data.docs.data?.enums.length}
                         <SidebarCategory
                             name="Enums"
                             icon="codicon:symbol-enum"
-                            data={data.docs.data?.enums.sort(deprecatedElementSorter).map(c => ({ name: c.name, href: `/docs/${data.docs.options.package}/${data.docs.currentTag}/enums:${c.name}`, deprecated: isElementDeprecated(c), selected: c.id === data.selected }))}
+                            data={data.docs.data?.enums.map(c => ({ name: c.name, href: `/docs/${data.docs.options.package}/${data.docs.currentTag}/enums:${c.name}`, deprecated: isElementDeprecated(c), selected: c.id === data.selected }))}
                         />
                     {/if}
                     {#if data.docs.data?.interfaces.length}
                         <SidebarCategory
                             name="Interfaces"
                             icon="codicon:symbol-interface"
-                            data={data.docs.data?.interfaces.sort(deprecatedElementSorter).map(c => ({ name: c.name, href: `/docs/${data.docs.options.package}/${data.docs.currentTag}/interfaces:${c.name}`, deprecated: isElementDeprecated(c), selected: c.id === data.selected }))}
+                            data={data.docs.data?.interfaces.map(c => ({ name: c.name, href: `/docs/${data.docs.options.package}/${data.docs.currentTag}/interfaces:${c.name}`, deprecated: isElementDeprecated(c), selected: c.id === data.selected }))}
                         />
                     {/if}
                     {#if data.docs.data?.typeAliases.length}
                         <SidebarCategory
                             name="Types"
                             icon="codicon:symbol-ruler"
-                            data={data.docs.data?.typeAliases.sort(deprecatedElementSorter).map(c => ({ name: c.name, href: `/docs/${data.docs.options.package}/${data.docs.currentTag}/typeAliases:${c.name}`, deprecated: isElementDeprecated(c), selected: c.id === data.selected }))}
+                            data={data.docs.data?.typeAliases.map(c => ({ name: c.name, href: `/docs/${data.docs.options.package}/${data.docs.currentTag}/typeAliases:${c.name}`, deprecated: isElementDeprecated(c), selected: c.id === data.selected }))}
                         />
                     {/if}
                     {#if data.docs.data?.functions.length}
                         <SidebarCategory
                             name="Functions"
                             icon="codicon:symbol-method"
-                            data={data.docs.data?.functions.sort(deprecatedElementSorter).map(c => ({ name: c.name, href: `/docs/${data.docs.options.package}/${data.docs.currentTag}/functions:${c.name}`, deprecated: isElementDeprecated(c), selected: c.id === data.selected }))}
+                            data={data.docs.data?.functions.map(c => ({ name: c.name, href: `/docs/${data.docs.options.package}/${data.docs.currentTag}/functions:${c.name}`, deprecated: isElementDeprecated(c), selected: c.id === data.selected }))}
                         />
                     {/if}
                     {#if data.docs.data?.variables.length}
                         <SidebarCategory
-                            name="Interfaces"
+                            name="Variables"
                             icon="codicon:symbol-field"
-                            data={data.docs.data?.variables.sort(deprecatedElementSorter).map(c => ({ name: c.name, href: `/docs/${data.docs.options.package}/${data.docs.currentTag}/variables:${c.name}`, deprecated: isElementDeprecated(c), selected: c.id === data.selected }))}
+                            data={data.docs.data?.variables.map(c => ({ name: c.name, href: `/docs/${data.docs.options.package}/${data.docs.currentTag}/variables:${c.name}`, deprecated: isElementDeprecated(c), selected: c.id === data.selected }))}
                         />
                     {/if}
                 </div>

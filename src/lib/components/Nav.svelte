@@ -111,7 +111,7 @@
 <div class="nav">
     <style>
         body {
-            padding-top: calc(var(--nav-height) + 1rem);
+            padding-top: var(--nav-height);
         }
     </style>
     <div class="nav-container">
