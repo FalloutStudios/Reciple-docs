@@ -43,33 +43,7 @@
                         background: $link;
                         border-radius: 5px;
                         padding: 5px 10px;
-
-                        &:hover,
-                        &:focus {
-                            position: relative;
-
-                            &::after {
-                                content: 'https://discord.js.org';
-                                position: absolute;
-                                display: block;
-                                background: $bg;
-                                color: $white;
-                                font-size: 0.8rem;
-                                padding: 5px 10px;
-                                line-height: 1rem;
-                                border-radius: 3px;
-                                margin-bottom: 10px;
-                                bottom: 100%;
-                                left: 50%;
-                                transform: translateX(-50%);
-                            }
-                        }
-
-                        &:focus-visible {
-                            outline: none;
-                            background: #fff;
-                            color: rgba(88, 101, 242, 1.0);
-                        }
+                        position: relative;
                     }
                 }
 
