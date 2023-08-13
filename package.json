@@ -11,6 +11,9 @@
 	},
 	"dependencies": {
 		"@discordjs/collection": "^1.5.2",
+		"@iconify/icons-codicon": "^1.2.26",
+		"@iconify/icons-ph": "^1.2.4",
+		"@iconify/icons-tabler": "^1.2.86",
 		"@types/semver": "^7.5.0",
 		"dompurify": "^3.0.5",
 		"flowbite": "^1.8.1",

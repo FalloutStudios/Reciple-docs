@@ -3,7 +3,7 @@ import all, { packages } from '$lib/scripts/packages';
 import type { PackageLoadData } from '../+page';
 import type { PageLoad } from './$types';
 
-export interface PackageTagLoadData extends Omit<PackageLoadData, 'goto'> {
+export interface PackageTagLoadData extends Omit<PackageLoadData, 'goto'|'tags'> {
     tag: string;
     selected?: number;
     page?: { category: string; id: string; content: string; };

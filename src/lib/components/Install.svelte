@@ -1,5 +1,8 @@
 <script lang="ts">
     import Icon from '@iconify/svelte';
+    import caretRightBoldIcon from '@iconify/icons-ph/caret-right-bold';
+    import checkBoldIcon from '@iconify/icons-ph/check-bold';
+    import copyIcon from '@iconify/icons-tabler/copy';
 
     const installScripts = {
         npm: 'npm create reciple@latest',
@@ -99,14 +102,10 @@
         <button class:active={packageManager == 'pnpm'} class="tab pnpm" on:click={(() => packageManager = 'pnpm')}>pnpm</button>
     </div>
     <div class="content">
-        <span class="icon"><Icon icon="ph:caret-right-bold"/></span>
+        <span class="icon"><Icon icon={caretRightBoldIcon}/></span>
         <span class="command">{command}</span>
         <button class:copied={copied} class="copy" on:click={copyCommand}>
-            {#if copied}
-                <Icon icon="ic:outline-check"/>
-            {:else}
-                <Icon icon="tabler:copy" />
-            {/if}
+            {#key copied}<Icon icon={copied ? checkBoldIcon : copyIcon}/>{/key}
         </button>
     </div>
 </div>

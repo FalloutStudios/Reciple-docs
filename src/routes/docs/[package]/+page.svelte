@@ -2,6 +2,9 @@
     import Icon from '@iconify/svelte';
     import LinkButton from '$lib/components/LinkButton.svelte';
     import type { PackageLoadData } from './+page';
+    import caretRightIcon from '@iconify/icons-ph/caret-right';
+    import caretLeftIcon from '@iconify/icons-ph/caret-left';
+    import versionsIcon from '@iconify/icons-tabler/versions';
 
     export let data: PackageLoadData;
 </script>
@@ -74,30 +77,26 @@
 
 <div class="container">
     <div class="center">
-        {#await data.docs.resolveTags()}
-            <div class="title" style="text-align: center;">
-                Loading Tags...
-            </div>
-        {:then tags}
+        {#if data.tags.length}
             <div class="title">
                 Select a version:
             </div>
             <div class="content">
-                {#each tags as tag}
+                {#each data.tags as tag}
                     <LinkButton href="/docs/{data.package}/{tag}{data.goto ? `/${data.goto}` : ''}">
-                        <span><Icon icon="tabler:versions" class="icon"/> {tag}</span>
-                        <Icon icon="ic:round-arrow-forward" class="arrow"/>
+                        <span><Icon icon={versionsIcon} class="icon"/> {tag}</span>
+                        <Icon icon={caretRightIcon} class="arrow"/>
                     </LinkButton>
                 {/each}
             </div>
-        {:catch err}
+        {:else}
             <div class="title" style="text-align: center;">
                 Couldn't fetch tags from Github
             </div>
-        {/await}
+        {/if}
         <div class="back">
             <LinkButton class="blue" href="/docs">
-                <Icon icon="ic:round-arrow-back" /> Back
+                <Icon icon={caretLeftIcon} /> Back
             </LinkButton>
         </div>
     </div>

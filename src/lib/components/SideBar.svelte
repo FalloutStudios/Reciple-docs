@@ -6,6 +6,15 @@
     import type { PackageTagLoadData } from '../../routes/docs/[package]/[tag]/+page';
     import { page } from '$app/stores';
     import { isElementDeprecated } from '../scripts/helpers';
+    import packageBold from '@iconify/icons-ph/package-bold';
+    import versionsIcon from '@iconify/icons-tabler/versions';
+    import fileIcon from '@iconify/icons-codicon/file';
+    import symbolClassIcon from '@iconify/icons-codicon/symbol-class';
+    import symbolEmunIcon from '@iconify/icons-codicon/symbol-enum';
+    import symbolInterfaceIcon from '@iconify/icons-codicon/symbol-interface';
+    import symbolRulerIcon from '@iconify/icons-codicon/symbol-ruler';
+    import symbolMethodIcon from '@iconify/icons-codicon/symbol-method';
+    import symbolFieldIcon from '@iconify/icons-codicon/symbol-field';
 
     $: data = $page.data as PackageTagLoadData;
 
@@ -79,15 +88,15 @@
         <div class="sidebar" bind:this={sidebar}>
             <div class="sidebar-content" bind:this={sidebarcontent}>
                 <div class="sidebar-options">
-                    <LinkDropdown icon="ph:package-bold" items={packages.map(p => ({ name: p, href: `/docs/${p}`, selected: p === data.docs.options.package }))}>{data.docs.options.package}</LinkDropdown>
-                    <LinkDropdown icon="tabler:versions" items={data.docs.tags.map(t => ({ name: t, href: `/docs/${data.docs.options.package}/${t}`, selected: t === data.docs.currentTag }))}>{data.docs.currentTag}</LinkDropdown>
+                    <LinkDropdown icon={packageBold} items={packages.map(p => ({ name: p, href: `/docs/${p}`, selected: p === data.docs.options.package }))}>{data.docs.options.package}</LinkDropdown>
+                    <LinkDropdown icon={versionsIcon} items={data.docs.tags.map(t => ({ name: t, href: `/docs/${data.docs.options.package}/${t}`, selected: t === data.docs.currentTag }))}>{data.docs.currentTag}</LinkDropdown>
                 </div>
                 <div class="sidebar-links">
                     {#if data.docs.customPages.size}
                         {#each data.docs.customPages as [name, pages]}
                             <SidebarCategory
                                 name={name}
-                                icon="codicon:file"
+                                icon={fileIcon}
                                 data={pages.map(p => {
                                     const selected = data.page && data.page?.category === name && data.page?.id === p.id;
 
@@ -97,49 +106,49 @@
                                         selected
                                     };
                                 })}
-                                open={data.page && data.page?.category === name}
+                                open={!!data.page && data.page?.category === name}
                             />
                         {/each}
                     {/if}
                     {#if data.docs.data?.classes.length}
                         <SidebarCategory
                             name="Classes"
-                            icon="codicon:symbol-class"
+                            icon={symbolClassIcon}
                             data={data.docs.data?.classes.map(c => ({ name: c.name, href: `/docs/${data.docs.options.package}/${data.docs.currentTag}/classes:${c.name}`, deprecated: isElementDeprecated(c), selected: c.id === data.selected }))}
                         />
                     {/if}
                     {#if data.docs.data?.enums.length}
                         <SidebarCategory
                             name="Enums"
-                            icon="codicon:symbol-enum"
+                            icon={symbolEmunIcon}
                             data={data.docs.data?.enums.map(c => ({ name: c.name, href: `/docs/${data.docs.options.package}/${data.docs.currentTag}/enums:${c.name}`, deprecated: isElementDeprecated(c), selected: c.id === data.selected }))}
                         />
                     {/if}
                     {#if data.docs.data?.interfaces.length}
                         <SidebarCategory
                             name="Interfaces"
-                            icon="codicon:symbol-interface"
+                            icon={symbolInterfaceIcon}
                             data={data.docs.data?.interfaces.map(c => ({ name: c.name, href: `/docs/${data.docs.options.package}/${data.docs.currentTag}/interfaces:${c.name}`, deprecated: isElementDeprecated(c), selected: c.id === data.selected }))}
                         />
                     {/if}
                     {#if data.docs.data?.typeAliases.length}
                         <SidebarCategory
                             name="Types"
-                            icon="codicon:symbol-ruler"
+                            icon={symbolRulerIcon}
                             data={data.docs.data?.typeAliases.map(c => ({ name: c.name, href: `/docs/${data.docs.options.package}/${data.docs.currentTag}/typeAliases:${c.name}`, deprecated: isElementDeprecated(c), selected: c.id === data.selected }))}
                         />
                     {/if}
                     {#if data.docs.data?.functions.length}
                         <SidebarCategory
                             name="Functions"
-                            icon="codicon:symbol-method"
+                            icon={symbolMethodIcon}
                             data={data.docs.data?.functions.map(c => ({ name: c.name, href: `/docs/${data.docs.options.package}/${data.docs.currentTag}/functions:${c.name}`, deprecated: isElementDeprecated(c), selected: c.id === data.selected }))}
                         />
                     {/if}
                     {#if data.docs.data?.variables.length}
                         <SidebarCategory
                             name="Variables"
-                            icon="codicon:symbol-field"
+                            icon={symbolFieldIcon}
                             data={data.docs.data?.variables.map(c => ({ name: c.name, href: `/docs/${data.docs.options.package}/${data.docs.currentTag}/variables:${c.name}`, deprecated: isElementDeprecated(c), selected: c.id === data.selected }))}
                         />
                     {/if}

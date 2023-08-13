@@ -7,9 +7,10 @@ export interface PackageLoadData {
     package: (typeof packages)[0];
     docs: DocsParser;
     goto?: string;
+    tags: string[];
 }
 
-export const load = ((data) => {
+export const load = (async (data) => {
     const pkg = data.params.package as (typeof packages)[0];
     const docs = all[pkg];
 
@@ -17,5 +18,7 @@ export const load = ((data) => {
 
     const goto = data.url.searchParams.get('goto') ?? undefined;
 
-    return { package: pkg, docs, goto };
+    const tags = await docs.resolveTags();
+
+    return { package: pkg, docs, goto, tags };
 }) satisfies PageLoad;

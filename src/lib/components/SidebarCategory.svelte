@@ -1,9 +1,10 @@
 <script lang="ts">
-    import Icon from '@iconify/svelte';
+    import Icon, { type IconifyIcon } from '@iconify/svelte';
     import { deprecatedElementSorter } from '../scripts/helpers';
+    import caretDownIcon from '@iconify/icons-ph/caret-down';
 
     export let name: string;
-    export let icon: string;
+    export let icon: string|IconifyIcon;
     export let open: boolean = true;
 
     export let data: { name: string; href: string; deprecated?: boolean; selected?: boolean; }[] = [];
@@ -117,7 +118,7 @@
     <button class="category-topbar" on:click={() => open = !open}>
         <span class="icon"><Icon {icon}/></span>
         <span class="name">{name}</span>
-        <span class="caret"><Icon icon="ph:caret-down"/></span>
+        <span class="caret"><Icon icon={caretDownIcon}/></span>
     </button>
     <div class="category-content">
         {#each data as element}

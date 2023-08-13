@@ -122,7 +122,7 @@ export class DocsParser {
         }
 
         const json = await res.json();
-        if (url && res.ok) {
+        if (url && res.ok && typeof window !== 'undefined') {
             addToCache(url, json);
             console.log(`Added to localstorage response from: ${url}`);
         }

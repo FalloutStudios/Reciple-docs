@@ -1,9 +1,12 @@
 <script lang="ts">
     import Icon from '@iconify/svelte';
+    import type { IconifyIcon } from '@iconify/types';
     import { Dropdown, DropdownItem } from 'flowbite-svelte';
+    import caretUpIcon from '@iconify/icons-ph/caret-up';
+    import externalLinkIcon from '@iconify/icons-tabler/external-link';
 
     export let items: { name: string; href: string; blank?: boolean; selected?: boolean; }[];
-    export let icon: string|null = null;
+    export let icon: string|IconifyIcon|null = null;
 
     let open: boolean = false;
     let width: number;
@@ -102,12 +105,12 @@
             <span class="icon"><Icon {icon}/></span>
         {/if}
         <span class="content"><slot/></span>
-        <span class="caret" class:active={!open}><Icon icon="ph:caret-up"/></span>
+        <span class="caret" class:active={!open}><Icon icon={caretUpIcon}/></span>
     </button>
     <Dropdown class="items" style="width: {width + 2}px; z-index: 5;" bind:open={open}>
         {#each items as item}
             <DropdownItem defaultClass="item" href={item.selected ? undefined : item.href} data-selected={item.selected} target={item.blank ? "_blank" : null}>
-                {item.name} {#if item.blank}<Icon icon="mingcute:external-link-line"/>{/if}
+                {item.name} {#if item.blank}<Icon icon={externalLinkIcon}/>{/if}
             </DropdownItem>
         {/each}
     </Dropdown>

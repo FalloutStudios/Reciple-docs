@@ -2,6 +2,8 @@
     import Icon from '@iconify/svelte';
     import type { DocsParser } from '../scripts/classes/DocsParser';
     import { navLinks } from '../scripts/config';
+    import externalLinkIcon from '@iconify/icons-tabler/external-link';
+    import searchIcon from '@iconify/icons-tabler/search';
 
     export let data: DocsParser;
 </script>
@@ -127,7 +129,7 @@
             {#if navLinks.length}
                 {#each navLinks as link}
                     <a href={link.href} target={link.blank ? "_blank" : null} class:canbehidden={link.blank}>
-                        {link.name} {#if link.blank}<Icon icon="mingcute:external-link-line"/>{/if}
+                        {link.name} {#if link.blank}<Icon icon={externalLinkIcon}/>{/if}
                     </a>
                 {/each}
             {/if}
@@ -135,7 +137,7 @@
         <div class="search">
             <button class="open-search">
                 <span class="icon">
-                    <Icon icon="uil:search" class="icon"/>
+                    <Icon icon={searchIcon} class="icon"/>
                 </span>
                 <span class="placeholder">
                     Search...

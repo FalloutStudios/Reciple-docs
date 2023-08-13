@@ -3,6 +3,7 @@
     import LinkButton from '$lib/components/LinkButton.svelte';
     import { githubHome, npmHome } from '$lib/scripts/config';
     import Icon from '@iconify/svelte';
+    import externalLinkIcon from '@iconify/icons-tabler/external-link';
 </script>
 
 <style lang="scss">
@@ -178,8 +179,8 @@
             </div>
             <div class="buttons">
                 <LinkButton class="blue" href="/docs">Docs</LinkButton>
-                <LinkButton href={githubHome} target="_blank">GitHub <Icon icon="mingcute:external-link-line"/></LinkButton>
-                <LinkButton href={npmHome} target="_blank">NPM <Icon icon="mingcute:external-link-line"/></LinkButton>
+                <LinkButton href={githubHome} target="_blank">GitHub <Icon icon={externalLinkIcon}/></LinkButton>
+                <LinkButton href={npmHome} target="_blank">NPM <Icon icon={externalLinkIcon}/></LinkButton>
             </div>
         </div>
         <div class="install">

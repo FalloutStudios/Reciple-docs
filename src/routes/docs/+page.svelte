@@ -2,6 +2,10 @@
     import Icon from '@iconify/svelte';
     import LinkButton from '$lib/components/LinkButton.svelte';
     import { packages } from '$lib/scripts/packages';
+    import externalLinkIcon from '@iconify/icons-tabler/external-link';
+    import packageBoldIcon from '@iconify/icons-ph/package-bold';
+    import caretRightIcon from '@iconify/icons-ph/caret-right';
+    import caretLeftIcon from '@iconify/icons-ph/caret-left';
 </script>
 
 <style lang="scss">
@@ -74,18 +78,18 @@
         <div class="content">
             {#each packages as pkg}
                 <LinkButton href="/docs/{pkg}">
-                    <span><Icon icon="ph:package-bold" class="icon"/> {pkg}</span>
-                    <Icon icon="ic:round-arrow-forward" class="arrow"/>
+                    <span><Icon icon={packageBoldIcon} class="icon"/> {pkg}</span>
+                    <Icon icon={caretRightIcon} class="arrow"/>
                 </LinkButton>
             {/each}
             <LinkButton href="https://discord.js.org" target="_blank">
-                <span><Icon icon="ph:package-bold" class="icon"/> discord.js</span>
-                <Icon icon="mingcute:external-link-line" class="arrow"/>
+                <span><Icon icon={packageBoldIcon} class="icon"/> discord.js</span>
+                <Icon icon={externalLinkIcon} class="arrow"/>
             </LinkButton>
         </div>
         <div class="back">
             <LinkButton class="blue" href="/">
-                <Icon icon="ic:round-arrow-back" /> Back
+                <Icon icon={caretLeftIcon} /> Back
             </LinkButton>
         </div>
     </div>
