@@ -7,6 +7,7 @@
     import Icon from '@iconify/svelte';
     import { Tooltip } from 'flowbite-svelte';
     import { getElementDisplayName, getElementIcon, isElementDeprecated } from '../scripts/helpers';
+import { goto } from '$app/navigation';
 
     export let docs: ProjectParser;
     export let searchInput: HTMLInputElement|null = null;
@@ -28,7 +29,11 @@
     let loading: boolean = false;
     let inputTimer: NodeJS.Timeout|null = null;
 
-    function clear() {
+    function clear(timersOnly: boolean = false) {
+        if (inputTimer) clearTimeout(inputTimer);
+        if (closing) clearTimeout(closing);
+        if (timersOnly) return;
+
         originalValue = '';
         query = '';
         results = [];
@@ -48,11 +53,16 @@
 
     function inputBlur() {
         dispatcher("blur", searchInput);
+        close();
+    }
+
+    function inputFocus() {
+        clear(true);
+        open = true;
     }
 
     function inputUpdate() {
-        if (inputTimer) clearTimeout(inputTimer);
-        if (closing) clearTimeout(closing);
+        clear(true);
 
         loading = true;
         results = [];
@@ -106,8 +116,6 @@
             if (document.activeElement === searchInput) return;
 
             e.preventDefault();
-            if (inputTimer) clearTimeout(inputTimer);
-            if (closing) clearTimeout(closing);
 
             open = true;
 
@@ -287,8 +295,8 @@
                     <div class="search-icon">
                         <Icon icon={searchIcon}/>
                     </div>
-                    <input type="search" bind:this={searchInput} bind:value={query} placeholder="Search..." autocomplete="off" on:blur={inputBlur} on:input={inputUpdate} on:keydown={keydown} on:keyup={keyup}>
-                    <button class="search-close" on:click={close}>
+                    <input type="search" bind:this={searchInput} bind:value={query} placeholder="Search..." autocomplete="off" on:focus={() => { clear(true); open = true; }} on:blur={inputBlur} on:input={inputUpdate} on:keydown={keydown} on:keyup={keyup}>
+                    <button class="search-close" on:click={close} on:blur={inputBlur} on:focus={inputFocus}>
                         <Icon icon={closeIcon}/>
                     </button>
                     <Tooltip triggeredBy=".search-close" placement="bottom-end">Close Search</Tooltip>
@@ -298,7 +306,8 @@
                         {#each results as result, index}
                             {@const displayName = getElementDisplayName(docs, result)}
                             {@const deprecated = isElementDeprecated(result)}
-                            <a href={result.name} id="sr-{index}" data-name={displayName.search} title={displayName.name + (deprecated ? ' (Deprecated)' : '')} class="search-result" class:deprecated={deprecated} class:active={selectedId == index}>
+                            {@const href = result.name}
+                            <a {href} id="sr-{index}" on:blur={inputBlur} on:focus={inputFocus} on:click={() => { open = false; goto(href); }} data-name={displayName.search} title={displayName.name + (deprecated ? ' (Deprecated)' : '')} class="search-result" class:deprecated={deprecated} class:active={selectedId == index}>
                                 <span class="icon">
                                     <Icon icon={getElementIcon(result)}/>
                                 </span>
