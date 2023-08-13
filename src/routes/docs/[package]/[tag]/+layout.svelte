@@ -13,9 +13,9 @@
 
 <style lang="scss">
     .content-container {
-        height: 100%;
         width: 100%;
         padding-right: 1rem;
+        padding-bottom: 0.5rem;
     }
 </style>
 
