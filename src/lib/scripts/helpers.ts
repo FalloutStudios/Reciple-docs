@@ -120,14 +120,16 @@ export function getElementIcon(element: SearchResult) {
     }
 }
 
-export function getElementDisplayName(docs: ProjectParser, element: SearchResult): string {
-    if (element instanceof InterfaceMethodParser || element instanceof ClassMethodParser || element instanceof InterfacePropertyParser || element instanceof ClassPropertyParser) {
+export function getElementDisplayName(docs: ProjectParser, element: SearchResult): { name: string; search: string; } {
+    if ('parentId' in element) {
         const parent = docs.find(element.parentId) as InterfaceParser|ClassParser|null;
         const isStatic = (element instanceof ClassMethodParser || element instanceof ClassPropertyParser) && element.static;
         const isMethod = element instanceof ClassMethodParser || element instanceof InterfaceMethodParser;
 
-        return `${parent?.name ?? ''}${isStatic ? '#' : '.'}${element.name}${isMethod ? '()' : ''}`;
+        const name = `${parent?.name ?? ''}${isStatic ? '#' : '.'}${element.name}`;
+
+        return { name, search: name + (isMethod ? '()' : '') };
     }
 
-    return element.name;
+    return { name: element.name, search: element.name };
 }

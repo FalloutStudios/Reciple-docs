@@ -298,11 +298,11 @@
                         {#each results as result, index}
                             {@const displayName = getElementDisplayName(docs, result)}
                             {@const deprecated = isElementDeprecated(result)}
-                            <a href={result.name} id="sr-{index}" data-name={selectedId == index ? selectedResult : null} title={displayName + (deprecated ? ' (Deprecated)' : '')} class="search-result" class:deprecated={deprecated} class:active={selectedId == index}>
+                            <a href={result.name} id="sr-{index}" data-name={displayName.search} title={displayName.name + (deprecated ? ' (Deprecated)' : '')} class="search-result" class:deprecated={deprecated} class:active={selectedId == index}>
                                 <span class="icon">
                                     <Icon icon={getElementIcon(result)}/>
                                 </span>
-                                <span class="name">{displayName}</span>
+                                <span class="name">{displayName.name}</span>
                             </a>
                         {/each}
                     </div>

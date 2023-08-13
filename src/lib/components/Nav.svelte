@@ -8,7 +8,7 @@
 
     export let data: DocsParser;
 
-    let opensearch = true;
+    let opensearch = false;
     let searchInput: HTMLInputElement|null;
 
     function openSearch() {
