@@ -7,5 +7,13 @@
     beforeNavigate(() => ready = false);
     afterNavigate(() => ready = true);
 </script>
-{#if !ready}<div class="page-loader"><div class="progress"></div></div>{/if}
+{#if !ready}
+<style>
+    body,
+    html {
+        overflow: hidden;
+    }
+</style>
+<div class="page-loader"><div class="progress"></div></div>
+{/if}
 <slot/>
