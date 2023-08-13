@@ -9,7 +9,6 @@
 </script>
 {#if !ready}
 <style>
-    body,
     html {
         overflow: hidden;
     }

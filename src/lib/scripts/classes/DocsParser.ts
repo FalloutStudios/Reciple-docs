@@ -1,8 +1,15 @@
-import { ProjectParser } from 'typedoc-json-parser';
+import { ProjectParser, SourceParser } from 'typedoc-json-parser';
 import { addToCache, getFromCache } from '../helpers';
 import semver from 'semver';
 import type { Docs } from '../types';
 import { Collection } from '@discordjs/collection';
+
+new SourceParser({
+    url: '',
+    file: '',
+    line: 0,
+    path: ''
+});
 
 export interface APIGitHubRepositoryContent<Type extends 'file'|'dir' = 'file'|'dir'> {
     name: string;

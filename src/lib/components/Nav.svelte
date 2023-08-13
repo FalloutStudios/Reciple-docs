@@ -4,8 +4,18 @@
     import { navLinks } from '../scripts/config';
     import externalLinkIcon from '@iconify/icons-tabler/external-link';
     import searchIcon from '@iconify/icons-tabler/search';
+    import Search from './Search.svelte';
 
     export let data: DocsParser;
+
+    let opensearch = true;
+    let searchInput: HTMLInputElement|null;
+
+    function openSearch() {
+        opensearch = true;
+
+        setTimeout(() => searchInput?.focus(), 100);
+    }
 </script>
 
 <style lang="scss">
@@ -135,7 +145,7 @@
             {/if}
         </div>
         <div class="search">
-            <button class="open-search">
+            <button class="open-search" on:click={openSearch}>
                 <span class="icon">
                     <Icon icon={searchIcon} class="icon"/>
                 </span>
@@ -147,3 +157,4 @@
         </div>
     </div>
 </div>
+{#if data.data}<Search docs={data.data} bind:searchInput={searchInput} bind:open={opensearch}/>{/if}

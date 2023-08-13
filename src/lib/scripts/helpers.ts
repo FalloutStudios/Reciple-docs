@@ -1,6 +1,15 @@
-import { FunctionParser, type ProjectParser } from 'typedoc-json-parser';
+import { ClassMethodParser, ClassParser, ClassPropertyParser, EnumMemberParser, EnumParser, FunctionParser, InterfaceMethodParser, InterfaceParser, InterfacePropertyParser, TypeAliasParser, type ProjectParser, type SearchResult, VariableParser, SignatureParser, MethodParser } from 'typedoc-json-parser';
 import type { AnyDocsElement, DocsElementType } from './types';
 import { slug } from 'github-slugger';
+import symbolClassIcon from '@iconify/icons-codicon/symbol-class';
+import symbolEmunIcon from '@iconify/icons-codicon/symbol-enum';
+import symbolEmunMemberIcon from '@iconify/icons-codicon/symbol-enum-member';
+import symbolInterfaceIcon from '@iconify/icons-codicon/symbol-interface';
+import symbolRulerIcon from '@iconify/icons-codicon/symbol-ruler';
+import symbolPropertyIcon from '@iconify/icons-codicon/symbol-property';
+import symbolMethodIcon from '@iconify/icons-codicon/symbol-method';
+import symbolFieldIcon from '@iconify/icons-codicon/symbol-field';
+import symbolKey from '@iconify/icons-codicon/symbol-key';
 
 export function addToCache(id: string, value: string|any[]|{}): void {
     if (typeof window == 'undefined') return;
@@ -39,17 +48,12 @@ export function findDocsElement(project: ProjectParser, find: string) {
     return parser.find(e => e.name === name || e.id.toString() === name);
 }
 
-export function getElementDescription(element: AnyDocsElement): string|null {
-    return element.comment.description;
+export function getElementDescription(element: AnyDocsElement|MethodParser|SignatureParser): string|null {
+    return (element instanceof FunctionParser || element instanceof MethodParser ? element.signatures.find(s => s.comment.description)?.comment.description : element.comment?.description) || null;
 }
 
-export function isElementDeprecated(element: AnyDocsElement): boolean {
-    return element.comment.deprecated
-        || element.comment.blockTags.some(c => c.name === 'deprecated')
-        || (
-            element instanceof FunctionParser
-            && element.signatures.some(s => s.comment.deprecated || s.comment.blockTags.some(c => c.name === 'deprecated'))
-        );
+export function isElementDeprecated(element: AnyDocsElement|MethodParser|SignatureParser): boolean {
+    return element instanceof FunctionParser || element instanceof MethodParser ? element.signatures.some(s => isElementDeprecated(s)) : element.comment?.deprecated || element.comment?.blockTags.some(c => c.name === 'deprecated');
 }
 
 export function deprecatedElementSorter(a: AnyDocsElement, b: AnyDocsElement): number;
@@ -86,4 +90,44 @@ export function getMarkdownHeaderIds(markdown: string): { id: string; name: stri
 
 export function getElementTypeDisplayName(element: AnyDocsElement) {
     return element.constructor.name.replace('Parser', '').replace('_', '');
+}
+
+export function getElementIcon(element: SearchResult) {
+    if (element instanceof ClassParser) {
+        return symbolClassIcon;
+    } else if (element instanceof ClassPropertyParser) {
+        return symbolPropertyIcon;
+    } else if (element instanceof ClassMethodParser) {
+        return symbolMethodIcon;
+    } else if (element instanceof EnumParser) {
+        return symbolEmunIcon;
+    } else if (element instanceof EnumMemberParser) {
+        return symbolEmunMemberIcon;
+    } else if (element instanceof InterfaceParser) {
+        return symbolInterfaceIcon;
+    } else if (element instanceof InterfacePropertyParser) {
+        return symbolPropertyIcon;
+    } else if (element instanceof InterfaceMethodParser) {
+        return symbolMethodIcon;
+    } else if (element instanceof TypeAliasParser) {
+        return symbolRulerIcon;
+    } else if (element instanceof FunctionParser) {
+        return symbolMethodIcon;
+    } else if (element instanceof VariableParser) {
+        return symbolFieldIcon;
+    } else {
+        return symbolKey;
+    }
+}
+
+export function getElementDisplayName(docs: ProjectParser, element: SearchResult): string {
+    if (element instanceof InterfaceMethodParser || element instanceof ClassMethodParser || element instanceof InterfacePropertyParser || element instanceof ClassPropertyParser) {
+        const parent = docs.find(element.parentId) as InterfaceParser|ClassParser|null;
+        const isStatic = (element instanceof ClassMethodParser || element instanceof ClassPropertyParser) && element.static;
+        const isMethod = element instanceof ClassMethodParser || element instanceof InterfaceMethodParser;
+
+        return `${parent?.name ?? ''}${isStatic ? '#' : '.'}${element.name}${isMethod ? '()' : ''}`;
+    }
+
+    return element.name;
 }
