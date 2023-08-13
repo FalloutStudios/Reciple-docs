@@ -2,13 +2,14 @@
     @import '../styles/variables.scss';
 
     a {
-        display: inline-block;
+        display: inline-flex;
         padding: 0.6rem 1.2rem;
         color: $white;
         @include BorderedButton();
         text-decoration: none;
         font-size: 1.1rem;
         font-weight: bold;
+        align-items: center;
 
 
         &:hover,
