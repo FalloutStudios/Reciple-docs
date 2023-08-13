@@ -27,6 +27,10 @@ export const parsers = {
         ...defaultDocsParserOptions,
         package: 'update-checker'
     }),
+    'docgen': new DocsParser({
+        ...defaultDocsParserOptions,
+        package: 'docgen'
+    })
 };
 
 

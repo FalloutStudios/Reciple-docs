@@ -88,7 +88,7 @@
                             <SidebarCategory
                                 name={name}
                                 icon="codicon:file"
-                                data={pages.map(p => ({ name: p.name, href: `/docs/${data.docs.options.package}/${data.docs.currentTag}/pages/${name}:${p.id}` }))}
+                                data={pages.map(p => ({ name: p.name, href: `/docs/${data.docs.options.package}/${data.docs.currentTag}/pages/${name}:${p.id}`, selected: data.page && data.page?.category === name && data.page?.id === p.id }))}
                                 open={false}
                             />
                         {/each}

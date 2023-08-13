@@ -4,7 +4,7 @@ import type { PackageTagLoadData } from '../+page';
 import { findDocsElement } from '../../../../../lib/scripts/helpers';
 import type { PageLoad } from './$types';
 
-export interface PackageQueryLoadData extends PackageTagLoadData {
+export interface PackageQueryLoadData extends Omit<PackageTagLoadData, 'pages'> {
     tag: string;
     selected: number;
 }
