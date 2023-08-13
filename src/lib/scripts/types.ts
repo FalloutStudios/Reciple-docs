@@ -1,8 +1,7 @@
-import type { ProjectParser } from 'typedoc-json-parser';
-import type { findDocsElement } from './helpers';
+import type { ClassParser, EnumParser, FunctionParser, InterfaceParser, ProjectParser, TypeAliasParser } from 'typedoc-json-parser';
 
 export type DocsElementType = 'classes'|'enums'|'functions'|'interfaces'|'namespaces'|'typeAliases';
-export type AnyDocsElement = Exclude<ReturnType<typeof findDocsElement>, undefined>;
+export type AnyDocsElement = ClassParser|EnumParser|FunctionParser|InterfaceParser|TypeAliasParser;
 
 export interface Docs extends ProjectParser.Json {
     parsedAt: number;

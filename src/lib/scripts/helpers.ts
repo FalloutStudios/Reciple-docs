@@ -38,7 +38,13 @@ export function getFromCache<T = unknown>(id: string): T|null {
     }
 }
 
-export function findDocsElement(project: ProjectParser, find: string) {
+export function findDocsElement(project: ProjectParser, find: string|number) {
+    if (typeof find === 'number' || !isNaN(Number(find))) {
+        const element = project.find(Number(find));
+        if (!isDocsElement(element)) return undefined;
+        return element;
+    }
+
     const [type, name] = find.split(':') as [DocsElementType, string];
     if (!type || !name) throw new Error('Invalid find query');
     if (!(type in project)) throw new Error('Unknown query type');
@@ -118,6 +124,10 @@ export function getElementIcon(element: SearchResult) {
     } else {
         return symbolKey;
     }
+}
+
+export function isDocsElement(element: unknown): element is AnyDocsElement {
+    return element instanceof ClassParser || element instanceof  EnumParser || element instanceof  FunctionParser || element instanceof  InterfaceParser || element instanceof  TypeAliasParser;
 }
 
 export function getElementDisplayName(docs: ProjectParser, element: SearchResult): { name: string; search: string; } {
