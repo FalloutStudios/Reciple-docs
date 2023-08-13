@@ -1,7 +1,7 @@
 <script lang="ts">
     import Icon from '@iconify/svelte';
-    import LinkButton from '../../lib/components/LinkButton.svelte';
-    import { packages } from '../../lib/scripts/packages';
+    import LinkButton from '$lib/components/LinkButton.svelte';
+    import { packages } from '$lib/scripts/packages';
 </script>
 
 <style lang="scss">

@@ -1,6 +1,6 @@
 <script lang="ts">
     import Icon from '@iconify/svelte';
-    import LinkButton from '../../../lib/components/LinkButton.svelte';
+    import LinkButton from '$lib/components/LinkButton.svelte';
     import type { PackageLoadData } from './+page';
 
     export let data: PackageLoadData;

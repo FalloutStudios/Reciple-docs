@@ -1,9 +1,9 @@
 <script lang="ts">
     import type { PackageQueryLoadData } from './+page';
-    import type { AnyDocsElement } from '../../../../../lib/scripts/types';
+    import type { AnyDocsElement } from '$lib/scripts/types';
     import { onMount } from 'svelte';
     import { error } from '@sveltejs/kit';
-    import Markdown from '../../../../../lib/components/Markdown.svelte';
+    import Markdown from '$lib/components/Markdown.svelte';
 
     export let data: PackageQueryLoadData;
 

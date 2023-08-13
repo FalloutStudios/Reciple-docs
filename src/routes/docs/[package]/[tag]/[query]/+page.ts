@@ -1,7 +1,7 @@
 import { error } from '@sveltejs/kit';
-import all, { packages } from '../../../../../lib/scripts/packages';
+import all, { packages } from '$lib/scripts/packages';
 import type { PackageTagLoadData } from '../+page';
-import { findDocsElement } from '../../../../../lib/scripts/helpers';
+import { findDocsElement } from '$lib/scripts/helpers';
 import type { PageLoad } from './$types';
 
 export interface PackageQueryLoadData extends Omit<PackageTagLoadData, 'pages'> {

@@ -1,8 +1,8 @@
 <script lang="ts">
     import type { PackageTagLoadData } from './+page';
     import { page } from "$app/stores";
-    import Nav from '../../../../lib/components/Nav.svelte';
-    import SideBar from '../../../../lib/components/SideBar.svelte';
+    import Nav from '$lib/components/Nav.svelte';
+    import SideBar from '$lib/components/SideBar.svelte';
 
     $: docsData = $page.data as PackageTagLoadData;
 </script>

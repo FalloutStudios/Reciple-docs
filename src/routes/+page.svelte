@@ -1,13 +1,13 @@
 <script lang="ts">
-    import Install from '../lib/components/Install.svelte';
-    import LinkButton from '../lib/components/LinkButton.svelte';
-    import { githubHome, npmHome } from '../lib/scripts/config';
+    import Install from '$lib/components/Install.svelte';
+    import LinkButton from '$lib/components/LinkButton.svelte';
+    import { githubHome, npmHome } from '$lib/scripts/config';
     import Icon from '@iconify/svelte';
 </script>
 
 <style lang="scss">
     @import url('https://fonts.googleapis.com/css2?family=Archivo+Black&display=swap');
-    @import '../lib/styles/variables.scss';
+    @import '$lib/styles/variables.scss';
 
     .home {
         display: flex;

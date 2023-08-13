@@ -1,5 +1,5 @@
 import { error } from '@sveltejs/kit';
-import all, { packages } from '../../../../../../lib/scripts/packages';
+import all, { packages } from '$lib/scripts/packages';
 import type { PackageTagLoadData } from '../../+page';
 import type { PageLoad } from './$types';
 

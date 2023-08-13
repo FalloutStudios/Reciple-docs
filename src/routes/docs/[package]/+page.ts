@@ -1,6 +1,6 @@
 import { error } from '@sveltejs/kit';
-import all, { packages } from '../../../lib/scripts/packages';
-import type { DocsParser } from '../../../lib/scripts/classes/DocsParser';
+import all, { packages } from '$lib/scripts/packages';
+import type { DocsParser } from '$lib/scripts/classes/DocsParser';
 import type { PageLoad } from './$types';
 
 export interface PackageLoadData {
