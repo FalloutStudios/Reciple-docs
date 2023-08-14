@@ -17,6 +17,14 @@
         width: 100%;
         padding-right: 1rem;
         padding-bottom: 0.5rem;
+
+        display: flex;
+        justify-content: center;
+
+        .content {
+            width: 100%;
+            max-width: 1200px;
+        }
     }
 </style>
 
