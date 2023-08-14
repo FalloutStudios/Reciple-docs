@@ -5,11 +5,20 @@
 
     export let content: string;
     export let options: MarkedOptions = markdownOptions;
+    export let inline: boolean = false;
 
-    $: html = markdownParser.parse(content, options);
+    $: html = inline ? markdownParser.parseInline(content, options) : markdownParser.parse(content, options);
 </script>
 
-<div class="markdown" {...$$props}>
+<style>
+    .markdown.inline {
+        width: 100%;
+        position: relative;
+        margin-bottom: 1rem;
+    }
+</style>
+
+<div class="markdown" {...$$props} class:inline>
     {#await html then text}
         {@html text ?? ''}
     {/await}

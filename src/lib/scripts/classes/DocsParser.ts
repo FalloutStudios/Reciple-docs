@@ -33,6 +33,7 @@ export interface DocsParserOptions {
     branch?: string;
     package: string;
     defaultTag: string;
+    npm: string;
 
     tagFilter?: (tag: string) => boolean;
 }

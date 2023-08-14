@@ -1,5 +1,5 @@
-import { ClassMethodParser, ClassParser, ClassPropertyParser, EnumMemberParser, EnumParser, FunctionParser, InterfaceMethodParser, InterfaceParser, InterfacePropertyParser, TypeAliasParser, type ProjectParser, type SearchResult, VariableParser } from 'typedoc-json-parser';
-import type { AnyDocsElement, DocsElementType } from './types';
+import { ClassMethodParser, ClassParser, ClassPropertyParser, EnumMemberParser, EnumParser, FunctionParser, InterfaceMethodParser, InterfaceParser, InterfacePropertyParser, TypeAliasParser, type ProjectParser, type SearchResult, VariableParser, TypeParser, MappedTypeParser, SignatureParser } from 'typedoc-json-parser';
+import type { AnyDocsElement, AnyTypeParser, DocsElementType } from './types';
 import { slug } from 'github-slugger';
 import symbolClassIcon from '@iconify/icons-codicon/symbol-class';
 import symbolEmunIcon from '@iconify/icons-codicon/symbol-enum';
@@ -11,6 +11,8 @@ import symbolMethodIcon from '@iconify/icons-codicon/symbol-method';
 import symbolFieldIcon from '@iconify/icons-codicon/symbol-field';
 import symbolKey from '@iconify/icons-codicon/symbol-key';
 import type { DocsParser } from './classes/DocsParser';
+import { all } from './packages';
+import { EscapedHTMLEntities, UnescapedHTMLEntities } from './config';
 
 export function addToCache(id: string, value: string|any[]|{}): void {
     if (typeof window == 'undefined') return;
@@ -179,4 +181,169 @@ export function getElementHref(data: { docs: DocsParser; package: string;  }, el
     }
 
     return base + `/${element.id}`;
+}
+
+export function getElementExtensions(data: { docs: DocsParser; package: string;  }, element: ClassParser|InterfaceParser, enableLinks: boolean = true): string {
+    let base = '';
+
+    if ('extendsType' in element && element.extendsType) base += `extends ${stringifyType(data, element.extendsType, enableLinks, 1)} `;
+    if ('implementsType' in element && element.implementsType.length) base += `implements ${element.implementsType.map(t => stringifyType(data, t, enableLinks, 1)).join(',' + EscapedHTMLEntities[' '])}`;
+
+    return base;
+}
+
+export function stringifyType(data: { docs: DocsParser; package: string;  }, type: any, enableLinks?: boolean, maxDepth?: number, currentDepth?: number): string;
+export function stringifyType(data: { docs: DocsParser; package: string;  }, type: AnyTypeParser, enableLinks: boolean = true, maxDepth: number = 3, currentDepth: number = 0): string {
+    if (currentDepth > maxDepth) return '...';
+    currentDepth++;
+
+    function _stringify(t: TypeParser): string {
+        return stringifyType(data, t, enableLinks, maxDepth, currentDepth);
+    }
+
+    function _wrap(t: TypeParser, kind: TypeParser.Kind = type.kind): string {
+        return TypeParser.BindingPowers[t.kind] < TypeParser.BindingPowers[kind] ? `(${_stringify(t)})` : _stringify(t);
+    }
+
+    switch (type.kind) {
+        case TypeParser.Kind.Array:
+            return `${_wrap(type.type)}[]`;
+        case TypeParser.Kind.Conditional:
+            return `${_wrap(type.checkType)}${EscapedHTMLEntities[' ']}extends${EscapedHTMLEntities[' ']}${_stringify(type.extendsType)} ? ${_stringify(type.trueType)} : ${_stringify(type.falseType)}`;
+        case TypeParser.Kind.IndexedAccess:
+            return `${_stringify(type.objectType)}[${_stringify(type.indexType)}]`;
+        case TypeParser.Kind.Inferred:
+            return `infer ${type.type}`;
+        case TypeParser.Kind.Intersection:
+            return `${type.types.map(t => _wrap(t)).join(EscapedHTMLEntities[' '] + '&' + EscapedHTMLEntities[' '])}`;
+        case TypeParser.Kind.Intrinsic:
+            return type.type;
+        case TypeParser.Kind.Literal:
+            return type.value.replaceAll(' ', EscapedHTMLEntities[' ']);
+        case TypeParser.Kind.Mapped:
+            const mappedReadonly = type.readonly === MappedTypeParser.Modifier.Add ? 'readonly ' : type.readonly === MappedTypeParser.Modifier.Remove ? '-readonly ' : '';
+            const mappedOptional = type.optional === MappedTypeParser.Modifier.Add ? '?' : type.optional === MappedTypeParser.Modifier.Remove ? '-?' : '';
+            return `{${EscapedHTMLEntities[' '] + mappedReadonly}[${type.parameter + EscapedHTMLEntities[' ']}in${EscapedHTMLEntities[' '] + _stringify(type.parameterType)}]${mappedOptional}:${EscapedHTMLEntities[' '] + _stringify(type.templateType) + EscapedHTMLEntities[' ']}}`;
+        case TypeParser.Kind.NamedTupleMember:
+            return `${type.name}${type.optional ? '?' : ''}:${EscapedHTMLEntities[' '] + _stringify(type.type)}`;
+        case TypeParser.Kind.Optional:
+            return `${_wrap(type.type)}?`;
+        case TypeParser.Kind.Predicate:
+            return type.asserts ? `asserts${EscapedHTMLEntities[' '] + type.name}` : `${type.name + EscapedHTMLEntities[' ']}is${EscapedHTMLEntities[' '] + (type.type && _stringify(type.type) || '')}`;
+        case TypeParser.Kind.Query:
+            return `typeof${EscapedHTMLEntities[' '] + _stringify(type.query)}`;
+        case TypeParser.Kind.Reference:
+            const typeArgs = type.typeArguments.length ? `${EscapedHTMLEntities['<']}${type.typeArguments.map(a => _stringify(a)).join(',')}${EscapedHTMLEntities['>']}` : '';
+            if (!enableLinks || !type.packageName || typeof type.id !== 'number' || !all.some(p => p.options.npm === type.packageName)) return type.name + typeArgs;
+
+            let url: string = '';
+
+            if (type.packageName === data.docs.options.npm) {
+                const element = findDocsElement(data.docs.data!, type.id);
+                if (element) url = getElementHref(data, element);
+            } else {
+                const pkg = all.find(p => p.options.npm === type.packageName);
+                if (pkg) return `/docs/${pkg.options.package}?goto=${type.id}`;
+            }
+
+            return url
+                ? `<a href="${url}">${`${type.name}`}</a>` + typeArgs
+                : type.name + typeArgs;
+        case TypeParser.Kind.Reflection:
+            return '{ ' +
+                (type.properties?.map(p => `${p.name}:${EscapedHTMLEntities[' '] + _stringify(p.type)};`).join(EscapedHTMLEntities[' ']) ?? '') +
+                (type.signatures?.map(s => {
+                    const signature = signatureStringInfo(data, s, enableLinks);
+
+                    return `${signature.typeParameters ? (EscapedHTMLEntities['<'] + signature.typeParameters + EscapedHTMLEntities['>']) : ''}(${signature.parameters}):${EscapedHTMLEntities[' '] + signature.return};`;
+                }).join(EscapedHTMLEntities[' ']) ?? '') +
+                (type.methods?.map(m => m.signatures.length
+                    ? m.signatures?.map(s => {
+                        const signature = signatureStringInfo(data, s, enableLinks);
+                        return `${signature.typeParameters ? (EscapedHTMLEntities['<'] + signature.typeParameters + EscapedHTMLEntities['>']) : ''}(${signature.parameters}):${EscapedHTMLEntities[' '] + signature.return};`;
+                    }).join(EscapedHTMLEntities[' ']) ?? ''
+                    : '') ?? '')
+            + ' }';
+        case TypeParser.Kind.Rest:
+            return `...${_wrap(type.type)}`;
+        case TypeParser.Kind.TemplateLiteral:
+            return '`' + type.head + type.tail.map(t => '${' + _stringify(t.type) + '}' + t.text).join('') + '`';
+        case TypeParser.Kind.Tuple:
+            return `[${type.types.map(t => _stringify(t)).join(',')}]`;
+        case TypeParser.Kind.TypeOperator:
+            return type.operator + ' ' + _stringify(type.type);
+        case TypeParser.Kind.Union:
+            return type.types.map(u => _wrap(u)).join('|');
+        case TypeParser.Kind.Unknown:
+            return 'unknown';
+    }
+}
+
+export function signatureStringInfo(data: { docs: DocsParser; package: string;  }, type: SignatureParser, enableLinks: boolean, depth?: number): { typeParameters: string; parameters: string; return: string } {
+    let typeParameters = '';
+    let parameters = '';
+    let returnType = '';
+
+    typeParameters = type.typeParameters.length
+        ? type.typeParameters.map(p => `${p.name}${EscapedHTMLEntities[' ']}${p.constraint ? ('extends ' + stringifyType(data, p.constraint, enableLinks, depth)) : ''}${p.default ? (' = ' + stringifyType(data, p.default, enableLinks, depth)) : ''}`).join(', ')
+        : '';
+
+    parameters = type.parameters.length
+        ? type.parameters.map(p => `${p.rest ? '...' : ''}${p.name}${p.optional ? '?' : ''}: ${stringifyType(data, p.type, enableLinks, depth)}`).join(', ')
+        : '';
+
+    returnType = stringifyType(data, type.returnType, enableLinks, depth);
+
+    return { typeParameters, parameters, return: returnType };
+}
+
+export function unescapeHTML(html: string): string {
+    for (const key of Object.values(EscapedHTMLEntities) as string[]) {
+        html = html.replaceAll(key, UnescapedHTMLEntities[key as keyof typeof UnescapedHTMLEntities]);
+    }
+
+    return html;
+}
+
+export function createClassTypeSnippet(data: { docs: DocsParser; package: string;  }, element: ClassParser): string {
+    let typeParameters = element.typeParameters.map(p => `${p.name}${p.constraint ? ('extends ' + stringifyType(data, p.constraint, false, 2)) : ''}${p.default ? (' = ' + stringifyType(data, p.default, false, 2)) : ''}`).join(', ');
+        typeParameters = typeParameters && `<${typeParameters}>`;
+
+    let extendsType = element.extendsType && stringifyType(data, element.extendsType, false, 2);
+        extendsType = extendsType ? ` extends ${extendsType}` : '';
+
+    let implementsType = element.implementsType.map(p => stringifyType(data, element.implementsType, false, 2)).join(', ');
+        implementsType = implementsType ? ` implements ${extendsType}` : '';
+
+    return unescapeHTML(`export ${element.abstract ? 'abstract ' : ''}class ${element.name}${typeParameters}${extendsType}`);
+}
+
+export function createInterfaceTypeSnippet(data: { docs: DocsParser; package: string;  }, element: InterfaceParser): string {
+    let typeParameters = element.typeParameters.map(p => `${p.name}${p.constraint ? ('extends ' + stringifyType(data, p.constraint, false, 2)) : ''}${p.default ? (' = ' + stringifyType(data, p.default, false, 2)) : ''}`).join(', ');
+        typeParameters = typeParameters && `<${typeParameters}>`;
+
+    return unescapeHTML(`export interface ${element.name}${typeParameters}`);
+}
+
+export function createTypeAliasTypeSnippet(data: { docs: DocsParser; package: string;  }, element: TypeAliasParser): string {
+    let typeParameters = element.typeParameters.map(p => `${p.name}${p.constraint ? ('extends ' + stringifyType(data, p.constraint, false, 2)) : ''}${p.default ? (' = ' + stringifyType(data, p.default, false, 2)) : ''}`).join(', ');
+        typeParameters = typeParameters && `<${typeParameters}>`;
+
+    return unescapeHTML(`export type ${element.name}${typeParameters} = ${stringifyType(data, element.type, false, 2)}`);
+}
+
+export function createFunctionTypeSnippet(data: { docs: DocsParser; package: string;  }, element: FunctionParser): string {
+    let snippets = '';
+
+    for (const signature of element.signatures) {
+        const info = signatureStringInfo(data, signature, false, 2);
+
+        snippets += `export function ${signature.name}${info.typeParameters ? ('<' + info.typeParameters + '>') : ''}(${info.parameters || ''}): ${info.return}\n`;
+    }
+
+    return unescapeHTML(snippets);
+}
+
+export function createVariableTypeSnipper(data: { docs: DocsParser; package: string;  }, element: VariableParser): string {
+    return unescapeHTML(`export const ${element.name}: ${stringifyType(data, element.type, false, 2)} = ${element.value}`);
 }

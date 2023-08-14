@@ -50,13 +50,13 @@
                 width: 100%;
                 position: relative;
                 @include NoScrollbar();
+                padding: 0.5rem;
                 overflow-y: auto;
                 overflow-x: hidden;
             }
 
             .sidebar-content {
                 height: 100%;
-                padding-right: 0.5rem;
 
                 .sidebar-options {
                     width: 100%;
@@ -117,6 +117,20 @@
                             data={data.docs.data?.classes.map(c => ({ name: c.name, href: `/docs/${data.docs.options.package}/${data.docs.currentTag}/classes:${c.name}`, deprecated: isElementDeprecated(c), selected: c.id === data.selected }))}
                         />
                     {/if}
+                    {#if data.docs.data?.functions.length}
+                        <SidebarCategory
+                            name="Functions"
+                            icon={symbolMethodIcon}
+                            data={data.docs.data?.functions.map(c => ({ name: c.name, href: `/docs/${data.docs.options.package}/${data.docs.currentTag}/functions:${c.name}`, deprecated: isElementDeprecated(c), selected: c.id === data.selected }))}
+                        />
+                    {/if}
+                    {#if data.docs.data?.variables.length}
+                        <SidebarCategory
+                            name="Variables"
+                            icon={symbolFieldIcon}
+                            data={data.docs.data?.variables.map(c => ({ name: c.name, href: `/docs/${data.docs.options.package}/${data.docs.currentTag}/variables:${c.name}`, deprecated: isElementDeprecated(c), selected: c.id === data.selected }))}
+                        />
+                    {/if}
                     {#if data.docs.data?.enums.length}
                         <SidebarCategory
                             name="Enums"
@@ -136,20 +150,6 @@
                             name="Types"
                             icon={symbolRulerIcon}
                             data={data.docs.data?.typeAliases.map(c => ({ name: c.name, href: `/docs/${data.docs.options.package}/${data.docs.currentTag}/typeAliases:${c.name}`, deprecated: isElementDeprecated(c), selected: c.id === data.selected }))}
-                        />
-                    {/if}
-                    {#if data.docs.data?.functions.length}
-                        <SidebarCategory
-                            name="Functions"
-                            icon={symbolMethodIcon}
-                            data={data.docs.data?.functions.map(c => ({ name: c.name, href: `/docs/${data.docs.options.package}/${data.docs.currentTag}/functions:${c.name}`, deprecated: isElementDeprecated(c), selected: c.id === data.selected }))}
-                        />
-                    {/if}
-                    {#if data.docs.data?.variables.length}
-                        <SidebarCategory
-                            name="Variables"
-                            icon={symbolFieldIcon}
-                            data={data.docs.data?.variables.map(c => ({ name: c.name, href: `/docs/${data.docs.options.package}/${data.docs.currentTag}/variables:${c.name}`, deprecated: isElementDeprecated(c), selected: c.id === data.selected }))}
                         />
                     {/if}
                 </div>

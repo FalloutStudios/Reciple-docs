@@ -68,6 +68,7 @@
 
         :global(.items) {
             @include BorderedButton();
+            @include DropShadow();
 
             :global(li) {
                 list-style: none;

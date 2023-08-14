@@ -28,6 +28,20 @@ export let markdownOptions: MarkedOptions = {
     gfm: true
 };
 
+export enum EscapedHTMLEntities {
+    '"' = '&quot;',
+    "<" = '&lt;',
+    ">" = '&gt;',
+    " " = '&nbsp;'
+}
+
+export enum UnescapedHTMLEntities {
+    '&quot;' = '"',
+    '&lt;' = "<",
+    '&gt;' = ">",
+    '&nbsp;' = " "
+}
+
 export const markdownParser = new Marked(
     markedHighlight({
         langPrefix: "",

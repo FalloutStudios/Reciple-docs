@@ -92,6 +92,7 @@
                 &.selected {
                     color: $link;
                     border-color: currentColor;
+                    background: rgba($link, $alpha: 0.05);
                     font-weight: bold;
                 }
 

@@ -1,4 +1,4 @@
-import { error } from '@sveltejs/kit';
+import { error, redirect } from '@sveltejs/kit';
 import all, { packages } from '$lib/scripts/packages';
 import type { DocsParser } from '$lib/scripts/classes/DocsParser';
 import type { PageLoad } from './$types';
@@ -17,8 +17,9 @@ export const load = (async (data) => {
     if (!docs) throw error(404);
 
     const goto = data.url.searchParams.get('goto') ?? undefined;
-
     const tags = await docs.resolveTags();
+
+    if (tags.length === 1) throw redirect(303, `./${pkg}/${tags[0] }/${goto ?? ''}`)
 
     return { package: pkg, docs, goto, tags };
 }) satisfies PageLoad;
