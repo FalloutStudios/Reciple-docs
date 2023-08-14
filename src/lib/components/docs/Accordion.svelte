@@ -64,6 +64,7 @@
                 position: relative;
                 padding: 0.5rem;
                 margin-left: 2.8rem;
+                margin-right: 2.8rem;
                 margin-bottom: 2rem;
 
                 &.hr {

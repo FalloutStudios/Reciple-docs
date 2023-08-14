@@ -345,5 +345,5 @@ export function createFunctionTypeSnippet(data: { docs: DocsParser; package: str
 }
 
 export function createVariableTypeSnipper(data: { docs: DocsParser; package: string;  }, element: VariableParser): string {
-    return unescapeHTML(`export const ${element.name}: ${stringifyType(data, element.type, false, 2)} = ${element.value}`);
+    return unescapeHTML(stringifyType(data, element.type, false, 2));
 }

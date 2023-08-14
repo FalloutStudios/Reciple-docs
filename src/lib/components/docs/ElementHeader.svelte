@@ -13,6 +13,20 @@
 
     export let element: AnyDocsElement;
     export let data: PackageQueryLoadData;
+
+    $: typeSnippet = element instanceof ClassParser
+        ? createClassTypeSnippet(data, element)
+        : element instanceof InterfaceParser
+            ? createInterfaceTypeSnippet(data, element)
+            : element instanceof TypeAliasParser
+                ? createTypeAliasTypeSnippet(data, element)
+                : element instanceof FunctionParser
+                    ? createFunctionTypeSnippet(data, element)
+                    : element instanceof VariableParser
+                        ? createVariableTypeSnipper(data, element)
+                        : null;
+
+    
 </script>
 
 <style lang="scss">
@@ -119,32 +133,14 @@
             </p>
         </div>
         <div class="element-description">
-            {#if element instanceof ClassParser}
+            {#if typeSnippet}
                 <div class="element-snippet">
-                    <Markdown content={'```typescript\n' + createClassTypeSnippet(data, element) + '\n```'}/>
-                </div>
-            {:else if element instanceof InterfaceParser}
-                <div class="element-snippet">
-                    <Markdown content={'```typescript\n' + createInterfaceTypeSnippet(data, element) + '\n```'}/>
-                </div>
-            {:else if element instanceof TypeAliasParser}
-                <div class="element-snippet">
-                    <Markdown content={'```typescript\n' + createTypeAliasTypeSnippet(data, element) + '\n```'}/>
-                </div>
-            {:else if element instanceof FunctionParser}
-                <div class="element-snippet">
-                    <Markdown content={'```typescript\n' + createFunctionTypeSnippet(data, element) + '\n```'}/>
-                </div>
-            {:else if element instanceof VariableParser}
-                <div class="element-snippet">
-                    <Markdown content={'```typescript\n' + createVariableTypeSnipper(data, element) + '\n```'}/>
+                    <Markdown content={'```typescript\n' + typeSnippet + '\n```'}/>
                 </div>
             {/if}
-            {#if getElementDescription(element)}
-                <Accordion name="Summary">
-                    <Markdown content={getElementDescription(element) ?? ''}/>
-                </Accordion>
-            {/if}
+            <Accordion name="Summary">
+                <Markdown content={getElementDescription(element) ?? 'No summary provided'}/>
+            </Accordion>
             {#if element instanceof FunctionParser}
                 <Accordion name="Parameters" icon={symbolParameter} hr={false}>
                     <SignatureTable {data} signatures={element.signatures}/>

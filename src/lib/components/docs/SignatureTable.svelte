@@ -25,6 +25,7 @@
     .signature-table-container {
         display: block;
         width: 100%;
+        margin-top: 0.5rem;
 
         .signature-table {
             display: block;
@@ -139,6 +140,10 @@
                                 color: $danger;
                             }
                         }
+
+                        &.member td {
+                            padding: 0.8rem 1rem;
+                        }
                     }
                 }
             }
@@ -149,9 +154,7 @@
 <div class="signature-table-container">
     <div class="signature-table">
         {#if currentSignature.parameters.length}
-            <div class="signature-table-description">
-                <Markdown content={getElementDescription(currentSignature ?? '') ?? ''}/>
-            </div>
+            <div class="signature-table-description"></div>
             <div class="signature-content">
                 <table>
                     <tr class="table-heaser">
@@ -162,7 +165,7 @@
                     </tr>
                     {#each currentSignature.parameters as parameter}
                     {@const deprecated = isElementDeprecated(parameter)}
-                    <tr>
+                    <tr class="member">
                         <td><span class="table-text" class:deprecated={deprecated} title={parameter.name + (deprecated ? ' (Deprecated)' : '')}>{parameter.name}</span></td>
                         <td><code class="table-code">{@html stringifyType(data, parameter.type, true, 2)}</code></td>
                         {#if requiredCol}<td><span class="table-text">{parameter.optional ? 'No' : 'Yes'}</span></td>{/if}
