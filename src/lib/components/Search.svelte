@@ -323,7 +323,7 @@
                     </div>
                 {:else if !query}
                     <div class="search-info">
-                        <p>Enter search query</p>
+                        <p>Enter a search query</p>
                     </div>
                 {:else}
                     <div class="search-info">
