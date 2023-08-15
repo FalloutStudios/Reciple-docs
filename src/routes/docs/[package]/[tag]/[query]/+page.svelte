@@ -5,8 +5,8 @@
     import { error } from '@sveltejs/kit';
     import { getElementTypeDisplayName, stringifyType } from '$lib/scripts/helpers';
     import { ClassParser, EnumParser, InterfaceParser, TypeAliasParser, VariableParser } from 'typedoc-json-parser';
-    import Accordion from '../../../../../lib/components/docs/Accordion.svelte';
-    import Label from '../../../../../lib/components/docs/Label.svelte';
+    import Accordion from '$lib/components/docs/Accordion.svelte';
+    import Label from '$lib/components/docs/Label.svelte';
     import enumMemberIcon from '@iconify/icons-codicon/symbol-enum-member';
     import rulerIcon from '@iconify/icons-codicon/symbol-ruler';
     import propertyIcon from '@iconify/icons-codicon/symbol-property';
