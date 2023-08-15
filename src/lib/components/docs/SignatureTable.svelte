@@ -19,7 +19,6 @@
     $: currentSignature = signatures[signatureIndex];
     $: requiredCol = !!currentSignature.parameters?.some(p => !p.optional);
     $: descriptionCol = !!currentSignature.parameters?.some(p => p.comment.deprecated);
-    $: isEmpty = !currentSignature.parameters?.length;
 </script>
 
 <style lang="scss">
@@ -119,7 +118,6 @@
 <div class="signature-table-container">
     <div class="signature-table">
         {#if currentSignature.parameters.length}
-            <div class="signature-table-description"></div>
             <div class="signature-content">
                 <Table>
                     <tr class="table-heaser">
@@ -149,6 +147,10 @@
                         <code>{@html stringifyType(data, currentSignature.returnType, true, 5)}</code>
                     </Label>
                 {/if}
+            </div>
+        {:else}
+            <div class="signature-table-description">
+                <p>No parameters provided</p>
             </div>
         {/if}
         {#if signatures.length > 1}
