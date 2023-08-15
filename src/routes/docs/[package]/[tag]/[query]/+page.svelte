@@ -27,12 +27,12 @@
 {#if selected instanceof ClassParser || selected instanceof InterfaceParser}
     {#if selected.properties.length}
         <Accordion name="Properties" hr={false} id="-properties" icon={propertyIcon}>
-            <h1>HEHEHHE</h1>
+            <h1>HIFKCEJHDILCUGD</h1>
         </Accordion>
     {/if}
     {#if selected.methods.length}
         <Accordion name="Methods" hr={false} id="-methods" icon={methodIcon}>
-            <h1>HEHEHHE</h1>
+            <h1>HIFKCEJHDILCUGD</h1>
         </Accordion>
     {/if}
 {:else if selected instanceof EnumParser}
