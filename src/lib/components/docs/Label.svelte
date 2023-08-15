@@ -10,20 +10,21 @@
     .label-container {
         display: flex;
         width: 100%;
-        margin: 0.2rem 0;
+        margin: 0.2em 0;
 
         .label {
-            font-weight: 600;
-            font-size: 1rem;
-            padding-right: 0.5rem;
+            font-weight: 500;
+            font-size: 1em;
+            padding-right: 0.3rem;
             flex-shrink: 0;
         }
 
         .label-content {
             @include WordWrap();
-            font-size: 0.85rem;
-            line-height: 1.4rem;
+            font-size: 0.85em;
+            line-height: 1.5em;
             vertical-align: middle;
+            opacity: 0.85;
         }
     }
 </style>

@@ -98,7 +98,7 @@ input {
 
 hr {
     border: none;
-    border-bottom: 1px solid $border;
+    border-bottom: 1px solid rgba($border, $alpha: 0.5);
 }
 
 code,

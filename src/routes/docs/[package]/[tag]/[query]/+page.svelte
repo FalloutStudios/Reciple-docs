@@ -3,7 +3,7 @@
     import type { AnyDocsElement } from '$lib/scripts/types';
     import { onMount } from 'svelte';
     import { error } from '@sveltejs/kit';
-    import { getElementTypeDisplayName, stringifyType } from '$lib/scripts/helpers';
+    import { getElementBlocktag, getElementDescription, getElementTypeDisplayName, isElementDeprecated, stringifyType } from '$lib/scripts/helpers';
     import { ClassParser, EnumParser, InterfaceParser, TypeAliasParser, VariableParser } from 'typedoc-json-parser';
     import Accordion from '$lib/components/docs/Accordion.svelte';
     import Label from '$lib/components/docs/Label.svelte';
@@ -11,6 +11,9 @@
     import rulerIcon from '@iconify/icons-codicon/symbol-ruler';
     import propertyIcon from '@iconify/icons-codicon/symbol-property';
     import methodIcon from '@iconify/icons-codicon/symbol-method';
+    import Header from '$lib/components/docs/Header.svelte';
+    import { slug } from 'github-slugger';
+    import Markdown from '$lib/components/Markdown.svelte';
 
     export let data: PackageQueryLoadData;
 
@@ -23,6 +26,29 @@
 <svelte:head>
     <title>{data.package}@{data.tag} | {getElementTypeDisplayName(selected)} {selected.name}</title>
 </svelte:head>
+
+<style lang="scss">
+    @import '$lib/styles/variables.scss';
+
+    .member {
+        display: block;
+        font-size: 0.85rem;
+
+        :global(.header) {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+        }
+
+        .labels {
+            margin-top: 0.5rem;
+            font-size: 0.95rem;
+        }
+    }
+
+    :global([label="@deprecated"]) {
+        color: $danger;
+    }
+</style>
 
 {#if selected instanceof ClassParser || selected instanceof InterfaceParser}
     {#if selected.properties.length}
@@ -37,7 +63,22 @@
     {/if}
 {:else if selected instanceof EnumParser}
     <Accordion name="Members" hr={false} id="-members" icon={enumMemberIcon}>
-        <h1>Bitch</h1>
+        {#each selected.members as member, index}
+            <div class="member">
+                {#if index}<hr>{/if}
+                <Header id={slug(member.name)}>
+                    {member.name} = {member.value}
+                </Header>
+                <Markdown class="member-description" content={getElementDescription(member) ?? ''}/>
+                {#if isElementDeprecated(member)}
+                    <div class="labels">
+                        <Label label="@deprecated">
+                            <Markdown content={getElementBlocktag(member, 'deprecated') || `This enum member is deprecated`} inline={true}/>
+                        </Label>
+                    </div>
+                {/if}
+            </div>
+        {/each}
     </Accordion>
 {:else if selected instanceof TypeAliasParser || selected instanceof VariableParser}
     <Accordion name="Type" hr={false} id="-type" icon={rulerIcon}>

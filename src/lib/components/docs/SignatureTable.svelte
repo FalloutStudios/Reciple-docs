@@ -161,7 +161,7 @@ import Label from './Label.svelte';
                 </button>
                 <Dropdown class="dropdown" bind:open={open} style="min-width: {width}px">
                     {#each signatures as signature, index}
-                        <DropdownItem data-selected={signatureIndex === index} defaultClass="item" on:click={() => signatureIndex = index}>Overload {index + 1}</DropdownItem>
+                        <DropdownItem data-selected={signatureIndex === index} defaultClass="item" on:click={() => { signatureIndex = index; open = false; }}>Overload {index + 1}</DropdownItem>
                     {/each}
                 </Dropdown>
             </div>
