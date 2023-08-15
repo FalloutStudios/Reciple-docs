@@ -10,10 +10,6 @@
         margin-bottom: 1rem;
         line-height: 0.8rem;
 
-        :global(.content) {
-            opacity: 0.9;
-        }
-
         :global(.header) {
             font-size: 1.1rem;
             margin: 1rem 0;
@@ -27,9 +23,13 @@
             margin-top: 0.5rem;
         }
 
-        :global([label="@deprecated"]),
-        &:global(.deprecated) {
-            color: $danger;
+        :global(.accordion-container) {
+            margin-top: 0.5rem;
+
+            > :global(.accordion .accordion-content) {
+                margin-left: 0 !important;
+                margin-right: 0 !important;
+            }
         }
     }
 </style>

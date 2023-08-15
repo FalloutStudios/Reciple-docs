@@ -11,7 +11,7 @@
 
             :global(tr) {
                 :global(td), :global(th) {
-                    padding: 0.5rem 1rem;
+                    padding: 0.7rem 1rem;
                     border-top: 1px solid $border;
                     font-size: 0.85rem;
                     text-align: left;
