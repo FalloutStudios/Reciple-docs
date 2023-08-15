@@ -9,6 +9,7 @@
     export let icon: string|IconifyIcon = listSelection;
     export let open: boolean = true;
     export let hr: boolean = true;
+    export let id: string|null = null;
 </script>
 
 <style lang="scss">
@@ -81,7 +82,7 @@
     }
 </style>
 
-<div class="accordion-container">
+<div class="accordion-container" {id}>
     <div class="accordion" class:active={open}>
         <button class="accordion-header" on:click={() => open = !open}>
             <span class="icon"><Icon {icon}/></span>

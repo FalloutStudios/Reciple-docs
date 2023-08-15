@@ -11,6 +11,7 @@
     import Accordion from './Accordion.svelte';
     import SignatureTable from './SignatureTable.svelte';
     import symbolMethodIcon from '@iconify/icons-codicon/symbol-method';
+import Label from './Label.svelte';
 
     export let element: AnyDocsElement;
     export let data: PackageQueryLoadData;

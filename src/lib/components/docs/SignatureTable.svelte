@@ -6,6 +6,8 @@
     import { Dropdown, DropdownItem } from 'flowbite-svelte';
     import caretDownIcon from '@iconify/icons-ph/caret-down';
     import Icon from '@iconify/svelte';
+    import Table from './Table.svelte';
+import Label from './Label.svelte';
 
     export let data: PackageQueryLoadData;
     export let signatures: (SignatureParser|ClassConstructorParser)[];
@@ -103,51 +105,9 @@
 
             .signature-content {
                 width: 100%;
-                overflow: auto;
 
-                table {
-                    width: 100%;
-                    border-spacing: 0;
-
-                    tr {
-                        td, th {
-                            padding: 0.5rem 1rem;
-                            border-top: 1px solid $border;
-                            font-size: 0.85rem;
-                            text-align: left;
-                        }
-
-                        th.table-header {
-                            font-weight: bold;
-                            font-size: 1rem;
-                            border-top: none;
-                        }
-
-                        td {
-                            @include WordWrap();
-                            max-width: 300px;
-
-                            :global(a) {
-                                color: $link;
-                                text-decoration: none;
-                            }
-
-                            .table-text,
-                            .table-code {
-                                display: block;
-                                font-family: 'Roboto Mono', monospace;
-                            }
-
-                            .table-text.deprecated {
-                                text-decoration: line-through;
-                                color: $danger;
-                            }
-                        }
-
-                        &.member td {
-                            padding: 0.8rem 1rem;
-                        }
-                    }
+                :global(.label-container) {
+                    margin-top: 1rem;
                 }
             }
         }
@@ -159,7 +119,7 @@
         {#if currentSignature.parameters.length}
             <div class="signature-table-description"></div>
             <div class="signature-content">
-                <table>
+                <Table>
                     <tr class="table-heaser">
                         <th class="table-header">Name</th>
                         <th class="table-header">Type</th>
@@ -181,7 +141,12 @@
                         {/if}
                     </tr>
                     {/each}
-                </table>
+                </Table>
+                {#if 'returnType' in currentSignature}
+                    <Label label="Returns">
+                        <code>{@html stringifyType(data, currentSignature.returnType, true, 5)}</code>
+                    </Label>
+                {/if}
             </div>
         {:else}
             <div class="signature-table-description">
