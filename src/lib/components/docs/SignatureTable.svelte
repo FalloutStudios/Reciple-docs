@@ -170,7 +170,7 @@
                     {@const deprecated = isElementDeprecated(parameter)}
                     <tr class="member">
                         <td><span class="table-text" class:deprecated={deprecated} title={parameter.name + (deprecated ? ' (Deprecated)' : '')}>{parameter.name}</span></td>
-                        <td><code class="table-code">{@html stringifyType(data, parameter.type, true, 2)}</code></td>
+                        <td><code class="table-code">{@html stringifyType(data, parameter.type, true, 5)}</code></td>
                         {#if requiredCol}<td><span class="table-text">{parameter.optional ? 'No' : 'Yes'}</span></td>{/if}
                         {#if descriptionCol}
                             <td>

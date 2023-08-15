@@ -2,6 +2,7 @@
     import Icon, { type IconifyIcon } from '@iconify/svelte';
     import { deprecatedElementSorter } from '../scripts/helpers';
     import caretDownIcon from '@iconify/icons-ph/caret-down';
+    import { slide } from 'svelte/transition';
 
     export let name: string;
     export let icon: string|IconifyIcon;
@@ -68,7 +69,6 @@
         }
 
         .category-content {
-            display: none;
             padding-left: 1.8rem;
 
             > a {
@@ -107,10 +107,6 @@
             .category-topbar :global(.caret) {
                 rotate: 180deg;
             }
-
-            .category-content {
-                display: block;
-            }
         }
     }
 </style>
@@ -121,9 +117,11 @@
         <span class="name">{name}</span>
         <span class="caret"><Icon icon={caretDownIcon}/></span>
     </button>
-    <div class="category-content">
-        {#each data as element}
-            <a href={element.href} title={element.name + (element.deprecated ? ' (Deprecated)' : '')} class:deprecated={element.deprecated} class:selected={element.selected}>{element.name}</a>
-        {/each}
-    </div>
+    {#if open}
+        <div class="category-content" transition:slide={{ axis: 'y', duration: 300 }}>
+            {#each data as element}
+                <a href={element.href} title={element.name + (element.deprecated ? ' (Deprecated)' : '')} class:deprecated={element.deprecated} class:selected={element.selected}>{element.name}</a>
+            {/each}
+        </div>
+    {/if}
 </div>

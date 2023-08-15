@@ -3,6 +3,7 @@
     import caretDownIcon from '@iconify/icons-ph/caret-down';
     import listSelection from '@iconify/icons-codicon/list-selection';
     import Icon from '@iconify/svelte';
+    import { slide } from 'svelte/transition';
 
     export let name: string;
     export let icon: string|IconifyIcon = listSelection;
@@ -60,7 +61,6 @@
             }
 
             .accordion-content {
-                display: none;
                 position: relative;
                 padding: 0.5rem;
                 margin-left: 2.8rem;
@@ -76,10 +76,6 @@
                 .accordion-header :global(.caret) {
                     rotate: 180deg;
                 }
-
-                .accordion-content {
-                    display: block;
-                }
             }
         }
     }
@@ -92,6 +88,8 @@
             <span class="name">{name}</span>
             <span class="caret"><Icon icon={caretDownIcon}/></span>
         </button>
-        <div class="accordion-content" class:hr={hr}><slot/></div>
+        {#if open}
+            <div class="accordion-content" class:hr={hr} transition:slide={{ axis: "y", duration: 300 }}><slot/></div>
+        {/if}
     </div>
 </div>
