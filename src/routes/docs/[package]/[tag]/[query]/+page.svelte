@@ -34,9 +34,10 @@
         <Accordion name="Properties" hr={false} id="-properties" icon={propertyIcon}>
             {#each selected.properties as member, index}
                 {@const isStatic = 'static' in member && member.static}
+                {@const deprecationMessage = isElementDeprecated(member) ? getElementBlocktag(member, 'deprecated') : null}
                 <Member hr={!!index}>
                     <Header id={slug((isStatic ? 'static-' : '') + member.name)}>
-                        <code>{member.name}: {@html stringifyType(data, member.type, true, 2)}</code>
+                        <code class:deprecated={!!deprecationMessage}>{member.name}{member.optional ? '?' : ''}: {@html stringifyType(data, member.type, true, 2)}</code>
                     </Header>
                     <div class="content">
                         <Markdown class="member-description" content={getElementDescription(member) ?? 'No summary provided'}/>
@@ -49,9 +50,10 @@
         <Accordion name="Methods" hr={false} id="-methods" icon={methodIcon}>
             {#each selected.methods as member, index}
                 {@const isStatic = 'static' in member && member.static}
+                {@const deprecationMessage = isElementDeprecated(member) ? getElementBlocktag(member, 'deprecated') : null}
                 <Member hr={!!index}>
                     <Header id={slug((isStatic ? 'static-' : '') + member.name)}>
-                        <code>{member.name}()</code>
+                        <code class:deprecated={!!deprecationMessage}>{member.name}()</code>
                     </Header>
                     <div class="content">
                         <Markdown class="member-description" content={getElementDescription(member) ?? ''}/>
@@ -64,19 +66,13 @@
 {:else if selected instanceof EnumParser}
     <Accordion name="Members" hr={false} id="-members" icon={enumMemberIcon}>
         {#each selected.members as member, index}
+            {@const deprecationMessage = isElementDeprecated(member) ? getElementBlocktag(member, 'deprecated') : null}
             <Member hr={!!index}>
                 <Header id={slug(member.name)}>
-                    <code>{member.name} = {member.value}</code>
+                    <code class:deprecated={!!deprecationMessage}>{member.name} = {member.value}</code>
                 </Header>
                 <div class="content">
                     <Markdown class="member-description" content={getElementDescription(member) ?? ''}/>
-                    {#if isElementDeprecated(member)}
-                        <div class="member-labels">
-                            <Label label="@deprecated">
-                                <Markdown content={getElementBlocktag(member, 'deprecated') || `This enum member is deprecated`} inline={true}/>
-                            </Label>
-                        </div>
-                    {/if}
                 </div>
             </Member>
         {/each}

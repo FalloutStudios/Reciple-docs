@@ -57,17 +57,17 @@ export function findDocsElement(project: ProjectParser, find: string|number) {
     return parser.find(e => e.name === name || e.id.toString() === name);
 }
 
-export function getElementDescription(element: { comment: CommentParser; }|{signatures: SignatureParser[]; }): string|null {
+export function getElementDescription(element: { comment: CommentParser; }|{ signatures: SignatureParser[]; }): string|null {
     return ('signatures' in element ? element.signatures.find(s => s.comment.description)?.comment.description : ('comment' in element && element.comment?.description)) || null;
 }
 
-export function isElementDeprecated(element: { comment: CommentParser; }|{signatures: SignatureParser[]; }): boolean {
+export function isElementDeprecated(element: { comment: CommentParser; }|{ signatures: SignatureParser[]; }): boolean {
     return 'signatures' in element
         ? element.signatures.some(s => isElementDeprecated(s))
         : 'comment' in element && (element.comment?.deprecated || element.comment?.blockTags.some(c => c.name === 'deprecated'));
 }
 
-export function getElementBlocktag(element: SearchResult, tag: string): string|null {
+export function getElementBlocktag(element: { comment: CommentParser; }|{ signatures: SignatureParser[]; }|{ comment: CommentParser; signatures: SignatureParser[]; }, tag: string): string|null {
     if ('comment' in element) {
         const bTag = element.comment.blockTags.find(t => t.name === tag)?.text ?? null;
         if (bTag || !('signatures' in element)) return bTag;
@@ -214,8 +214,6 @@ export function stringifyType(data: { docs: DocsParser; package: string;  }, typ
     function _wrap(t: TypeParser, kind: TypeParser.Kind = type.kind): string {
         return TypeParser.BindingPowers[t.kind] < TypeParser.BindingPowers[kind] ? `(${_stringify(t)})` : _stringify(t);
     }
-
-    console.log(type);
 
     switch (type.kind) {
         case TypeParser.Kind.Array:

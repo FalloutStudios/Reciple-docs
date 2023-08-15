@@ -7,8 +7,8 @@
 
     .member {
         display: block;
-        font-size: 0.9rem;
         padding-bottom: 1rem;
+        line-height: 0.8rem;
 
         :global(.content) {
             opacity: 0.9;

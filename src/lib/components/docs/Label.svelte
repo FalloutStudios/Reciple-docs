@@ -15,17 +15,17 @@
         .label {
             font-weight: 500;
             font-size: 1em;
-            padding-right: 0.3rem;
+            padding-right: 0.3em;
             flex-shrink: 0;
+            margin-top: 0.1em
         }
 
         .label-content {
             @include WordWrap();
-            font-size: 0.9em;
-            line-height: 1.5em;
-            vertical-align: middle;
-            opacity: 0.85;
+            opacity: 0.7;
             width: 100%;
+            line-height: 1.7;
+            font-size: 0.9em;
         }
     }
 </style>

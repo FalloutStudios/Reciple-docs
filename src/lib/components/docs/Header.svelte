@@ -36,6 +36,12 @@
         .id-link:focus {
             opacity: 1;
         }
+
+        .content {
+            width: 100%;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
     }
 </style>
 
