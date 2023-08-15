@@ -19,6 +19,7 @@
     $: currentSignature = signatures[signatureIndex];
     $: requiredCol = !!currentSignature.parameters?.some(p => !p.optional);
     $: descriptionCol = !!currentSignature.parameters?.some(p => p.comment.deprecated);
+    $: isEmpty = !currentSignature.parameters?.length;
 </script>
 
 <style lang="scss">
@@ -148,10 +149,6 @@
                         <code>{@html stringifyType(data, currentSignature.returnType, true, 5)}</code>
                     </Label>
                 {/if}
-            </div>
-        {:else}
-            <div class="signature-table-description">
-                <Markdown content={'No parameters provided'}/>
             </div>
         {/if}
         {#if signatures.length > 1}

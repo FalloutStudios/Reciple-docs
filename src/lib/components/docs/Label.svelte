@@ -22,10 +22,10 @@
 
         .label-content {
             @include WordWrap();
-            opacity: 0.7;
+            opacity: 0.8;
             width: 100%;
-            line-height: 1.7;
-            font-size: 0.9em;
+            font-size: 0.95em;
+            margin-top: 0.1rem;
         }
     }
 </style>

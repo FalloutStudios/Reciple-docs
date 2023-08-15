@@ -7,7 +7,7 @@
 
     .member {
         display: block;
-        padding-bottom: 1rem;
+        margin-bottom: 1rem;
         line-height: 0.8rem;
 
         :global(.content) {

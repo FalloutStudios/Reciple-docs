@@ -16,6 +16,10 @@
     import Markdown from '$lib/components/Markdown.svelte';
     import Member from '$lib/components/docs/Member.svelte';
     import SignatureTable from '../../../../../lib/components/docs/SignatureTable.svelte';
+    import FloatingLabel from '../../../../../lib/components/docs/FloatingLabel.svelte';
+    import warningBoldIcon from '@iconify/icons-ph/warning-bold';
+    import symbolParameter from '@iconify/icons-codicon/symbol-parameter';
+    import { Colors } from '../../../../../lib/scripts/config';
 
     export let data: PackageQueryLoadData;
 
@@ -35,12 +39,22 @@
             {#each selected.properties as member, index}
                 {@const isStatic = 'static' in member && member.static}
                 {@const deprecationMessage = isElementDeprecated(member) ? getElementBlocktag(member, 'deprecated') : null}
+                {@const description = getElementDescription(member)}
                 <Member hr={!!index}>
                     <Header id={slug((isStatic ? 'static-' : '') + member.name)}>
                         <code class:deprecated={!!deprecationMessage}>{member.name}{member.optional ? '?' : ''}: {@html stringifyType(data, member.type, true, 2)}</code>
                     </Header>
                     <div class="content">
-                        <Markdown class="member-description" content={getElementDescription(member) ?? 'No summary provided'}/>
+                        {#if deprecationMessage !== null}
+                            <div class="labels">
+                                <FloatingLabel label="Deprecated" icon={warningBoldIcon} borderColor={Colors.Danger}>
+                                    <Markdown content={deprecationMessage || `This property is deprecated`} inline={true}/>
+                                </FloatingLabel>
+                            </div>
+                        {/if}
+                        {#if description}
+                            <Markdown class="member-description" content={description}/>
+                        {/if}
                     </div>
                 </Member>
             {/each}
@@ -51,13 +65,25 @@
             {#each selected.methods as member, index}
                 {@const isStatic = 'static' in member && member.static}
                 {@const deprecationMessage = isElementDeprecated(member) ? getElementBlocktag(member, 'deprecated') : null}
+                {@const description = getElementDescription(member)}
                 <Member hr={!!index}>
                     <Header id={slug((isStatic ? 'static-' : '') + member.name)}>
                         <code class:deprecated={!!deprecationMessage}>{member.name}()</code>
                     </Header>
                     <div class="content">
-                        <Markdown class="member-description" content={getElementDescription(member) ?? ''}/>
-                        <SignatureTable signatures={member.signatures} {data}/>
+                        {#if deprecationMessage !== null}
+                            <div class="labels">
+                                <FloatingLabel label="Deprecated" icon={warningBoldIcon} borderColor={Colors.Danger}>
+                                    <Markdown content={deprecationMessage || `This method is deprecated`} inline={true}/>
+                                </FloatingLabel>
+                            </div>
+                        {/if}
+                        {#if description}
+                            <Markdown class="member-description" content={description}/>
+                        {/if}
+                        <Accordion name="Parameters" open={false} hr={false} icon={symbolParameter}>
+                            <SignatureTable signatures={member.signatures} {data}/>
+                        </Accordion>
                     </div>
                 </Member>
             {/each}
@@ -67,12 +93,22 @@
     <Accordion name="Members" hr={false} id="-members" icon={enumMemberIcon}>
         {#each selected.members as member, index}
             {@const deprecationMessage = isElementDeprecated(member) ? getElementBlocktag(member, 'deprecated') : null}
+            {@const description = getElementDescription(member)}
             <Member hr={!!index}>
                 <Header id={slug(member.name)}>
                     <code class:deprecated={!!deprecationMessage}>{member.name} = {member.value}</code>
                 </Header>
                 <div class="content">
-                    <Markdown class="member-description" content={getElementDescription(member) ?? ''}/>
+                    {#if deprecationMessage !== null}
+                        <div class="labels">
+                            <FloatingLabel label="Deprecated" icon={warningBoldIcon} borderColor={Colors.Danger}>
+                                <Markdown content={deprecationMessage || `This enum member is deprecated`} inline={true}/>
+                            </FloatingLabel>
+                        </div>
+                    {/if}
+                    {#if description}
+                        <Markdown class="member-description" content={description}/>
+                    {/if}
                 </div>
             </Member>
         {/each}

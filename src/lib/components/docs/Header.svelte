@@ -39,7 +39,7 @@
 
         .content {
             width: 100%;
-            line-height: 1;
+            line-height: 1.2em;
             overflow: hidden;
             text-overflow: ellipsis;
         }

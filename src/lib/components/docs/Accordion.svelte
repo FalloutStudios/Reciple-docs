@@ -23,7 +23,7 @@
         .accordion {
             display: block;
 
-            .accordion-header {
+            > .accordion-header {
                 position: relative;
                 border-radius: 5px;
                 background: $dark;
@@ -45,7 +45,7 @@
                 }
 
                 .icon,
-                :global(.caret) {
+                > .caret {
                     display: flex;
                     justify-content: center;
                     align-items: center;
@@ -54,7 +54,7 @@
                     flex-shrink: 0;
                 }
 
-                :global(.caret) {
+                > .caret {
                     margin-right: 0;
                     margin-left: 1rem;
                     @include Transition();
@@ -74,7 +74,7 @@
             }
 
             &.active {
-                .accordion-header :global(.caret) {
+                > .accordion-header .caret {
                     rotate: 180deg;
                 }
             }

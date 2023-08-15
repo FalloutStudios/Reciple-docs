@@ -4,14 +4,15 @@
     import { createClassTypeSnippet, createFunctionTypeSnippet, createInterfaceTypeSnippet, createTypeAliasTypeSnippet, createVariableTypeSnipper, getElementBlocktag, getElementDescription, getElementExtensions, getElementIcon, getElementTypeDisplayName, isElementDeprecated, stringifyType } from '../../scripts/helpers';
     import fileCodeIcon from '@iconify/icons-codicon/file-code';
     import Markdown from '../Markdown.svelte';
-    import { Tooltip } from 'flowbite-svelte';
     import type { PackageQueryLoadData } from '../../../routes/docs/[package]/[tag]/[query]/+page';
     import { ClassParser, FunctionParser, InterfaceParser, TypeAliasParser, VariableParser } from 'typedoc-json-parser';
     import symbolParameter from '@iconify/icons-codicon/symbol-parameter';
     import Accordion from './Accordion.svelte';
     import SignatureTable from './SignatureTable.svelte';
     import symbolMethodIcon from '@iconify/icons-codicon/symbol-method';
-    import Label from './Label.svelte';
+    import FloatingLabel from './FloatingLabel.svelte';
+    import warningBoldIcon from '@iconify/icons-ph/warning-bold';
+    import { Colors } from '../../scripts/config';
 
     export let element: AnyDocsElement;
     export let data: PackageQueryLoadData;
@@ -48,19 +49,6 @@
                     width: 100%;
                     display: flex;
                     align-items: start;
-
-                    &.deprecated {
-                        color: $danger;
-
-                        .name .display-name {
-                            text-decoration: line-through;
-                        }
-
-                        .icon,
-                        .name .display-name {
-                            opacity: 0.8;
-                        }
-                    }
 
                     .icon {
                         display: flex;
@@ -119,7 +107,7 @@
 <div class="element-header-container">
     <div class="element-header">
         <div class="element-header-title">
-            <p class="text" class:deprecated={isElementDeprecated(element)}>
+            <p class="text">
                 <span class="icon">
                     <Icon icon={getElementIcon(element)}/>
                 </span>
@@ -143,14 +131,14 @@
                 </div>
             {/if}
             <Accordion name="Summary">
-                <Markdown content={getElementDescription(element) ?? 'No summary provided'}/>
                 {#if isElementDeprecated(element)}
                     <div class="labels">
-                        <Label label="@deprecated">
+                        <FloatingLabel label="Deprecated" icon={warningBoldIcon} borderColor={Colors.Danger}>
                             <Markdown content={getElementBlocktag(element, 'deprecated') || `This ${getElementTypeDisplayName(element).toLowerCase()} is deprecated`} inline={true}/>
-                        </Label>
+                        </FloatingLabel>
                     </div>
                 {/if}
+                <Markdown content={getElementDescription(element) ?? 'No summary provided'}/>
             </Accordion>
             {#if element instanceof FunctionParser}
                 <Accordion name="Parameters" icon={symbolParameter} hr={false}>

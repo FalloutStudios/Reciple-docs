@@ -40,6 +40,16 @@ export enum UnescapedHTMLEntities {
     '&gt;' = ">"
 }
 
+export enum Colors {
+    BG= "#181818",
+    WHITE = "#f7f7f7",
+    LINK = "#5a69f1",
+    LINK_VISITED = "#5a38f0",
+    Danger = "#ee4747",
+    DARK = "#222222",
+    BORDER = "#3c3c3c",
+}
+
 export const markdownParser = new Marked(
     markedHighlight({
         langPrefix: "",
