@@ -27,8 +27,6 @@ import Label from './Label.svelte';
                     : element instanceof VariableParser
                         ? createVariableTypeSnipper(data, element)
                         : null;
-
-    
 </script>
 
 <style lang="scss">
@@ -36,7 +34,7 @@ import Label from './Label.svelte';
 
     .element-header-container {
         width: 100%;
-        padding: 2rem 0;
+        padding-top: 2rem;
 
         .element-header {
             .element-header-title {

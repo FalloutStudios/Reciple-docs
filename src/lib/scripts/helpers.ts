@@ -187,7 +187,7 @@ export function getElementExtensions(data: { docs: DocsParser; package: string; 
     let base = '';
 
     if ('extendsType' in element && element.extendsType) base += `extends ${stringifyType(data, element.extendsType, enableLinks, 1)} `;
-    if ('implementsType' in element && element.implementsType.length) base += `implements ${element.implementsType.map(t => stringifyType(data, t, enableLinks, 1)).join(',' + EscapedHTMLEntities[' '])}`;
+    if ('implementsType' in element && element.implementsType.length) base += `implements ${element.implementsType.map(t => stringifyType(data, t, enableLinks, 1)).join(', ')}`;
 
     return base;
 }
@@ -209,29 +209,29 @@ export function stringifyType(data: { docs: DocsParser; package: string;  }, typ
         case TypeParser.Kind.Array:
             return `${_wrap(type.type)}[]`;
         case TypeParser.Kind.Conditional:
-            return `${_wrap(type.checkType)}${EscapedHTMLEntities[' ']}extends${EscapedHTMLEntities[' ']}${_stringify(type.extendsType)} ? ${_stringify(type.trueType)} : ${_stringify(type.falseType)}`;
+            return `${_wrap(type.checkType)} extends ${_stringify(type.extendsType)} ? ${_stringify(type.trueType)} : ${_stringify(type.falseType)}`;
         case TypeParser.Kind.IndexedAccess:
             return `${_stringify(type.objectType)}[${_stringify(type.indexType)}]`;
         case TypeParser.Kind.Inferred:
             return `infer ${type.type}`;
         case TypeParser.Kind.Intersection:
-            return `${type.types.map(t => _wrap(t)).join(EscapedHTMLEntities[' '] + '&' + EscapedHTMLEntities[' '])}`;
+            return `${type.types.map(t => _wrap(t)).join(' & ')}`;
         case TypeParser.Kind.Intrinsic:
             return type.type;
         case TypeParser.Kind.Literal:
-            return type.value.replaceAll(' ', EscapedHTMLEntities[' ']);
+            return type.value;
         case TypeParser.Kind.Mapped:
             const mappedReadonly = type.readonly === MappedTypeParser.Modifier.Add ? 'readonly ' : type.readonly === MappedTypeParser.Modifier.Remove ? '-readonly ' : '';
             const mappedOptional = type.optional === MappedTypeParser.Modifier.Add ? '?' : type.optional === MappedTypeParser.Modifier.Remove ? '-?' : '';
-            return `{${EscapedHTMLEntities[' '] + mappedReadonly}[${type.parameter + EscapedHTMLEntities[' ']}in${EscapedHTMLEntities[' '] + _stringify(type.parameterType)}]${mappedOptional}:${EscapedHTMLEntities[' '] + _stringify(type.templateType) + EscapedHTMLEntities[' ']}}`;
+            return `{ ${mappedReadonly}[${type.parameter} in ${_stringify(type.parameterType)}]${mappedOptional}: ${_stringify(type.templateType)} }`;
         case TypeParser.Kind.NamedTupleMember:
-            return `${type.name}${type.optional ? '?' : ''}:${EscapedHTMLEntities[' '] + _stringify(type.type)}`;
+            return `${type.name}${type.optional ? '?' : ''}: ${_stringify(type.type)}`;
         case TypeParser.Kind.Optional:
             return `${_wrap(type.type)}?`;
         case TypeParser.Kind.Predicate:
-            return `${type.asserts ? ('asserts' + EscapedHTMLEntities[' ']) : ''}${type.name + EscapedHTMLEntities[' ']}is${EscapedHTMLEntities[' '] + (type.type && _stringify(type.type) || '')}`;
+            return `${type.asserts ? 'asserts ' : ''}${type.name} is ${type.type && _stringify(type.type) || ''}`;
         case TypeParser.Kind.Query:
-            return `typeof${EscapedHTMLEntities[' '] + _stringify(type.query)}`;
+            return `typeof ${_stringify(type.query)}`;
         case TypeParser.Kind.Reference:
             const typeArgs = type.typeArguments.length ? `${EscapedHTMLEntities['<']}${type.typeArguments.map(a => _stringify(a)).join(',')}${EscapedHTMLEntities['>']}` : '';
             if (!enableLinks || !type.packageName || typeof type.id !== 'number' || !all.some(p => p.options.npm === type.packageName)) return type.name + typeArgs;
@@ -251,17 +251,17 @@ export function stringifyType(data: { docs: DocsParser; package: string;  }, typ
                 : type.name + typeArgs;
         case TypeParser.Kind.Reflection:
             return '{ ' +
-                (type.properties?.map(p => `${p.name}:${EscapedHTMLEntities[' '] + _stringify(p.type)};`).join(EscapedHTMLEntities[' ']) ?? '') +
+                (type.properties?.map(p => `${p.name}: ${_stringify(p.type)};`).join(' ') ?? '') +
                 (type.signatures?.map(s => {
                     const signature = signatureStringInfo(data, s, enableLinks);
 
-                    return `${signature.typeParameters ? (EscapedHTMLEntities['<'] + signature.typeParameters + EscapedHTMLEntities['>']) : ''}(${signature.parameters}):${EscapedHTMLEntities[' '] + signature.return};`;
-                }).join(EscapedHTMLEntities[' ']) ?? '') +
+                    return `${signature.typeParameters ? (EscapedHTMLEntities['<'] + signature.typeParameters + EscapedHTMLEntities['>']) : ''}(${signature.parameters}): ${signature.return};`;
+                }).join(' ') ?? '') +
                 (type.methods?.map(m => m.signatures.length
                     ? m.signatures?.map(s => {
                         const signature = signatureStringInfo(data, s, enableLinks);
-                        return `${signature.typeParameters ? (EscapedHTMLEntities['<'] + signature.typeParameters + EscapedHTMLEntities['>']) : ''}(${signature.parameters}):${EscapedHTMLEntities[' '] + signature.return};`;
-                    }).join(EscapedHTMLEntities[' ']) ?? ''
+                        return `${signature.typeParameters ? (EscapedHTMLEntities['<'] + signature.typeParameters + EscapedHTMLEntities['>']) : ''}(${signature.parameters}): ${signature.return};`;
+                    }).join(' ') ?? ''
                     : '') ?? '')
             + ' }';
         case TypeParser.Kind.Rest:
@@ -285,7 +285,7 @@ export function signatureStringInfo(data: { docs: DocsParser; package: string;  
     let returnType = '';
 
     typeParameters = type.typeParameters.length
-        ? type.typeParameters.map(p => `${p.name}${EscapedHTMLEntities[' ']}${p.constraint ? ('extends ' + stringifyType(data, p.constraint, enableLinks, depth)) : ''}${p.default ? (' = ' + stringifyType(data, p.default, enableLinks, depth)) : ''}`).join(', ')
+        ? type.typeParameters.map(p => `${p.name} ${p.constraint ? ('extends ' + stringifyType(data, p.constraint, enableLinks, depth)) : ''}${p.default ? (' = ' + stringifyType(data, p.default, enableLinks, depth)) : ''}`).join(', ')
         : '';
 
     parameters = type.parameters.length

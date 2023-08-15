@@ -31,15 +31,13 @@ export let markdownOptions: MarkedOptions = {
 export enum EscapedHTMLEntities {
     '"' = '&quot;',
     "<" = '&lt;',
-    ">" = '&gt;',
-    " " = '&nbsp;'
+    ">" = '&gt;'
 }
 
 export enum UnescapedHTMLEntities {
     '&quot;' = '"',
     '&lt;' = "<",
-    '&gt;' = ">",
-    '&nbsp;' = " "
+    '&gt;' = ">"
 }
 
 export const markdownParser = new Marked(

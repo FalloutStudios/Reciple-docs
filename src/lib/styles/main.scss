@@ -110,6 +110,7 @@ pre,
 a {
     color: $link;
     text-decoration: none;
+    display: inline;
 
     &:hover,
     &:focus {
