@@ -10,11 +10,14 @@
     $: html = inline ? markdownParser.parseInline(content, options) : markdownParser.parse(content, options);
 </script>
 
-<style>
+<style lang="scss">
+    @import '../styles/variables.scss';
+
     .markdown.inline {
         width: 100%;
         position: relative;
         margin-bottom: 1rem;
+        @include WordWrap();
     }
 </style>
 

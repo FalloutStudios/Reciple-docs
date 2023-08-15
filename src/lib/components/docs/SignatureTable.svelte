@@ -124,6 +124,9 @@
                         }
 
                         td {
+                            @include WordWrap();
+                            max-width: 300px;
+
                             :global(a) {
                                 color: $link;
                                 text-decoration: none;

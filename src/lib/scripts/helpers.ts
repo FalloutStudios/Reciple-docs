@@ -219,7 +219,7 @@ export function stringifyType(data: { docs: DocsParser; package: string;  }, typ
         case TypeParser.Kind.Intrinsic:
             return type.type;
         case TypeParser.Kind.Literal:
-            return `'${type.value.replaceAll(' ', EscapedHTMLEntities[' '])}'`;
+            return type.value.replaceAll(' ', EscapedHTMLEntities[' ']);
         case TypeParser.Kind.Mapped:
             const mappedReadonly = type.readonly === MappedTypeParser.Modifier.Add ? 'readonly ' : type.readonly === MappedTypeParser.Modifier.Remove ? '-readonly ' : '';
             const mappedOptional = type.optional === MappedTypeParser.Modifier.Add ? '?' : type.optional === MappedTypeParser.Modifier.Remove ? '-?' : '';
