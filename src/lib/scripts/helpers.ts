@@ -229,7 +229,7 @@ export function stringifyType(data: { docs: DocsParser; package: string;  }, typ
         case TypeParser.Kind.Optional:
             return `${_wrap(type.type)}?`;
         case TypeParser.Kind.Predicate:
-            return type.asserts ? `asserts${EscapedHTMLEntities[' '] + type.name}` : `${type.name + EscapedHTMLEntities[' ']}is${EscapedHTMLEntities[' '] + (type.type && _stringify(type.type) || '')}`;
+            return `${type.asserts ? ('asserts' + EscapedHTMLEntities[' ']) : ''}${type.name + EscapedHTMLEntities[' ']}is${EscapedHTMLEntities[' '] + (type.type && _stringify(type.type) || '')}`;
         case TypeParser.Kind.Query:
             return `typeof${EscapedHTMLEntities[' '] + _stringify(type.query)}`;
         case TypeParser.Kind.Reference:
