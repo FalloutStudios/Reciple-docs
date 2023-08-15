@@ -1,4 +1,4 @@
-import { ClassMethodParser, ClassParser, ClassPropertyParser, EnumMemberParser, EnumParser, FunctionParser, InterfaceMethodParser, InterfaceParser, InterfacePropertyParser, TypeAliasParser, type ProjectParser, type SearchResult, VariableParser, TypeParser, MappedTypeParser, SignatureParser } from 'typedoc-json-parser';
+import { ClassMethodParser, ClassParser, ClassPropertyParser, EnumMemberParser, EnumParser, FunctionParser, InterfaceMethodParser, InterfaceParser, InterfacePropertyParser, TypeAliasParser, type ProjectParser, type SearchResult, VariableParser, TypeParser, MappedTypeParser, SignatureParser, CommentParser } from 'typedoc-json-parser';
 import type { AnyDocsElement, AnyTypeParser, DocsElementType } from './types';
 import { slug } from 'github-slugger';
 import symbolClassIcon from '@iconify/icons-codicon/symbol-class';
@@ -57,11 +57,11 @@ export function findDocsElement(project: ProjectParser, find: string|number) {
     return parser.find(e => e.name === name || e.id.toString() === name);
 }
 
-export function getElementDescription(element: SearchResult): string|null {
+export function getElementDescription(element: { comment: CommentParser; }|{signatures: SignatureParser[]; }): string|null {
     return ('signatures' in element ? element.signatures.find(s => s.comment.description)?.comment.description : ('comment' in element && element.comment?.description)) || null;
 }
 
-export function isElementDeprecated(element: SearchResult): boolean {
+export function isElementDeprecated(element: { comment: CommentParser; }|{signatures: SignatureParser[]; }): boolean {
     return 'signatures' in element
         ? element.signatures.some(s => isElementDeprecated(s))
         : 'comment' in element && (element.comment?.deprecated || element.comment?.blockTags.some(c => c.name === 'deprecated'));
@@ -215,6 +215,8 @@ export function stringifyType(data: { docs: DocsParser; package: string;  }, typ
         return TypeParser.BindingPowers[t.kind] < TypeParser.BindingPowers[kind] ? `(${_stringify(t)})` : _stringify(t);
     }
 
+    console.log(type);
+
     switch (type.kind) {
         case TypeParser.Kind.Array:
             return `${_wrap(type.type)}[]`;
@@ -283,7 +285,7 @@ export function stringifyType(data: { docs: DocsParser; package: string;  }, typ
         case TypeParser.Kind.TypeOperator:
             return type.operator + ' ' + _stringify(type.type);
         case TypeParser.Kind.Union:
-            return type.types.map(u => _wrap(u)).join('|');
+            return type.types.map(u => _wrap(u)).join(' | ');
         case TypeParser.Kind.Unknown:
             return 'unknown';
     }
@@ -295,7 +297,7 @@ export function signatureStringInfo(data: { docs: DocsParser; package: string;  
     let returnType = '';
 
     typeParameters = type.typeParameters.length
-        ? type.typeParameters.map(p => `${p.name} ${p.constraint ? ('extends ' + stringifyType(data, p.constraint, enableLinks, depth)) : ''}${p.default ? (' = ' + stringifyType(data, p.default, enableLinks, depth)) : ''}`).join(', ')
+        ? type.typeParameters.map(p => `${p.name} ${p.constraint ? (' extends ' + stringifyType(data, p.constraint, enableLinks, depth)) : ''}${p.default ? (' = ' + stringifyType(data, p.default, enableLinks, depth)) : ''}`).join(', ')
         : '';
 
     parameters = type.parameters.length
@@ -316,7 +318,7 @@ export function unescapeHTML(html: string): string {
 }
 
 export function createClassTypeSnippet(data: { docs: DocsParser; package: string;  }, element: ClassParser): string {
-    let typeParameters = element.typeParameters.map(p => `${p.name}${p.constraint ? ('extends ' + stringifyType(data, p.constraint, false, 2)) : ''}${p.default ? (' = ' + stringifyType(data, p.default, false, 2)) : ''}`).join(', ');
+    let typeParameters = element.typeParameters.map(p => `${p.name}${p.constraint ? (' extends ' + stringifyType(data, p.constraint, false, 2)) : ''}${p.default ? (' = ' + stringifyType(data, p.default, false, 2)) : ''}`).join(', ');
         typeParameters = typeParameters && `<${typeParameters}>`;
 
     let extendsType = element.extendsType && stringifyType(data, element.extendsType, false, 2);
@@ -329,14 +331,14 @@ export function createClassTypeSnippet(data: { docs: DocsParser; package: string
 }
 
 export function createInterfaceTypeSnippet(data: { docs: DocsParser; package: string;  }, element: InterfaceParser): string {
-    let typeParameters = element.typeParameters.map(p => `${p.name}${p.constraint ? ('extends ' + stringifyType(data, p.constraint, false, 2)) : ''}${p.default ? (' = ' + stringifyType(data, p.default, false, 2)) : ''}`).join(', ');
+    let typeParameters = element.typeParameters.map(p => `${p.name}${p.constraint ? (' extends ' + stringifyType(data, p.constraint, false, 2)) : ''}${p.default ? (' = ' + stringifyType(data, p.default, false, 2)) : ''}`).join(', ');
         typeParameters = typeParameters && `<${typeParameters}>`;
 
     return unescapeHTML(`export interface ${element.name}${typeParameters}`);
 }
 
 export function createTypeAliasTypeSnippet(data: { docs: DocsParser; package: string;  }, element: TypeAliasParser): string {
-    let typeParameters = element.typeParameters.map(p => `${p.name}${p.constraint ? ('extends ' + stringifyType(data, p.constraint, false, 2)) : ''}${p.default ? (' = ' + stringifyType(data, p.default, false, 2)) : ''}`).join(', ');
+    let typeParameters = element.typeParameters.map(p => `${p.name}${p.constraint ? (' extends ' + stringifyType(data, p.constraint, false, 2)) : ''}${p.default ? (' = ' + stringifyType(data, p.default, false, 2)) : ''}`).join(', ');
         typeParameters = typeParameters && `<${typeParameters}>`;
 
     return unescapeHTML(`export type ${element.name}${typeParameters} = ${stringifyType(data, element.type, false, 2)}`);

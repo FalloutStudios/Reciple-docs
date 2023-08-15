@@ -51,7 +51,10 @@
         tab-size: 4;
         -webkit-hyphens: none;
         hyphens: none;
-        background: rgba($dark, $alpha: 0.7);
+        background: rgba($border, $alpha: 1);
+        border-radius: 3px;
+        padding: 0.1em 0.2em;
+        line-height: 1.5em;
         white-space: break-spaces;
         word-wrap: break-word;
     }

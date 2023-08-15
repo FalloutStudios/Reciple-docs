@@ -14,6 +14,8 @@
         margin: 0.5rem 0;
         position: relative;
         font-weight: 600;
+        width: 100%;
+        @include WordWrap();
 
         .id-link {
             display: flex;
@@ -24,10 +26,15 @@
             font-size: 1.3rem;
             color: rgba($white, $alpha: 0.8);
             position: absolute;
-            top: 50%;
+            top: 0;
             right: 100%;
-            transform: translateY(-50%);
             padding-right: 0.2rem;
+            opacity: 0.3;
+        }
+
+        &:hover .id-link,
+        .id-link:focus {
+            opacity: 1;
         }
     }
 </style>

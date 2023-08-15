@@ -7,7 +7,7 @@
     import caretDownIcon from '@iconify/icons-ph/caret-down';
     import Icon from '@iconify/svelte';
     import Table from './Table.svelte';
-import Label from './Label.svelte';
+    import Label from './Label.svelte';
 
     export let data: PackageQueryLoadData;
     export let signatures: (SignatureParser|ClassConstructorParser)[];
@@ -17,8 +17,8 @@ import Label from './Label.svelte';
     let width: number = 0;
 
     $: currentSignature = signatures[signatureIndex];
-    $: requiredCol = currentSignature.parameters.some(p => !p.optional);
-    $: descriptionCol = currentSignature.parameters.some(p => p.comment.deprecated);
+    $: requiredCol = !!currentSignature.parameters?.some(p => !p.optional);
+    $: descriptionCol = !!currentSignature.parameters?.some(p => p.comment.deprecated);
 </script>
 
 <style lang="scss">
@@ -108,6 +108,7 @@ import Label from './Label.svelte';
 
                 :global(.label-container) {
                     margin-top: 1rem;
+                    font-weight: 500;
                 }
             }
         }
@@ -143,14 +144,14 @@ import Label from './Label.svelte';
                     {/each}
                 </Table>
                 {#if 'returnType' in currentSignature}
-                    <Label label="Returns">
+                    <Label label="Returns" class="returns">
                         <code>{@html stringifyType(data, currentSignature.returnType, true, 5)}</code>
                     </Label>
                 {/if}
             </div>
         {:else}
             <div class="signature-table-description">
-                <Markdown content={'No parameters available'}/>
+                <Markdown content={'No parameters provided'}/>
             </div>
         {/if}
         {#if signatures.length > 1}
@@ -159,7 +160,7 @@ import Label from './Label.svelte';
                     <span class="value">Overload {signatureIndex + 1}</span>
                     <span class="icon" class:open><Icon icon={caretDownIcon}/></span>
                 </button>
-                <Dropdown class="dropdown" bind:open={open} style="min-width: {width}px">
+                <Dropdown class="dropdown" bind:open={open} style="min-width: {width}px; z-index: 99;">
                     {#each signatures as signature, index}
                         <DropdownItem data-selected={signatureIndex === index} defaultClass="item" on:click={() => { signatureIndex = index; open = false; }}>Overload {index + 1}</DropdownItem>
                     {/each}

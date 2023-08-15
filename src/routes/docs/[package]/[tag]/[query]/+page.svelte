@@ -14,6 +14,8 @@
     import Header from '$lib/components/docs/Header.svelte';
     import { slug } from 'github-slugger';
     import Markdown from '$lib/components/Markdown.svelte';
+    import Member from '$lib/components/docs/Member.svelte';
+    import SignatureTable from '../../../../../lib/components/docs/SignatureTable.svelte';
 
     export let data: PackageQueryLoadData;
 
@@ -27,57 +29,56 @@
     <title>{data.package}@{data.tag} | {getElementTypeDisplayName(selected)} {selected.name}</title>
 </svelte:head>
 
-<style lang="scss">
-    @import '$lib/styles/variables.scss';
-
-    .member {
-        display: block;
-        font-size: 0.85rem;
-
-        :global(.header) {
-            font-size: 1.2rem;
-            margin-bottom: 1rem;
-        }
-
-        .labels {
-            margin-top: 0.5rem;
-            font-size: 0.95rem;
-        }
-    }
-
-    :global([label="@deprecated"]) {
-        color: $danger;
-    }
-</style>
-
 {#if selected instanceof ClassParser || selected instanceof InterfaceParser}
     {#if selected.properties.length}
         <Accordion name="Properties" hr={false} id="-properties" icon={propertyIcon}>
-            <h1>HIFKCEJHDILCUGD</h1>
+            {#each selected.properties as member, index}
+                {@const isStatic = 'static' in member && member.static}
+                <Member hr={!!index}>
+                    <Header id={slug((isStatic ? 'static-' : '') + member.name)}>
+                        <code>{member.name}: {@html stringifyType(data, member.type, true, 2)}</code>
+                    </Header>
+                    <div class="content">
+                        <Markdown class="member-description" content={getElementDescription(member) ?? 'No summary provided'}/>
+                    </div>
+                </Member>
+            {/each}
         </Accordion>
     {/if}
     {#if selected.methods.length}
         <Accordion name="Methods" hr={false} id="-methods" icon={methodIcon}>
-            <h1>HIFKCEJHDILCUGD</h1>
+            {#each selected.methods as member, index}
+                {@const isStatic = 'static' in member && member.static}
+                <Member hr={!!index}>
+                    <Header id={slug((isStatic ? 'static-' : '') + member.name)}>
+                        <code>{member.name}()</code>
+                    </Header>
+                    <div class="content">
+                        <Markdown class="member-description" content={getElementDescription(member) ?? ''}/>
+                        <SignatureTable signatures={member.signatures} {data}/>
+                    </div>
+                </Member>
+            {/each}
         </Accordion>
     {/if}
 {:else if selected instanceof EnumParser}
     <Accordion name="Members" hr={false} id="-members" icon={enumMemberIcon}>
         {#each selected.members as member, index}
-            <div class="member">
-                {#if index}<hr>{/if}
+            <Member hr={!!index}>
                 <Header id={slug(member.name)}>
-                    {member.name} = {member.value}
+                    <code>{member.name} = {member.value}</code>
                 </Header>
-                <Markdown class="member-description" content={getElementDescription(member) ?? ''}/>
-                {#if isElementDeprecated(member)}
-                    <div class="labels">
-                        <Label label="@deprecated">
-                            <Markdown content={getElementBlocktag(member, 'deprecated') || `This enum member is deprecated`} inline={true}/>
-                        </Label>
-                    </div>
-                {/if}
-            </div>
+                <div class="content">
+                    <Markdown class="member-description" content={getElementDescription(member) ?? ''}/>
+                    {#if isElementDeprecated(member)}
+                        <div class="member-labels">
+                            <Label label="@deprecated">
+                                <Markdown content={getElementBlocktag(member, 'deprecated') || `This enum member is deprecated`} inline={true}/>
+                            </Label>
+                        </div>
+                    {/if}
+                </div>
+            </Member>
         {/each}
     </Accordion>
 {:else if selected instanceof TypeAliasParser || selected instanceof VariableParser}

@@ -21,15 +21,16 @@
 
         .label-content {
             @include WordWrap();
-            font-size: 0.85em;
+            font-size: 0.9em;
             line-height: 1.5em;
             vertical-align: middle;
             opacity: 0.85;
+            width: 100%;
         }
     }
 </style>
 
-<div class="label-container" {...$$props}>
+<div {...$$props} class="label-container">
     <div class="label" bind:offsetWidth={labelWidth}>{label}:</div>
     <div class="label-content" style="max-width: calc(100% - {labelWidth}px);"><slot/></div>
 </div>

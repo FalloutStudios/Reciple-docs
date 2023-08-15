@@ -21,7 +21,7 @@
     }
 </style>
 
-<div class="markdown" {...$$props} class:inline>
+<div {...$$props} class="markdown" class:inline>
     {#await html then text}
         {@html text ?? ''}
     {/await}
