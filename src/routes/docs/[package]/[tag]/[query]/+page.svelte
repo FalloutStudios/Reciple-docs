@@ -15,11 +15,11 @@
     import { slug } from 'github-slugger';
     import Markdown from '$lib/components/Markdown.svelte';
     import Member from '$lib/components/docs/Member.svelte';
-    import SignatureTable from '../../../../../lib/components/docs/SignatureTable.svelte';
-    import FloatingLabel from '../../../../../lib/components/docs/FloatingLabel.svelte';
+    import SignatureTable from '$lib/components/docs/SignatureTable.svelte';
+    import FloatingLabel from '$lib/components/docs/FloatingLabel.svelte';
     import warningBoldIcon from '@iconify/icons-ph/warning-bold';
     import symbolParameter from '@iconify/icons-codicon/symbol-parameter';
-    import { Colors } from '../../../../../lib/scripts/config';
+    import { Colors } from '$lib/scripts/config';
 
     export let data: PackageQueryLoadData;
 
