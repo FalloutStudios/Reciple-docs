@@ -1,5 +1,5 @@
 <script lang="ts">
-    import type { SignatureParser } from 'typedoc-json-parser';
+    import type { ClassConstructorParser, SignatureParser } from 'typedoc-json-parser';
     import { getElementDescription, isElementDeprecated, stringifyType } from '../../scripts/helpers';
     import type { PackageQueryLoadData } from '../../../routes/docs/[package]/[tag]/[query]/+page';
     import Markdown from '../Markdown.svelte';
@@ -8,7 +8,7 @@
     import Icon from '@iconify/svelte';
 
     export let data: PackageQueryLoadData;
-    export let signatures: SignatureParser[];
+    export let signatures: (SignatureParser|ClassConstructorParser)[];
     export let signatureIndex: number = 0;
 
     let open: boolean = false;

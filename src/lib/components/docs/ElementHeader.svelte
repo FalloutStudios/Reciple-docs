@@ -10,6 +10,7 @@
     import symbolParameter from '@iconify/icons-codicon/symbol-parameter';
     import Accordion from './Accordion.svelte';
     import SignatureTable from './SignatureTable.svelte';
+    import symbolMethodIcon from '@iconify/icons-codicon/symbol-method';
 
     export let element: AnyDocsElement;
     export let data: PackageQueryLoadData;
@@ -144,6 +145,10 @@
             {#if element instanceof FunctionParser}
                 <Accordion name="Parameters" icon={symbolParameter} hr={false}>
                     <SignatureTable {data} signatures={element.signatures}/>
+                </Accordion>
+            {:else if element instanceof ClassParser}
+                <Accordion name="Constructor" icon={symbolMethodIcon} hr={false}>
+                    <SignatureTable {data} signatures={[element.construct]}/>
                 </Accordion>
             {/if}
         </div>
