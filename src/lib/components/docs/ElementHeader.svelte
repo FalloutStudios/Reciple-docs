@@ -1,7 +1,7 @@
 <script lang="ts">
     import Icon from '@iconify/svelte';
     import type { AnyDocsElement } from '../../scripts/types';
-    import { createClassTypeSnippet, createFunctionTypeSnippet, createInterfaceTypeSnippet, createTypeAliasTypeSnippet, createVariableTypeSnipper, getElementDescription, getElementExtensions, getElementIcon, isElementDeprecated, stringifyType } from '../../scripts/helpers';
+    import { createClassTypeSnippet, createFunctionTypeSnippet, createInterfaceTypeSnippet, createTypeAliasTypeSnippet, createVariableTypeSnipper, getElementBlocktag, getElementDescription, getElementExtensions, getElementIcon, getElementTypeDisplayName, isElementDeprecated, stringifyType } from '../../scripts/helpers';
     import fileCodeIcon from '@iconify/icons-codicon/file-code';
     import Markdown from '../Markdown.svelte';
     import { Tooltip } from 'flowbite-svelte';
@@ -11,7 +11,7 @@
     import Accordion from './Accordion.svelte';
     import SignatureTable from './SignatureTable.svelte';
     import symbolMethodIcon from '@iconify/icons-codicon/symbol-method';
-import Label from './Label.svelte';
+    import Label from './Label.svelte';
 
     export let element: AnyDocsElement;
     export let data: PackageQueryLoadData;
@@ -109,6 +109,10 @@ import Label from './Label.svelte';
                 padding-bottom: 1rem;
             }
         }
+
+        .labels {
+            margin-top: 1rem;
+        }
     }
 </style>
 
@@ -140,6 +144,13 @@ import Label from './Label.svelte';
             {/if}
             <Accordion name="Summary">
                 <Markdown content={getElementDescription(element) ?? 'No summary provided'}/>
+                {#if isElementDeprecated(element)}
+                    <div class="labels">
+                        <Label label="@deprecated">
+                            <Markdown content={getElementBlocktag(element, 'deprecated') || `This ${getElementTypeDisplayName(element).toLowerCase()} is deprecated`} inline={true}/>
+                        </Label>
+                    </div>
+                {/if}
             </Accordion>
             {#if element instanceof FunctionParser}
                 <Accordion name="Parameters" icon={symbolParameter} hr={false}>

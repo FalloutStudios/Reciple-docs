@@ -67,6 +67,16 @@ export function isElementDeprecated(element: SearchResult): boolean {
         : 'comment' in element && (element.comment?.deprecated || element.comment?.blockTags.some(c => c.name === 'deprecated'));
 }
 
+export function getElementBlocktag(element: SearchResult, tag: string): string|null {
+    if ('comment' in element) {
+        const bTag = element.comment.blockTags.find(t => t.name === tag)?.text ?? null;
+        if (bTag || !('signatures' in element)) return bTag;
+    }
+
+    const sig = 'signatures' in element ? element.signatures.find(t => t.comment.blockTags.some(b => b.name === tag)) : null;
+    return sig ? getElementBlocktag(sig, tag) : null;
+}
+
 export function deprecatedElementSorter(a: AnyDocsElement, b: AnyDocsElement): number;
 export function deprecatedElementSorter(a: boolean, b: boolean): number;
 export function deprecatedElementSorter(a: AnyDocsElement|boolean, b: AnyDocsElement|boolean): number {
@@ -100,7 +110,7 @@ export function getMarkdownHeaderIds(markdown: string): { id: string; name: stri
 }
 
 export function getElementTypeDisplayName(element: AnyDocsElement) {
-    return element.constructor.name.replace('Parser', '').replace('_', '');
+    return element instanceof TypeAliasParser ? 'Type alias' : element.constructor.name.replace('Parser', '').replace('_', '');
 }
 
 export function getElementSlugType(element: AnyDocsElement) {
