@@ -130,7 +130,7 @@
                     <Markdown content={'```typescript\n' + typeSnippet + '\n```'}/>
                 </div>
             {/if}
-            <Accordion name="Summary">
+            <Accordion name="Summary" id="-summary">
                 {#if isElementDeprecated(element)}
                     <div class="labels">
                         <FloatingLabel label="Deprecated" icon={warningBoldIcon} borderColor={Colors.Danger}>
