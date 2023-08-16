@@ -80,6 +80,17 @@
             }
         }
     }
+
+    @media (max-width: 710px) {
+        .accordion-container {
+            .accordion {
+                .accordion-content {
+                    margin-left: 0;
+                    margin-right: 0;
+                }
+            }
+        }
+    }
 </style>
 
 <div class="accordion-container" {id}>

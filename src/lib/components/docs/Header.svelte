@@ -44,6 +44,22 @@
             text-overflow: ellipsis;
         }
     }
+
+    @media (max-width: 710px) {
+        .header {
+            .id-link {
+                position: relative;
+                height: 1.2em;
+                width: 1.2em;
+                right: unset;
+            }
+
+            .content {
+                line-height: 1.4em;
+                font-size: 0.95em;
+            }
+        }
+    }
 </style>
 
 {#if size == 1}
