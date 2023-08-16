@@ -82,6 +82,7 @@
         @include BorderedButton();
         background: rgba($dark, $alpha: 0.7);
         border-color: darken($border, $amount: 5);
+        margin: 0.5em 0;
 
         code {
             word-break: keep-all;
