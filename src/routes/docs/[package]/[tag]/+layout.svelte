@@ -16,7 +16,7 @@
     .content-container {
         width: 100%;
         padding-right: 1rem;
-        padding-bottom: 0.5rem;
+        padding-bottom: var(--padding-bottom);
 
         display: flex;
         justify-content: center;

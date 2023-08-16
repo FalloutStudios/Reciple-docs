@@ -119,6 +119,71 @@
             }
         }
     }
+
+    @media (max-width: 900px) {
+        .nav {
+            .nav-container {
+                a.nav-home {
+                    margin-right: 1rem;
+                }
+
+                .nav-links {
+                    justify-content: center;
+                }
+
+                .search {
+                    .open-search {
+                        width: 3rem;
+                        justify-content: center;
+                        background: none;
+
+                        .icon {
+                            font-size: 1.4rem;
+                        }
+
+                        .placeholder,
+                        .key {
+                            display: none;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    @media (max-width: 775px) {
+        .nav {
+            .nav-container {
+                a.nav-home {
+                    margin-right: 0.5rem;
+                    margin-left: 1rem;
+                    text-transform: capitalize;
+                    @include BorderedButton();
+                    padding: 0.4rem 1rem;
+                    font-weight: 600;
+
+                    .tag {
+                        display: none;
+                    }
+                }
+
+                .nav-links {
+                    justify-content: unset;
+                    font-size: 0.95rem;
+
+                    a {
+                        margin: 0 0.5rem;
+                    }
+                }
+            }
+        }
+    }
+
+    @media (max-width: 500px) {
+        .nav .nav-container .nav-links a.canbehidden {
+            display: none;
+        }
+    }
 </style>
 
 <div class="nav">
@@ -133,7 +198,7 @@
         }
     </style>
     <div class="nav-container">
-        <a href="/docs/{data.package}/{data.tag}" class="nav-home">{data.package}@{data.tag}</a>
+        <a href="/docs/{data.package}/{data.tag}" class="nav-home">{data.package}<span class="tag">@{data.tag}</span></a>
         <div class="nav-links">
             {#if navLinks.length}
                 {#each navLinks as link}

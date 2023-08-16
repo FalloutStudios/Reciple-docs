@@ -281,6 +281,18 @@
             }
         }
     }
+
+    @media (max-width: 550px) {
+        .search-wrapper {
+            .search-container {
+                .search-content {
+                    max-width: 100%;
+                    padding: 0.5rem;
+                    margin-top: 0;
+                }
+            }
+        }
+    }
 </style>
 
 {#if open}
@@ -307,7 +319,7 @@
                     <div class="search-results">
                         {#each results as result, index}
                             {@const displayName = getElementDisplayName(docs.docs.data, result)}
-                            {@const deprecated = isElementDeprecated(result)}
+                            {@const deprecated = 'comment' in result || 'signatures' in result ? isElementDeprecated(result) : false}
                             {@const href = getElementHref(docs, result)}
                             <a {href} id="sr-{index}" on:blur={inputBlur} on:focus={inputFocus} on:click={() => { open = false; goto(href); }} data-name={displayName.search} title={displayName.name + (deprecated ? ' (Deprecated)' : '')} class="search-result" class:deprecated={deprecated} class:active={selectedId == index}>
                                 <span class="icon">

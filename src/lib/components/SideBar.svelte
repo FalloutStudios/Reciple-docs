@@ -15,11 +15,31 @@
     import symbolRulerIcon from '@iconify/icons-codicon/symbol-ruler';
     import symbolMethodIcon from '@iconify/icons-codicon/symbol-method';
     import symbolFieldIcon from '@iconify/icons-codicon/symbol-field';
+    import { onDestroy, onMount } from 'svelte';
+    import { fly } from 'svelte/transition';
+import { beforeNavigate } from '$app/navigation';
 
     $: data = $page.data as PackageTagLoadData;
 
+    let width: number = 0;
     let sidebar: HTMLDivElement;
     let sidebarcontent: HTMLDivElement;
+    let open: boolean = false;
+
+    function onResize() {
+        width = window.innerWidth;
+        open = false;
+    }
+
+    beforeNavigate(() => open = false);
+
+    onMount(() => {
+        if(typeof window !== 'undefined') window.addEventListener('resize', onResize)
+    });
+
+    onDestroy(() => {
+        if(typeof window !== 'undefined') window.removeEventListener('resize', onResize)
+    });
 </script>
 
 <style lang="scss">
@@ -27,6 +47,7 @@
 
     :root {
         --sidebar-width: 320px;
+        --padding-bottom: 0.5rem;
     }
 
     .sidebar-container {
@@ -75,16 +96,151 @@
                 }
             }
         }
+
+        &.mobile {
+            width: unset;
+            right: unset;
+            left: unset;
+            height: unset;
+            position: relative;
+            padding: unset;
+
+            .sidebar-viewport {
+                position: fixed;
+                top: 0;
+                right: 0;
+                margin: 0.5rem;
+                margin-top: var(--nav-height);
+                width: calc(100% - 1rem);
+                height: calc(100% -  var(--nav-height) - 0.5rem);
+                z-index: 4;
+
+                .sidebar {
+                    .sidebar-content {
+                        .sidebar-links {
+                            padding-bottom: 5rem;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .mobile-button {
+        position: fixed;
+        z-index: 4;
+        bottom: 0;
+        right: 0;
+        margin: 1.5rem 0;
+        height: 3rem;
+        width: 60px;
+        @include Transition();
+
+        button {
+            height: 100%;
+            width: calc(100% + 20px);
+            border: none;
+            background: $link;
+            border-radius: 3rem;
+            padding-right: 20px;
+            @include Transition();
+            cursor: pointer;
+
+            .icon {
+                height: 2.5em;
+                width: 2.5em;
+                display: block;
+                position: relative;
+                margin-left: 1rem;
+
+                &::before,
+                &::after {
+                    content: '';
+                    height: 4px;
+                    width: 50%;
+                    background: currentColor;
+                    display: block;
+                    position: absolute;
+                    border-radius: 5px;
+                }
+
+                &::before {
+                    transform: rotate(45deg);
+                    top: calc(50% + 3px);
+                }
+
+                &::after {
+                    transform: rotate(-45deg);
+                    bottom: calc(50% + 3px);
+                }
+            }
+        }
+
+        &:not(.active):hover,
+        &:not(.active):focus {
+            width: 70px;
+        }
+
+        &.active {
+            margin: 1.5rem;
+            width: 3rem;
+
+            button {
+                border-radius: 3rem;
+                width: 100%;
+                padding-right: 0;
+
+                .icon {
+                    margin: 0;
+                    height: 100%;
+                    width: 100%;
+
+                    &::after {
+                        transform: translate(-50%, -50%) rotate(-45deg);
+                        width: 50%;
+                        left: 50%;
+                        top: 50%;
+                    }
+
+                    &::before {
+                        transform: translate(-50%, -50%) rotate(45deg);
+                        width: 50%;
+                        left: 50%;
+                        top: 50%;
+                    }
+                }
+            }
+        }
     }
 </style>
 
-<div class="sidebar-container">
+<div class="sidebar-container" class:mobile={width < 900}>
+    {#if width > 900}
     <style>
         body {
             padding-left: calc(var(--sidebar-width) + 1rem);
         }
     </style>
-    <div class="sidebar-viewport">
+    {:else}
+    <style>
+        body {
+            padding-left: 1rem;
+        }
+
+        :root {
+            --padding-bottom: 5rem;
+        }
+    </style>
+    {/if}
+    {#if open || width > 900}
+    {#if width < 900}
+    <style>
+        html {
+            overflow: hidden;
+        }
+    </style>
+    {/if}
+    <div class="sidebar-viewport" transition:fly={{ x: 900, duration: 300 }}>
         <div class="sidebar" bind:this={sidebar}>
             <div class="sidebar-content" bind:this={sidebarcontent}>
                 <div class="sidebar-options">
@@ -157,4 +313,12 @@
         </div>
         <Svrollbar viewport={sidebar} contents={sidebarcontent} margin={{top: 2, buttom: 2}}/>
     </div>
+    {/if}
 </div>
+{#if width < 900}
+<div class="mobile-button" class:active={open}>
+    <button on:click={() => open = !open}>
+        <span class="icon"></span>
+    </button>
+</div>
+{/if}
