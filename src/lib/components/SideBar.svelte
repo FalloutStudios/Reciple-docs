@@ -241,7 +241,7 @@ import { beforeNavigate } from '$app/navigation';
         }
     </style>
     {/if}
-    <div class="sidebar-viewport" transition:fly={{ x: 900, duration: 300 }}>
+    <div class="sidebar-viewport" transition:fly={{ x: 900, duration: width < 900 ? 300 : 0 }}>
         <div class="sidebar" bind:this={sidebar}>
             <div class="sidebar-content" bind:this={sidebarcontent}>
                 <div class="sidebar-options">
