@@ -12,7 +12,12 @@
 
         :global(.header) {
             font-size: 1.1rem;
-            margin: 1rem 0;
+            margin: 0.5rem 0;
+        }
+
+        :global(.pills) {
+            margin-bottom: 1rem;
+            display: flex;
         }
 
         :global(.label) {
@@ -29,6 +34,13 @@
             > :global(.accordion .accordion-content) {
                 margin-left: 0 !important;
                 margin-right: 0 !important;
+            }
+        }
+
+        .content {
+            :global(.markdown) {
+                font-size: 0.95rem !important;
+                line-height: 0.9rem !important;
             }
         }
     }

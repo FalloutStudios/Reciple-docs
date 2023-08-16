@@ -15,6 +15,7 @@
                     border-top: 1px solid $border;
                     font-size: 0.85rem;
                     text-align: left;
+                    line-height: 1em;
                 }
 
                 :global(th.table-header) {

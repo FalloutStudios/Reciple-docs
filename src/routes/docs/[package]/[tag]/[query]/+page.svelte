@@ -20,6 +20,7 @@
     import warningBoldIcon from '@iconify/icons-ph/warning-bold';
     import symbolParameter from '@iconify/icons-codicon/symbol-parameter';
     import { Colors } from '$lib/scripts/config';
+import Pill from '../../../../../lib/components/docs/Pill.svelte';
 
     export let data: PackageQueryLoadData;
 
@@ -38,6 +39,10 @@
         <Accordion name="Properties" hr={false} id="-properties" icon={propertyIcon}>
             {#each selected.properties as member, index}
                 {@const isStatic = 'static' in member && member.static}
+                {@const isReadonly = 'readonly' in member && member.readonly}
+                {@const isPrivate = 'private' in member && member.private}
+                {@const isProtected = 'protected' in member && member.protected}
+                {@const isOptional = 'optional' in member && member.optional}
                 {@const deprecationMessage = isElementDeprecated(member) ? getElementBlocktag(member, 'deprecated') : null}
                 {@const description = getElementDescription(member)}
                 <Member hr={!!index}>
@@ -45,6 +50,13 @@
                         <code class:deprecated={!!deprecationMessage}>{member.name}{member.optional ? '?' : ''}: {@html stringifyType(data, member.type, true, 2)}</code>
                     </Header>
                     <div class="content">
+                        <div class="pills">
+                            {#if isPrivate}<Pill backgroundColor={Colors.DARK}>private</Pill>{/if}
+                            {#if isProtected}<Pill backgroundColor={Colors.DARK}>protected</Pill>{/if}
+                            {#if isOptional}<Pill backgroundColor={Colors.LINK}>optional</Pill>{/if}
+                            {#if isReadonly}<Pill>readonly</Pill>{/if}
+                            {#if isStatic}<Pill backgroundColor={Colors.BORDER}>static</Pill>{/if}
+                        </div>
                         {#if deprecationMessage !== null}
                             <div class="labels">
                                 <FloatingLabel label="Deprecated" icon={warningBoldIcon} borderColor={Colors.Danger}>
@@ -64,6 +76,9 @@
         <Accordion name="Methods" hr={false} id="-methods" icon={methodIcon}>
             {#each selected.methods as member, index}
                 {@const isStatic = 'static' in member && member.static}
+                {@const isReadonly = 'readonly' in member && member.readonly}
+                {@const isPrivate = 'private' in member && member.private}
+                {@const isProtected = 'protected' in member && member.protected}
                 {@const deprecationMessage = isElementDeprecated(member) ? getElementBlocktag(member, 'deprecated') : null}
                 {@const description = getElementDescription(member)}
                 <Member hr={!!index}>
@@ -71,6 +86,12 @@
                         <code class:deprecated={!!deprecationMessage}>{member.name}()</code>
                     </Header>
                     <div class="content">
+                        <div class="pills">
+                            {#if isPrivate}<Pill backgroundColor={Colors.DARK}>private</Pill>{/if}
+                            {#if isProtected}<Pill backgroundColor={Colors.DARK}>protected</Pill>{/if}
+                            {#if isReadonly}<Pill>readonly</Pill>{/if}
+                            {#if isStatic}<Pill backgroundColor={Colors.BORDER}>static</Pill>{/if}
+                        </div>
                         {#if deprecationMessage !== null}
                             <div class="labels">
                                 <FloatingLabel label="Deprecated" icon={warningBoldIcon} borderColor={Colors.Danger}>
@@ -99,6 +120,7 @@
                     <code class:deprecated={!!deprecationMessage}>{member.name} = {member.value}</code>
                 </Header>
                 <div class="content">
+                    <div class="pills"></div>
                     {#if deprecationMessage !== null}
                         <div class="labels">
                             <FloatingLabel label="Deprecated" icon={warningBoldIcon} borderColor={Colors.Danger}>
