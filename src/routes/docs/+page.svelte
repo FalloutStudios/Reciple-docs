@@ -1,8 +1,11 @@
 <script lang="ts">
-    import '../../assets/styles/main.scss';
     import Icon from '@iconify/svelte';
-    import HomeButton from '../../components/HomeButton.svelte';
-    import packages from '../../scripts/packages';
+    import LinkButton from '$lib/components/LinkButton.svelte';
+    import { packages } from '$lib/scripts/packages';
+    import externalLinkIcon from '@iconify/icons-tabler/external-link';
+    import packageBoldIcon from '@iconify/icons-ph/package-bold';
+    import caretRightIcon from '@iconify/icons-ph/caret-right';
+    import caretLeftIcon from '@iconify/icons-ph/caret-left';
 </script>
 
 <style lang="scss">
@@ -64,7 +67,7 @@
 </style>
 
 <svelte:head>
-    <title>Choose package</title>
+    <title>Select A Package</title>
 </svelte:head>
 
 <div class="container">
@@ -73,21 +76,21 @@
             Select a package:
         </div>
         <div class="content">
-            {#each Object.keys(packages) as pkg}
-                <HomeButton href="/docs/{pkg}">
-                    <span><Icon icon="ph:package-bold" class="icon"/> {pkg}</span>
-                    <Icon icon="ic:round-arrow-forward" class="arrow"/>
-                </HomeButton>
+            {#each packages as pkg}
+                <LinkButton href="/docs/{pkg}">
+                    <span><Icon icon={packageBoldIcon} class="icon"/> {pkg}</span>
+                    <Icon icon={caretRightIcon} class="arrow"/>
+                </LinkButton>
             {/each}
-            <HomeButton href="https://discord.js.org" target="_blank">
-                <span><Icon icon="ph:package-bold" class="icon"/> discord.js</span>
-                <Icon icon="mingcute:external-link-line" class="arrow"/>
-            </HomeButton>
+            <LinkButton href="https://discord.js.org" target="_blank">
+                <span><Icon icon={packageBoldIcon} class="icon"/> discord.js</span>
+                <Icon icon={externalLinkIcon} class="arrow"/>
+            </LinkButton>
         </div>
         <div class="back">
-            <HomeButton style="Blue" href="/">
-                <Icon icon="ic:round-arrow-back" /> Back
-            </HomeButton>
+            <LinkButton class="blue" href="/">
+                <Icon icon={caretLeftIcon} /> Back
+            </LinkButton>
         </div>
     </div>
 </div>

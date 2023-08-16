@@ -1,14 +1,12 @@
 <script lang="ts">
-    import '../../../assets/styles/main.scss';
     import Icon from '@iconify/svelte';
-    import HomeButton from '../../../components/HomeButton.svelte';
-    import packages from '../../../scripts/packages';
-    import type { DocsData } from '../../../data/DocsData';
+    import LinkButton from '$lib/components/LinkButton.svelte';
+    import type { PackageLoadData } from './+page';
+    import caretRightIcon from '@iconify/icons-ph/caret-right';
+    import caretLeftIcon from '@iconify/icons-ph/caret-left';
+    import versionsIcon from '@iconify/icons-tabler/versions';
 
-    export let data: { package: string; };
-
-    let pkg: DocsData = packages[data.package as keyof typeof packages];
-    let tags: Promise<string[]> = pkg.resolveTags();
+    export let data: PackageLoadData;
 </script>
 
 <style lang="scss">
@@ -74,36 +72,32 @@
 </style>
 
 <svelte:head>
-    <title>Choose version</title>
+    <title>{data.package} | Choose version</title>
 </svelte:head>
 
 <div class="container">
     <div class="center">
-        {#await tags}
-            <div class="title" style="text-align: center;">
-                Loading Tags...
-            </div>
-        {:then tags} 
+        {#if data.tags.length}
             <div class="title">
                 Select a version:
             </div>
             <div class="content">
-                {#each tags as tag}
-                    <HomeButton href="/docs/{pkg.options.package}/{tag}">
-                        <span><Icon icon="tabler:versions" class="icon"/> {tag}</span>
-                        <Icon icon="ic:round-arrow-forward" class="arrow"/>
-                    </HomeButton>
+                {#each data.tags as tag}
+                    <LinkButton href="/docs/{data.package}/{tag}{data.goto ? `/${data.goto}` : ''}">
+                        <span><Icon icon={versionsIcon} class="icon"/> {tag}</span>
+                        <Icon icon={caretRightIcon} class="arrow"/>
+                    </LinkButton>
                 {/each}
             </div>
-        {:catch err}
+        {:else}
             <div class="title" style="text-align: center;">
                 Couldn't fetch tags from Github
             </div>
-        {/await}
+        {/if}
         <div class="back">
-            <HomeButton style="Blue" href="/docs">
-                <Icon icon="ic:round-arrow-back" /> Back
-            </HomeButton>
+            <LinkButton class="blue" href="/docs">
+                <Icon icon={caretLeftIcon} /> Back
+            </LinkButton>
         </div>
     </div>
 </div>

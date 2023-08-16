@@ -1,0 +1,146 @@
+@import './variables.scss';
+
+.markdown {
+    font-family: 'Inter', sans-serif;
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        font-weight: 600;
+        line-height: 1.25;
+        margin: 1.25em 0 0.5em;
+        scroll-margin-top: 6.5em;
+    }
+
+    p {
+        display: block;
+        line-height: 1.75;
+        margin: 0.5em 0;
+        white-space: break-spaces;
+        word-wrap: break-word;
+    }
+
+    a {
+        text-decoration: none;
+        color: $link;
+
+        &:visited {
+            color: $linkVisited;
+        }
+
+        &:hover,
+        &:focus {
+            text-decoration: underline;
+        }
+    }
+
+    ul {
+        list-style-position: outside;
+        padding-left: 2em;
+        margin: 0.5em;
+        margin-bottom: 1em;
+    }
+
+    code {
+        word-spacing: normal;
+        word-break: normal;
+        -moz-tab-size: 4;
+        tab-size: 4;
+        -webkit-hyphens: none;
+        hyphens: none;
+        background: rgba($border, $alpha: 1);
+        border-radius: 3px;
+        padding: 0.1em 0.2em;
+        line-height: 1.5em;
+        white-space: break-spaces;
+        word-wrap: break-word;
+    }
+
+    hr {
+        margin: 2em 0 0.5em 0;
+        border: none;
+        border-bottom: solid 0.5px $border;
+    }
+
+    blockquote {
+        display: block;
+        background: rgba($dark, $alpha: 0.7);
+        border-left: 5px solid $border;
+        border-radius: 5px;
+        padding: 1em;
+    }
+
+    pre {
+        display: block;
+        padding: 1em;
+        overflow-x: auto;
+        font-size: 0.8em;
+        line-height: 1.5;
+        @include BorderedButton();
+        background: rgba($dark, $alpha: 0.7);
+        border-color: darken($border, $amount: 5);
+
+        code {
+            word-break: keep-all;
+            white-space: pre;
+            word-wrap: normal;
+            background: none;
+
+            * {
+                font-family: 'Roboto Mono', monospace;
+            }
+        }
+
+        .hljs-comment,
+        .hljs-title {
+            color: #999999;
+        }
+
+        .hljs-variable,
+        .hljs-attribute,
+        .hljs-attr,
+        .hljs-tag,
+        .hljs-regexp,
+        .hljs-property {
+            color: #f2777a;
+        }
+
+        .hljs-number,
+        .hljs-literal,
+        .hljs-params,
+        .hljs-constant {
+            color: #f99157;
+        }
+
+        .class_,
+        .hljs-built_in {
+            color: #ffcc66;
+        }
+
+        .hljs-string,
+        .hljs-value,
+        .hljs-inheritance,
+        .hljs-header {
+            color: #99cc99;
+        }
+
+        .function_,
+        .js .hljs-title,
+        .ts .hljs-title {
+            color: #6699cc;
+        }
+
+        .hljs-keyword,
+        .hljs-function,
+        .function_ {
+            color: #cc99cc;
+        }
+    }
+
+    img {
+        max-width: 100%;
+    }
+}

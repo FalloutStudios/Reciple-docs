@@ -1,0 +1,40 @@
+$bg: #181818;
+$white: #f7f7f7;
+$link: #5a69f1;
+$linkVisited: #5a38f0;
+$danger: #ee4747;
+$dark: #222222;
+$border: #3c3c3c;
+
+@mixin BorderedButton($bg: $dark, $border: $border, $radius: 5px) {
+    background: $bg;
+    border: 1px solid $border;
+    border-radius: $radius;
+}
+
+@mixin GlassBackdrop($blur: 15px, $bg: $dark, $alpha: 0.7) {
+    background: rgba($bg, $alpha);
+    backdrop-filter: saturate(120%) blur($blur);
+}
+
+@mixin NoScrollbar() {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+
+    &::-webkit-scrollbar {
+        display: none;
+    }
+}
+
+@mixin Transition($duration: .2s) {
+    transition: $duration;
+}
+
+@mixin DropShadow() {
+    box-shadow: 0px 0px 10px rgba($color: #000, $alpha: 0.1);
+}
+
+@mixin WordWrap() {
+    white-space: break-spaces;
+    word-wrap: break-word;
+}

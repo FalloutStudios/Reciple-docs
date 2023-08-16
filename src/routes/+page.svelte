@@ -1,14 +1,14 @@
-<script>
-    import '../assets/styles/main.scss';
-    import HomeButton from '../components/HomeButton.svelte';
+<script lang="ts">
+    import Install from '$lib/components/Install.svelte';
+    import LinkButton from '$lib/components/LinkButton.svelte';
+    import { githubHome, npmHome } from '$lib/scripts/config';
     import Icon from '@iconify/svelte';
-    import { githubHome, npmHome } from '../scripts/data';
-    import Install from '../components/Install.svelte';
+    import externalLinkIcon from '@iconify/icons-tabler/external-link';
 </script>
 
 <style lang="scss">
     @import url('https://fonts.googleapis.com/css2?family=Archivo+Black&display=swap');
-    @import '../assets/styles/variables.scss';
+    @import '$lib/styles/variables.scss';
 
     .home {
         display: flex;
@@ -25,12 +25,12 @@
             max-width: 1000px;
             width: 100%;
 
-            .introduction {
+            .intro {
                 width: 100%;
                 margin-right: 1rem;
 
                 .title {
-                    font-family: 'Archivo Black', sans-serif;
+                    font-family: 'Archivo Black', 'Inter', sans-serif;
                     font-size: 2.8rem;
                     font-weight: 500;
                     line-height: 3rem;
@@ -43,34 +43,7 @@
                         background: $link;
                         border-radius: 5px;
                         padding: 5px 10px;
-
-                        &:hover,
-                        &:focus {
-                            position: relative;
-
-                            &::after {
-                                content: 'https://discord.js.org';
-                                position: absolute;
-                                display: block;
-                                background: $bg;
-                                color: $white;
-                                font-family: 'Roboto', sans-serif;
-                                font-size: 0.8rem;
-                                padding: 5px 10px;
-                                line-height: 1rem;
-                                border-radius: 3px;
-                                margin-bottom: 10px;
-                                bottom: 100%;
-                                left: 50%;
-                                transform: translateX(-50%);
-                            }
-                        }
-
-                        &:focus-visible {
-                            outline: none;
-                            background: #fff;
-                            color: rgba(88, 101, 242, 1.0);
-                        }
+                        position: relative;
                     }
                 }
 
@@ -97,7 +70,7 @@
                     }
                 }
 
-                @media (max-width: 460px) {
+                @media (max-width: 520px) {
                     .buttons {
                         display: flex;
                         flex-direction: column;
@@ -110,7 +83,7 @@
                 }
             }
 
-            .install-section {
+            .install {
                 width: 50%;
                 flex-shrink: 0;
                 display: flex;
@@ -124,12 +97,12 @@
         }
     }
 
-    @media (max-width: 885px) {
+    @media (max-width: 914px) {
         .home {
             .home-container {
                 flex-direction: column;
 
-                .introduction {
+                .intro {
                     margin-right: 0;
                     margin-bottom: 2rem;
 
@@ -141,7 +114,7 @@
                     }
                 }
 
-                .install-section {
+                .install {
                     width: 100%;
 
                     :global(.install-command) {
@@ -171,7 +144,7 @@
 
 <div class="home">
     <div class="home-container">
-        <div class="introduction section">
+        <div class="intro">
             <h1 class="title">
                 Another <a href="https://discord.js.org/" class="highlight">Discord.js</a> framework that just works &lt;3
             </h1>
@@ -179,12 +152,12 @@
                 Reciple is a command framework with message command (aka prefix command), slash command, and context menu support. Reciple makes Discord.js command handling simple and easy using our built-in CLI tool.
             </div>
             <div class="buttons">
-                <HomeButton style="Blue" href="/docs">Docs</HomeButton>
-                <HomeButton href={githubHome} target="_blank">GitHub <Icon icon="mingcute:external-link-line"/></HomeButton>
-                <HomeButton href={npmHome} target="_blank">NPM <Icon icon="mingcute:external-link-line"/></HomeButton>
+                <LinkButton class="blue" href="/docs">Docs</LinkButton>
+                <LinkButton href={githubHome} target="_blank">GitHub <Icon icon={externalLinkIcon}/></LinkButton>
+                <LinkButton href={npmHome} target="_blank">NPM <Icon icon={externalLinkIcon}/></LinkButton>
             </div>
         </div>
-        <div class="install-section section">
+        <div class="install">
             <Install/>
         </div>
     </div>
