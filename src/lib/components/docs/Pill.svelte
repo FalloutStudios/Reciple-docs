@@ -12,7 +12,7 @@
         line-height: 1em;
         padding: 0.2em 0.8em;
         border-radius: 1em;
-        font-weight: 500;
+        font-weight: 600;
         font-size: 0.9rem;
         text-transform: uppercase;
         margin: 0 0.2rem;
