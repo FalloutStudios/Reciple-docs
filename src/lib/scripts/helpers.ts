@@ -41,6 +41,11 @@ export function getFromCache<T = unknown>(id: string): T|null {
     }
 }
 
+export function getFirstFocusableElement<E extends Element>(parent?: Element): E|undefined {
+    const focusableElements = (parent ?? document).querySelectorAll<E>('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+    return focusableElements[0];
+}
+
 export function findDocsElement(project: ProjectParser, find: string|number) {
     if (typeof find === 'number' || !isNaN(Number(find))) {
         const element = project.find(Number(find));

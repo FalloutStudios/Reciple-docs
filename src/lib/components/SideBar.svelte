@@ -34,11 +34,12 @@ import { beforeNavigate } from '$app/navigation';
     beforeNavigate(() => open = false);
 
     onMount(() => {
-        if(typeof window !== 'undefined') window.addEventListener('resize', onResize)
+        if(typeof window !== 'undefined') window.addEventListener('resize', onResize);
+        onResize();
     });
 
     onDestroy(() => {
-        if(typeof window !== 'undefined') window.removeEventListener('resize', onResize)
+        if(typeof window !== 'undefined') window.removeEventListener('resize', onResize);
     });
 </script>
 
