@@ -27,8 +27,8 @@ import { beforeNavigate } from '$app/navigation';
     let open: boolean = false;
 
     function onResize() {
+        open = window.innerWidth !== width ? false : open;
         width = window.innerWidth;
-        open = false;
     }
 
     beforeNavigate(() => open = false);
