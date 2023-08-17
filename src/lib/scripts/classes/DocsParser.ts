@@ -82,7 +82,7 @@ export class DocsParser {
     }
 
     public async fetchDocs(tag?: string|null): Promise<this> {
-        await this.resolveTags();
+        await this.resolveTags().catch(() => null);
 
         const url = `https://raw.githubusercontent.com/${this.options.repository}/${this.options.branch ?? 'docs'}/${this.options.package}/${tag ?? this.options.defaultTag}.json`;
         const response = await fetch(url).then(res => this.resJson<Docs>(res, url));

@@ -15,9 +15,6 @@ export const load = (async data => {
 
     if (!docs) throw error(404);
 
-    await docs.resolveTags();
-    if (!docs.tags.includes(tag)) throw error(404);
-
     await docs.resolveDocs(tag);
     if (!docs.data) throw error(404);
 
