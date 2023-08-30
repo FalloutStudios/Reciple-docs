@@ -115,7 +115,27 @@ export function getMarkdownHeaderIds(markdown: string): { id: string; name: stri
 }
 
 export function getElementTypeDisplayName(element: AnyDocsElement) {
-    return element instanceof TypeAliasParser ? 'Type alias' : element.constructor.name.replace('Parser', '').replace('_', '');
+    if (element instanceof ClassParser) {
+        return 'Class';
+    } else if (element instanceof ClassPropertyParser || element instanceof InterfacePropertyParser) {
+        return 'Property';
+    } else if (element instanceof ClassMethodParser || element instanceof InterfaceMethodParser) {
+        return 'Method';
+    } else if (element instanceof EnumParser) {
+        return 'Enum';
+    } else if (element instanceof EnumMemberParser) {
+        return 'Member';
+    } else if (element instanceof InterfaceParser) {
+        return 'Interface';
+    } else if (element instanceof TypeAliasParser) {
+        return 'Type Alias';
+    } else if (element instanceof FunctionParser) {
+        return 'Function';
+    } else if (element instanceof VariableParser) {
+        return 'Variable';
+    } else {
+        return (element as any)?.constructor?.name ?? 'Element';
+    }
 }
 
 export function getElementSlugType(element: AnyDocsElement) {
