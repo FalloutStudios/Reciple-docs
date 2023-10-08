@@ -17,6 +17,11 @@ export const parsers = {
         package: 'client',
         npm: '@reciple/client',
     }),
+    'core': new DocsParser({
+        ...defaultDocsParserOptions,
+        package: 'core',
+        npm: '@reciple/core'
+    }),
     'utils': new DocsParser({
         ...defaultDocsParserOptions,
         package: 'utils',
@@ -36,6 +41,11 @@ export const parsers = {
         ...defaultDocsParserOptions,
         package: 'docgen',
         npm: '@reciple/docgen',
+    }),
+    'create-reciple': new DocsParser({
+        ...defaultDocsParserOptions,
+        package: 'create-reciple',
+        npm: 'create-reciple'
     })
 };
 
