@@ -23,7 +23,11 @@ export function addToCache(id: string, value: string|any[]|{}): void {
             ? `object:${JSON.stringify(value)}`
             : `string:${String(value)}`;
 
-    localStorage?.setItem(id, value as string);
+    try {
+        localStorage?.setItem(id, value as string);
+    } catch (err) {
+        console.error(err);
+    }
 }
 
 export function getFromCache<T = unknown>(id: string): T|null {
