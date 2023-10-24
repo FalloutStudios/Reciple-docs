@@ -20,7 +20,7 @@
     import warningBoldIcon from '@iconify/icons-ph/warning-bold';
     import symbolParameter from '@iconify/icons-codicon/symbol-parameter';
     import { Colors } from '$lib/scripts/config';
-import Pill from '../../../../../lib/components/docs/Pill.svelte';
+    import Pill from '$lib/components/docs/Pill.svelte';
 
     export let data: PackageQueryLoadData;
 
@@ -40,8 +40,9 @@ import Pill from '../../../../../lib/components/docs/Pill.svelte';
             {#each selected.properties as member, index}
                 {@const isStatic = 'static' in member && member.static}
                 {@const isReadonly = 'readonly' in member && member.readonly}
-                {@const isPrivate = 'private' in member && member.private}
-                {@const isProtected = 'protected' in member && member.protected}
+                {@const isPrivate = 'accessibility' in member && member.accessibility === ClassParser.Accessibility.Private}
+                {@const isProtected = 'accessibility' in member && member.accessibility === ClassParser.Accessibility.Protected}
+                {@const isAbstract = 'abstract' in member && member.abstract}
                 {@const isOptional = 'optional' in member && member.optional}
                 {@const deprecationMessage = isElementDeprecated(member) ? getElementBlocktag(member, 'deprecated') : null}
                 {@const description = getElementDescription(member)}
@@ -54,6 +55,7 @@ import Pill from '../../../../../lib/components/docs/Pill.svelte';
                             {#if isPrivate}<Pill backgroundColor={Colors.DARK}>private</Pill>{/if}
                             {#if isProtected}<Pill backgroundColor={Colors.DARK}>protected</Pill>{/if}
                             {#if isOptional}<Pill backgroundColor={Colors.LINK}>optional</Pill>{/if}
+                            {#if isAbstract}<Pill backgroundColor={Colors.DARK}>abstract</Pill>{/if}
                             {#if isReadonly}<Pill>readonly</Pill>{/if}
                             {#if isStatic}<Pill backgroundColor={Colors.BORDER}>static</Pill>{/if}
                         </div>
@@ -77,8 +79,9 @@ import Pill from '../../../../../lib/components/docs/Pill.svelte';
             {#each selected.methods as member, index}
                 {@const isStatic = 'static' in member && member.static}
                 {@const isReadonly = 'readonly' in member && member.readonly}
-                {@const isPrivate = 'private' in member && member.private}
-                {@const isProtected = 'protected' in member && member.protected}
+                {@const isPrivate = 'accessibility' in member && member.accessibility === ClassParser.Accessibility.Private}
+                {@const isProtected = 'accessibility' in member && member.accessibility === ClassParser.Accessibility.Protected}
+                {@const isAbstract = 'abstract' in member && member.abstract}
                 {@const deprecationMessage = isElementDeprecated(member) ? getElementBlocktag(member, 'deprecated') : null}
                 {@const description = getElementDescription(member)}
                 <Member hr={!!index}>
@@ -89,6 +92,7 @@ import Pill from '../../../../../lib/components/docs/Pill.svelte';
                         <div class="pills">
                             {#if isPrivate}<Pill backgroundColor={Colors.DARK}>private</Pill>{/if}
                             {#if isProtected}<Pill backgroundColor={Colors.DARK}>protected</Pill>{/if}
+                            {#if isAbstract}<Pill backgroundColor={Colors.DARK}>abstract</Pill>{/if}
                             {#if isReadonly}<Pill>readonly</Pill>{/if}
                             {#if isStatic}<Pill backgroundColor={Colors.BORDER}>static</Pill>{/if}
                         </div>

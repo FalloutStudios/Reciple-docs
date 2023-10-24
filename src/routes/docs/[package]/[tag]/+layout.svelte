@@ -4,7 +4,7 @@
     import Nav from '$lib/components/Nav.svelte';
     import SideBar from '$lib/components/SideBar.svelte';
     import type { DocsParser } from '$lib/scripts/classes/DocsParser';
-    import { getFirstFocusableElement } from '../../../../lib/scripts/helpers';
+    import { getFirstFocusableElement } from '$lib/scripts/helpers';
 
     $: docsData = $page.data as PackageTagLoadData & { docs: DocsParser & { data: Exclude<DocsParser['data'], undefined> } };
 
