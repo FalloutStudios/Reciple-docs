@@ -56,10 +56,25 @@
             }
 
             a.nav-home {
-                margin-right: 4rem;
+                margin-right: 2rem;
                 margin-left: 1rem;
                 flex-shrink: 0;
                 position: relative;
+                @include BorderedButton();
+                padding: 0.4rem 1rem;
+                text-transform: capitalize;
+                font-weight: 600;
+
+                .tag {
+                    .separator {
+                        display: inline-block;
+                        padding: 0 0.5rem;
+                        font-weight: 400;
+                        color: $border;
+                    }
+
+                    text-transform: lowercase;
+                }
             }
 
             .nav-links {
@@ -157,10 +172,6 @@
                 a.nav-home {
                     margin-right: 0.5rem;
                     margin-left: 1rem;
-                    text-transform: capitalize;
-                    @include BorderedButton();
-                    padding: 0.4rem 1rem;
-                    font-weight: 600;
 
                     .tag {
                         display: none;
@@ -198,7 +209,7 @@
         }
     </style>
     <div class="nav-container">
-        <a href="/docs/{data.package}/{data.tag}" class="nav-home">{data.package}<span class="tag">@{data.tag}</span></a>
+        <a href="/docs/{data.package}/{data.tag}" class="nav-home">{data.package}<span class="tag"><span class="separator">/</span>{data.tag}</span></a>
         <div class="nav-links">
             {#if navLinks.length}
                 {#each navLinks as link}
