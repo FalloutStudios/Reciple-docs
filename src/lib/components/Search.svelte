@@ -6,7 +6,7 @@
     import searchIcon from '@iconify/icons-tabler/search';
     import Icon from '@iconify/svelte';
     import { Tooltip } from 'flowbite-svelte';
-    import { getElementDisplayName, getElementHref, getElementIcon, isElementDeprecated } from '../scripts/helpers';
+    import { deprecatedElementSorter, getElementDisplayName, getElementHref, getElementIcon, isElementDeprecated } from '../scripts/helpers';
     import { goto } from '$app/navigation';
     import type { PackageTagLoadData } from '../../routes/docs/[package]/[tag]/+page';
     import type { DocsParser } from '../scripts/classes/DocsParser';
@@ -76,7 +76,7 @@
     }
 
     async function search() {
-        results = query.trim() ? (docs.docs.data?.search(query).splice(0, 20) ?? []) : [];
+        results = query.trim() ? (docs.docs.data?.search(query).sort((a, b) => deprecatedElementSorter(isElementDeprecated(a), isElementDeprecated(b))).splice(0, 20) ?? []) : [];
         loading = false;
     }
 

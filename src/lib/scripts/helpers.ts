@@ -1,4 +1,4 @@
-import { ClassMethodParser, ClassParser, ClassPropertyParser, EnumMemberParser, EnumParser, FunctionParser, InterfaceMethodParser, InterfaceParser, InterfacePropertyParser, TypeAliasParser, type ProjectParser, type SearchResult, VariableParser, TypeParser, MappedTypeParser, SignatureParser, CommentParser } from 'typedoc-json-parser';
+import { ClassMethodParser, ClassParser, ClassPropertyParser, EnumMemberParser, EnumParser, FunctionParser, InterfaceMethodParser, InterfaceParser, InterfacePropertyParser, TypeAliasParser, type ProjectParser, type SearchResult, VariableParser, TypeParser, MappedTypeParser, SignatureParser, CommentParser, TypeParameterParser } from 'typedoc-json-parser';
 import type { AnyDocsElement, AnyTypeParser, DocsElementType } from './types';
 import { slug } from 'github-slugger';
 import symbolClassIcon from '@iconify/icons-codicon/symbol-class';
@@ -70,7 +70,8 @@ export function getElementDescription(element: { comment: CommentParser; }|{ sig
     return ('signatures' in element ? element.signatures.find(s => s.comment.description)?.comment.description : ('comment' in element && element.comment?.description)) || null;
 }
 
-export function isElementDeprecated(element: { comment: CommentParser; }|{ signatures: SignatureParser[]; }): boolean {
+export function isElementDeprecated(element: TypeParameterParser|{ comment: CommentParser; }|{ signatures: SignatureParser[]; }): boolean {
+    if (element instanceof TypeParameterParser) return false;
     return 'signatures' in element
         ? element.signatures.some(s => isElementDeprecated(s))
         : 'comment' in element && (element.comment?.deprecated || element.comment?.blockTags.some(c => c.name === 'deprecated'));
