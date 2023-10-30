@@ -1,7 +1,7 @@
 import { DocsParser, type DocsParserOptions } from './classes/DocsParser';
 
 export const defaultDocsParserOptions: Omit<DocsParserOptions, 'package'|'npm'> = {
-    repository: 'FalloutStudios/reciple',
+    repository: 'thenorthsolution/reciple',
     branch: 'tags',
     defaultTag: 'main'
 };
