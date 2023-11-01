@@ -3,7 +3,7 @@ import { markedHighlight } from 'marked-highlight';
 import hljs from 'highlight.js';
 import { gfmHeadingId } from 'marked-gfm-heading-id';
 
-export const githubHome = 'https://github.com/FalloutStudios/reciple';
+export const githubHome = 'https://github.com/thenorthsolution/reciple';
 export const npmHome = 'https://npmjs.com/package/reciple';
 
 export const navLinks: { name: string; href: string; blank?: boolean; }[] = [
@@ -24,7 +24,6 @@ export const navLinks: { name: string; href: string; blank?: boolean; }[] = [
 ];
 
 export let markdownOptions: MarkedOptions = {
-    smartLists: true,
     gfm: true
 };
 
