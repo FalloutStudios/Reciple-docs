@@ -1,6 +1,7 @@
 <script lang="ts">
     import Install from '$lib/components/Install.svelte';
     import LinkButton from '$lib/components/LinkButton.svelte';
+    import Brandings from '$lib/components/Bandings.svelte';
     import { githubHome, npmHome } from '$lib/scripts/config';
     import Icon from '@iconify/svelte';
     import externalLinkIcon from '@iconify/icons-tabler/external-link';
@@ -18,12 +19,15 @@
         justify-content: center;
         padding: 5rem;
         margin-top: -1rem;
+        flex-direction: column;
 
         .home-container {
             display: flex;
             align-items: center;
             max-width: 1000px;
             width: 100%;
+            margin-top: 12rem;
+            margin-bottom: 10rem;
 
             .intro {
                 width: 100%;
@@ -70,7 +74,7 @@
                     }
                 }
 
-                @media (max-width: 520px) {
+                @media (max-width: 560px) {
                     .buttons {
                         display: flex;
                         flex-direction: column;
@@ -101,6 +105,7 @@
         .home {
             .home-container {
                 flex-direction: column;
+                margin-bottom: 5rem;
 
                 .intro {
                     margin-right: 0;
@@ -124,7 +129,7 @@
             }
         }
 
-        @media (max-width: 480px) {
+        @media (max-width: 560px) {
             .home {
                 padding: 3rem;
             }
@@ -161,4 +166,5 @@
             <Install/>
         </div>
     </div>
+    <Brandings/>
 </div>
