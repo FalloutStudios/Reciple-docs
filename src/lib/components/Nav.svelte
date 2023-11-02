@@ -209,7 +209,7 @@
         }
     </style>
     <div class="nav-container">
-        <a href="/docs/{data.package}/{data.tag}" class="nav-home">{data.package}<span class="tag"><span class="separator">/</span>{data.tag}</span></a>
+        <a href="/docs/{data.package}/{data.tag}" class="nav-home">{data.package.replaceAll('-',' ')}<span class="tag"><span class="separator">/</span>{data.tag}</span></a>
         <div class="nav-links">
             {#if navLinks.length}
                 {#each navLinks as link}
