@@ -17,7 +17,7 @@
     import symbolFieldIcon from '@iconify/icons-codicon/symbol-field';
     import { onDestroy, onMount } from 'svelte';
     import { fly } from 'svelte/transition';
-import { beforeNavigate } from '$app/navigation';
+    import { beforeNavigate } from '$app/navigation';
 
     $: data = $page.data as PackageTagLoadData;
 

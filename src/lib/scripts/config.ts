@@ -56,7 +56,7 @@ export const markdownParser = new Marked(
     markedHighlight({
         langPrefix: "",
         highlight: (code, lang) => {
-            const language = highlightjs.getLanguage(lang) ? lang : 'text';
+            const language = highlightjs.getLanguage(lang) ? lang : lang ?? undefined;
 
             return highlightjs.highlight(code, { language }).value;
         }
