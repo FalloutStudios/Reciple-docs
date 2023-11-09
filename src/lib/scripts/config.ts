@@ -1,6 +1,7 @@
 import { Marked, type MarkedOptions } from 'marked';
 import { markedHighlight } from 'marked-highlight';
 import hljs from 'highlight.js';
+import hljsDiff from 'highlightjs-code-diff/dist/index';
 import { gfmHeadingId } from 'marked-gfm-heading-id';
 
 export const githubHome = 'https://github.com/thenorthsolution/reciple';
@@ -49,12 +50,15 @@ export enum Colors {
     BORDER = "#3c3c3c",
 }
 
+export const highlightjs = hljsDiff(hljs);
+
 export const markdownParser = new Marked(
     markedHighlight({
         langPrefix: "",
         highlight: (code, lang) => {
-            const language = hljs.getLanguage(lang) ? lang : 'text';
-            return hljs.highlight(code, { language }).value;
+            const language = highlightjs.getLanguage(lang) ? lang : 'text';
+
+            return highlightjs.highlight(code, { language }).value;
         }
     }),
     gfmHeadingId()

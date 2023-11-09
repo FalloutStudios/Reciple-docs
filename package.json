@@ -20,6 +20,7 @@
 		"flowbite-svelte": "^0.44.18",
 		"github-slugger": "^2.0.0",
 		"highlight.js": "^11.9.0",
+		"highlightjs-code-diff": "^1.0.0",
 		"marked": "^9.1.2",
 		"marked-gfm-heading-id": "^3.1.0",
 		"marked-highlight": "^2.0.6",

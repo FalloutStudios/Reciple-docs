@@ -89,10 +89,21 @@
             white-space: pre;
             word-wrap: normal;
             background: none;
+            padding: 0;
 
             * {
                 font-family: 'Roboto Mono', monospace;
             }
+        }
+
+        .hljs-deletion {
+            background: rgba($danger, $alpha: 0.2);
+            color: $danger;
+        }
+
+        .hljs-addition {
+            background: rgba($success, $alpha: 0.2);
+            color: $success;
         }
 
         .hljs-comment,
