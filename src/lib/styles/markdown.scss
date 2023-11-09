@@ -96,16 +96,6 @@
             }
         }
 
-        .hljs-deletion {
-            background: rgba($danger, $alpha: 0.2);
-            color: $danger;
-        }
-
-        .hljs-addition {
-            background: rgba($success, $alpha: 0.2);
-            color: $success;
-        }
-
         .hljs-comment,
         .hljs-title {
             color: #999999;
@@ -149,6 +139,16 @@
         .hljs-function,
         .function_ {
             color: #cc99cc;
+        }
+
+        .hljs-deletion {
+            background: rgba($danger, $alpha: 0.1);
+            color: $danger;
+        }
+
+        .hljs-addition {
+            background: rgba($success, $alpha: 0.1);
+            color: $success;
         }
     }
 
