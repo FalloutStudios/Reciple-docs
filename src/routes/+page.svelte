@@ -18,16 +18,17 @@
         align-items: center;
         justify-content: center;
         padding: 5rem;
-        margin-top: -1rem;
         flex-direction: column;
+        position: relative;
+        z-index: 2;
 
         .home-container {
             display: flex;
             align-items: center;
             max-width: 1000px;
             width: 100%;
-            margin-top: 12rem;
-            margin-bottom: 10rem;
+            padding-bottom: 8rem;
+            padding-top: 8rem;
 
             .intro {
                 width: 100%;
@@ -48,6 +49,7 @@
                         border-radius: 5px;
                         padding: 5px 10px;
                         position: relative;
+                        box-shadow: 0px 0px 40px rgba($linkVisited, $alpha: 0.5);
                     }
                 }
 
@@ -105,7 +107,9 @@
         .home {
             .home-container {
                 flex-direction: column;
-                margin-bottom: 5rem;
+                margin-bottom: 4rem;
+                padding-bottom: 0;
+                padding-top: 2rem;
 
                 .intro {
                     margin-right: 0;
