@@ -37,7 +37,8 @@
         flex-direction: column;
         overflow: hidden;
         width: 100%;
-        @include BorderedButton();
+        @include BorderedButton(#1c1b24, #373352);
+        box-shadow: 0px 0px 120px -10px rgba($linkVisited, $alpha: 0.2);
 
         .tabs {
             display: flex;
