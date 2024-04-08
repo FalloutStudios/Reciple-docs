@@ -5,6 +5,8 @@
     import { githubHome, npmHome } from '$lib/scripts/config';
     import Icon from '@iconify/svelte';
     import externalLinkIcon from '@iconify/icons-tabler/external-link';
+import Console from '../lib/components/Console.svelte';
+import isMobile from 'is-mobile';
 </script>
 
 <style lang="scss">
@@ -25,14 +27,14 @@
         .home-container {
             display: flex;
             align-items: center;
-            max-width: 1000px;
+            max-width: 1200px;
             width: 100%;
             padding-bottom: 8rem;
             padding-top: 8rem;
 
             .intro {
                 width: 100%;
-                margin-right: 1rem;
+                margin-right: 2rem;
 
                 .title {
                     font-family: 'Archivo Black', 'Inter', sans-serif;
@@ -91,13 +93,16 @@
 
             .install {
                 width: 50%;
+                height: 340px;
                 flex-shrink: 0;
                 display: flex;
                 align-items: center;
                 justify-content: center;
+                flex-direction: column;
 
-                :global(.install-command) {
-                    max-width: 400px;
+                :global(> .install-command) {
+                    flex-shrink: 0;
+                    margin-top: 0.5rem;
                 }
             }
         }
@@ -155,7 +160,7 @@
     <div class="home-container">
         <div class="intro">
             <h1 class="title">
-                Another <a href="https://discord.js.org/" class="highlight">Discord.js</a> framework that just works &lt;3
+                Another <a href="https://discord.js.org/" class="highlight">Discord.js</a> framework that just works<Icon icon="fluent-emoji:fire" inline style="font-size: 1.2em; margin-left: 0.3rem"/>
             </h1>
             <div class="description">
                 Reciple is a command framework with message command (aka prefix command), slash command, and context menu support. Reciple makes Discord.js command handling simple and easy using our built-in CLI tool.
@@ -167,7 +172,12 @@
             </div>
         </div>
         <div class="install">
-            <Install/>
+            {#if isMobile({ tablet: false })}
+                <Install/>
+            {:else}
+                <Console/>
+                <Install/>
+            {/if}
         </div>
     </div>
     <Brandings/>

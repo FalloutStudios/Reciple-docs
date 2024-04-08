@@ -387,3 +387,7 @@ export function createFunctionTypeSnippet(data: { docs: DocsParser; package: str
 export function createVariableTypeSnipper(data: { docs: DocsParser; package: string;  }, element: VariableParser): string {
     return unescapeHTML(stringifyType(data, element.type, false, 2));
 }
+
+export function sleep(ms: number): Promise<NodeJS.Timeout> {
+    return new Promise((res) => setTimeout(res, ms));
+}
