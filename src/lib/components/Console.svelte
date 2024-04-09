@@ -1,6 +1,6 @@
 <script lang="ts">
     import { onMount } from 'svelte';
-    import { consoleSteps } from '../scripts/config';
+    import { consolePrefix, consoleSteps } from '../scripts/config';
     import { sleep } from '../scripts/helpers';
 
     let console: HTMLPreElement;
@@ -64,6 +64,7 @@
 
         .console-content {
             padding: 1rem;
+            padding-top: 0.4rem;
             height: 100%;
             font-family: 'Courier New', Courier, monospace;
             text-wrap: pretty;
@@ -98,9 +99,61 @@
                 color: rgb(233, 187, 59);
             }
         }
+
+        .topbar {
+            padding: 0.4rem;
+            text-align: center;
+            width: 100%;
+            background: rgba($border, $alpha: 0.1);
+            position: relative;
+
+            .title {
+                font-size: 0.8rem;
+            }
+
+            .controls {
+                position: absolute;
+                top: 0;
+                left: 0;
+                display: flex;
+                align-items: center;
+                height: 100%;
+
+                span {
+                    height: 0.7rem;
+                    width: 0.7rem;
+                    border-radius: 50%;
+                    background: currentColor;
+                    flex-shrink: 0;
+                    margin: 0 0.2rem;
+
+                    &:nth-child(1) {
+                        color: darken($danger, $amount: 5);
+                        margin-left: 0.8rem;
+                    }
+
+                    &:nth-child(2) {
+                        color: rgb(252, 169, 44);
+                    }
+
+                    &:nth-child(3) {
+                        color: darken($success, $amount: 20);
+                        margin-right: 0;
+                    }
+                }
+            }
+        }
     }
 </style>
 
 <div class="console-container">
+    <div class="topbar">
+        <div class="controls" on:click={() => { console.innerHTML = ''; index = 0; printConsoleOutput();}}>
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <h3 class="title">{@html consolePrefix('~/').split(':')[0]}</h3>
+    </div>
     <pre class="console-content" bind:this={console}></pre>
 </div>
