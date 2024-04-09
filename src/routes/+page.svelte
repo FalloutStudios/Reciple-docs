@@ -172,7 +172,7 @@ import isMobile from 'is-mobile';
             </div>
         </div>
         <div class="install">
-            {#if isMobile({ tablet: false })}
+            {#if isMobile()}
                 <Install/>
             {:else}
                 <Console/>

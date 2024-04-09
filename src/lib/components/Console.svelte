@@ -1,10 +1,10 @@
 <script lang="ts">
-    import { onMount } from 'svelte';
+    import { onMount, onDestroy } from 'svelte';
     import { consolePrefix, consoleSteps } from '../scripts/config';
     import { sleep } from '../scripts/helpers';
 
     let console: HTMLPreElement;
-    let index: number = 0;
+    let index: number|null = 0;
 
     onMount(async () => {
         if (!console) return;
@@ -12,7 +12,16 @@
         printConsoleOutput();
     });
 
+    onDestroy(async () => {
+        index = null;
+    });
+
     async function printConsoleOutput() {
+        if (index === null) {
+            index = 0;
+            return;
+        }
+
         const output = consoleSteps[index];
         const step = typeof output === 'string' ? { content: output } : output;
         const element = document.createElement('p');
@@ -153,7 +162,7 @@
             <span></span>
             <span></span>
         </div>
-        <h3 class="title">{@html consolePrefix('~/').split(':')[0]}</h3>
+        <h3 class="title">catplvsplus@user</h3>
     </div>
     <pre class="console-content" bind:this={console}></pre>
 </div>
