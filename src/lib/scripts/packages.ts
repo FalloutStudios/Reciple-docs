@@ -7,20 +7,25 @@ export const defaultDocsParserOptions: Omit<DocsParserOptions, 'package'|'npm'> 
 };
 
 export const parsers = {
-    'reciple': new DocsParser({
-        ...defaultDocsParserOptions,
-        package: 'reciple',
-        npm: 'reciple',
-    }),
     'core': new DocsParser({
         ...defaultDocsParserOptions,
         package: 'core',
         npm: '@reciple/core'
     }),
+    'reciple': new DocsParser({
+        ...defaultDocsParserOptions,
+        package: 'reciple',
+        npm: 'reciple',
+    }),
     'utils': new DocsParser({
         ...defaultDocsParserOptions,
         package: 'utils',
         npm: '@reciple/utils',
+    }),
+    'create-reciple': new DocsParser({
+        ...defaultDocsParserOptions,
+        package: 'create-reciple',
+        npm: 'create-reciple'
     }),
     'update-checker': new DocsParser({
         ...defaultDocsParserOptions,
@@ -31,11 +36,6 @@ export const parsers = {
         ...defaultDocsParserOptions,
         package: 'docgen',
         npm: '@reciple/docgen',
-    }),
-    'create-reciple': new DocsParser({
-        ...defaultDocsParserOptions,
-        package: 'create-reciple',
-        npm: 'create-reciple'
     })
 };
 
