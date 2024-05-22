@@ -22,11 +22,6 @@ export const parsers = {
         package: 'utils',
         npm: '@reciple/utils',
     }),
-    'npm-loader': new DocsParser({
-        ...defaultDocsParserOptions,
-        package: 'npm-loader',
-        npm: '@reciple/npm-loader',
-    }),
     'update-checker': new DocsParser({
         ...defaultDocsParserOptions,
         package: 'update-checker',
