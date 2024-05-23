@@ -1,0 +1,12 @@
+---
+title: Readme
+---
+
+<script>
+    import Install from '$lib/components/Install.svelte'
+</script>
+
+
+## Hello, World
+
+<h1>rfdf</h1>

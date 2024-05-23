@@ -1,0 +1,169 @@
+@import '$lib/styles/variables.scss';
+
+:root {
+    --sidebar-width: 320px;
+    --padding-bottom: 0.5rem;
+}
+
+.sidebar-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    padding: 0.5rem;
+    padding-top: var(--nav-height);
+    height: 100%;
+    width: var(--sidebar-width);
+    z-index: 4;
+
+    .sidebar-viewport {
+        height: 100%;
+        width: 100%;
+        @include BorderedButton();
+        @include GlassBackdrop();
+
+        .sidebar {
+            height: 100%;
+            width: 100%;
+            position: relative;
+            @include NoScrollbar();
+            padding: 0.5rem;
+            overflow-y: auto;
+            overflow-x: hidden;
+        }
+
+        .sidebar-content {
+            height: 100%;
+
+            .sidebar-options {
+                width: 100%;
+                border-bottom: 1px solid rgba($border, $alpha: 0.5);
+                padding-bottom: .5rem;
+                margin-bottom: 1rem;
+
+                .dropdown {
+                    width: 100%;
+                    margin-bottom: 0.5rem;
+                }
+            }
+
+            .sidebar-links {
+                padding-bottom: 2rem;
+            }
+        }
+    }
+
+    &.mobile {
+        width: unset;
+        right: unset;
+        left: unset;
+        height: unset;
+        position: relative;
+        padding: unset;
+
+        .sidebar-viewport {
+            position: fixed;
+            top: 0;
+            right: 0;
+            margin: 0.5rem;
+            margin-top: var(--nav-height);
+            width: calc(100% - 1rem);
+            height: calc(100% -  var(--nav-height) - 0.5rem);
+            z-index: 4;
+
+            .sidebar {
+                .sidebar-content {
+                    .sidebar-links {
+                        padding-bottom: 5rem;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.mobile-button {
+    position: fixed;
+    z-index: 4;
+    bottom: 0;
+    right: 0;
+    margin: 1.5rem 0;
+    height: 3rem;
+    width: 60px;
+    @include Transition();
+
+    button {
+        height: 100%;
+        width: calc(100% + 20px);
+        border: none;
+        background: $link;
+        border-radius: 3rem;
+        padding-right: 20px;
+        @include Transition();
+        cursor: pointer;
+
+        .icon {
+            height: 2.5em;
+            width: 2.5em;
+            display: block;
+            position: relative;
+            margin-left: 1rem;
+
+            &::before,
+            &::after {
+                content: '';
+                height: 4px;
+                width: 50%;
+                background: currentColor;
+                display: block;
+                position: absolute;
+                border-radius: 5px;
+            }
+
+            &::before {
+                transform: rotate(45deg);
+                top: calc(50% + 3px);
+            }
+
+            &::after {
+                transform: rotate(-45deg);
+                bottom: calc(50% + 3px);
+            }
+        }
+    }
+
+    &:not(.active):hover,
+    &:not(.active):focus {
+        width: 70px;
+    }
+
+    &.active {
+        margin: 1.5rem;
+        width: 3rem;
+
+        button {
+            border-radius: 3rem;
+            width: 100%;
+            padding-right: 0;
+
+            .icon {
+                margin: 0;
+                height: 100%;
+                width: 100%;
+
+                &::after {
+                    transform: translate(-50%, -50%) rotate(-45deg);
+                    width: 50%;
+                    left: 50%;
+                    top: 50%;
+                }
+
+                &::before {
+                    transform: translate(-50%, -50%) rotate(45deg);
+                    width: 50%;
+                    left: 50%;
+                    top: 50%;
+                }
+            }
+        }
+    }
+}

@@ -36,6 +36,7 @@
             align-items: center;
             z-index: 1;
             display: flex;
+            text-transform: capitalize;
 
             &:hover,
             &:focus {
