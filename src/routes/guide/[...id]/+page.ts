@@ -1,4 +1,3 @@
-
 export async function load(data) {
     const [category, id] = data.params.id.split('/');
 
