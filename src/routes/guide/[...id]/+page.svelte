@@ -3,13 +3,7 @@
 
     export let data;
 
-    let Markdown: any;
-
-    const loadFile = async () => {
-        Markdown = (await import(`../../../guides/${data.file}`)).default;
-    };
-
-    $: data, loadFile();
+    console.log(data);
 </script>
 
-<svelte:component this={Markdown}></svelte:component>
+<svelte:component this={data.content}></svelte:component>

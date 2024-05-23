@@ -5,7 +5,8 @@
     import Sidebar from './components/SideBar.svelte';
     import Nav from './components/Nav.svelte';
 
-    let pages: { category: string; pages: string[] }[] = $page.data.pages;
+    export let data;
+
     let content: HTMLDivElement;
 
     let firstElement: undefined|HTMLButtonElement;
@@ -16,7 +17,7 @@
 </script>
 
 <svelte:head>
-    <title>Reciple Guide | {$page.data.id}</title>
+    <title>Reciple Guide | {$page.data.metadata.title}</title>
 </svelte:head>
 
 <style lang="scss">
@@ -58,7 +59,7 @@
 
 {#if firstElement}<button class="skip-navigation" on:click={() => firstElement?.focus()}>Skip to navigation</button>{/if}
 
-<Nav/><Sidebar bind:pages/>
+<Nav/><Sidebar bind:pages={data.guides}/>
 <div class="content-container">
     <div class="content" bind:this={content}>
         <slot/>
