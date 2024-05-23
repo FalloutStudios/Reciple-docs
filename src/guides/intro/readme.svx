@@ -9,4 +9,7 @@ title: Readme THis
 
 ## Hello, World
 
+<div style="width: 400px">
+<Install/>
+</div>
 <h1>rfdf</h1>
