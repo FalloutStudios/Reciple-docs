@@ -171,4 +171,9 @@
     img {
         max-width: 100%;
     }
+
+    discord-messages {
+        padding: 1rem;
+        @include BorderedButton();
+    }
 }

@@ -18,3 +18,37 @@ This guide assumes that you have the decent understanding of JavaScript and Disc
 - [Google, your best friend](https://google.com/)
 
 Take your pick, learn some JavaScript, and once you feel like you're confident enough to make a bot, come back and get started!
+
+<discord-messages>
+				<discord-message>
+					<discord-bold>I am bold text!</discord-bold>
+				</discord-message>
+				<discord-message>
+					<discord-italic>I am italic text!</discord-italic>
+				</discord-message>
+				<discord-message>
+					<discord-bold>
+						<discord-italic>I am bold italic text!</discord-italic>
+					</discord-bold>
+				</discord-message>
+				<discord-message>
+					<discord-underlined>I am underlined text!</discord-underlined>
+				</discord-message>
+				<discord-message>
+					<discord-code>I am inline-code text!</discord-code>
+				</discord-message>
+				<discord-message>
+					<discord-code multiline>I am multi-\nline code text!</discord-code>
+				</discord-message>
+				<discord-message>
+					<discord-spoiler>I am spoiler text!</discord-spoiler>
+				</discord-message>
+				<discord-message>
+					<discord-quote>I am quoted text!</discord-quote>
+				</discord-message>
+			</discord-messages>
+			<h3 class="title">No Background mode</h3>
+			<discord-messages no-background>
+				<discord-message>This message blends perfectly with your own background</discord-message>
+				<discord-message>No Background mode is turned on here</discord-message>
+			</discord-messages>

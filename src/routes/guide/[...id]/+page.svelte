@@ -1,5 +1,6 @@
 <script lang="ts">
     import '$lib/styles/markdown.scss';
+    import '@skyra/discord-components-core';
 
     export let data;
 </script>
