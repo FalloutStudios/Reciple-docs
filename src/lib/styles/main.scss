@@ -30,7 +30,9 @@ h5,
 h6,
 p,
 html,
-body {
+body,
+ul,
+li {
     @include NoExtra();
 }
 
