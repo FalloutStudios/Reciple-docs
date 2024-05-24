@@ -18,10 +18,3 @@ This guide assumes that you have the decent understanding of JavaScript and Disc
 - [Google, your best friend](https://google.com/)
 
 Take your pick, learn some JavaScript, and once you feel like you're confident enough to make a bot, come back and get started!
-
-<discord-messages>
-	<discord-message>
-		<discord-reply slot="reply" edited>Hekdjk</discord-reply>
-		<discord-bold>I am bold text!</discord-bold>
-	</discord-message>
-</discord-messages>

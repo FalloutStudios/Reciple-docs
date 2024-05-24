@@ -4,16 +4,17 @@ import type { Guides } from '../../api/guides/+server.js';
 export async function load(data) {
     let [category, id] = data.params.id.split('/') as (string|undefined)[];
 
-    if (!category || !id) {
-        const guides = await (await data.fetch('/api/guides')).json() as Guides;
+    const guides = await (await data.fetch('/api/guides')).json() as Guides;
 
+    if (!category || !id) {
         category ??= guides[0].category;
         id ??= guides.find(c => c.category === category)?.pages[0].id;
     }
 
-    if (!category || !id) return error(404);
+    const page = category && id ? guides.find(c => c.category === category)?.pages.find(p => p.id === id) : undefined;
+    if (!page) return error(404);
 
-    const markdown = await import(`../../../guides/${category}/${id}.svx`);
+    const markdown = await import(`../../../guides/${page.category}/${page.file}.svx`);
 
     return {
         category,
