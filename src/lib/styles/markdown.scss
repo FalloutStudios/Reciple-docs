@@ -11,7 +11,7 @@
     h6 {
         font-weight: 600;
         line-height: 1.25;
-        margin: 1.25em 0 0.5em;
+        margin: 1.25em -0.1em 0.5em;
         scroll-margin-top: 6.5em;
     }
 
@@ -32,7 +32,6 @@
             color: $linkVisited;
         }
 
-        &:hover,
         &:focus {
             text-decoration: underline;
         }
@@ -40,12 +39,13 @@
 
     ul {
         list-style-position: outside;
-        padding-left: 2em;
-        margin: 0.5em;
+        padding-left: 1.25em;
+        margin: 1em 0;
         margin-bottom: 1em;
+        list-style-type: disc;
+        line-height: 1.75;
 
         li {
-            margin-bottom: 0.5rem;
         }
     }
 
