@@ -7,8 +7,9 @@
     import SidebarCategory from '$lib/components/SidebarCategory.svelte';
     import fileIcon from '@iconify/icons-codicon/file';
     import { page } from '$app/stores';
+    import type { Guides } from '../../../api/guides/+server';
 
-    export let pages: { category: string; pages: string[] }[] = [];
+    export let pages: Guides = [];
 
     $: currentPage = { category: $page.data.category, id: $page.data.id };
     let width: number = 0;
@@ -68,9 +69,9 @@
                                 name={page.category}
                                 icon={fileIcon}
                                 data={page.pages.map(p => ({
-                                    name: p,
-                                    href: `/guide/${page.category}/${p}`,
-                                    selected: currentPage.category === page.category && currentPage.id === p
+                                    name: p.metadata?.title ?? p.id,
+                                    href: `/guide/${p.category}/${p.id}`,
+                                    selected: currentPage.category === p.category && currentPage.id === p.id
                                 }))}
                             />
                         {/each}
