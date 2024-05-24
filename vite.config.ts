@@ -5,5 +5,8 @@ export default defineConfig({
 	plugins: [
 		sveltekit()
 	],
+	build: {
+		outDir: './build'
+	},
 	assetsInclude: ['./src/guides']
 });
