@@ -14,18 +14,18 @@ html {
     color: $white;
     font-family: 'Inter', sans-serif;
     scroll-behavior: smooth;
+    @include NoExtra();
 }
 
 button,
 input {
     font-family: 'Inter', sans-serif;
+    @include NoExtra();
 }
 
 *,
 *::before,
 *::after {
-    margin: 0;
-    padding: 0;
     box-sizing: border-box;
 }
 

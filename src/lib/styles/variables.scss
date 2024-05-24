@@ -39,3 +39,8 @@ $border: #3c3c3c;
     white-space: break-spaces;
     word-wrap: break-word;
 }
+
+@mixin NoExtra() {
+    margin: 0;
+    padding: 0;
+}
