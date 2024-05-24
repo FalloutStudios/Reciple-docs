@@ -71,7 +71,7 @@
                                 data={page.pages.map(p => ({
                                     name: p.metadata?.title ?? p.id,
                                     href: `/guide/${page.id}/${p.id}`,
-                                    selected: currentPage.category === p.category && currentPage.id === p.id
+                                    selected: currentPage.category === page.id && currentPage.id === p.id
                                 }))}
                             />
                         {/each}
