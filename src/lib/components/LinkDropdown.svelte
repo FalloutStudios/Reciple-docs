@@ -31,10 +31,11 @@
             display: flex;
             align-items: center;
             z-index: 1;
+                background: rgba(lighten($dark, $amount: 2), $alpha: 0.6);
 
             &:hover,
             &:focus {
-                background: rgba(lighten($dark, $amount: 2), $alpha: 0.6);
+                background: rgba(lighten($dark, $amount: 1), $alpha: 0.6);
             }
 
             &:focus-visible {
