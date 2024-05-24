@@ -18,7 +18,7 @@ export async function load(data) {
 
     return {
         category,
-        id,
+        id: page.id,
         file: category + '/' + id + '.svx',
         metadata: markdown.metadata ?? { title: id },
         content: markdown.default
