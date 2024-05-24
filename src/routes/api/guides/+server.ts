@@ -6,6 +6,8 @@ import { json } from '@sveltejs/kit';
 export type Guides = { category: string; pages: string[]; }[];
 
 export async function GET() {
+    console.log(await readdir(process.cwd()));
+
     const basename = path.join(process.cwd(), './src/guides');
     const folders = await readdir(basename);
 
