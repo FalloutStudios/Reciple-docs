@@ -97,7 +97,8 @@
         }
 
         .hljs-comment,
-        .hljs-title {
+        .hljs-title,
+        .token.comment {
             color: #999999;
         }
 
@@ -106,14 +107,17 @@
         .hljs-attr,
         .hljs-tag,
         .hljs-regexp,
-        .hljs-property {
+        .hljs-property,
+        .token.property,
+        .token.parameter  {
             color: #f2777a;
         }
 
         .hljs-number,
         .hljs-literal,
         .hljs-params,
-        .hljs-constant {
+        .hljs-constant,
+        .token.literal-property{
             color: #f99157;
         }
 
@@ -125,28 +129,35 @@
         .hljs-string,
         .hljs-value,
         .hljs-inheritance,
-        .hljs-header {
+        .hljs-header,
+        .token.string {
             color: #99cc99;
         }
 
         .function_,
         .js .hljs-title,
-        .ts .hljs-title {
+        .ts .hljs-title,
+        .token.class-name,
+        .token.function {
             color: #6699cc;
         }
 
         .hljs-keyword,
         .hljs-function,
-        .function_ {
+        .function_,
+        .token.keyword,
+        .token.operator {
             color: #cc99cc;
         }
 
-        .hljs-deletion {
+        .hljs-deletion,
+        .token.deleted-sign {
             background: rgba($danger, $alpha: 0.1);
             color: $danger;
         }
 
-        .hljs-addition {
+        .hljs-addition,
+        .token.inserted-sign {
             background: rgba($success, $alpha: 0.1);
             color: $success;
         }

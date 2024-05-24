@@ -9,7 +9,10 @@ const config = {
 	// for more information about preprocessors
 	preprocess: [
 		vitePreprocess(),
-		mdsvex()
+		mdsvex({
+			highlight: {
+			}
+		})
 	],
 	kit: {
 		adapter: adapter({
