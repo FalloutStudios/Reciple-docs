@@ -8,10 +8,10 @@ export async function load(data) {
 
     if (!category || !id) {
         category ??= guides[0].category;
-        id ??= guides.find(c => c.category === category)?.pages[0].id;
+        id ??= guides.find(c => c.id === category)?.pages[0].id;
     }
 
-    const page = category && id ? guides.find(c => c.category === category)?.pages.find(p => p.id === id) : undefined;
+    const page = category && id ? guides.find(c => c.id === category)?.pages.find(p => p.id === id) : undefined;
     if (!page) return error(404);
 
     const markdown = await import(`../../../guides/${page.folder}/${page.file}.svx`);

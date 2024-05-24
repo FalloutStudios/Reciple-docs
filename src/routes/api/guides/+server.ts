@@ -2,8 +2,9 @@ import path from 'path';
 import { parseGuideId } from '$lib/scripts/guideHelpers';
 import { json } from '@sveltejs/kit';
 import { dev } from '$app/environment';
+import { slug } from 'github-slugger';
 
-export type Guides = { category: string; folder: string; pages: { id: string; category: string; folder: string; file: string; metadata: Record<string, any> }[]; }[];
+export type Guides = { category: string; folder: string; id: string; pages: { id: string; category: string; folder: string; file: string; metadata: Record<string, any> }[]; }[];
 
 let cache: Guides = [];
 
@@ -32,7 +33,12 @@ export async function GET() {
         let category = guides.find(g => g.category === file.category);
 
         if (!category) {
-            category = { category: file.category, folder: file.folder, pages: [] };
+            category = {
+                category: file.category,
+                folder: file.folder,
+                id: slug(file.category),
+                pages: []
+            };
             guides.push(category);
         }
 
