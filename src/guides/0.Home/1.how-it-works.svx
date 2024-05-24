@@ -1,0 +1,73 @@
+---
+title: How It Works
+---
+
+<script lang="ts">
+    import Alert from '$lib/components/Alert.svelte';
+</script>
+
+# Modules
+
+Reciple uses a module system where a `.js` file can contain both the commands, event handlers, and more.
+
+## Structure
+
+Reciple modules are stored in a folder specified in your `reciple.mjs` config.
+
+```js
+// Module config (reciple.mjs)
+export const config = {
+    // other things
+    modules: {
+        dirs: ['./modules'], // scans the modules folder
+        exclude: [],
+        filter: file => true,
+        disableModuleVersionCheck: false
+    },
+    // other things
+};
+```
+
+<Alert type='info' title={'tip'}>
+    <code>dirs</code> can accept <a href="https://en.wikipedia.org/wiki/Glob_(programming)">glob</a> patterns
+</Alert>
+
+Here's an example project directory. Reciple can load CommonJs and ESM modules at the same time.
+
+```
+reciple-app/
+├── reciple.mjs
+├── package.json
+├── package-lock.json
+├── node_modules/
+└── modules/
+    ├── testModule.js
+    ├── commonjsModule.cjs
+    └── esModule.mjs
+```
+
+## Schema
+
+Reciple modules requires `versions` and `onStart` properties to load. 
+[View Docs](/docs/core/main/interfaces:RecipleModuleData)
+
+```js
+class MyModule {
+    id = 'my.module';
+    name = 'Display Name';
+    versions = ['^8'];
+    commands = [];
+
+    async onStart({ client }) {
+        return true; // Always return true if the module is loaded
+    }
+
+    async onLoad({ client }) {}
+    async onUnload({ client }) {}
+};
+
+// ESM
+export default new MyModule();
+// CJS
+module.exports = new MyModule();
+```
