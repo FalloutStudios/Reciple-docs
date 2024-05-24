@@ -1,23 +1,26 @@
 import path from 'path';
 import { parseGuideId } from '$lib/scripts/guideHelpers';
 import { json } from '@sveltejs/kit';
+import { dev } from '$app/environment';
 
-export type Guides = { category: string; pages: { id: string; category: string; file: string; metadata: Record<string, any> }[]; }[];
+export type Guides = { category: string; folder: string; pages: { id: string; category: string; folder: string; file: string; metadata: Record<string, any> }[]; }[];
 
 let cache: Guides = [];
 
 export async function GET() {
-    if (cache.length) return json(cache);
+    if (cache.length && !dev) return json(cache);
 
     const entries = Object.entries(import.meta.glob('/src/guides/*/*.svx'));
     const files = await Promise.all(entries.map(async ([file, resolver]) => {
-        const basename = parseGuideId(path.basename(file), false);
-        const category = path.basename(path.dirname(file));
+        const basename = parseGuideId(path.basename(file), { removeInt: false });
+        const folder = path.basename(path.dirname(file));
+        const category = parseGuideId(folder, { parse: false, removeInt: true });
         const id = parseGuideId(file);
 
         return {
             id,
             category,
+            folder: folder,
             file: basename,
             metadata: (await resolver() as { metadata: Record<string, any> }).metadata
         }
@@ -29,7 +32,7 @@ export async function GET() {
         let category = guides.find(g => g.category === file.category);
 
         if (!category) {
-            category = { category: file.category, pages: [] };
+            category = { category: file.category, folder: file.folder, pages: [] };
             guides.push(category);
         }
 
@@ -37,6 +40,8 @@ export async function GET() {
     }
 
     cache = guides;
+
+    console.log(guides);
 
     return json(guides);
 }

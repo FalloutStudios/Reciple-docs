@@ -14,7 +14,7 @@ export async function load(data) {
     const page = category && id ? guides.find(c => c.category === category)?.pages.find(p => p.id === id) : undefined;
     if (!page) return error(404);
 
-    const markdown = await import(`../../../guides/${page.category}/${page.file}.svx`);
+    const markdown = await import(`../../../guides/${page.folder}/${page.file}.svx`);
 
     return {
         category,
