@@ -33,7 +33,7 @@
     });
 </script>
 
-<div class="sidebar-container">
+<div class="sidebar-container" class:mobile={width < 900}>
     {#if width > 900}
     <style>
         body {
