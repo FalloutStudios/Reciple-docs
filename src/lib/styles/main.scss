@@ -14,12 +14,23 @@ html {
     color: $white;
     font-family: 'Inter', sans-serif;
     scroll-behavior: smooth;
-    @include NoExtra();
 }
 
 button,
 input {
     font-family: 'Inter', sans-serif;
+    @include NoExtra();
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+html,
+body {
     @include NoExtra();
 }
 

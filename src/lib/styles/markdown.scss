@@ -44,9 +44,6 @@
         margin-bottom: 1em;
         list-style-type: disc;
         line-height: 1.75;
-
-        li {
-        }
     }
 
     code {
@@ -173,7 +170,6 @@
     }
 
     discord-messages {
-        padding: 1rem;
         position: relative;
         @include BorderedButton();
 
