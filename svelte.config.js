@@ -12,7 +12,9 @@ const config = {
 		mdsvex()
 	],
 	kit: {
-		adapter: adapter(),
+		adapter: adapter({
+			runtime: 'nodejs20.x'
+		}),
 	},
 	extensions: [
 		'.svelte',

@@ -8,5 +8,10 @@ export default defineConfig({
 	build: {
 		outDir: './build'
 	},
+	server: {
+		fs: {
+			allow: ['./src/guides']
+		}
+	},
 	assetsInclude: ['./src/guides']
 });
