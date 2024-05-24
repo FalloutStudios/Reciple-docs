@@ -16,5 +16,6 @@ This guide assumes that you have the decent understanding of JavaScript and Disc
 - [Nodeschool, for both JavaScript and Node.js lessons](https://nodeschool.io/)
 - [MDN's JavaScript guide and full documentation](https://developer.mozilla.org/docs/Web/JavaScript)
 - [Google, your best friend](https://google.com/)
+- [Discord.js Guide](https://discordjs.guide)
 
 Take your pick, learn some JavaScript, and once you feel like you're confident enough to make a bot, come back and get started!
