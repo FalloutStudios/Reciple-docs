@@ -18,7 +18,7 @@
         }
     </style>
     <div class="nav-container">
-        <a href="/guide" class="nav-home">Guide<span class="tag" style="text-transform: capitalize;"><span class="separator">/</span>{$page.data.metadata.title}</span></a>
+        <a href="/guide" class="nav-home">Guide<span class="tag" style="text-transform: capitalize;"><span class="separator">/</span>{$page.data.category}</span></a>
         <div class="nav-links">
             {#if navLinks.length}
                 {#each navLinks as link}
