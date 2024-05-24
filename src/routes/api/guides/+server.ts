@@ -23,7 +23,7 @@ export async function GET() {
             category,
             folder: folder,
             file: basename,
-            metadata: (await resolver() as { metadata: Record<string, any> }).metadata
+            metadata: (await resolver().catch(() => ({})) as { metadata: Record<string, any> }).metadata
         }
     }));
 
@@ -46,8 +46,6 @@ export async function GET() {
     }
 
     cache = guides;
-
-    console.log(guides);
 
     return json(guides);
 }

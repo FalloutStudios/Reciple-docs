@@ -7,7 +7,7 @@ export async function load(data) {
     const guides = await (await data.fetch('/api/guides')).json() as Guides;
 
     if (!category || !id) {
-        category ??= guides[0].category;
+        category ??= guides[0].id;
         id ??= guides.find(c => c.id === category)?.pages[0].id;
     }
 
