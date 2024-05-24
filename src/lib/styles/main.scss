@@ -32,7 +32,8 @@ p,
 html,
 body,
 ul,
-li {
+li,
+blockquote {
     @include NoExtra();
 }
 
