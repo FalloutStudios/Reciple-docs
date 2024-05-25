@@ -1,15 +1,17 @@
 import path from 'path';
-import { parseGuideId } from '$lib/scripts/guideHelpers';
+import { parseGuideId, parseGuideIndex } from '$lib/scripts/guideHelpers';
 import { json } from '@sveltejs/kit';
 import { dev } from '$app/environment';
 import { slug } from 'github-slugger';
 
 export type Guides = {
+    id: string;
+    index: number;
     category: string;
     folder: string;
-    id: string;
     pages: {
         id: string;
+        index: number;
         category: string;
         folder: string;
         file: string;
@@ -26,20 +28,18 @@ let cache: Guides = [];
 export async function GET() {
     if (cache.length && !dev) return json(cache);
 
-    const guides: Guides = [];
+    let guides: Guides = [];
 
     const entries = Object.entries(import.meta.glob('/src/guides/*/*.svx'));
     const pages = await Promise.all(entries.map(async ([file, resolver]) => {
-        const basename = parseGuideId(path.basename(file), { removeInt: false });
         const folder = path.basename(path.dirname(file));
-        const category = parseGuideId(folder, { parse: false, removeInt: true });
-        const id = parseGuideId(file);
 
         const page: Guides[0]['pages'][0] = {
-            id,
-            category,
-            folder: folder,
-            file: basename,
+            id: parseGuideId(file),
+            index: parseGuideIndex(file),
+            category: parseGuideId(folder, { parse: false, removeInt: true }),
+            folder,
+            file: parseGuideId(path.basename(file), { removeInt: false }),
             pagination: { previous: null, next: null },
             metadata: (await resolver().catch(() => ({})) as { metadata: Record<string, any> }).metadata
         };
@@ -48,17 +48,21 @@ export async function GET() {
 
         if (!categoryPages) {
             categoryPages = {
+                id: slug(page.category),
+                index: parseGuideIndex(folder),
                 category: page.category,
                 folder: page.folder,
-                id: slug(page.category),
                 pages: []
             };
+
             guides.push(categoryPages);
         }
 
         categoryPages.pages.push(page);
         return page;
     }));
+
+    guides = guides.sort((a, b) => a.index - b.index);
 
     for (const guide of guides) {
         const categoryIndex = guides.findIndex(c => c.id === guide.id);
@@ -83,6 +87,8 @@ export async function GET() {
             page.pagination.previous = previousPage && { categoryId: slug(previousPage.category), pageId: previousPage.id };
             page.pagination.next = nextPage && { categoryId: slug(nextPage.category), pageId: nextPage.id };
         }
+
+        guide.pages = guide.pages.sort((a, b) => a.index - b.index);
     }
 
     cache = guides;
