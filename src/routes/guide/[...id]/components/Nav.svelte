@@ -4,6 +4,8 @@
     import Icon from '@iconify/svelte';
     import { navLinks } from '../../../../lib/scripts/config';
     import externalLinkIcon from '@iconify/icons-tabler/external-link';
+
+    console.log($page);
 </script>
 
 <div class="nav">
@@ -18,7 +20,7 @@
         }
     </style>
     <div class="nav-container">
-        <a href="/guide" class="nav-home">Guide<span class="tag" style="text-transform: capitalize;"><span class="separator">/</span>{$page.data.category}</span></a>
+        <a href="/guide" class="nav-home">Guide<span class="tag" style="text-transform: capitalize;"><span class="separator">/</span>{$page.data.categoryName}</span></a>
         <div class="nav-links">
             {#if navLinks.length}
                 {#each navLinks as link}
