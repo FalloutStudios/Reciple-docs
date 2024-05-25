@@ -26,10 +26,10 @@
 
     a {
         text-decoration: none;
-        color: $link;
+        color: $blue;
 
         &:visited {
-            color: $linkVisited;
+            color: $link;
         }
 
         &:focus {
@@ -101,7 +101,8 @@
 
         .hljs-comment,
         .hljs-title,
-        .token.comment {
+        .token.comment,
+        .token.punctuation {
             color: #999999;
         }
 
