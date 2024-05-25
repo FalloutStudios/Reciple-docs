@@ -16,6 +16,7 @@ npm create reciple@latest ./mybot
 ```
 
 <Alert title='INFO'><code>./mybot</code> will be the root directory of your Reciple bot</Alert>
+<Alert type='warning' title='WARNING'>You need at least <b>Node.js version 18.x</b> to use Reciple</Alert>
 
 Once you enter the command, the program will ask you the configuration of your bot. First, it will ask you to choose if you want to use Typescript and in this case we will only use JavaScript by pressing `Enter`.
 ```
