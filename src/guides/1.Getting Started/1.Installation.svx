@@ -68,6 +68,7 @@ To continue, press `Enter`.
 
 After that, you will need to choose a package manager. Usually the current package manager is listed first. In this case we will use `npm`, but you are allowed to choose any package manager.
 <Alert title='TIP'><code>none</code> will not install anything. This is useful for custom package managers</Alert>
+
 ```
 ┌  create-reciple v8.6.2
 │
