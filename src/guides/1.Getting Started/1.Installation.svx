@@ -1,2 +1,132 @@
+---
+title: Installation
+---
+
+<script lang="ts">
+import Alert from '../../lib/components/Alert.svelte';
+
+</script>
+
 # Installation
 
+Before we begin, there are different ways to install Reciple with Discord.js. In this case we're going to use our [`create-reciple`](https://www.npmjs.com/package/create-reciple) cli. Initialize your project by using `npm create` in your terminal.
+
+```sh
+npm create reciple@latest ./mybot
+```
+
+<Alert title='INFO'><code>./mybot</code> will be the root directory of your Reciple bot</Alert>
+
+Once you enter the command, the program will ask you the configuration of your bot. First, it will ask you to choose if you want to use Typescript and in this case we will only use JavaScript by pressing `Enter`.
+```
+┌  create-reciple
+│
+◆  Would you like to use typescript?
+│  ○ Yes / ● No
+└
+```
+
+After choosing a programming language, It will then ask you if you want to use ES Module.
+
+> ES Module is the standard for JavaScript and it uses `import` instead of `require`
+
+In this case we will use ES Module by pressing `Enter`.
+
+```
+┌  create-reciple
+│
+◇  Would you like to use typescript?
+│  No
+│
+◆  Would you like to use ES Modules? (uses import() instead of require())
+│  ● Yes / ○ No
+└
+```
+
+After that, you can select an optional addons for Reciple. These addons are just pre-made Reciple modules.
+
+### Addons
+- `reciple-interaction-events` Add property in Reciple modules to listen to interaction events.
+- `reciple-anticrash` Catch errors and report it in a Discord channel.
+- `reciple-dev-commands` Create dev only commands.
+- `reciple-registry-cache` Cache application commands to prevent API spam.
+
+To continue, press `Enter`.
+
+```
+┌  create-reciple v8.6.2
+│
+◇  Would you like to use typescript?
+│  No
+│
+◇  Would you like to use ES Modules? (uses import() instead of require())
+│  Yes
+│
+◆  Select a addons from Reciple (Press space to select, and enter to submit)
+│  ◻ reciple-interaction-events
+│  ◻ reciple-anticrash
+│  ◻ reciple-dev-commands
+│  ◻ reciple-registry-cache
+└
+```
+
+After that, you will need to choose a package manager. Usually the current package manager is listed first. In this case we will use `npm`, but you are allowed to choose any package manager.
+
+<Alert title='TIP'><code>none</code> will not install anything. This is useful for custom package managers</Alert>
+
+```
+┌  create-reciple v8.6.2
+│
+◇  Would you like to use typescript?
+│  No
+│
+◇  Would you like to use ES Modules? (uses import() instead of require())
+│  Yes
+│
+◇  Select a addons from Reciple (Press space to select, and enter to submit)
+│  none
+│
+◆  Select your preferred package manager
+│  ● npm (Uses npm as package manager)
+│  ○ yarn
+│  ○ pnpm
+│  ○ none
+└
+```
+
+And lastly, your Discord Bot token. You can obtain your token from [Discord Developer Portal](https://discord.com/developers/applications).
+
+```
+┌  create-reciple v8.6.2
+│
+◇  Would you like to use typescript?
+│  No
+│
+◇  Would you like to use ES Modules? (uses import() instead of require())
+│  Yes
+│
+◇  Select a addons from Reciple (Press space to select, and enter to submit)
+│  none
+│
+◇  Select your preferred package manager
+│  npm
+│
+◆  Enter your Discord bot token from Developers Portal
+│   _
+└
+```
+
+After the setup, your package manager will install the dependencies for you then your project is ready. Go to your bot root directory by using `cd` in your terminal:
+
+```sh
+cd mybot
+```
+
+To start your bot, you can use these `npm` scripts.
+
+```sh
+npm run dev # Will start a watch mode with nodemon
+npm run start # Starts the bot
+```
+
+Everything is all set!
