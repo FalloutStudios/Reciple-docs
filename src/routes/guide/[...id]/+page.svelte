@@ -12,8 +12,6 @@
             name: 'guide-page',
             value: `${data.category}/${data.id}`
         });
-
-        console.log(domCookie.get('guide-page'));
     })();
 </script>
 

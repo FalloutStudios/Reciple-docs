@@ -4,8 +4,6 @@
     import Icon from '@iconify/svelte';
     import { navLinks } from '../../../../lib/scripts/config';
     import externalLinkIcon from '@iconify/icons-tabler/external-link';
-
-    console.log($page);
 </script>
 
 <div class="nav">
