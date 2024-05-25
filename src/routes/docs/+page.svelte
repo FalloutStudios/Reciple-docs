@@ -6,9 +6,6 @@
     import packageBoldIcon from '@iconify/icons-ph/package-bold';
     import caretRightIcon from '@iconify/icons-ph/caret-right';
     import caretLeftIcon from '@iconify/icons-ph/caret-left';
-import { error } from '@sveltejs/kit';
-
-    error(500);
 </script>
 
 <style lang="scss">
