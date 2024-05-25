@@ -66,6 +66,9 @@ export async function GET() {
 
     for (const guide of guides) {
         guide.pages = guide.pages.sort((a, b) => a.index - b.index);
+    }
+
+    for (const guide of guides) {
 
         const categoryIndex = guides.findIndex(c => c.id === guide.id);
         const previousCategory = categoryIndex - 1 >= 0 ? guides[categoryIndex - 1] : null;
