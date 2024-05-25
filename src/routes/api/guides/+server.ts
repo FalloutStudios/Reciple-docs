@@ -65,6 +65,8 @@ export async function GET() {
     guides = guides.sort((a, b) => a.index - b.index);
 
     for (const guide of guides) {
+        guide.pages = guide.pages.sort((a, b) => a.index - b.index);
+
         const categoryIndex = guides.findIndex(c => c.id === guide.id);
         const previousCategory = categoryIndex - 1 >= 0 ? guides[categoryIndex - 1] : null;
         const nextCategory = categoryIndex + 1 <= (guides.length - 1) ? guides[categoryIndex + 1] : null;
@@ -87,8 +89,6 @@ export async function GET() {
             page.pagination.previous = previousPage && { categoryId: slug(previousPage.category), pageId: previousPage.id };
             page.pagination.next = nextPage && { categoryId: slug(nextPage.category), pageId: nextPage.id };
         }
-
-        guide.pages = guide.pages.sort((a, b) => a.index - b.index);
     }
 
     cache = guides;
