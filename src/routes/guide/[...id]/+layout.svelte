@@ -4,6 +4,7 @@
     import { onMount } from 'svelte';
     import Sidebar from './components/SideBar.svelte';
     import Nav from './components/Nav.svelte';
+    import FooterPagination from './components/FooterPagination.svelte';
 
     export let data;
 
@@ -63,5 +64,6 @@
 <div class="content-container">
     <div class="content" bind:this={content}>
         <slot/>
+        <FooterPagination bind:guides={data.guides} pagination={$page.data.pagination}/>
     </div>
 </div>

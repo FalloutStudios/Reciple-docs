@@ -22,6 +22,7 @@ export async function load(data) {
         id: page.id,
         file: category + '/' + id + '.svx',
         metadata: markdown.metadata ?? { title: id },
-        content: markdown.default
+        content: markdown.default,
+        pagination: page.pagination
     };
 }
