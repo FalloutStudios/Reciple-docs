@@ -27,11 +27,9 @@ Once you enter the command, the program will ask you the configuration of your b
 ```
 
 After choosing a programming language, It will then ask you if you want to use ES Module.
-
 > ES Module is the standard for JavaScript and it uses `import` instead of `require`
 
 In this case we will use ES Module by pressing `Enter`.
-
 ```
 ┌  create-reciple
 │
@@ -44,7 +42,6 @@ In this case we will use ES Module by pressing `Enter`.
 ```
 
 After that, you can select an optional addons for Reciple. These addons are just pre-made Reciple modules.
-
 ### Addons
 - `reciple-interaction-events` Add property in Reciple modules to listen to interaction events.
 - `reciple-anticrash` Catch errors and report it in a Discord channel.
@@ -52,7 +49,6 @@ After that, you can select an optional addons for Reciple. These addons are just
 - `reciple-registry-cache` Cache application commands to prevent API spam.
 
 To continue, press `Enter`.
-
 ```
 ┌  create-reciple v8.6.2
 │
@@ -71,9 +67,7 @@ To continue, press `Enter`.
 ```
 
 After that, you will need to choose a package manager. Usually the current package manager is listed first. In this case we will use `npm`, but you are allowed to choose any package manager.
-
 <Alert title='TIP'><code>none</code> will not install anything. This is useful for custom package managers</Alert>
-
 ```
 ┌  create-reciple v8.6.2
 │
@@ -95,7 +89,6 @@ After that, you will need to choose a package manager. Usually the current packa
 ```
 
 And lastly, your Discord Bot token. You can obtain your token from [Discord Developer Portal](https://discord.com/developers/applications).
-
 ```
 ┌  create-reciple v8.6.2
 │
@@ -117,16 +110,24 @@ And lastly, your Discord Bot token. You can obtain your token from [Discord Deve
 ```
 
 After the setup, your package manager will install the dependencies for you then your project is ready. Go to your bot root directory by using `cd` in your terminal:
-
 ```sh
 cd mybot
 ```
 
-To start your bot, you can use these `npm` scripts.
+Your project directory would look like this
+```
+mybot/
+├── reciple.mjs
+├── package.json
+├── package-lock.json
+├── node_modules/
+└── modules/
+```
 
+To start your bot, you can use these `npm` scripts
 ```sh
 npm run dev # Will start a watch mode with nodemon
 npm run start # Starts the bot
 ```
 
-Everything is all set!
+### Everything is all set!
