@@ -91,6 +91,8 @@ After that, you will need to choose a package manager. Usually the current packa
 ```
 
 And lastly, your Discord Bot token. You can obtain your token from [Discord Developer Portal](https://discord.com/developers/applications).
+> Refer to [Setting up an application](https://guide.discordjs.dev/guide/getting-started/setting-up-an-application) to learn how to create a Discord bot in Discord Developer Portal.
+
 ```
 ┌  create-reciple v8.6.2
 │
