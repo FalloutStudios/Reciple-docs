@@ -28,7 +28,7 @@ export const config = {
 };
 ```
 
-<Alert type='info' title={'tip'}>
+<Alert type='info' title={'TIP'}>
     <code>dirs</code> can accept <a href="https://en.wikipedia.org/wiki/Glob_(programming)">glob</a> patterns
 </Alert>
 
