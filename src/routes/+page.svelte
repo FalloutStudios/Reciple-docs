@@ -167,7 +167,7 @@
             </div>
             <div class="buttons">
                 <LinkButton class="blue" href="/docs">Docs</LinkButton>
-                <LinkButton href="/guide" target="_blank">Guide</LinkButton>
+                <LinkButton href="/guide">Guide</LinkButton>
                 <LinkButton href={githubHome} target="_blank">GitHub <Icon icon={externalLinkIcon}/></LinkButton>
             </div>
         </div>
