@@ -1,0 +1,251 @@
+---
+title: Creating Commands
+---
+
+<script lang="ts">
+    import Alert from "$lib/components/Alert.svelte";
+</script>
+
+# Creating Commands
+
+Reciple provides a built-in command handler for all types of commands to make sure making commands is hassle free and easy.
+
+This guide will show you how to make slash commands, context menu commands, and message commands.
+
+## Slash Commands
+
+First, create a new JavaScript file inside your modules folder. In this case we will name it `slashcommand.js`.
+
+This is what the directory should look like:
+```
+mybot/
+├── reciple.mjs
+├── package.json
+├── package-lock.json
+├── node_modules/
+└── modules/
+    └── slashcommand.js
+```
+
+Open the file in your code editor, and export a module class
+
+```js
+export class MySlashCommand {
+    versions = ['^8'];
+    commands = [];
+
+    onStart() {
+        return true;
+    }
+}
+
+export default new MySlashCommand();
+```
+
+To add your commands, you will need to import the command builder and create new instance in the `commands` property of your module.
+
+<Alert type="warning">
+    You will need to import the command builder from <code>reciple</code> instead of <code>discord.js</code>
+</Alert>
+
+```js
+import { SlashCommandBuilder } from 'reciple';
+
+export class MySlashCommand {
+    versions = ['^8'];
+    commands = [
+        new SlashCommandBuilder()
+            .setName('ping')
+            .setDescription('My ping command')
+            .setExecute(async ({ interaction }) => {
+                await interaction.reply('Pong!');
+            })
+    ];
+
+    onStart() {
+        return true;
+    }
+}
+
+export default new MySlashCommand();
+```
+
+After that, you can now start your bot and check if the module has been loaded and commands are registered.
+
+```
+[11:27:01 INFO] Registered (1) application commands globally
+[11:27:01 WARN] Logged in as Guide Bot#6969 (1130868345672048731)
+[11:27:01 INFO] Loaded 0 context menu command(s)
+[11:27:01 INFO] Loaded 0 message command(s)
+[11:27:01 INFO] Loaded 1 slash command(s)
+[11:27:01 INFO] Loaded 2 precondition(s)
+```
+
+You can now use the command you created by typing `/ping`.
+
+<discord-messages>
+    <discord-message profile="bot">
+        <discord-command slot="reply" profile="cat" command="/ping"></discord-command>
+        Pong!
+    </discord-message>
+</discord-messages>
+
+## Context Menu Commands
+
+Unlike slash commands, context menus can only be used when you right click on a message or user.
+
+To create a context menu command, create a new JavaScript file inside your modules folder similar on how you did with slash commands. In this case we will name the file `contextmenucommand.js`.
+
+This is what the directory should look like now:
+```
+mybot/
+├── reciple.mjs
+├── package.json
+├── package-lock.json
+├── node_modules/
+└── modules/
+    ├── contextmenucommand.js
+    └── slashcommand.js
+```
+
+Open the file in your code editor, and export a module class
+
+```js
+export class MyContextMenuCommand {
+    versions = ['^8'];
+    commands = [];
+
+    onStart() {
+        return true;
+    }
+}
+
+export default new MyContextMenuCommand();
+```
+
+Like slash commands, import the context menu command builder and create a new instance in the `commands` property.
+```js
+import { ContextMenuCommandBuilder } from 'reciple';
+import { ApplicationCommandType, AttachmentBuilder } from 'discord.js';
+
+export class MyContextMenuCommand {
+    versions = ['^8'];
+    commands = [
+        new ContextMenuCommandBuilder()
+            .setName('Avatar')
+            .setType(ApplicationCommandType.User)
+            .setExecute(async ({ interaction }) => {
+                await interaction.reply({
+                    files: [
+                        new AttachmentBuilder(interaction.user.displayAvatarURL({ extension: 'png' }), {
+                            name: 'avatar.png'
+                        })
+                    ]
+                });
+            })
+    ];
+
+    onStart() {
+        return true;
+    }
+}
+
+export default new MyContextMenuCommand();
+```
+
+You can now start your bot and check if the module has been loaded and commands are registered.
+
+```
+[11:27:01 INFO] Registered (1) application commands globally
+[11:27:01 WARN] Logged in as Guide Bot#6969 (1130868345672048731)
+[11:27:01 INFO] Loaded 1 context menu command(s)
+[11:27:01 INFO] Loaded 0 message command(s)
+[11:27:01 INFO] Loaded 1 slash command(s)
+[11:27:01 INFO] Loaded 2 precondition(s)
+```
+
+Use the context menu command by right clicking on a user and selecting the command you created in the `Apps` found in the context menu shown.
+
+<discord-messages>
+    <discord-message profile="bot">
+        <discord-command slot="reply" profile="cat" command="Avatar"></discord-command>
+        <discord-attachment slot="attachments" url="/images/cat.png" width="100%"></discord-attachment>
+    </discord-message>
+</discord-messages>
+
+## Message Commands
+
+Similar to the previous steps, create a new file in your modules folder and in this case we'll name it `messagecommand.js`.
+
+This is what the directory should look like now:
+```
+mybot/
+├── reciple.mjs
+├── package.json
+├── package-lock.json
+├── node_modules/
+└── modules/
+    ├── contextmenucommand.js
+    ├── messagecommand.js
+    └── slashcommand.js
+```
+
+Then, open the file in your code editor, and export a module class
+
+```js
+export class MyMessageCommand {
+    versions = ['^8'];
+    commands = [];
+
+    onStart() {
+        return true;
+    }
+}
+
+export default new MyMessageCommand();
+```
+
+Reciple provides a custom builder for message commands with similar methods to `SlashCommandBuilder`. Now, import the message command builder and create a new instance in the `commands` property.
+
+Instead of `interactions`, message commands passes the message that triggered the command into the `execute` function.
+```js
+import { MessageCommandBuilder } from 'reciple';
+
+export class MyMessageCommand {
+    versions = ['^8'];
+    commands = [
+        new MessageCommandBuilder()
+            .setName('ping')
+            .setDescription('Ping command')
+            .setExecute(async ({ message }) => {
+                await message.reply('Pong!');
+            })
+    ];
+
+    onStart() {
+        return true;
+    }
+}
+
+export default new MyMessageCommand();
+```
+
+You can now start your bot and then your bot is ready with commands.
+```
+[11:27:01 INFO] Registered (1) application commands globally
+[11:27:01 WARN] Logged in as Guide Bot#6969 (1130868345672048731)
+[11:27:01 INFO] Loaded 1 context menu command(s)
+[11:27:01 INFO] Loaded 1 message command(s)
+[11:27:01 INFO] Loaded 1 slash command(s)
+[11:27:01 INFO] Loaded 2 precondition(s)
+```
+
+You can execute a message command by sending a message with the prefix configured in your `reciple.mjs` file.
+
+<discord-messages>
+    <discord-message profile="cat">!ping</discord-message>
+    <discord-message profile="bot">
+        <discord-reply slot="reply" profile="cat">!ping</discord-reply>
+        Pong!
+    </discord-message>
+</discord-messages>
