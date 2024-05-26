@@ -14,7 +14,7 @@
 
         &:hover,
         &:focus {
-            background: rgba($border, $alpha: .5);
+            background: rgba($dark, $alpha: .8);
         }
 
         &:focus-visible {

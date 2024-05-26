@@ -245,7 +245,7 @@
                             display: flex;
                             align-items: center;
                             width: 100%;
-                            color: darken($white, $amount: 20);
+                            color: darken($white, $amount: 10);
                             text-decoration: none;
                             padding: 0.3rem 1rem;
 

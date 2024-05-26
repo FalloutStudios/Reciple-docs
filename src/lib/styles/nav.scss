@@ -85,14 +85,14 @@
                 .icon {
                     font-size: 1rem;
                     width: 3em;
-                    color: darken($white, $amount: 20);
+                    color: darken($white, $amount: 10);
                     line-height: 1;
                     flex-shrink: 0;
                 }
 
                 .placeholder {
-                    color: darken($white, $amount: 50);
                     font-family: 'Inter', sans-serif;
+                    color: darken($white, $amount: 10);
                     width: 100%;
                     font-size: 0.9rem;
                     font-weight: 500;
