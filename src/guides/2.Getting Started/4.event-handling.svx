@@ -32,7 +32,7 @@ Now that module has an event listener that listens to a message that contains th
 
 <discord-messages>
     <discord-message profile="cat">
-        Hi <discord-mention profile="bot">@Guide Bot</discord-mention>
+        Hi <discord-mention profile="bot">Guide Bot</discord-mention>
         <discord-reactions role="reactions">
             <discord-reaction name="👀" emoji="https://raw.githubusercontent.com/skyra-project/discord-components-implementations/main/shared/public/eyes.svg"></discord-reaction>
         </discord-reactions>
