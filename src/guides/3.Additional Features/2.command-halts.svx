@@ -15,7 +15,7 @@ There are different types of command halts that serves their own purposes.
 #### Command Halt Data Types
 - [`CommandErrorHaltData`](/docs/core/main/interfaces:CommandErrorHaltData) Used to handle error thrown by the command.
 - [`CommandCooldownHaltData`](/docs/core/main/interfaces:CommandCooldownHaltData) Used to handle commands that are cooled-down.
-- [`CommandPreconditionTriggerHaltData`](/docs/core/main/interfaces:CommandPreconditionTriggerHaltData) Used to handle a command that has a precondition error.
+- [`CommandPreconditionTriggerHaltData`](/docs/core/main/interfaces:CommandPreconditionTriggerHaltData) Used to handle a command that has triggered a precondition.
 - [`CommandInvalidArgumentsHaltData`](/docs/core/main/interfaces:CommandInvalidArgumentsHaltData) Can only be used with message commands to handle invalid argument error.
 - [`CommandMissingArgumentsHaltData`](/docs/core/main/interfaces:CommandMissingArgumentsHaltData) Can only be used with message commands to handle missing argument error.
 
@@ -47,7 +47,6 @@ export class MyModule {
 
                 switch (data.reason) {
                     case CommandHaltReason.Error:
-                    case CommandHaltReason.PreconditionTrigger:
                         if (interaction.deferred) {
                             await interaction.editReply(reply);
                         } else if (interaction.replied) {
