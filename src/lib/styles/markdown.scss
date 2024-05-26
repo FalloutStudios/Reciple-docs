@@ -53,7 +53,7 @@
         tab-size: 4;
         -webkit-hyphens: none;
         hyphens: none;
-        background: rgba($border, $alpha: 1);
+        background: rgba(lighten($dark, $amount: 5), $alpha: 1);
         border-radius: 3px;
         padding: 0 0.2em;
         line-height: 1.5em;
