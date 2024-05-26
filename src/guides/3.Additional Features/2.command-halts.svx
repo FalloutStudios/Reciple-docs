@@ -133,6 +133,8 @@ export class GlobalCommandHalt {
 export default new GlobalCommandHalt()
 ```
 
+`addHaltToCommands` will loop through the commands and merge the command's halt function if there is one.
+
 Lastly, implement the method that will serve as the global command halt. After this, command halt will be automatically added to your commands.
 ```js
 import { inlineCode, time } from 'discord.js';
@@ -203,3 +205,5 @@ export class GlobalCommandHalt {
 
 export default new GlobalCommandHalt()
 ```
+
+`handleCommandHalt` is the command halt function which handles all command halt data for all command types such as context menu, message, and slash commands.
