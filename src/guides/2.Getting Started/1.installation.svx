@@ -128,7 +128,7 @@ mybot/
 └── modules/
 ```
 
-To start your bot, you can use these `npm` scripts
+As you can see there's no index.js or main file, this is because Reciple CLI will handle everything for you. To start your bot, you can use these `npm` scripts
 ```sh
 npm run dev # Will start a watch mode with nodemon
 npm run start # Starts the bot
