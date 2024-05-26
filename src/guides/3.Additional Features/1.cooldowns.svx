@@ -1,0 +1,87 @@
+---
+title: Cooldowns
+---
+
+<script lang="ts">
+    import Alert from '$lib/components/Alert.svelte';
+</script>
+
+# Cooldowns
+
+Cooldowns are cool to prevent users from doing the same thing in a short period of time. This guide will show you how to use Reciple cooldowns.
+
+Cooldowns are set by adding the [`.setCooldown()`](/docs/core/main/classes:BaseCommandBuilder#setcooldown) to your command builder when creating your command. For example if you want to make a ping slash command with 5 seconds cooldown we will code it like:
+```js
+import { SlashCommandBuilder } from 'reciple';
+
+export class MyModule {
+    versions = ['^8'];
+    commands = [
+        new SlashCommandBuilder()
+            .setName('ping')
+            .setDescription('Pong command')
+            .setCooldown(5 * 1_000)
+            .setExecute(async ({ interaction }) => {
+                await interaction.reply('Pong!');
+            })
+    ];
+
+    async onStart() {
+        return true;
+    }
+}
+
+export default new MyModule();
+```
+
+<Alert type="info" title="INFO">
+    You can use <a href="/docs/core/main/classes:BaseCommandBuilder#setcooldown"><code>.setCooldown()</code></a> on all command builders.
+</Alert>
+
+By default, when a user is cooled-down, the interaction/message will be ignored without a message. You can add a cooldown message by adding a command halt using [`.setHalt()`](/docs/core/main/classes:BaseCommandBuilder#setHalt).
+
+```js
+import { CommandHaltReason, SlashCommandBuilder } from 'reciple';
+import { time } from 'discord.js';
+
+export class MyModule {
+    versions = ['^8'];
+    commands = [
+        new SlashCommandBuilder()
+            .setName('ping')
+            .setDescription('Pong command')
+            .setCooldown(5 * 1_000)
+            .setExecute(async ({ interaction }) => {
+                await interaction.reply('Pong!');
+            })
+            .setHalt(async data => {
+                const interaction = data.executeData.interaction;
+
+                if (data.reason === CommandHaltReason.Cooldown) {
+                    await interaction.reply({
+                        content: `You can execute this command again in ${time(data.cooldown.endsAt, 'R')}`,
+                        ephemeral: true
+                    });
+                    return true;
+                }
+            })
+    ];
+
+    async onStart() {
+        return true;
+    }
+}
+
+export default new MyModule();
+```
+
+<discord-messages>
+    <discord-message profile="bot">
+        <discord-command slot="reply" profile="cat" command="/ping"></discord-command>
+        Pong!
+    </discord-message>
+    <discord-message profile="bot" ephemeral>
+        <discord-command slot="reply" profile="cat" command="/ping"></discord-command>
+        You can execute this command again in <discord-time>4 seconds</discord-time>
+    </discord-message>
+</discord-messages>
