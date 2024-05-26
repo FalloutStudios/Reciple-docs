@@ -1,0 +1,176 @@
+---
+title: Event Handling
+---
+
+# Event Handling
+
+Instead of creating a different file for events, Reciple allows you to create events within the module that includes your command or another module.
+
+You can add an event listener using the `client` property passed to the `onStart` method of your module.
+
+```js
+export class MyModule {
+    versions = ['^8'];
+
+    onStart({ client }) {
+        client.on('messageCreate', message => this.handleMessageCreate(message));
+
+        return true;
+    }
+
+    async handleMessageCreate(message) {
+        if (!message.author.bot || !message.content.includes(message.client.user.id)) return;
+
+        await message.react('👀').catch(() => null);
+    }
+}
+
+export default new MyModule();
+```
+
+Now that module has an event listener that listens to a message that contains the bot's user ID.
+
+<discord-messages>
+    <discord-message profile="cat">
+        Hi <discord-mention profile="bot">@Guide Bot</discord-mention>
+        <discord-reactions role="reactions">
+            <discord-reaction name="👀" emoji="https://raw.githubusercontent.com/skyra-project/discord-components-implementations/main/shared/public/eyes.svg"></discord-reaction>
+        </discord-reactions>
+    </discord-message>
+</discord-messages>
+
+## Interaction Events
+
+With working with message components and modals, handling interactions could be a pain so Reciple provides an external module called [`reciple-interaction-events`](https://npmjs.org/package/reciple-interaction-events) to make things less complicated.
+
+### Two ways to install `reciple-interaction-events`
+- Select the addon `reciple-interaction-events` when creating the bot project using `npm create reciple@latest`
+- Install the package `reciple-interaction-events` using `npm i reciple-interaction-events`.
+  - Then create a new module in your modules folder. In this case we will name it `interaction-handler.js`.
+    ```js
+    import { InteractionEventManager } from 'reciple-interaction-events';
+    export default new InteractionEventManager();
+    ```
+
+After installing `reciple-interaction-events`, You can now add new property called `interactionEvents` in any of your modules to handle certain types of interactions.
+
+In this example we will create a slash commands that contains a button of surpise 🎉. First create the command module.
+```js
+import { SlashCommandBuilder } from 'reciple';
+import { ActionRowBuilder, ButtonBuilder, ButtonStyle } from 'discord.js';
+
+export class MyModule {
+    versions = ['^8'];
+    commands = [
+        new SlashCommandBuilder()
+            .setName('surpise')
+            .setDescription('Get surprised!')
+            .setExecute(async ({ interaction }) => {
+                await interaction.reply({
+                    content: 'Click the button bellow',
+                    components: [
+                        new ActionRowBuilder()
+                            .setComponents(
+                                new ButtonBuilder()
+                                    .setLabel('Surpise')
+                                    .setEmoji('🎉')
+                                    .setCustomId('surprise')
+                                    .setStyle(ButtonStyle.Secondary)
+                            );
+                    ]
+                });
+            })
+    ];
+
+    onStart({ client }) {
+        return true;
+    }
+}
+
+export default new MyModule();
+```
+
+After creating the command, add the interaction listener to the `interactionEvents` property.
+
+```js
+import { SlashCommandBuilder } from 'reciple';
+import { ActionRowBuilder, ButtonBuilder, ButtonStyle } from 'discord.js';
+import { InteractionListenerType } from 'reciple-interaction-events';
+
+export class MyModule {
+    versions = ['^8'];
+    commands = [
+        new SlashCommandBuilder()
+            .setName('surpise')
+            .setDescription('Get surprised!')
+            .setExecute(async ({ interaction }) => {
+                await interaction.reply({
+                    content: 'Click the button below',
+                    components: [
+                        new ActionRowBuilder()
+                            .setComponents(
+                                new ButtonBuilder()
+                                    .setLabel('Surpise')
+                                    .setEmoji('🎉')
+                                    .setCustomId('surprise')
+                                    .setStyle(ButtonStyle.Success)
+                            );
+                    ]
+                });
+            })
+    ];
+
+    interactionEvents = [
+        {
+            type: InteractionListenerType.Button,
+            customId: 'surprise',
+            execute: async interaction => {
+                await interaction.reply({
+                    content: 'You are awesome 💖',
+                    ephemeral: true
+                });
+            }
+        }
+    ];
+
+    onStart({ client }) {
+        return true;
+    }
+}
+
+export default new MyModule();
+```
+
+Now, when you execute that command and press the button, it will send a reply message.
+
+<discord-messages>
+    <discord-message profile="bot">
+        <discord-components>
+            Click the button below
+            <discord-action-row>
+                <discord-button type="success" emoji="https://em-content.zobj.net/source/twitter/376/party-popper_1f389.png" emoji-name="🎉">Surprise</discord-button>
+            </discord-action-row>
+        </discord-components>
+    </discord-message>
+    <discord-message profile="bot" ephemeral>
+        <discord-reply slot="reply" profile="bot" attachment><i>Click to see attachment</i></discord-reply>
+        You are awesome 💖
+    </discord-message>
+</discord-messages>
+<br/>
+
+> You can use dynamic custom id by setting the `customId` property of your event listener to a function.
+```js
+interactionEvents = [
+    {
+        type: InteractionListenerType.Button,
+        customId: i => i.customId.startsWith('surprise'),
+        execute: async interaction => {
+            await interaction.reply({
+                content: 'You are awesome 💖',
+                ephemeral: true
+            });
+        }
+    }
+];
+```
