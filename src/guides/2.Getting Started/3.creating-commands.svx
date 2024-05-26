@@ -328,6 +328,10 @@ export class MyMessageCommand {
 export default new MyMessageCommand();
 ```
 
+<Alert type='info' title='INFO'>
+    <code>resolveValue</code> is true to use the function we passed to <code>.setResolveValue()</code>
+</Alert>
+
 You can now execute the same message command using the alias.
 
 <discord-messages>

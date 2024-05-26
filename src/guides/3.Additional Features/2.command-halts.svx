@@ -125,6 +125,7 @@ export class GlobalCommandHalt {
                 return this.handleCommandHalt(haltData);
             }
 
+            // Apply the halt function
             command.setHalt(newHalt);
         }
     }
@@ -163,11 +164,13 @@ export class GlobalCommandHalt {
                 return this.handleCommandHalt(haltData);
             }
 
+            // Apply the halt function
             command.setHalt(newHalt);
         }
     }
 
     async handleCommandHalt(haltData) {
+        // Create a reply function
         const createResponse = haltData.commandType === CommandType.MessageCommand
             ? options => haltData.executeData.message.reply(options)
             : haltData.executeData.interaction.deferred
@@ -176,6 +179,7 @@ export class GlobalCommandHalt {
                     ? options => haltData.executeData.interaction.followUp(options)
                     : options => haltData.executeData.interaction.reply(options);
 
+        // Create the base of replies
         let replyOptions = { ephemeral: true };
 
         switch(haltData.reason) {
@@ -190,12 +194,12 @@ export class GlobalCommandHalt {
             case CommandHaltReason.InvalidArguments:
                 const invalidArgs = haltData.invalidOptions.map(a => inlineCode(a.name));
                 replyOptions.content = `Invalid value given to option(s) ${invalidArgs.join(' ')}`;
-                createResponse(replyOptions);
+                await createResponse(replyOptions);
                 return true;
             case CommandHaltReason.MissingArguments:
                 const missingArgs = haltData.missingOptions.map(a => inlineCode(a.name));
                 replyOptions.content = `Missing required argument(s) ${missingArgs.join(' ')}`;
-                createResponse(replyOptions);
+                await createResponse(replyOptions);
                 return true;
         }
 
