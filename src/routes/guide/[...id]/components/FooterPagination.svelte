@@ -138,10 +138,10 @@
 
 <div class="footer-pagination">
     {#if previousCategory && previous}
-        <a title={(previous.metadata.title ?? previous.id) + '\n' + previousCategory.category} href="/guide/{previousCategory.id}/{previous.id}" class="paginator prev" class:spaced={previous && next}>
+        <a title={(previous.metadata?.title ?? previous.id) + '\n' + previousCategory.category} href="/guide/{previousCategory.id}/{previous.id}" class="paginator prev" class:spaced={previous && next}>
             <Icon icon={ArrowLeftIcon} inline={true} class="icon"/>
             <div class="container">
-                <h3 class="title">{previous.metadata.title ?? previous.id}</h3>
+                <h3 class="title">{previous?.metadata.title ?? previous.id}</h3>
                 <p class="category">{previousCategory.category}</p>
             </div>
         </a>
@@ -149,9 +149,9 @@
         <span class="space"></span>
     {/if}
     {#if nextCategory && next}
-        <a title={(next.metadata.title ?? next.id) + '\n' + nextCategory.category} href="/guide/{nextCategory.id}/{next.id}" class="paginator next" class:spaced={previous && next}>
+        <a title={(next.metadata?.title ?? next.id) + '\n' + nextCategory.category} href="/guide/{nextCategory.id}/{next.id}" class="paginator next" class:spaced={previous && next}>
            <div class="container">
-                <h3 class="title">{next.metadata.title ?? next.id}</h3>
+                <h3 class="title">{next.metadata?.title ?? next.id}</h3>
                 <p class="category">{nextCategory.category}</p>
             </div>
             <Icon icon={ArrowRightIcon} inline={true} class="icon"/>
