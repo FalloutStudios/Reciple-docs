@@ -4,6 +4,7 @@ title: Creating Commands
 
 <script lang="ts">
     import Alert from "$lib/components/Alert.svelte";
+  import Accordion from '../../lib/components/docs/Accordion.svelte';
 </script>
 
 # Creating Commands
@@ -249,3 +250,124 @@ You can execute a message command by sending a message with the prefix configure
         Pong!
     </discord-message>
 </discord-messages>
+
+### Message Command Options
+
+You can add options to your message commands that returns the values of arguments separated by the `commandArgumentSeparator` in your config.
+```js
+import { MessageCommandBuilder } from 'reciple';
+
+export class MyMessageCommand {
+    versions = ['^8'];
+    commands = [
+        new MessageCommandBuilder()
+            .setName('ping')
+            .setDescription('Ping command')
+            .addOption(times => times
+                .setName('times')
+                .setDescription('Ping how many times')
+                .setRequired(false)
+                .setResolveValue(v => Number(v))
+                .setValidate(v => !isNaN(Number(v)))
+            )
+            .setExecute(async ({ message, options }) => {
+                const times = await options.getOptionValue('times', { resolveValue: true }) || 1;
+
+                await message.reply('Pong! '.repeat(times).trim());
+            })
+    ];
+
+    onStart() {
+        return true;
+    }
+}
+
+export default new MyMessageCommand();
+```
+
+After that, execute the command with an argument.
+
+<discord-messages>
+    <discord-message profile="cat">!pong 2</discord-message>
+    <discord-message profile="bot">
+        <discord-reply slot="reply" profile="cat">!pong 2</discord-reply>
+        Pong! Pong!
+    </discord-message>
+</discord-messages>
+
+You can also set an alias to a message command by using [`.addAliases()`](/docs/core/main/classes:MessageCommandBuilder#addaliases).
+```js
+import { MessageCommandBuilder } from 'reciple';
+
+export class MyMessageCommand {
+    versions = ['^8'];
+    commands = [
+        new MessageCommandBuilder()
+            .setName('ping')
+            .addAliases('p')
+            .setDescription('Ping command')
+            .addOption(times => times
+                .setName('times')
+                .setDescription('Ping how many times')
+                .setRequired(false)
+                .setResolveValue(v => Number(v))
+                .setValidate(v => !isNaN(Number(v)))
+            )
+            .setExecute(async ({ message, options }) => {
+                const times = await options.getOptionValue('times', { resolveValue: true }) || 1;
+
+                await message.reply('Pong! '.repeat(times).trim());
+            })
+    ];
+
+    onStart() {
+        return true;
+    }
+}
+
+export default new MyMessageCommand();
+```
+
+You can now execute the same message command using the alias.
+
+<discord-messages>
+    <discord-message profile="cat">!p 4</discord-message>
+    <discord-message profile="bot">
+        <discord-reply slot="reply" profile="cat">!p 2</discord-reply>
+        Pong! Pong! Pong! Pong!
+    </discord-message>
+</discord-messages>
+
+## No Builders 😡
+
+Some people doesn't like builders, so we also supported command data so you can directly create the command object in the `commands` property.
+
+### View Docs for the type definition of each command data:
+- [`ContextMenuCommandBuilderData`](/docs/core/main/interfaces:ContextMenuCommandBuilderData)
+- [`MessageCommandBuilderData`](/docs/core/main/interfaces:MessageCommandBuilderData)
+- [`SlashCommandBuilderData`](/docs/core/main/interfaces:SlashCommandBuilderData)
+
+### Command Data Usage
+```js
+import { CommandType, SlashCommandBuilder } from 'reciple';
+
+export class MySlashCommand {
+    versions = ['^8'];
+    commands = [
+        {
+            command_type: CommandType.SlashCommand,
+            name: 'ping',
+            description: 'Ping command',
+            execute: async ({ interaction }) => {
+                await interaction.reply('Pong!');
+            }
+        }
+    ];
+
+    onStart() {
+        return true;
+    }
+}
+
+export default new MySlashCommand();
+```
