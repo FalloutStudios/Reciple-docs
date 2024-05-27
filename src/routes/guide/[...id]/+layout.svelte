@@ -1,19 +1,23 @@
 <script lang="ts">
-    import type { PackageTagLoadData } from './+page';
-    import { page } from "$app/stores";
-    import Nav from '$lib/components/Nav.svelte';
-    import SideBar from '$lib/components/SideBar.svelte';
-    import type { DocsParser } from '$lib/scripts/classes/DocsParser';
+    import { page } from '$app/stores';
     import { getFirstFocusableElement } from '$lib/scripts/helpers';
+    import { onMount } from 'svelte';
+    import Sidebar from './components/SideBar.svelte';
+    import Nav from './components/Nav.svelte';
+    import FooterPagination from './components/FooterPagination.svelte';
 
-    $: docsData = $page.data as PackageTagLoadData & { docs: DocsParser & { data: Exclude<DocsParser['data'], undefined> } };
+    export let data;
 
     let content: HTMLElement;
-    $: firstElement = getFirstFocusableElement<HTMLButtonElement>(content);
+    let firstElement: undefined|HTMLButtonElement;
+
+    onMount(() => {
+        firstElement = getFirstFocusableElement<HTMLButtonElement>(content);
+    });
 </script>
 
 <svelte:head>
-    <title>{docsData.package}@{docsData.tag}</title>
+    <title>Reciple Guide | {$page.data.metadata.title}</title>
 </svelte:head>
 
 <style lang="scss">
@@ -55,9 +59,10 @@
 
 {#if firstElement}<button class="skip-navigation" on:click={() => firstElement?.focus()}>Skip to navigation</button>{/if}
 
-<Nav data={docsData}/><SideBar/>
+<Nav/><Sidebar bind:pages={data.guides}/>
 <div class="content-container">
     <main class="content" bind:this={content}>
         <slot/>
+        <FooterPagination bind:guides={data.guides} pagination={$page.data.pagination}/>
     </main>
 </div>

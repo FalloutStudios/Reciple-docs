@@ -1,0 +1,52 @@
+---
+title: Preconditions
+---
+
+# Preconditions
+
+Preconditions are similar to command halts, but they occur before the command is executed. This is most useful when adding permissions to your commands or creating custom cooldowns.
+
+You can create your own precondition by creating a new JavaScript file that is not in your modules folder. In this case we will use `./preconditions/precondition.js`. In this file we will create an object that satisfies [precondition schema](/docs/core/main/interfaces:CommandPreconditionData).
+```js
+export default {
+    id: 'my.precondition.lol',
+    disabled: false,
+    contextMenuCommandExecute: async ({ interaction }) => !interaction.user.username.includes('cat'),
+    messageCommandExecute: async ({ message }) => !message.author.username.includes('cat'),,
+    slashCommandExecute: async ({ interaction }) => !interaction.user.username.includes('cat'),
+};
+```
+This example precondition will not execute a command when used by someone with a username that contains `cat`.
+
+Now to use this precondition, we can choose between global or command scope preconditions.
+
+## Global Scope Precondition
+With global preconditions, preconditions are added in to the config file.
+```js
+import MyPrecondition from './preconditions/precondition.js';
+
+export const config = {
+    // Add the precondition where it belongs
+    preconditions: [
+        MyPrecondition
+    ]
+};
+```
+
+## Command Scope Precondition
+With command scoped preconditions, preconditions are added to the individual commands like command halts using [`.addPreconditions()`](/docs/core/main/classes:BaseCommandBuilder#addPreconditions) or [`.setPreconditions()`](/docs/core/main/classes:BaseCommandBuilder#setPreconditions).
+
+```js
+import { SlashCommandBuilder } from 'reciple';
+import MyPrecondition from '../preconditions/precondition.js';
+
+new SlashCommandBuilder()
+    .setName('ping')
+    .setDescription('Pong command')
+    .setPreconditions(MyPrecondition)
+    .setExecute(async ({ interaction }) => {
+        await interaction.reply('Pong!');
+    })
+```
+
+> You can disable a global or command scope precondition from a command using [`.addDisabledPreconditions()`](/docs/core/main/classes:BaseCommandBuilder#addDisabledPreconditions) or [`.setDisabledPreconditions()`](/docs/core/main/classes:BaseCommandBuilder#setDisabledPreconditions). Just pass the id of preconditions you want to disable to the arguments of this method to not use them.

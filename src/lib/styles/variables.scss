@@ -1,10 +1,12 @@
-$bg: #181818;
-$white: #f7f7f7;
-$link: #5a69f1;
-$linkVisited: #5a38f0;
+$bg: rgb(28, 28, 30);
+$white: #dde1e3;
+$link: #5d5fff;
+$linkVisited: #5957f1;
+$blue: #4f8bfa;
 $danger: #ee4747;
+$warning: #ee8447;
 $success: #47ee79;
-$dark: #222222;
+$dark: rgb(33, 33, 36);
 $border: #3c3c3c;
 
 @mixin BorderedButton($bg: $dark, $border: $border, $radius: 5px) {
@@ -38,4 +40,16 @@ $border: #3c3c3c;
 @mixin WordWrap() {
     white-space: break-spaces;
     word-wrap: break-word;
+}
+
+@mixin NoExtra() {
+    margin: 0;
+    padding: 0;
+}
+
+@mixin AbsoluteCenter() {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    translate: -50% -50%;
 }

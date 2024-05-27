@@ -1,0 +1,92 @@
+---
+title: How It Works
+---
+
+<script lang="ts">
+    import Alert from '$lib/components/Alert.svelte';
+</script>
+
+# Modules
+
+Reciple utilizes a module system in which a single `.js` file can contain commands, event handlers, and other components.
+
+## Structure
+
+Reciple modules are saved in the folder specified in the `reciple.mjs` config.
+
+```js
+// Module config (reciple.mjs)
+export const config = {
+    // other things
+    modules: {
+        dirs: ['./modules'], // scans the modules folder
+        exclude: [],
+        filter: file => true,
+        disableModuleVersionCheck: false
+    },
+    // other things
+};
+```
+
+<Alert type='info' title={'TIP'}>
+    <code>dirs</code> can accept <a href="https://en.wikipedia.org/wiki/Glob_(programming)">glob</a> patterns
+</Alert>
+
+Here's an example project directory. Reciple can load CommonJs and ESM modules at the same time.
+
+```
+reciple-app/
+├── reciple.mjs
+├── package.json
+├── package-lock.json
+├── node_modules/
+└── modules/
+    ├── testModule.js
+    ├── commonjsModule.cjs
+    └── esModule.mjs
+```
+
+## Schema
+
+Reciple modules requires `versions` and `onStart` properties to load. 
+[View Docs](/docs/core/main/interfaces:RecipleModuleData)
+
+```js
+class MyModule {
+    id = 'my.module';
+    name = 'Display Name';
+    versions = ['^8'];
+    commands = [];
+
+    async onStart({ client }) {
+        return true; // Always return true if the module is loaded
+    }
+
+    async onLoad({ client }) {}
+    async onUnload({ client }) {}
+};
+
+// ESM
+export default new MyModule();
+// CJS
+module.exports = new MyModule();
+```
+
+## Id
+Your module [`id`](/docs/core/main/interfaces:RecipleModuleData#id) is the unique identifier of your module. It is used to easily find the module from the [`ModuleManager#cache`](/docs/core/main/interfaces:ModuleManager#cache).
+<Alert type='info' title='INFO'>IDs are randomly generated if undefined</Alert>
+
+## Name
+Your module [`name`](/docs/core/main/interfaces:RecipleModuleData#name) serves as the display name of your module. This is used when logging the module; the logger will use the module name rather than the full file path.
+
+## Versions
+The [`versions`](/docs/core/main/interfaces:RecipleModuleData#versions) property defines the supported versions of reciple it can be loaded with.
+
+## onStart
+The [`onStart`](/docs/core/main/interfaces:RecipleModuleData#onstart) method is executed when the module is resolved before the bot is logged in. This can be useful for starting the module and setting up its commands.
+
+## onLoad
+However, the [`onLoad`](/docs/core/main/interfaces:RecipleModuleData#onload) method is executed after the bot is logged in.
+
+## onUnload
+Meanwhile, [`onUnload`](/docs/core/main/interfaces:RecipleModuleData#onunload) is executed when the module is unloaded or the bot process is stopping. This can be used for cache cleanup or to gracefully close down the module.

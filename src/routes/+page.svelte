@@ -5,8 +5,8 @@
     import { githubHome, npmHome } from '$lib/scripts/config';
     import Icon from '@iconify/svelte';
     import externalLinkIcon from '@iconify/icons-tabler/external-link';
-import Console from '../lib/components/Console.svelte';
-import isMobile from 'is-mobile';
+    import Console from '../lib/components/Console.svelte';
+    import isMobile from 'is-mobile';
 </script>
 
 <style lang="scss">
@@ -78,7 +78,7 @@ import isMobile from 'is-mobile';
                     }
                 }
 
-                @media (max-width: 560px) {
+                @media (max-width: 570px) {
                     .buttons {
                         display: flex;
                         flex-direction: column;
@@ -108,7 +108,7 @@ import isMobile from 'is-mobile';
         }
     }
 
-    @media (max-width: 914px) {
+    @media (max-width: 1010px) {
         .home {
             .home-container {
                 flex-direction: column;
@@ -166,9 +166,9 @@ import isMobile from 'is-mobile';
                 Reciple is a command framework with message command (aka prefix command), slash command, and context menu support. Reciple makes Discord.js command handling simple and easy using our built-in CLI tool.
             </div>
             <div class="buttons">
-                <LinkButton class="blue" href="/docs">Docs</LinkButton>
+                <LinkButton class="blue" href="/guide">Get Started</LinkButton>
+                <LinkButton href="/docs">Docs</LinkButton>
                 <LinkButton href={githubHome} target="_blank">GitHub <Icon icon={externalLinkIcon}/></LinkButton>
-                <LinkButton href={npmHome} target="_blank">NPM <Icon icon={externalLinkIcon}/></LinkButton>
             </div>
         </div>
         <div class="install">

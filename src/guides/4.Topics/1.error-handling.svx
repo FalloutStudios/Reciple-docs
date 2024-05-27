@@ -1,0 +1,24 @@
+---
+title: Error Handling
+---
+
+# Error Handling
+
+Using our external package [`reciple-anticrash`](https://npmjs.org/package/reciple-anticrash) simplifies error handling. This prevents process and client errors from crashing your bot; instead, they log the stack trace and send the error to a Discord channel for convenient debugging.
+
+### Two ways to install `reciple-anticrash`
+- Select the addon `reciple-anticrash` when creating the bot project using `npm create reciple@latest`
+- Install the package `reciple-anticrash` using `npm i reciple-anticrash`.
+  - Then create a new module in your modules folder. In this case we will name it `interaction-handler.js`.
+    ```js
+    import { RecipleAnticrash } from 'reciple-anticrash';
+    export default new RecipleAnticrash();
+    ```
+
+To add error channels, simple paste your error channels' id into an array at the first argument of your `RecipleAnticrash` instance.
+```js
+import { RecipleAnticrash } from 'reciple-anticrash';
+export default new RecipleAnticrash(['1032785824724570126']);
+```
+
+Now, whenever there is an error, your bot will display these fancy error messages in its logs and error channels without crashing the entire bot process!

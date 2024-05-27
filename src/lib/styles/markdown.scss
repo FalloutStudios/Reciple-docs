@@ -11,7 +11,7 @@
     h6 {
         font-weight: 600;
         line-height: 1.25;
-        margin: 1.25em 0 0.5em;
+        margin: 1.25em -0.1em 0.5em;
         scroll-margin-top: 6.5em;
     }
 
@@ -19,19 +19,19 @@
         display: block;
         line-height: 1.75;
         margin: 0.5em 0;
+        margin-bottom: 1rem;
         white-space: break-spaces;
         word-wrap: break-word;
     }
 
     a {
         text-decoration: none;
-        color: $link;
+        color: $blue;
 
         &:visited {
-            color: $linkVisited;
+            color: lighten($link, $amount: 5);
         }
 
-        &:hover,
         &:focus {
             text-decoration: underline;
         }
@@ -39,9 +39,11 @@
 
     ul {
         list-style-position: outside;
-        padding-left: 2em;
-        margin: 0.5em;
+        padding-left: 1.25em;
+        margin: 1em 0;
         margin-bottom: 1em;
+        list-style-type: disc;
+        line-height: 1.75;
     }
 
     code {
@@ -51,12 +53,13 @@
         tab-size: 4;
         -webkit-hyphens: none;
         hyphens: none;
-        background: rgba($border, $alpha: 1);
+        background: rgba(lighten($dark, $amount: 5), $alpha: 1);
         border-radius: 3px;
-        padding: 0.1em 0.2em;
+        padding: 0 0.2em;
         line-height: 1.5em;
         white-space: break-spaces;
         word-wrap: break-word;
+        font-size: 0.9em;
     }
 
     hr {
@@ -97,7 +100,9 @@
         }
 
         .hljs-comment,
-        .hljs-title {
+        .hljs-title,
+        .token.comment,
+        .token.punctuation {
             color: #999999;
         }
 
@@ -106,47 +111,60 @@
         .hljs-attr,
         .hljs-tag,
         .hljs-regexp,
-        .hljs-property {
+        .hljs-property,
+        .token.property,
+        .token.parameter,
+        .token.number  {
             color: #f2777a;
         }
 
         .hljs-number,
         .hljs-literal,
         .hljs-params,
-        .hljs-constant {
+        .hljs-constant,
+        .token.literal-property{
             color: #f99157;
         }
 
         .class_,
-        .hljs-built_in {
+        .hljs-built_in,
+        .token.builtin {
             color: #ffcc66;
         }
 
         .hljs-string,
         .hljs-value,
         .hljs-inheritance,
-        .hljs-header {
+        .hljs-header,
+        .token.string {
             color: #99cc99;
         }
 
         .function_,
         .js .hljs-title,
-        .ts .hljs-title {
+        .ts .hljs-title,
+        .token.class-name,
+        .token.function,
+        .token.boolean {
             color: #6699cc;
         }
 
         .hljs-keyword,
         .hljs-function,
-        .function_ {
+        .function_,
+        .token.keyword,
+        .token.operator {
             color: #cc99cc;
         }
 
-        .hljs-deletion {
+        .hljs-deletion,
+        .token.deleted-sign {
             background: rgba($danger, $alpha: 0.1);
             color: $danger;
         }
 
-        .hljs-addition {
+        .hljs-addition,
+        .token.inserted-sign {
             background: rgba($success, $alpha: 0.1);
             color: $success;
         }
@@ -154,5 +172,16 @@
 
     img {
         max-width: 100%;
+    }
+
+    discord-messages {
+        position: relative;
+        overflow: auto;
+        @include BorderedButton();
+
+        &[no-background] {
+            background: none;
+            border-color: transparent;
+        }
     }
 }
