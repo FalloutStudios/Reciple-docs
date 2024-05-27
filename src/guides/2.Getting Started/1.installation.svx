@@ -18,7 +18,7 @@ npm create reciple@latest ./mybot
 <Alert title='INFO'><code>./mybot</code> will be the root directory of your Reciple bot</Alert>
 <Alert type='warning' title='WARNING'>You need at least <b>Node.js version 18.x</b> to use Reciple</Alert>
 
-Once you enter the command, the program will ask you the configuration of your bot. First, it will ask you to choose if you want to use Typescript and in this case we will only use JavaScript by pressing `Enter`.
+Once you enter the command, the program will ask you to set up your bot. First, it will prompt you to select whether you want to use Typescript, and in this case, we will only use JavaScript by pressing `Enter`.
 ```
 ┌  create-reciple
 │
@@ -27,7 +27,7 @@ Once you enter the command, the program will ask you the configuration of your b
 └
 ```
 
-After choosing a programming language, It will then ask you if you want to use ES Module.
+After you've chosen a programming language, it will ask if you want to use the ES module.
 > ES Module is the standard for JavaScript and it uses `import` instead of `require`
 
 In this case we will use ES Module by pressing `Enter`.
@@ -113,12 +113,12 @@ And lastly, your Discord Bot token. You can obtain your token from [Discord Deve
 └
 ```
 
-After the setup, your package manager will install the dependencies for you then your project is ready. Go to your bot root directory by using `cd` in your terminal:
+After the setup, your package manager will install the dependencies for you, and your project will be ready. Use the `cd` command in your terminal to navigate to your bot's root directory:
 ```sh
 cd mybot
 ```
 
-Your project directory would look like this
+Your project directory should look like this
 ```
 mybot/
 ├── reciple.mjs
@@ -128,7 +128,7 @@ mybot/
 └── modules/
 ```
 
-As you can see there's no index.js or main file, this is because Reciple CLI will handle everything for you. To start your bot, you can use these `npm` scripts
+As you can see, there is no `index.js` or main file because the Reciple CLI handles everything for you. You can start your bot with these `npm` scripts.
 ```sh
 npm run dev # Will start a watch mode with nodemon
 npm run start # Starts the bot

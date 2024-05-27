@@ -8,7 +8,7 @@ Reciple is a [Discord.js](https://discordjs.dev) framework that aims to extend i
 
 # Before you begin...
 
-This guide assumes that you have the decent understanding of JavaScript and Discord.js. If you don't know JavaScript but would like to learn about it, here are a few links to help get you started:
+This guide assumes you have a good understanding of JavaScript and Discord.js. If you don't know JavaScript and want to learn about it, here are a few links to help you get started:
 
 - [Eloquent JavaScript, a free online book](http://eloquentjavascript.net/)
 - [JavaScript.info, a modern javascript tutorial](https://javascript.info/)
