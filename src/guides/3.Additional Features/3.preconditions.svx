@@ -6,7 +6,7 @@ title: Preconditions
 
 Preconditions are just like command halts but they are called before the command is executed. This is mostly useful for adding permissions to your commands or custom cooldowns.
 
-You can create your own precondition by creating a new JavaScript file that is not your modules folder. In this case we will use `./preconditions/precondition.js`. In this file we will create an object that satisfies [precondition schema](/docs/core/main/interfaces:CommandPreconditionData).
+You can create your own precondition by creating a new JavaScript file that is not in your modules folder. In this case we will use `./preconditions/precondition.js`. In this file we will create an object that satisfies [precondition schema](/docs/core/main/interfaces:CommandPreconditionData).
 ```js
 export default {
     id: 'my.precondition.lol',
