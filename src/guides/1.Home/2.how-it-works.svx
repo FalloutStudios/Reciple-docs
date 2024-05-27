@@ -71,3 +71,12 @@ export default new MyModule();
 // CJS
 module.exports = new MyModule();
 ```
+
+## onStart
+The [`onStart`](/docs/core/main/interfaces:RecipleModuleData#onstart) method is executed when the module is resolved before the bot is logged in. This can be useful for initiating the module and setting the commands.
+
+## onLoad
+However, the [`onLoad`](/docs/core/main/interfaces:RecipleModuleData#onload) method is executed after the bot is logged in.
+
+## onUnload
+Meanwhile, [`onUnload`](/docs/core/main/interfaces:RecipleModuleData#onunload) is executed when the module is unloaded or the bot process is stopping. This can be useful for cache clean up, or to gracefully shut down the module.
