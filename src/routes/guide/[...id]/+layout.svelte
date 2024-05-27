@@ -8,8 +8,7 @@
 
     export let data;
 
-    let content: HTMLDivElement;
-
+    let content: HTMLElement;
     let firstElement: undefined|HTMLButtonElement;
 
     onMount(() => {
@@ -62,8 +61,8 @@
 
 <Nav/><Sidebar bind:pages={data.guides}/>
 <div class="content-container">
-    <div class="content" bind:this={content}>
+    <main class="content" bind:this={content}>
         <slot/>
         <FooterPagination bind:guides={data.guides} pagination={$page.data.pagination}/>
-    </div>
+    </main>
 </div>

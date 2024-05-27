@@ -8,7 +8,7 @@
 
     $: docsData = $page.data as PackageTagLoadData & { docs: DocsParser & { data: Exclude<DocsParser['data'], undefined> } };
 
-    let content: HTMLDivElement;
+    let content: HTMLElement;
     $: firstElement = getFirstFocusableElement<HTMLButtonElement>(content);
 </script>
 
@@ -57,7 +57,7 @@
 
 <Nav data={docsData}/><SideBar/>
 <div class="content-container">
-    <div class="content" bind:this={content}>
+    <main class="content" bind:this={content}>
         <slot/>
-    </div>
+    </main>
 </div>
