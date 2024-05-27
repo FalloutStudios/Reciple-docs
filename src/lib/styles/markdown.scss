@@ -135,8 +135,7 @@
         .hljs-value,
         .hljs-inheritance,
         .hljs-header,
-        .token.string,
-        .token.boolean {
+        .token.string {
             color: #99cc99;
         }
 
@@ -144,7 +143,8 @@
         .js .hljs-title,
         .ts .hljs-title,
         .token.class-name,
-        .token.function {
+        .token.function,
+        .token.boolean {
             color: #6699cc;
         }
 
