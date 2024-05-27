@@ -101,18 +101,7 @@ export default new GlobalCommandHalt()
 After that, implement the method that will add command halt functions to every commands and merge existing halts in that array.
 ```js
 export class GlobalCommandHalt {
-    versions = ['^8'];
-
-    async onStart() {
-        return true;
-    }
-
-    async onLoad({ client }) {
-        client.modules.on('loadedModules', async () => {
-            const commands = [...client.commands.contextMenuCommands.values(), ...client.commands.messageCommands.values(), ...client.commands.slashCommands.values()];
-            await this.addHaltToCommands(commands);
-        });
-    }
+    // ...Previous code here...
 
     async addHaltToCommands(commands) {
         for (const command of commands) {
@@ -136,6 +125,56 @@ export default new GlobalCommandHalt()
 `addHaltToCommands` will loop through the commands and merge the command's halt function if there is one.
 
 Lastly, implement the method that will serve as the global command halt. After this, command halt will be automatically added to your commands.
+```js
+import { inlineCode, time } from 'discord.js';
+
+export class GlobalCommandHalt {
+    // ...Previous code here...
+
+    async handleCommandHalt(haltData) {
+        // Create a reply function
+        const createResponse = haltData.commandType === CommandType.MessageCommand
+            ? options => haltData.executeData.message.reply(options)
+            : haltData.executeData.interaction.deferred
+                ? options => haltData.executeData.interaction.editReply(options)
+                : haltData.executeData.interaction.replied
+                    ? options => haltData.executeData.interaction.followUp(options)
+                    : options => haltData.executeData.interaction.reply(options);
+
+        // Create the base of replies
+        let replyOptions = { ephemeral: true };
+
+        switch(haltData.reason) {
+            case CommandHaltReason.Cooldown:
+                replyOptions.content = `Slow down! the command can be used again ${time(haltData.cooldown.endsAt, 'R')}`;
+                await createResponse(replyOptions);
+                return true;
+            case CommandHaltReason.Error:
+                replyOptions.content = 'An error occured while executing this command';
+                await createResponse(replyOptions);
+                return true;
+            case CommandHaltReason.InvalidArguments:
+                const invalidArgs = haltData.invalidOptions.map(a => inlineCode(a.name));
+                replyOptions.content = `Invalid value given to option(s) ${invalidArgs.join(' ')}`;
+                await createResponse(replyOptions);
+                return true;
+            case CommandHaltReason.MissingArguments:
+                const missingArgs = haltData.missingOptions.map(a => inlineCode(a.name));
+                replyOptions.content = `Missing required argument(s) ${missingArgs.join(' ')}`;
+                await createResponse(replyOptions);
+                return true;
+        }
+
+        return false;
+    }
+}
+
+export default new GlobalCommandHalt()
+```
+
+`handleCommandHalt` is the command halt function which handles all command halt data for all command types such as context menu, message, and slash commands.
+
+### Resulting Code
 ```js
 import { inlineCode, time } from 'discord.js';
 
@@ -208,5 +247,3 @@ export class GlobalCommandHalt {
 
 export default new GlobalCommandHalt()
 ```
-
-`handleCommandHalt` is the command halt function which handles all command halt data for all command types such as context menu, message, and slash commands.
