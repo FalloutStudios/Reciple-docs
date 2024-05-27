@@ -29,7 +29,7 @@
         color: $blue;
 
         &:visited {
-            color: $link;
+            color: lighten($link, $amount: 5);
         }
 
         &:focus {
