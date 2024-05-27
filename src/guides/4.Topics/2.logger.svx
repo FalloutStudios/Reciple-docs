@@ -2,4 +2,69 @@
 title: Logger
 ---
 
+<script lang="ts">
+    import Alert from '$lib/components/Alert.svelte';
+</script>
+
 # Logger
+When trying to log information to the console, using the default `console.log()` will not contain the current time stamp of the log and its context. It will also not be written to the log file making tracing previous error difficult.
+
+> Reciple uses a custom logger that is built on top of `Console`. We used the logger from [`fallout-utility`](https://github.com/falloutstudios/fallout-utility) to provide more custimization and to have similar API to the default `console.log()`.
+
+You can use the logger from the [`.logger`](/docs/core/main/classes:Client#logger) property of the client that is passed from the [`onStart`](/docs/core/main/interfaces:RecipleModuleData#onstart), [`onLoad`](/docs/core/main/interfaces:RecipleModuleData#onload), and [`onUnload`](/docs/core/main/interfaces:RecipleModuleData#onunload) data.
+
+```js
+export class MyModule {
+    versions = ['^8'];
+
+    async onStart({ client }) {
+        client.logger?.log(`Module is started`);
+        return true;
+    }
+
+    async onLoad({ client }) {
+        client.logger?.log(`Module is loaded`);
+        return true;
+    }
+
+    async onUnload({ client }) {
+        client.logger?.log(`Module is unloaded`);
+    }
+}
+```
+
+<Alert type='warning' title='WARNING'>We used the <code>?.</code> operator because the <code>.logger</code> property could be undefined depending on your logger configuration.</Alert>
+
+## Creating Logger Context
+
+Creating your own logger context will make it easier to differentiate different log messages and so you can locate easily where the logs are coming from. This example will use the logger's [`.clone()`](/docs/core/main/classes:Logger#clone) method.
+
+```js
+export class MyModule {
+    versions = ['^8'];
+    logger = null;
+
+    async onStart({ client }) {
+        // Clone the logger into the MyModule#logger property
+        this.logger = client.logger?.clone({ name: 'MyModule' });
+
+        this.logger?.log(`Module is started`);
+        return true;
+    }
+
+    async onLoad({ client }) {
+        this.logger?.log(`Module is loaded`);
+        return true;
+    }
+
+    async onUnload({ client }) {
+        this.logger?.log(`Module is unloaded`);
+    }
+}
+```
+The module will now have its own logger that will output its context name in the console and log file.
+```
+[19:53:36 INFO][MyModule] Module is started
+[19:53:36 INFO][MyModule] Module is loaded
+[19:53:36 INFO][MyModule] Module is unloaded
+```
