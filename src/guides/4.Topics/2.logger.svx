@@ -37,7 +37,7 @@ export class MyModule {
 
 ## Creating Logger Context
 
-Creating your own logger context will make it easier to differentiate different log messages and so you can locate easily where the logs are coming from. This example will use the logger's [`.clone()`](/docs/core/main/classes:Logger#clone) method.
+Creating your own logger context will allow you to differentiate between different log messages and easily locate where the logs are coming from. This example is going to use the logger's [`.clone()`](/docs/core/main/classes:Logger#clone) method.
 
 ```js
 export class MyModule {
@@ -62,7 +62,8 @@ export class MyModule {
     }
 }
 ```
-The module will now have its own logger that will output its context name in the console and log file.
+
+The module will now have its own logger, which will print the context name to the console and log file.
 ```
 [19:53:36 INFO][MyModule] Module is started
 [19:53:36 INFO][MyModule] Module is loaded

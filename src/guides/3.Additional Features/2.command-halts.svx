@@ -7,8 +7,7 @@ title: Command Halts
 </script>
 
 # Command Halts
-
-In reciple, Command halts are functions that are executed when a command such as context menu, message, and slash command has been terminated, cooled-down, or failed executing.
+Command halts are functions that are executed when a command, such as the context menu, message, or slash command, is terminated, cooled-down, or fails to execute.
 
 There are different types of command halts that serves their own purposes.
 
@@ -24,7 +23,7 @@ Command halts are identified using the [`.reason`](/docs/core/main/interfaces:Ba
 <Alert type='warning' title='WARNING'>Command halt functions should return <code>true</code> when the action has been resolved.</Alert>
 
 ### Error Handling
-Command halts allows you to handle error thrown by a command after executing it. This can be applied to all command types.
+Command halts allow you to handle errors that occur after a command is executed. This can be applied to any command type.
 
 ```js
 import { CommandHaltReason, SlashCommandBuilder } from 'reciple';
@@ -62,7 +61,7 @@ export class MyModule {
 export default new MyModule();
 ```
 
-The code above will send a message every time the command fails without terminating the whole bot process.
+When a command fails, the code above will send a message rather than terminating the bot process.
 
 <discord-messages>
     <discord-message profile="bot" ephemeral>
@@ -74,7 +73,7 @@ The code above will send a message every time the command fails without terminat
 ## Global Command Halt
 To set a global command halt to every commands, you'll need to set halt to every commands that are in the client.
 
-First, make a new module with an event listener that executes when modules are loaded, then join all commands in an array.
+First, create a new module with an event listener that runs when modules are loaded, and then combine all commands into an array.
 ```js
 export class GlobalCommandHalt {
     versions = ['^8'];
@@ -98,7 +97,7 @@ export class GlobalCommandHalt {
 export default new GlobalCommandHalt()
 ```
 
-After that, implement the method that will add command halt functions to every commands and merge existing halts in that array.
+After that, implement the method for adding command halt functions to all commands and merge existing halts of the commands in the array.
 ```js
 export class GlobalCommandHalt {
     // ...Previous code here...
@@ -122,9 +121,9 @@ export class GlobalCommandHalt {
 export default new GlobalCommandHalt()
 ```
 
-`addHaltToCommands` will loop through the commands and merge the command's halt function if there is one.
+`addHaltToCommands` will iterate through the commands, merging any halt functions that exist.
 
-Lastly, implement the method that will serve as the global command halt. After this, command halt will be automatically added to your commands.
+Finally, implement the method that will be used as the global command halt. After that, the command halt will be automatically added to your commands.
 ```js
 import { inlineCode, time } from 'discord.js';
 

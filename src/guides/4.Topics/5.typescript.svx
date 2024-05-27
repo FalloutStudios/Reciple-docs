@@ -3,10 +3,10 @@ title: TypeScript
 ---
 
 # TypeScript
-If you want type safety you'll probablity thinking about TypeScript. Reciple support TypeScript because it's written in TypeScript!
+If you want type safety, you should probably consider TypeScript. Reciple supports TypeScript because it was written in TypeScript!
 
 ## Project Structure
-You can create a TypeScript project automatically by choosing TypeScript as the programming language when setting up your bot using `npm create reciple@latest`. This process will create a similar directory structure to the JavaScript one.
+You can create a TypeScript project automatically by choosing TypeScript as the programming language when setting up your bot using `npm create reciple@latest`. This process will generate a directory structure similar to that used in JavaScript.
 
 ```
 mybot/
@@ -23,7 +23,6 @@ When you used the JavaScript project, you'll notice that the `modules` folder is
 ## Writting Modules
 
 When writting modules, your modules directory by default is set to `src` and instead of `.js` we will use `.ts`.
-
 ```
 mybot/
 ├── reciple.mjs
@@ -35,8 +34,7 @@ mybot/
     └── mymodule.ts
 ```
 
-The way you code your modules might change but not much. For example this is how you would write a Ping command with TypeScript.
-
+The way you code your modules may change, but not significantly. For example, here's how to write a Ping command in TypeScript.
 ```ts
 import { AnyCommandResolvable, RecipleModuleData, SlashCommandBuilder } from 'reciple';
 
@@ -59,4 +57,4 @@ export class PingCommand implements RecipleModuleData {
 export default new PingCommand();
 ```
 
-As you can see, It is recommended to explicitly type your properties and function returns.
+As you can see, it is best to explicitly type your properties and returns of a function.

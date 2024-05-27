@@ -3,8 +3,7 @@ title: Event Handling
 ---
 
 # Event Handling
-
-Instead of creating a different file for events, Reciple allows you to create events within the module that includes your command or another module.
+Rather than creating a separate file for events, Reciple allows you to create them within the module containing your command or another module.
 
 You can add an event listener using the `client` property passed to the `onStart` method of your module.
 
@@ -28,7 +27,7 @@ export class MyModule {
 export default new MyModule();
 ```
 
-Now that module has an event listener that listens to a message that contains the bot's user ID.
+That module now has an event listener that listens for messages containing the bot's user ID.
 
 <discord-messages>
     <discord-message profile="cat">
@@ -40,8 +39,7 @@ Now that module has an event listener that listens to a message that contains th
 </discord-messages>
 
 ## Interaction Events
-
-With working with message components and modals, handling interactions could be a pain so Reciple provides an external module called [`reciple-interaction-events`](https://npmjs.org/package/reciple-interaction-events) to make things less complicated.
+Working with message components and modals can make handling interactions difficult, so Reciple provides an external module called [`reciple-interaction-events`](https://npmjs.org/package/reciple-interaction-events) to make things easier.
 
 ### Two ways to install `reciple-interaction-events`
 - Select the addon `reciple-interaction-events` when creating the bot project using `npm create reciple@latest`
@@ -54,7 +52,7 @@ With working with message components and modals, handling interactions could be 
 
 After installing `reciple-interaction-events`, You can now add new property called `interactionEvents` in any of your modules to handle certain types of interactions.
 
-In this example we will create a slash commands that contains a button of surpise 🎉. First create the command module.
+In this example, we will create a slash command with a surprise button 🎉. First, create the command module.
 ```js
 import { SlashCommandBuilder } from 'reciple';
 import { ActionRowBuilder, ButtonBuilder, ButtonStyle } from 'discord.js';
@@ -141,7 +139,7 @@ export class MyModule {
 export default new MyModule();
 ```
 
-Now, when you execute that command and press the button, it will send a reply message.
+When you run that command and press the button, it will send a response message.
 
 <discord-messages>
     <discord-message profile="bot">

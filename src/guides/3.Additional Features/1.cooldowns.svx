@@ -7,8 +7,7 @@ title: Cooldowns
 </script>
 
 # Cooldowns
-
-Cooldowns are cool to prevent users from doing the same thing in a short period of time. This guide will show you how to use Reciple cooldowns.
+Cooldowns are useful for preventing users from repeating the same actions in a short period of time. This guide will explain how to use Reciple cooldowns.
 
 Cooldowns are set by adding the [`.setCooldown()`](/docs/core/main/classes:BaseCommandBuilder#setcooldown) to your command builder when creating your command. For example if you want to make a ping slash command with 5 seconds cooldown we will code it like:
 ```js
@@ -38,7 +37,7 @@ export default new MyModule();
     You can use <a href="/docs/core/main/classes:BaseCommandBuilder#setcooldown"><code>.setCooldown()</code></a> on all command builders.
 </Alert>
 
-By default, when a user is cooled-down, the interaction/message will be ignored without a message. You can add a cooldown message by adding a command halt using [`.setHalt()`](/docs/core/main/classes:BaseCommandBuilder#setHalt).
+By default, when a user has been cooled-down, the interaction/message is ignored without replying to the command. You can add a cooldown message by using the command halt with [`.setHalt()`](/docs/core/main/classes:BaseCommandBuilder#setHalt).
 
 ```js
 import { CommandHaltReason, SlashCommandBuilder } from 'reciple';

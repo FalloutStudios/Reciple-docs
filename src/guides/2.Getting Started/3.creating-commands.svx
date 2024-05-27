@@ -9,13 +9,13 @@ title: Creating Commands
 
 # Creating Commands
 
-Reciple provides a built-in command handler for all types of commands to make sure making commands is hassle free and easy.
+Reciple includes a built-in command handler for all types of commands, making command creation simple and hassle-free.
 
-This guide will show you how to make slash commands, context menu commands, and message commands.
+This guide will teach you how to create slash commands, context menu commands, and message commands.
 
 ## Slash Commands
 
-First, create a new JavaScript file inside your modules folder. In this case we will name it `slashcommand.js`.
+First, create a new JavaScript file in your modules folder. In this case, we will name it `slashcommand.js`.
 
 This is what the directory should look like:
 ```
@@ -43,7 +43,7 @@ export class MySlashCommand {
 export default new MySlashCommand();
 ```
 
-To add your commands, you will need to import the command builder and create new instance in the `commands` property of your module.
+To add your commands, you will need to import the [`SlashCommandBuilder`](/docs/core/main/classes:SlashCommandBuilder) and create new instance in the `commands` property of your module.
 
 <Alert type="warning">
     You will need to import the command builder from <code>reciple</code> instead of <code>discord.js</code>
@@ -71,7 +71,7 @@ export class MySlashCommand {
 export default new MySlashCommand();
 ```
 
-After that, you can now start your bot and check if the module has been loaded and commands are registered.
+After that, you can start your bot and see if the module has been loaded and the commands are registered.
 
 ```
 [11:27:01 INFO] Registered (1) application commands globally
@@ -92,8 +92,7 @@ You can now use the command you created by typing `/ping`.
 </discord-messages>
 
 ## Context Menu Commands
-
-Unlike slash commands, context menus can only be used when you right click on a message or user.
+Context menus, unlike slash commands, can only be used by right-clicking on a message or user.
 
 To create a context menu command, create a new JavaScript file inside your modules folder similar on how you did with slash commands. In this case we will name the file `contextmenucommand.js`.
 
@@ -124,7 +123,7 @@ export class MyContextMenuCommand {
 export default new MyContextMenuCommand();
 ```
 
-Like slash commands, import the context menu command builder and create a new instance in the `commands` property.
+Like slash commands, import the [`ContextMenuCommandBuilder`](/docs/core/main/classes:ContextMenuCommandBuilder) and create a new instance in the `commands` property.
 ```js
 import { ContextMenuCommandBuilder } from 'reciple';
 import { ApplicationCommandType, AttachmentBuilder } from 'discord.js';
@@ -154,7 +153,7 @@ export class MyContextMenuCommand {
 export default new MyContextMenuCommand();
 ```
 
-You can now start your bot and check if the module has been loaded and commands are registered.
+You can now start your bot and verify that the module has been loaded and commands have been registered.
 
 ```
 [11:27:01 INFO] Registered (1) application commands globally
@@ -165,7 +164,7 @@ You can now start your bot and check if the module has been loaded and commands 
 [11:27:01 INFO] Loaded 2 precondition(s)
 ```
 
-Use the context menu command by right clicking on a user and selecting the command you created in the `Apps` found in the context menu shown.
+Use the context menu command by right-clicking on a user and selecting the command you created under `Apps` in the context menu that appears.
 
 <discord-messages>
     <discord-message profile="bot">
@@ -206,7 +205,7 @@ export class MyMessageCommand {
 export default new MyMessageCommand();
 ```
 
-Reciple provides a custom builder for message commands with similar methods to `SlashCommandBuilder`. Now, import the message command builder and create a new instance in the `commands` property.
+Reciple provides a custom message command builder that uses methods similar to `SlashCommandBuilder`. Now import the [`MessageCommandBuilder`](/docs/core/main/classes:MessageCommandBuilder) and create a new instance in the `commands` property.
 
 Instead of `interactions`, message commands passes the message that triggered the command into the `execute` function.
 ```js
@@ -344,7 +343,7 @@ You can now execute the same message command using the alias.
 
 ## No Builders 😡
 
-Some people doesn't like builders, so we also supported command data so you can directly create the command object in the `commands` property.
+Some people dislike builders, so we added support for command data, allowing you to create command objects directly in the `commands` property.
 
 ### View Docs for the type definition of each command data:
 - [`ContextMenuCommandBuilderData`](/docs/core/main/interfaces:ContextMenuCommandBuilderData)
