@@ -127,7 +127,8 @@
         }
 
         .class_,
-        .hljs-built_in {
+        .hljs-built_in,
+        .token.builtin {
             color: #ffcc66;
         }
 
