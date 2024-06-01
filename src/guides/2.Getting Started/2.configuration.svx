@@ -7,7 +7,7 @@ title: Configuration
 </script>
 
 # Configuration
-It is not necessary to modify the config file after you have completed the setup of your bot. But doing so is also acceptable! The file `reciple.mjs` in your bot's root directory contains the current Reciple configuration.
+It is not necessary to modify the config file after you have completed the setup of your bot. But doing so is also acceptable! The file `reciple.mjs` in your bot's root directory contains the current Reciple configuration.
 
 > ### Reciple Config
 Reciple configuration allows you to change some of Reciple's behavior and expand its functionality.
@@ -185,6 +185,16 @@ export const config = {
 ```
 
 > Create your own preconditions by following the precondition schema [View Docs](/docs/core/main/interfaces:CommandPreconditionData)
+
+## Command Halts
+Command halts are functions that are executed after the command is terminated. This allows you to handle command errors, cooldowns, and precondition triggers. This config sets the global command halts for every commands.
+
+```js
+export const config = {
+    commandHalts: []
+};
+```
+> Create your own command halt by following the command halt schema [View Docs](/docs/core/main/interfaces:CommandHaltData)
 
 ## Cooldown Sweeper Options
 This config allows you to modify the cooldown sweeping options.

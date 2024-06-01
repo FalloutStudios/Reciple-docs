@@ -36,41 +36,39 @@ export default new MyModule();
     You can use <a href="/docs/core/main/classes:BaseCommandBuilder#setcooldown"><code>.setCooldown()</code></a> on all command builders.
 </Alert>
 
-By default, when a user has been cooled-down, the interaction/message is ignored without replying to the command. You can add a cooldown message by using the command halt with [`.setHalt()`](/docs/core/main/classes:BaseCommandBuilder#setHalt).
+By default, when a user has been cooled-down, the interaction/message is ignored without replying to the command. You can add a cooldown message by using the command halt.
+
+Create a new file in a folder that is **not** your `modules` folder. In this case we will use `./halts/cooldowns.js`. Inside that file, create your command halt object.
 
 ```js
-import { CommandHaltReason, SlashCommandBuilder } from 'reciple';
+import { CommandHaltReason, CommandType } from 'reciple';
 import { time } from 'discord.js';
 
-export class MyModule {
-    commands = [
-        new SlashCommandBuilder()
-            .setName('ping')
-            .setDescription('Pong command')
-            .setCooldown(5 * 1_000)
-            .setExecute(async ({ interaction }) => {
-                await interaction.reply('Pong!');
-            })
-            .setHalt(async data => {
-                const interaction = data.executeData.interaction;
+export default {
+    id: 'my.cooldowns',
+    commandTypes: [CommandType.ContextMenuCommand, CommandType.MessageCommand, CommandType.SlashCommand],
+    halt: async data => {
+        if (data.reason !=== CommandHaltReason.Cooldown) return;
 
-                if (data.reason === CommandHaltReason.Cooldown) {
-                    await interaction.reply({
-                        content: `You can execute this command again in ${time(data.cooldown.endsAt, 'R')}`,
-                        ephemeral: true
-                    });
-                    return true;
-                }
-            })
-    ];
+        const executeData = data.executeData;
+        const cooldown = data.cooldown;
+        const createResponse = data.commandType === CommandType.MessageCommand
+            ? options => executeData.message.reply(options)
+            : executeData.interaction.deferred
+                ? options => executeData.interaction.editReply(options)
+                : executeData.interaction.replied
+                    ? options => executeData.interaction.followUp(options)
+                    : options => executeData.interaction.reply(options);
 
-    async onStart() {
-        return true;
+        await createResponse({
+            content: `Slow down! the command can be used again ${time(cooldown.endsAt, 'R')}`,
+            ephemeral: true
+        });
     }
-}
-
-export default new MyModule();
+};
 ```
+
+To use that command halt, you can add it to your global command halts or add it to every single commands using command builder's [`.addHalts()`](/docs/core/main/classes:BaseCommandBuilder#addhalts).
 
 <discord-messages>
     <discord-message profile="bot">

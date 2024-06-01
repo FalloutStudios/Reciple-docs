@@ -259,8 +259,8 @@ export class MyMessageCommand {
                 .setName('times')
                 .setDescription('Ping how many times')
                 .setRequired(false)
-                .setResolveValue(v => Number(v))
-                .setValidate(v => !isNaN(Number(v)))
+                .setResolveValue(({ value }) => Number(value))
+                .setValidate(({ value }) => !isNaN(Number(value)))
             )
             .setExecute(async ({ message, options }) => {
                 const times = await options.getOptionValue('times', { resolveValue: true }) || 1;
@@ -301,8 +301,8 @@ export class MyMessageCommand {
                 .setName('times')
                 .setDescription('Ping how many times')
                 .setRequired(false)
-                .setResolveValue(v => Number(v))
-                .setValidate(v => !isNaN(Number(v)))
+                .setResolveValue(({ value }) => Number(value))
+                .setValidate(({ value }) => !isNaN(Number(value)))
             )
             .setExecute(async ({ message, options }) => {
                 const times = await options.getOptionValue('times', { resolveValue: true }) || 1;
