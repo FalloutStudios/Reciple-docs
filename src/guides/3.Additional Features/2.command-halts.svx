@@ -27,6 +27,8 @@ import { CommandHaltReason, CommandType } from 'reciple';
 
 export class MyErrorCommandHalt {
     id = 'my.errorhandler';
+    disabled = false; // Defaults to false when not defined
+
     errorMessage =  `An error occured while executing this command`;
 
     contextMenuCommandHalt(data) {
