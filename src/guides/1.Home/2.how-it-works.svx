@@ -72,20 +72,23 @@ module.exports = new MyModule();
 ```
 
 ## Id
-Your module [`id`](/docs/core/main/interfaces:RecipleModuleData#id) is the unique identifier of your module. It is used to easily find the module from the [`ModuleManager#cache`](/docs/core/main/interfaces:ModuleManager#cache).
+`optional` Your module [`id`](/docs/core/main/interfaces:RecipleModuleData#id) is the unique identifier of your module. It is used to easily find the module from the [`ModuleManager#cache`](/docs/core/main/interfaces:ModuleManager#cache).
 <Alert type='info' title='INFO'>IDs are randomly generated if undefined</Alert>
 
 ## Name
-Your module [`name`](/docs/core/main/interfaces:RecipleModuleData#name) serves as the display name of your module. This is used when logging the module; the logger will use the module name rather than the full file path.
+`optional` Your module [`name`](/docs/core/main/interfaces:RecipleModuleData#name) serves as the display name of your module. This is used when logging the module; the logger will use the module name rather than the full file path.
 
 ## Versions
-The [`versions`](/docs/core/main/interfaces:RecipleModuleData#versions) property defines the supported versions of reciple it can be loaded with.
+`optional` The [`versions`](/docs/core/main/interfaces:RecipleModuleData#versions) property defines the supported versions of reciple it can be loaded with.
 
-## onStart
+## Commands
+`optional` The [`commands`](/docs/core/main/interfaces:RecipleModuleData#commands) property is an array of command objects that define the commands your module will register.
+
+## onStart()
 The [`onStart`](/docs/core/main/interfaces:RecipleModuleData#onstart) method is executed when the module is resolved before the bot is logged in. This can be useful for starting the module and setting up its commands.
 
-## onLoad
-However, the [`onLoad`](/docs/core/main/interfaces:RecipleModuleData#onload) method is executed after the bot is logged in.
+## onLoad()
+`optional` However, the [`onLoad`](/docs/core/main/interfaces:RecipleModuleData#onload) method is executed after the bot is logged in.
 
-## onUnload
-Meanwhile, [`onUnload`](/docs/core/main/interfaces:RecipleModuleData#onunload) is executed when the module is unloaded or the bot process is stopping. This can be used for cache cleanup or to gracefully close down the module.
+## onUnload()
+`optional` Meanwhile, [`onUnload`](/docs/core/main/interfaces:RecipleModuleData#onunload) is executed when the module is unloaded or the bot process is stopping. This can be used for cache cleanup or to gracefully close down the module.
