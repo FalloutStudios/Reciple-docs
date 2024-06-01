@@ -25,39 +25,48 @@ To create a command halt, create a new file in a folder that is **not** your mod
 ```js
 import { CommandHaltReason, CommandType } from 'reciple';
 
-export default {
-    id: 'my.errorhandler',
-    commandTypes: [CommandType.ContextMenuCommands, CommandType.MessageCommand, CommandType.SlashCommands],
-    halt: async data => {
-        const reply = {
-            content: 'An error occured while executing this command',
-            ephemeral: true
-        };
+export class MyErrorCommandHalt {
+    id = 'my.errorhandler';
+    errorMessage =  `An error occured while executing this command`;
 
-        switch (data.reason) {
-            case CommandHaltReason.Error:
-                if (data.commandType === CommandType.MessageCommand) {
-                    await data.executeData.message.reply(reply);
-                    break;
-                }
+    contextMenuCommandHalt(data) {
+        if (data.reason !== CommandHaltReason.Error) return;
 
-                const { interaction } = data.executeData;
+        const interaction = data.executeData.interaction;
+        if (interaction.replied || interaction.deferred) {
+            await interaction.editReply(content);
+        } else {
+            await interaction.reply(content);
+        }
 
-                if (interaction.deferred) {
-                    await interaction.editReply(reply);
-                } else if (interaction.replied) {
-                    await interaction.followUp(reply);
-                } else {
-                    await interaction.reply(reply);
-                }
+        return true;
+    }
+
+    messageCommandHalt(data) {
+        if (data.reason !== CommandHaltReason.Error) return;
+
+        await data.executeData.message.reply(content);
+        return true;
+    }
+
+    slashCommandHalt(data) {
+        if (data.reason !== CommandHaltReason.Error) return;
+
+        const interaction = data.executeData.interaction;
+        if (interaction.replied || interaction.deferred) {
+            await interaction.editReply(content);
+        } else {
+            await interaction.reply(content);
         }
 
         return true;
     }
 };
+
+export default new MyErrorCommandHalt();
 ```
 
-`halt` is the function that will handle the command halt.
+`contextMenuCommandHalt`, `messageCommandHalt`, and `slashCommandHalt` are the functions that will handle the command halt.
 - Return `true` if the halt is handled
 - `false|string|Error` if it fails
 - `null|undefined` to pass the command halt trigger to the next command halt.
