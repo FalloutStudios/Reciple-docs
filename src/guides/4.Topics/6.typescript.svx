@@ -57,3 +57,18 @@ export default new PingCommand();
 ```
 
 As you can see, it is best to explicitly type your properties and returns of a function.
+
+## Precondition and Halts Folder
+
+With typescript, you need to create the preconditions and halts folder in a subdirectory of your `src` directory. For example `src/preconditions` or `src/halts`.
+
+To ignore your precondition and halts folder, just add the folder names in `modules.exclude` found in your `reciple.mjs`.
+
+```js
+export const config = {
+    // ...other config...
+    modules: {
+        exclude: ['preconditions', 'halts']
+    }
+};
+```

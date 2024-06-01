@@ -168,7 +168,7 @@ export const config = {
 ```
 
 - `dirs` An array of directory names that contains the module files. This config also accepts glob patterns.
-- `exclude` An array of file names to exclude from loaded modules. This also accepts wildcard patterns.
+- `exclude` An array of file or dir names to exclude from loaded modules. This also accepts wildcard patterns.
 - `filter` A function that returns a boolean. This functions filters the module files to be loaded.
 - `disableModuleVersionCheck` Whether to check if the module supports the current version of Reciple.
 
