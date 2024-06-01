@@ -22,7 +22,7 @@ Command halts are identified using the [`.reason`](/docs/core/main/interfaces:Ba
 
 <Alert type='warning' title='WARNING'>Command halt functions should return <code>true</code> when the action has been resolved.</Alert>
 
-### Error Handling
+### Command Halt Example
 Command halts allow you to handle errors that occur after a command is executed. This can be applied to any command type.
 
 To create a command halt, create a new file in a folder that is **not** your modules folder. In this case we will use `./halts/error-handler.js`. Inside that file export the command halt data.
@@ -82,7 +82,7 @@ export const config = {
 
 Alternatively, you can add it to a single command using the [`.addHalts()`](/docs/core/main/classes:BaseCommandBuilder#addhalts) or [`.setHalts()`](/docs/core/main/classes:BaseCommandBuilder#sethalts) methods.
 
-When a command fails, the code above will send a message rather than terminating the bot process.
+Now, when a command fails, the code above will send a message rather than terminating the bot process.
 
 <discord-messages>
     <discord-message profile="bot" ephemeral>
@@ -90,3 +90,5 @@ When a command fails, the code above will send a message rather than terminating
         An error occured while executing this command
     </discord-message>
 </discord-messages>
+
+> You can disable a global or command scope halts from a command using .addDisabledHalts() or .setDisabledHalts(). Just pass the id of the halt you want to disable to the arguments of this method to not use them.
