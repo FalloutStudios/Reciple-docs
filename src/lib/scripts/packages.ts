@@ -27,11 +27,6 @@ export const parsers = {
         package: 'create-reciple',
         npm: 'create-reciple'
     }),
-    'update-checker': new DocsParser({
-        ...defaultDocsParserOptions,
-        package: 'update-checker',
-        npm: '@reciple/update-checker',
-    }),
     'docgen': new DocsParser({
         ...defaultDocsParserOptions,
         package: 'docgen',
