@@ -20,11 +20,6 @@ There are different types of command halts that serves their own purposes.
 
 Command halts are identified using the [`.reason`](/docs/core/main/interfaces:BaseCommandHaltData) property that uses the [`CommandHaltReason`](/docs/core/main/enums:CommandHaltReason) enum.
 
-<Alert type='warning' title='WARNING'>Command halt functions should return <code>true</code> when the action has been resolved.</Alert>
-
-### Command Halt Example
-Command halts allow you to handle errors that occur after a command is executed. This can be applied to any command type.
-
 To create a command halt, create a new file in a folder that is **not** your modules folder. In this case we will use `./halts/error-handler.js`. Inside that file export the command halt data.
 
 ```js
@@ -69,18 +64,35 @@ export default {
 
 > Learn more about command halt data structure. [View Docs](/docs/core/main/interfaces:CommandHaltData)
 
+## Global Scope Command Halt
+
 To use the command halt that we made, you can import it in your config file and add it to the `commandHalts` array.
 
 ```js
-import myErrorHandler from './halts/error-handler.js';
+import MyErrorHandler from './halts/error-handler.js';
 
 export const config = {
     /// ...other config...
-    commandHalts: [myErrorHandler]
+    commandHalts: [MyErrorHandler]
 };
 ```
 
+## Command Scope Command Halt
+
 Alternatively, you can add it to a single command using the [`.addHalts()`](/docs/core/main/classes:BaseCommandBuilder#addhalts) or [`.setHalts()`](/docs/core/main/classes:BaseCommandBuilder#sethalts) methods.
+
+```js
+import { SlashCommandBuilder } from 'reciple';
+import MyErrorHandler from '../halts/error-handler.js';
+
+new SlashCommandBuilder()
+    .setName('ping')
+    .setDescription('Pong command')
+    .setPreconditions(MyErrorHandler)
+    .setExecute(async ({ interaction }) => {
+        await interaction.reply('Pong!');
+    })
+```
 
 Now, when a command fails, the code above will send a message rather than terminating the bot process.
 
