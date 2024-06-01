@@ -55,7 +55,6 @@ Reciple modules requires `versions` and `onStart` properties to load.
 class MyModule {
     id = 'my.module';
     name = 'Display Name';
-    versions = ['^8'];
     commands = [];
 
     async onStart({ client }) {

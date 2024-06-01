@@ -217,6 +217,6 @@ export const config = {
 
 ```js
 export const config = {
-    version: '^8.x.x'
+    version: '^9.x.x'
 };
 ```

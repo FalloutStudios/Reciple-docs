@@ -29,7 +29,6 @@ Command halts allow you to handle errors that occur after a command is executed.
 import { CommandHaltReason, SlashCommandBuilder } from 'reciple';
 
 export class MyModule {
-    versions = ['^8'];
     commands = [
         new SlashCommandBuilder()
             .setName('ping')
@@ -76,8 +75,6 @@ To set a global command halt to every commands, you'll need to set halt to every
 First, create a new module with an event listener that runs when modules are loaded, and then combine all commands into an array.
 ```js
 export class GlobalCommandHalt {
-    versions = ['^8'];
-
     async onStart() {
         return true;
     }
@@ -178,8 +175,6 @@ export default new GlobalCommandHalt()
 import { inlineCode, time } from 'discord.js';
 
 export class GlobalCommandHalt {
-    versions = ['^8'];
-
     async onStart() {
         return true;
     }
