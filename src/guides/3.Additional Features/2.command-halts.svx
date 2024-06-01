@@ -12,11 +12,11 @@ Command halts are functions that are executed when a command, such as the contex
 There are different types of command halts that serves their own purposes.
 
 #### Command Halt Data Types
-- [`CommandErrorHaltData`](/docs/core/main/interfaces:CommandErrorHaltData) Used to handle error thrown by the command.
-- [`CommandCooldownHaltData`](/docs/core/main/interfaces:CommandCooldownHaltData) Used to handle commands that are cooled-down.
-- [`CommandPreconditionTriggerHaltData`](/docs/core/main/interfaces:CommandPreconditionTriggerHaltData) Used to handle a command that has triggered a precondition.
-- [`CommandInvalidArgumentsHaltData`](/docs/core/main/interfaces:CommandInvalidArgumentsHaltData) Can only be used with message commands to handle invalid argument error.
-- [`CommandMissingArgumentsHaltData`](/docs/core/main/interfaces:CommandMissingArgumentsHaltData) Can only be used with message commands to handle missing argument error.
+- [`CommandErrorHaltTriggerData`](/docs/core/main/interfaces:CommandErrorHaltTriggerData) Used to handle error thrown by the command.
+- [`CommandCooldownHaltTriggerData`](/docs/core/main/interfaces:CommandCooldownHaltTriggerData) Used to handle commands that are cooled-down.
+- [`CommandPreconditionResultHaltTriggerData`](/docs/core/main/interfaces:CommandPreconditionResultHaltTriggerData) Used to handle a command that has triggered a precondition.
+- [`CommandInvalidArgumentsHaltTriggerData`](/docs/core/main/interfaces:CommandInvalidArgumentsHaltTriggerData) Can only be used with message commands to handle invalid argument error.
+- [`CommandMissingArgumentsHaltTriggerData`](/docs/core/main/interfaces:CommandMissingArgumentsHaltTriggerData) Can only be used with message commands to handle missing argument error.
 
 Command halts are identified using the [`.reason`](/docs/core/main/interfaces:BaseCommandHaltData) property that uses the [`CommandHaltReason`](/docs/core/main/enums:CommandHaltReason) enum.
 
