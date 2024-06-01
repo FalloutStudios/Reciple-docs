@@ -15,8 +15,6 @@ You can use the logger from the [`.logger`](/docs/core/main/classes:Client#logge
 
 ```js
 export class MyModule {
-    versions = ['^8'];
-
     async onStart({ client }) {
         client.logger?.log(`Module is started`);
         return true;
@@ -41,7 +39,6 @@ Creating your own logger context will allow you to differentiate between differe
 
 ```js
 export class MyModule {
-    versions = ['^8'];
     logger = null;
 
     async onStart({ client }) {

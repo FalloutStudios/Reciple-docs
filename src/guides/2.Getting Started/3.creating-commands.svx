@@ -32,7 +32,6 @@ Open the file in your code editor, and export a module class
 
 ```js
 export class MySlashCommand {
-    versions = ['^8'];
     commands = [];
 
     onStart() {
@@ -53,7 +52,6 @@ To add your commands, you will need to import the [`SlashCommandBuilder`](/docs/
 import { SlashCommandBuilder } from 'reciple';
 
 export class MySlashCommand {
-    versions = ['^8'];
     commands = [
         new SlashCommandBuilder()
             .setName('ping')
@@ -112,7 +110,6 @@ Open the file in your code editor, and export a module class
 
 ```js
 export class MyContextMenuCommand {
-    versions = ['^8'];
     commands = [];
 
     onStart() {
@@ -129,7 +126,6 @@ import { ContextMenuCommandBuilder } from 'reciple';
 import { ApplicationCommandType, AttachmentBuilder } from 'discord.js';
 
 export class MyContextMenuCommand {
-    versions = ['^8'];
     commands = [
         new ContextMenuCommandBuilder()
             .setName('Avatar')
@@ -194,7 +190,6 @@ Then, open the file in your code editor, and export a module class
 
 ```js
 export class MyMessageCommand {
-    versions = ['^8'];
     commands = [];
 
     onStart() {
@@ -212,7 +207,6 @@ Instead of `interactions`, message commands passes the message that triggered th
 import { MessageCommandBuilder } from 'reciple';
 
 export class MyMessageCommand {
-    versions = ['^8'];
     commands = [
         new MessageCommandBuilder()
             .setName('ping')
@@ -257,7 +251,6 @@ You can add options to your message commands that returns the values of argument
 import { MessageCommandBuilder } from 'reciple';
 
 export class MyMessageCommand {
-    versions = ['^8'];
     commands = [
         new MessageCommandBuilder()
             .setName('ping')
@@ -266,8 +259,8 @@ export class MyMessageCommand {
                 .setName('times')
                 .setDescription('Ping how many times')
                 .setRequired(false)
-                .setResolveValue(v => Number(v))
-                .setValidate(v => !isNaN(Number(v)))
+                .setResolveValue(({ value }) => Number(value))
+                .setValidate(({ value }) => !isNaN(Number(value)))
             )
             .setExecute(async ({ message, options }) => {
                 const times = await options.getOptionValue('times', { resolveValue: true }) || 1;
@@ -299,7 +292,6 @@ You can also set an alias to a message command by using [`.addAliases()`](/docs/
 import { MessageCommandBuilder } from 'reciple';
 
 export class MyMessageCommand {
-    versions = ['^8'];
     commands = [
         new MessageCommandBuilder()
             .setName('ping')
@@ -309,8 +301,8 @@ export class MyMessageCommand {
                 .setName('times')
                 .setDescription('Ping how many times')
                 .setRequired(false)
-                .setResolveValue(v => Number(v))
-                .setValidate(v => !isNaN(Number(v)))
+                .setResolveValue(({ value }) => Number(value))
+                .setValidate(({ value }) => !isNaN(Number(value)))
             )
             .setExecute(async ({ message, options }) => {
                 const times = await options.getOptionValue('times', { resolveValue: true }) || 1;
@@ -355,7 +347,6 @@ Some people dislike builders, so we added support for command data, allowing you
 import { CommandType, SlashCommandBuilder } from 'reciple';
 
 export class MySlashCommand {
-    versions = ['^8'];
     commands = [
         {
             command_type: CommandType.SlashCommand,

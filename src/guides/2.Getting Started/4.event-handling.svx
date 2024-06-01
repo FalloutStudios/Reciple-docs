@@ -9,8 +9,6 @@ You can add an event listener using the `client` property passed to the `onStart
 
 ```js
 export class MyModule {
-    versions = ['^8'];
-
     onStart({ client }) {
         client.on('messageCreate', message => this.handleMessageCreate(message));
 
@@ -58,7 +56,6 @@ import { SlashCommandBuilder } from 'reciple';
 import { ActionRowBuilder, ButtonBuilder, ButtonStyle } from 'discord.js';
 
 export class MyModule {
-    versions = ['^8'];
     commands = [
         new SlashCommandBuilder()
             .setName('surpise')
@@ -96,7 +93,6 @@ import { ActionRowBuilder, ButtonBuilder, ButtonStyle } from 'discord.js';
 import { InteractionListenerType } from 'reciple-interaction-events';
 
 export class MyModule {
-    versions = ['^8'];
     commands = [
         new SlashCommandBuilder()
             .setName('surpise')

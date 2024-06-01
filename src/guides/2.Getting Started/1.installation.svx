@@ -27,21 +27,6 @@ Once you enter the command, the program will ask you to set up your bot. First, 
 └
 ```
 
-After you've chosen a programming language, it will ask if you want to use the ES module.
-> ES Module is the standard for JavaScript and it uses `import` instead of `require`
-
-In this case we will use ES Module by pressing `Enter`.
-```
-┌  create-reciple
-│
-◇  Would you like to use typescript?
-│  No
-│
-◆  Would you like to use ES Modules? (uses import() instead of require())
-│  ● Yes / ○ No
-└
-```
-
 After that, you can select an optional addons for Reciple. These addons are just pre-made Reciple modules.
 ### Addons
 - `reciple-interaction-events` Add property in Reciple modules to listen to interaction events.
@@ -55,9 +40,6 @@ To continue, press `Enter`.
 │
 ◇  Would you like to use typescript?
 │  No
-│
-◇  Would you like to use ES Modules? (uses import() instead of require())
-│  Yes
 │
 ◆  Select a addons from Reciple (Press space to select, and enter to submit)
 │  ◻ reciple-interaction-events
@@ -75,9 +57,6 @@ After that, you will need to choose a package manager. Usually the current packa
 │
 ◇  Would you like to use typescript?
 │  No
-│
-◇  Would you like to use ES Modules? (uses import() instead of require())
-│  Yes
 │
 ◇  Select a addons from Reciple (Press space to select, and enter to submit)
 │  none
@@ -98,9 +77,6 @@ And lastly, your Discord Bot token. You can obtain your token from [Discord Deve
 │
 ◇  Would you like to use typescript?
 │  No
-│
-◇  Would you like to use ES Modules? (uses import() instead of require())
-│  Yes
 │
 ◇  Select a addons from Reciple (Press space to select, and enter to submit)
 │  none
@@ -127,6 +103,10 @@ mybot/
 ├── node_modules/
 └── modules/
 ```
+
+<Alert type='warning' title='WARNING'>
+    Reciple is an ESM only package, this means we will be using <code>import</code> statements instead of <code>require</code>
+</Alert>
 
 As you can see, there is no `index.js` or main file because the Reciple CLI handles everything for you. You can start your bot with these `npm` scripts.
 ```sh

@@ -1,6 +1,9 @@
 ---
 title: Preconditions
 ---
+<script lang="ts">
+    import Alert from '$lib/components/Alert.svelte';
+</script>
 
 # Preconditions
 
@@ -8,15 +11,27 @@ Preconditions are similar to command halts, but they occur before the command is
 
 You can create your own precondition by creating a new JavaScript file that is not in your modules folder. In this case we will use `./preconditions/precondition.js`. In this file we will create an object that satisfies [precondition schema](/docs/core/main/interfaces:CommandPreconditionData).
 ```js
-export default {
-    id: 'my.precondition.lol',
-    disabled: false,
-    contextMenuCommandExecute: async ({ interaction }) => !interaction.user.username.includes('cat'),
-    messageCommandExecute: async ({ message }) => !message.author.username.includes('cat'),,
-    slashCommandExecute: async ({ interaction }) => !interaction.user.username.includes('cat'),
+export class MyPrecondition {
+    id = 'my.precondition.lol';
+    disabled = false; // Defaults to false when not defined
+
+    async contextMenuCommandExecute ({ interaction }) {
+        return !interaction.user.username.includes('cat');
+    }
+    async messageCommandExecute ({ message }) {
+        return !message.author.username.includes('cat');
+    }
+    async slashCommandExecute ({ interaction }) {
+        return !interaction.user.username.includes('cat');
+    }
 };
+
+export default new MyPrecondition();
 ```
 This example precondition will not execute a command when used by someone with a username that contains `cat`.
+<Alert type="info" title="INFO">
+    <code>contextMenuCommandExecute</code>, <code>messageCommandExecute</code>, and <code>slashCommandExecute</code> are optional.
+</Alert>
 
 Now to use this precondition, we can choose between global or command scope preconditions.
 

@@ -20,48 +20,92 @@ There are different types of command halts that serves their own purposes.
 
 Command halts are identified using the [`.reason`](/docs/core/main/interfaces:BaseCommandHaltData) property that uses the [`CommandHaltReason`](/docs/core/main/enums:CommandHaltReason) enum.
 
-<Alert type='warning' title='WARNING'>Command halt functions should return <code>true</code> when the action has been resolved.</Alert>
-
-### Error Handling
-Command halts allow you to handle errors that occur after a command is executed. This can be applied to any command type.
+To create a command halt, create a new file in a folder that is **not** your modules folder. In this case we will use `./halts/error-handler.js`. Inside that file export the command halt data.
 
 ```js
-import { CommandHaltReason, SlashCommandBuilder } from 'reciple';
+import { CommandHaltReason, CommandType } from 'reciple';
 
-export class MyModule {
-    versions = ['^8'];
-    commands = [
-        new SlashCommandBuilder()
-            .setName('ping')
-            .setDescription('Pong command')
-            .setExecute(async ({ interaction }) => {
-                await interaction.reply('Pong!');
-            })
-            .setHalt(async data => {
-                const interaction = data.executeData.interaction;
-                const reply = {
-                    content: 'An error occured while executing this command',
-                    ephemeral: true
-                };
+export class MyErrorCommandHalt {
+    id = 'my.errorhandler';
+    disabled = false; // Defaults to false when not defined
 
-                switch (data.reason) {
-                    case CommandHaltReason.Error:
-                        if (interaction.deferred) {
-                            await interaction.editReply(reply);
-                        } else if (interaction.replied) {
-                            await interaction.followUp(reply);
-                        } else {
-                            await interaction.reply(reply);
-                        }
-                }
-            })
-    ];
-}
+    errorMessage =  `An error occured while executing this command`;
 
-export default new MyModule();
+    contextMenuCommandHalt(data) {
+        if (data.reason !== CommandHaltReason.Error) return;
+
+        const interaction = data.executeData.interaction;
+        if (interaction.replied || interaction.deferred) {
+            await interaction.editReply(content);
+        } else {
+            await interaction.reply(content);
+        }
+
+        return true;
+    }
+
+    messageCommandHalt(data) {
+        if (data.reason !== CommandHaltReason.Error) return;
+
+        await data.executeData.message.reply(content);
+        return true;
+    }
+
+    slashCommandHalt(data) {
+        if (data.reason !== CommandHaltReason.Error) return;
+
+        const interaction = data.executeData.interaction;
+        if (interaction.replied || interaction.deferred) {
+            await interaction.editReply(content);
+        } else {
+            await interaction.reply(content);
+        }
+
+        return true;
+    }
+};
+
+export default new MyErrorCommandHalt();
 ```
 
-When a command fails, the code above will send a message rather than terminating the bot process.
+`contextMenuCommandHalt`, `messageCommandHalt`, and `slashCommandHalt` are the functions that will handle the command halt.
+- Return `true` if the halt is handled
+- `false|string|Error` if it fails
+- `null|undefined` to pass the command halt trigger to the next command halt.
+
+> Learn more about command halt data structure. [View Docs](/docs/core/main/interfaces:CommandHaltData)
+
+## Global Scope Command Halt
+
+To use the command halt that we made, you can import it in your config file and add it to the `commandHalts` array.
+
+```js
+import MyErrorHandler from './halts/error-handler.js';
+
+export const config = {
+    /// ...other config...
+    commandHalts: [MyErrorHandler]
+};
+```
+
+## Command Scope Command Halt
+
+Alternatively, you can add it to a single command using the [`.addHalts()`](/docs/core/main/classes:BaseCommandBuilder#addhalts) or [`.setHalts()`](/docs/core/main/classes:BaseCommandBuilder#sethalts) methods.
+
+```js
+import { SlashCommandBuilder } from 'reciple';
+import MyErrorHandler from '../halts/error-handler.js';
+
+new SlashCommandBuilder()
+    .setName('ping')
+    .setDescription('Pong command')
+    .setPreconditions(MyErrorHandler)
+    .setExecute(async ({ interaction }) => {
+        await interaction.reply('Pong!');
+    })
+```
+
+Now, when a command fails, the code above will send a message rather than terminating the bot process.
 
 <discord-messages>
     <discord-message profile="bot" ephemeral>
@@ -70,179 +114,4 @@ When a command fails, the code above will send a message rather than terminating
     </discord-message>
 </discord-messages>
 
-## Global Command Halt
-To set a global command halt to every commands, you'll need to set halt to every commands that are in the client.
-
-First, create a new module with an event listener that runs when modules are loaded, and then combine all commands into an array.
-```js
-export class GlobalCommandHalt {
-    versions = ['^8'];
-
-    async onStart() {
-        return true;
-    }
-
-    async onLoad({ client }) {
-        client.modules.on('loadedModules', async () => {
-            const commands = [...client.commands.contextMenuCommands.values(), ...client.commands.messageCommands.values(), ...client.commands.slashCommands.values()];
-            await this.addHaltToCommands(commands);
-        });
-    }
-
-    async addHaltToCommands(commands) {}
-
-    async handleCommandHalt(haltData) {}
-}
-
-export default new GlobalCommandHalt()
-```
-
-After that, implement the method for adding command halt functions to all commands and merge existing halts of the commands in the array.
-```js
-export class GlobalCommandHalt {
-    // ...Previous code here...
-
-    async addHaltToCommands(commands) {
-        for (const command of commands) {
-            const originalHalt = command.halt;
-            const newHalt = async haltData => {
-                const handled = originalHalt ? await originalHalt(haltData) : false;
-                if (handled) return true;
-
-                return this.handleCommandHalt(haltData);
-            }
-
-            // Apply the halt function
-            command.setHalt(newHalt);
-        }
-    }
-}
-
-export default new GlobalCommandHalt()
-```
-
-`addHaltToCommands` will iterate through the commands, merging any halt functions that exist.
-
-Finally, implement the method that will be used as the global command halt. After that, the command halt will be automatically added to your commands.
-```js
-import { inlineCode, time } from 'discord.js';
-
-export class GlobalCommandHalt {
-    // ...Previous code here...
-
-    async handleCommandHalt(haltData) {
-        // Create a reply function
-        const createResponse = haltData.commandType === CommandType.MessageCommand
-            ? options => haltData.executeData.message.reply(options)
-            : haltData.executeData.interaction.deferred
-                ? options => haltData.executeData.interaction.editReply(options)
-                : haltData.executeData.interaction.replied
-                    ? options => haltData.executeData.interaction.followUp(options)
-                    : options => haltData.executeData.interaction.reply(options);
-
-        // Create the base of replies
-        let replyOptions = { ephemeral: true };
-
-        switch(haltData.reason) {
-            case CommandHaltReason.Cooldown:
-                replyOptions.content = `Slow down! the command can be used again ${time(haltData.cooldown.endsAt, 'R')}`;
-                await createResponse(replyOptions);
-                return true;
-            case CommandHaltReason.Error:
-                replyOptions.content = 'An error occured while executing this command';
-                await createResponse(replyOptions);
-                return true;
-            case CommandHaltReason.InvalidArguments:
-                const invalidArgs = haltData.invalidOptions.map(a => inlineCode(a.name));
-                replyOptions.content = `Invalid value given to option(s) ${invalidArgs.join(' ')}`;
-                await createResponse(replyOptions);
-                return true;
-            case CommandHaltReason.MissingArguments:
-                const missingArgs = haltData.missingOptions.map(a => inlineCode(a.name));
-                replyOptions.content = `Missing required argument(s) ${missingArgs.join(' ')}`;
-                await createResponse(replyOptions);
-                return true;
-        }
-
-        return false;
-    }
-}
-
-export default new GlobalCommandHalt()
-```
-
-`handleCommandHalt` is the command halt function which handles all command halt data for all command types such as context menu, message, and slash commands.
-
-### Resulting Code
-```js
-import { inlineCode, time } from 'discord.js';
-
-export class GlobalCommandHalt {
-    versions = ['^8'];
-
-    async onStart() {
-        return true;
-    }
-
-    async onLoad({ client }) {
-        client.modules.on('loadedModules', async () => {
-            const commands = [...client.commands.contextMenuCommands.values(), ...client.commands.messageCommands.values(), ...client.commands.slashCommands.values()];
-            await this.addHaltToCommands(commands);
-        });
-    }
-
-    async addHaltToCommands(commands) {
-        for (const command of commands) {
-            const originalHalt = command.halt;
-            const newHalt = async haltData => {
-                const handled = originalHalt ? await originalHalt(haltData) : false;
-                if (handled) return true;
-
-                return this.handleCommandHalt(haltData);
-            }
-
-            // Apply the halt function
-            command.setHalt(newHalt);
-        }
-    }
-
-    async handleCommandHalt(haltData) {
-        // Create a reply function
-        const createResponse = haltData.commandType === CommandType.MessageCommand
-            ? options => haltData.executeData.message.reply(options)
-            : haltData.executeData.interaction.deferred
-                ? options => haltData.executeData.interaction.editReply(options)
-                : haltData.executeData.interaction.replied
-                    ? options => haltData.executeData.interaction.followUp(options)
-                    : options => haltData.executeData.interaction.reply(options);
-
-        // Create the base of replies
-        let replyOptions = { ephemeral: true };
-
-        switch(haltData.reason) {
-            case CommandHaltReason.Cooldown:
-                replyOptions.content = `Slow down! the command can be used again ${time(haltData.cooldown.endsAt, 'R')}`;
-                await createResponse(replyOptions);
-                return true;
-            case CommandHaltReason.Error:
-                replyOptions.content = 'An error occured while executing this command';
-                await createResponse(replyOptions);
-                return true;
-            case CommandHaltReason.InvalidArguments:
-                const invalidArgs = haltData.invalidOptions.map(a => inlineCode(a.name));
-                replyOptions.content = `Invalid value given to option(s) ${invalidArgs.join(' ')}`;
-                await createResponse(replyOptions);
-                return true;
-            case CommandHaltReason.MissingArguments:
-                const missingArgs = haltData.missingOptions.map(a => inlineCode(a.name));
-                replyOptions.content = `Missing required argument(s) ${missingArgs.join(' ')}`;
-                await createResponse(replyOptions);
-                return true;
-        }
-
-        return false;
-    }
-}
-
-export default new GlobalCommandHalt()
-```
+> You can disable a global or command scope halts from a command using [`.addDisabledHalts()`](/docs/core/main/classes:BaseCommandBuilder#adddisabledhalts) or [`.setDisabledHalts()`](/docs/core/main/classes:BaseCommandBuilder#setdisabledhalts). Just pass the id of the halt you want to disable to the arguments of this method to not use them.
