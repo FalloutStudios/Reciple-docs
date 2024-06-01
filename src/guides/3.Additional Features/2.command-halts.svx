@@ -114,4 +114,4 @@ Now, when a command fails, the code above will send a message rather than termin
     </discord-message>
 </discord-messages>
 
-> You can disable a global or command scope halts from a command using .addDisabledHalts() or .setDisabledHalts(). Just pass the id of the halt you want to disable to the arguments of this method to not use them.
+> You can disable a global or command scope halts from a command using [`.addDisabledHalts()`](/docs/core/main/classes:BaseCommandBuilder#adddisabledhalts) or [`.setDisabledHalts()`](/docs/core/main/classes:BaseCommandBuilder#setdisabledhalts). Just pass the id of the halt you want to disable to the arguments of this method to not use them.

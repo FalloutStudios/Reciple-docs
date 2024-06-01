@@ -42,8 +42,8 @@ import path from 'node:path';
 // ...Previous Code Here...
 
 // Read config file
-const config = (await ConfigReader.readConfigJS(cli.options.config)).config;
-const logsFolder = process.env.LOGS_FOLDER ?? path.join(process.cwd(), (config.logger.logToFile.logsFolder || 'logs'));
+const config = (await ConfigReader.readConfigJS(cli.options.config ?? 'reciple.mjs')).config;
+const logsFolder = process.env.LOGS_FOLDER ?? path.join(process.cwd(), ((typeof config.logger?.logToFile !== 'function' ? config.logger?.logToFile.logsFolder : null) ?? 'logs'));
 ```
 
 After that, we will create the sharding manager's logger.
@@ -207,8 +207,8 @@ process.chdir(cli.cwd);
 loadEnv({ path: cli.options.env });
 
 // Read config file
-const config = (await ConfigReader.readConfigJS(cli.options.config)).config;
-const logsFolder = process.env.LOGS_FOLDER ?? path.join(process.cwd(), (config.logger.logToFile.logsFolder || 'logs'));
+const config = (await ConfigReader.readConfigJS(cli.options.config ?? 'reciple.mjs')).config;
+const logsFolder = process.env.LOGS_FOLDER ?? path.join(process.cwd(), ((typeof config.logger?.logToFile !== 'function' ? config.logger?.logToFile.logsFolder : null) ?? 'logs'));
 
 // Create the sharding manager's logger
 const logger = await (await createLogger({
