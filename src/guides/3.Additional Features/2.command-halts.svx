@@ -36,9 +36,9 @@ export class MyErrorCommandHalt {
 
         const interaction = data.executeData.interaction;
         if (interaction.replied || interaction.deferred) {
-            await interaction.editReply(content);
+            await interaction.editReply(this.errorMessage);
         } else {
-            await interaction.reply(content);
+            await interaction.reply(this.errorMessage);
         }
 
         return true;
@@ -47,7 +47,7 @@ export class MyErrorCommandHalt {
     messageCommandHalt(data) {
         if (data.reason !== CommandHaltReason.Error) return;
 
-        await data.executeData.message.reply(content);
+        await data.executeData.message.reply(this.errorMessage);
         return true;
     }
 
@@ -56,9 +56,9 @@ export class MyErrorCommandHalt {
 
         const interaction = data.executeData.interaction;
         if (interaction.replied || interaction.deferred) {
-            await interaction.editReply(content);
+            await interaction.editReply(this.errorMessage);
         } else {
-            await interaction.reply(content);
+            await interaction.reply(this.errorMessage);
         }
 
         return true;
