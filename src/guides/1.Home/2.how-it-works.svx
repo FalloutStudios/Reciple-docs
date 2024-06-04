@@ -32,8 +32,7 @@ export const config = {
     <code>dirs</code> can accept <a href="https://en.wikipedia.org/wiki/Glob_(programming)">glob</a> patterns
 </Alert>
 
-Here's an example project directory. Reciple can load CommonJs and ESM modules at the same time.
-
+Here's an example project directory. Reciple will load modules from the specified folders.
 ```
 reciple-app/
 ├── reciple.mjs
@@ -41,9 +40,8 @@ reciple-app/
 ├── package-lock.json
 ├── node_modules/
 └── modules/
-    ├── testModule.js
-    ├── commonjsModule.cjs
-    └── esModule.mjs
+    ├── module.js
+    └── module.mjs
 ```
 
 ## Schema
