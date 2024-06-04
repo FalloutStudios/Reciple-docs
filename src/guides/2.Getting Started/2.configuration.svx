@@ -100,11 +100,13 @@ Just like the context menu and slash commands' config, you can also configure bo
 
 ```js
 export const config = {
-    enabled: true,
-    allowRegisterGlobally: true,
-    allowRegisterToGuilds: true,
-    registerEmptyCommands: true,
-    registerToGuilds: []
+    applicationCommandRegister: {
+        enabled: true,
+        allowRegisterGlobally: true,
+        allowRegisterToGuilds: true,
+        registerEmptyCommands: true,
+        registerToGuilds: []
+    }
 };
 ```
 
@@ -136,14 +138,16 @@ This config allows you to configure the [`Logger`](/docs/core/main/classes:Logge
 
 ```js
 export const config = {
-    enabled: true,
-    debugmode: null,
-    coloredMessages: true,
-    disableLogPrefix: false,
-    logToFile: {
+    logger: {
         enabled: true,
-        logsFolder: './logs',
-        file: 'latest.log'
+        debugmode: null,
+        coloredMessages: true,
+        disableLogPrefix: false,
+        logToFile: {
+            enabled: true,
+            logsFolder: './logs',
+            file: 'latest.log'
+        }
     }
 };
 ```
@@ -160,10 +164,12 @@ This configuration allows you to change the directory where modules are stored a
 
 ```js
 export const config = {
-    dirs: ['./modules'],
-    exclude: [],
-    filter: file => true,
-    disableModuleVersionCheck: false
+    modules: {
+        dirs: ['./modules'],
+        exclude: [],
+        filter: file => true,
+        disableModuleVersionCheck: false
+    }
 };
 ```
 
