@@ -66,8 +66,6 @@ class MyModule {
 
 // ESM
 export default new MyModule();
-// CJS
-module.exports = new MyModule();
 ```
 
 ## Id
