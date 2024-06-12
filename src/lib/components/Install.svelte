@@ -6,14 +6,15 @@
 
     const installScripts = {
         npm: 'npm create reciple@latest',
+        bun: 'bun create reciple@latest',
         yarn: 'yarn create reciple@latest',
         pnpm: 'pnpm create reciple@latest'
     };
 
-    let packageManager: keyof typeof installScripts = 'npm';
+    let packageManager = 'npm';
     let copied: boolean = false;
 
-    $: command = installScripts[packageManager];
+    $: command = installScripts[packageManager as keyof typeof installScripts];
 
     async function copyCommand(): Promise<void> {
         if (copied) return;
@@ -98,9 +99,9 @@
 
 <div class="install-command container">
     <div class="tabs">
-        <button class:active={packageManager == 'npm'} class="tab npm" on:click={(() => packageManager = 'npm')}>npm</button>
-        <button class:active={packageManager == 'yarn'} class="tab yarn" on:click={(() => packageManager = 'yarn')}>yarn</button>
-        <button class:active={packageManager == 'pnpm'} class="tab pnpm" on:click={(() => packageManager = 'pnpm')}>pnpm</button>
+        {#each Object.keys(installScripts) as key}
+            <button class:active={packageManager == key} class="tab {key}" on:click={(() => packageManager = key)}>{key}</button>
+        {/each}
     </div>
     <div class="content">
         <span class="icon"><Icon icon={caretRightBoldIcon}/></span>
