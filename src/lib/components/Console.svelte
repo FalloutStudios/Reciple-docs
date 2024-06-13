@@ -1,7 +1,7 @@
 <script lang="ts">
     import { onMount, onDestroy } from 'svelte';
     import { consolePrefix, consoleSteps } from '../scripts/config';
-    import { sleep } from '../scripts/helpers';
+    import { isVisibleInViewport, sleep } from '../scripts/helpers';
 
     let console: HTMLPreElement;
     let index: number|null = 0;
@@ -48,7 +48,7 @@
             if (step.delay) await sleep(step.delay);
         }
 
-        element.scrollIntoView({ behavior: 'delay' in step && (step.delay ?? 0) <= 499 ? 'instant' : 'smooth' })
+        if (isVisibleInViewport(element)) element.scrollIntoView({ behavior: 'delay' in step && (step.delay ?? 0) <= 499 ? 'instant' : 'smooth' })
 
         index++;
         if (index > consoleSteps.length) return;

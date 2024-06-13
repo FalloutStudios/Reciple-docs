@@ -93,7 +93,7 @@
 
             .install {
                 width: 50%;
-                height: 340px;
+                height: 400px;
                 flex-shrink: 0;
                 display: flex;
                 align-items: center;
@@ -172,12 +172,8 @@
             </div>
         </div>
         <div class="install">
-            {#if isMobile()}
-                <Install/>
-            {:else}
-                <Console/>
-                <Install/>
-            {/if}
+            {#if !isMobile()}<Console/>{/if}
+            <Install/>
         </div>
     </div>
     <Brandings/>

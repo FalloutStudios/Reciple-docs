@@ -54,10 +54,18 @@
                 letter-spacing: 0.1rem;
                 text-transform: uppercase;
                 border: none;
+                display: flex;
+                align-items: center;
+                justify-content: center;
 
                 &.active {
                     color: lighten($color: $link, $amount: 10);
                     font-weight: 600;
+                }
+
+                :global(.icon) {
+                    font-size: 1.1rem;
+                    margin-right: 0.5rem;
                 }
             }
         }
@@ -100,7 +108,18 @@
 <div class="install-command container">
     <div class="tabs">
         {#each Object.keys(installScripts) as key}
-            <button class:active={packageManager == key} class="tab {key}" on:click={(() => packageManager = key)}>{key}</button>
+            <button class:active={packageManager == key} class="tab {key}" on:click={(() => packageManager = key)}>
+                {#if key == 'npm'}
+                    <Icon icon="icomoon-free:npm" class="icon"/>
+                {:else if key == 'bun'}
+                    <Icon icon="simple-icons:bun" class="icon"/>
+                {:else if key == 'yarn'}
+                    <Icon icon="file-icons:yarn" class="icon"/>
+                {:else if key == 'pnpm'}
+                    <Icon icon="devicon-plain:pnpm" class="icon"/>
+                {/if}
+                {key}
+            </button>
         {/each}
     </div>
     <div class="content">

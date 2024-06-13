@@ -391,3 +391,14 @@ export function createVariableTypeSnipper(data: { docs: DocsParser; package: str
 export function sleep(ms: number): Promise<NodeJS.Timeout> {
     return new Promise((res) => setTimeout(res, ms));
 }
+
+export function isVisibleInViewport(element: HTMLElement): boolean {
+    const rect = element.getBoundingClientRect();
+
+    return (
+        rect.top >= 0 &&
+        rect.left >= 0 &&
+        rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+        rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+    );
+}
