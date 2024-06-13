@@ -7,6 +7,7 @@ import type { PageLoad } from './$types';
 export interface PackageQueryLoadData extends Omit<PackageTagLoadData, 'pages'> {
     tag: string;
     selected: number;
+    hash?: string;
 }
 
 export const load = (async data => {

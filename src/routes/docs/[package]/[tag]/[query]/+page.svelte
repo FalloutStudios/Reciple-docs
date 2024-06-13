@@ -21,17 +21,15 @@
     import symbolParameter from '@iconify/icons-codicon/symbol-parameter';
     import { Colors } from '$lib/scripts/config';
     import Pill from '$lib/components/docs/Pill.svelte';
+    import { page } from '$app/stores';
 
     export let data: PackageQueryLoadData;
 
     $: selected = (data.docs.data?.find(data.selected) ?? undefined) as AnyDocsElement;
-
-    let hash: string|null = null;
+    $: hash = $page.url.hash.substring(1);
 
     onMount(() => {
         if (!selected) throw error(404);
-
-        hash = typeof window !== 'undefined' ? window.location.hash.substring(1) : null
     });
 </script>
 <svelte:head>

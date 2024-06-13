@@ -101,7 +101,7 @@
             <span class="caret"><Icon icon={caretDownIcon}/></span>
         </button>
         {#if open}
-            <div class="accordion-content" class:hr={hr} transition:slide={{ axis: "y", duration: 300 }}><slot/></div>
+            <div class="accordion-content" class:hr={hr} transition:slide={{ axis: "y", duration: 300, delay: 1 }}><slot/></div>
         {/if}
     </div>
 </div>
