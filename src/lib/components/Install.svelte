@@ -43,6 +43,7 @@
 
         .tabs {
             display: flex;
+            overflow: auto;
 
             .tab {
                 width: 100%;

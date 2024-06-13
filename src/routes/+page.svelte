@@ -7,6 +7,13 @@
     import externalLinkIcon from '@iconify/icons-tabler/external-link';
     import Console from '../lib/components/Console.svelte';
     import isMobile from 'is-mobile';
+    import { onMount } from 'svelte';
+
+    let mobile = true;
+
+    onMount(() => {
+        mobile = isMobile();
+    })
 </script>
 
 <style lang="scss">
@@ -172,7 +179,7 @@
             </div>
         </div>
         <div class="install">
-            {#if !isMobile()}<Console/>{/if}
+            {#if !mobile}<Console/>{/if}
             <Install/>
         </div>
     </div>
