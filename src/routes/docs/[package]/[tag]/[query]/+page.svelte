@@ -26,8 +26,12 @@
 
     $: selected = (data.docs.data?.find(data.selected) ?? undefined) as AnyDocsElement;
 
+    let hash: string|null = null;
+
     onMount(() => {
         if (!selected) throw error(404);
+
+        hash = typeof window !== 'undefined' ? window.location.hash.substring(1) : null
     });
 </script>
 <svelte:head>
@@ -84,8 +88,9 @@
                 {@const isAbstract = 'abstract' in member && member.abstract}
                 {@const deprecationMessage = isElementDeprecated(member) ? getElementBlocktag(member, 'deprecated') : null}
                 {@const description = getElementDescription(member)}
+                {@const memberSlug = slug((isStatic ? 'static-' : '') + member.name)}
                 <Member hr={!!index}>
-                    <Header id={slug((isStatic ? 'static-' : '') + member.name)}>
+                    <Header id={memberSlug}>
                         <code class:deprecated={!!deprecationMessage}>{member.name}()</code>
                     </Header>
                     <div class="content">
@@ -106,7 +111,7 @@
                         {#if description}
                             <Markdown class="member-description" content={description}/>
                         {/if}
-                        <Accordion name="Parameters" open={false} hr={false} icon={symbolParameter}>
+                        <Accordion name="Parameters" open={!!hash && hash === memberSlug} hr={false} icon={symbolParameter}>
                             <SignatureTable signatures={member.signatures} {data}/>
                         </Accordion>
                     </div>
