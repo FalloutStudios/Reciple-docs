@@ -22,6 +22,11 @@ export const parsers = {
         package: 'utils',
         npm: '@reciple/utils',
     }),
+    'message-command-utils': new DocsParser({
+        ...defaultDocsParserOptions,
+        package: 'message-command-utils',
+        npm: '@reciple/message-command-utils',
+    }),
     'create-reciple': new DocsParser({
         ...defaultDocsParserOptions,
         package: 'create-reciple',
