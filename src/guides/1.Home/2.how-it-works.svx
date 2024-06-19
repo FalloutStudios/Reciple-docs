@@ -19,8 +19,8 @@ Reciple modules are saved in the folder specified in the `reciple.mjs` config.
 export const config = {
     // other things
     modules: {
-        dirs: ['./modules'], // scans the modules folder
-        exclude: [],
+        dirs: ['./modules', './modules/*', './modules/*/*'],
+        exclude: ['halts', 'preconditions', '_*'],
         filter: file => true,
         disableModuleVersionCheck: false
     },
@@ -32,16 +32,24 @@ export const config = {
     <code>dirs</code> can accept <a href="https://en.wikipedia.org/wiki/Glob_(programming)">glob</a> patterns
 </Alert>
 
-Here's an example project directory. Reciple will load modules from the specified folders.
+Here's an example project directory. Reciple will load modules from the specified folders and ignores `halts`, `preconditions`, and any file or folders that starts with an underscore ` _ `.
 ```
-reciple-app/
+mybot/
 ├── reciple.mjs
 ├── package.json
 ├── package-lock.json
-├── node_modules/
+├── node_modules
 └── modules/
-    ├── module.js
-    └── module.mjs
+    ├── addons/
+    │   └── ....
+    ├── commands/
+    │   └── PingCommand.js
+    ├── events/
+    │   └── WelcomeEvent.js
+    ├── halts/
+    │   └── CommandErrorHalt.js
+    └── preconditions/
+        └── ExamplePrecondition.js
 ```
 
 ## Schema

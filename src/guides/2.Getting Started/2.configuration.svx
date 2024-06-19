@@ -165,8 +165,8 @@ This configuration allows you to change the directory where modules are stored a
 ```js
 export const config = {
     modules: {
-        dirs: ['./modules'],
-        exclude: [],
+        dirs: ['./modules', './modules/*', './modules/*/*'],
+        exclude: ['halts', 'preconditions', '_*'],
         filter: file => true,
         disableModuleVersionCheck: false
     }
@@ -184,8 +184,8 @@ Preconditions are functions that are executed before a command execution, and it
 ```js
 export const config = {
     preconditions: [
-        CooldownPrecondition.create(),
-        CommandPermissionsPrecondition.create()
+        new CooldownPrecondition(),
+        new CommandPermissionsPrecondition()
     ]
 };
 ```

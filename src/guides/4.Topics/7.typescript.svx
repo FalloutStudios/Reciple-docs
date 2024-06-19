@@ -14,8 +14,18 @@ mybot/
 ├── tsconfig.json
 ├── package.json
 ├── package-lock.json
-├── node_modules/
+├── node_modules
 └── src/
+    ├── addons/
+    │   └── ....
+    ├── commands/
+    │   └── PingCommand.ts
+    ├── events/
+    │   └── WelcomeEvent.ts
+    ├── halts/
+    │   └── CommandErrorHalt.ts
+    └── preconditions/
+        └── ExamplePrecondition.ts
 ```
 
 When you used the JavaScript project, you'll notice that the `modules` folder is replaced with `src`, that's because TypeScript will automatically generate the JavaScript version of your modules into that directory during transpilation.
@@ -23,16 +33,6 @@ When you used the JavaScript project, you'll notice that the `modules` folder is
 ## Writting Modules
 
 When writting modules, your modules directory by default is set to `src` and instead of `.js` we will use `.ts`.
-```
-mybot/
-├── reciple.mjs
-├── tsconfig.json
-├── package.json
-├── package-lock.json
-├── node_modules/
-└── src/
-    └── mymodule.ts
-```
 
 The way you code your modules may change, but not significantly. For example, here's how to write a Ping command in TypeScript.
 ```ts
@@ -57,18 +57,3 @@ export default new PingCommand();
 ```
 
 As you can see, it is best to explicitly type your properties and returns of a function.
-
-## Precondition and Halts Folder
-
-With typescript, you need to create the preconditions and halts folder in a subdirectory of your `src` directory. For example `src/preconditions` or `src/halts`.
-
-To ignore your precondition and halts folder, just add the folder names in `modules.exclude` found in your `reciple.mjs`.
-
-```js
-export const config = {
-    // ...other config...
-    modules: {
-        exclude: ['preconditions', 'halts']
-    }
-};
-```

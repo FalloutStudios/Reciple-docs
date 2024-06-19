@@ -100,15 +100,28 @@ mybot/
 ├── reciple.mjs
 ├── package.json
 ├── package-lock.json
-├── node_modules/
+├── node_modules
 └── modules/
+    ├── addons/
+    │   └── ....
+    ├── commands/
+    │   └── PingCommand.js
+    ├── events/
+    │   └── WelcomeEvent.js
+    ├── halts/
+    │   └── CommandErrorHalt.js
+    └── preconditions/
+        └── ExamplePrecondition.js
 ```
 
 <Alert type='warning' title='WARNING'>
     Reciple is an ESM only package, this means we will be using <code>import</code> statements instead of <code>require</code>
 </Alert>
+<Alert type='info' title='INFO'>
+    All modules folder (excluding the <code>halts</code> and <code>preconditions</code>) can contain any module that handles command or events. The folder names are just for categorization.
+</Alert>
 
-As you can see, there is no `index.js` or main file because the Reciple CLI handles everything for you. You can start your bot with these `npm` scripts.
+As you can see, there is no `index.js` or main file because the Reciple CLI handles everything for you. You can start your bot with these `npm` scripts. Except for `halts` and `preconditions`, all folders inside the modules folder are treated as module folders and subfolders by default.
 ```sh
 npm run dev # Will start a watch mode with nodemon
 npm run start # Starts the bot

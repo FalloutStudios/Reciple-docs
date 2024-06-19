@@ -20,7 +20,7 @@ There are different types of command halts that serves their own purposes.
 
 Command halts are identified using the [`.reason`](/docs/core/main/interfaces:BaseCommandHaltData) property that uses the [`CommandHaltReason`](/docs/core/main/enums:CommandHaltReason) enum.
 
-To create a command halt, create a new file in a folder that is **not** your modules folder. In this case we will use `./halts/error-handler.js`. Inside that file export the command halt data.
+To create a command halt, create a new file in a folder that is **NOT** your modules folder. In this case we will use `./modules/halts/error-handler.js`. Inside that file export the command halt data.
 
 ```js
 import { CommandHaltReason, CommandType } from 'reciple';
@@ -64,8 +64,6 @@ export class MyErrorCommandHalt {
         return true;
     }
 };
-
-export default new MyErrorCommandHalt();
 ```
 
 `contextMenuCommandHalt`, `messageCommandHalt`, and `slashCommandHalt` are the functions that will handle the command halt.
@@ -80,11 +78,13 @@ export default new MyErrorCommandHalt();
 To use the command halt that we made, you can import it in your config file and add it to the `commandHalts` array.
 
 ```js
-import MyErrorHandler from './halts/error-handler.js';
+import { MyErrorHandler } from './modules/halts/error-handler.js';
 
 export const config = {
     /// ...other config...
-    commandHalts: [MyErrorHandler]
+    commandHalts: [
+        new MyErrorHandler()
+    ]
 };
 ```
 
@@ -94,12 +94,12 @@ Alternatively, you can add it to a single command using the [`.addHalts()`](/doc
 
 ```js
 import { SlashCommandBuilder } from 'reciple';
-import MyErrorHandler from '../halts/error-handler.js';
+import { MyErrorHandler } from '../halts/error-handler.js';
 
 new SlashCommandBuilder()
     .setName('ping')
     .setDescription('Pong command')
-    .setPreconditions(MyErrorHandler)
+    .setPreconditions(new MyErrorHandler())
     .setExecute(async ({ interaction }) => {
         await interaction.reply('Pong!');
     })

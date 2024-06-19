@@ -9,7 +9,7 @@ title: Preconditions
 
 Preconditions are functions that are executed before the command is executed. This is most useful when adding permissions to your commands or creating custom cooldowns.
 
-You can create your own precondition by creating a new JavaScript file that is not in your modules folder. In this case we will use `./preconditions/precondition.js`. In this file we will create an object that satisfies [precondition schema](/docs/core/main/interfaces:CommandPreconditionData).
+You can create your own precondition by creating a new JavaScript file that is **NOT** in your modules folder. In this case we will use `./modules/preconditions/precondition.js`. In this file we will create an object that satisfies [precondition schema](/docs/core/main/interfaces:CommandPreconditionData).
 ```js
 export class MyPrecondition {
     id = 'my.precondition.lol';
@@ -25,8 +25,6 @@ export class MyPrecondition {
         return !interaction.user.username.includes('cat');
     }
 };
-
-export default new MyPrecondition();
 ```
 This example precondition will not execute a command when used by someone with a username that contains `cat`.
 <Alert type="info" title="INFO">
@@ -38,12 +36,12 @@ Now to use this precondition, we can choose between global or command scope prec
 ## Global Scope Precondition
 With global preconditions, preconditions are added in to the config file.
 ```js
-import MyPrecondition from './preconditions/precondition.js';
+import { MyPrecondition } from './modules/preconditions/precondition.js';
 
 export const config = {
     // Add the precondition where it belongs
     preconditions: [
-        MyPrecondition
+        new MyPrecondition()
     ]
 };
 ```
@@ -53,12 +51,12 @@ With command scoped preconditions, preconditions are added to the individual com
 
 ```js
 import { SlashCommandBuilder } from 'reciple';
-import MyPrecondition from '../preconditions/precondition.js';
+import { MyPrecondition } from '../preconditions/precondition.js';
 
 new SlashCommandBuilder()
     .setName('ping')
     .setDescription('Pong command')
-    .setPreconditions(MyPrecondition)
+    .setPreconditions(new MyPrecondition())
     .setExecute(async ({ interaction }) => {
         await interaction.reply('Pong!');
     })

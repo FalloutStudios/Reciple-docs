@@ -12,7 +12,8 @@ To get started, configure your modules directory in your `reciple.mjs` to also s
 export const config = {
     // ...other config...
     modules: {
-        dirs: ['./modules', './modules/*']
+        dirs: ['./modules', './modules/*', './modules/*/*'],
+        exclude: ['halts', 'preconditions', '_*'],
     }
 };
 ```

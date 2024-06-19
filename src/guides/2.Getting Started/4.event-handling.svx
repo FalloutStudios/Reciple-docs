@@ -2,10 +2,18 @@
 title: Event Handling
 ---
 
+<script lang="ts">
+    import Alert from '$lib/components/Alert.svelte';
+</script>
+
 # Event Handling
 Rather than creating a separate file for events, Reciple allows you to create them within the module containing your command or another module.
 
-You can add an event listener using the `client` property passed to the `onStart` method of your module.
+You can add an event listener using the `client` property passed to the `onStart` method of your module. You can create a separate event module by creating a new file in the `./modules/events` folder.
+
+<Alert type='info' title='INFO'>
+    You can create a subfolders for the <code>events</code> folder so your event files doesn't end up in the same place.
+</Alert>
 
 ```js
 export class MyModule {

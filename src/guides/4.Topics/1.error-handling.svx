@@ -9,7 +9,7 @@ Using our external package [`reciple-anticrash`](https://npmjs.org/package/recip
 ### Two ways to install `reciple-anticrash`
 - Select the addon `reciple-anticrash` when creating the bot project using `npm create reciple@latest`
 - Install the package `reciple-anticrash` using `npm i reciple-anticrash`.
-  - Then create a new module in your modules folder. In this case we will name it `interaction-handler.js`.
+  - Then create a new module in your `addons` folder. In this case we will name it `interaction-handler.js`.
     ```js
     import { RecipleAnticrash } from 'reciple-anticrash';
     export default new RecipleAnticrash();
