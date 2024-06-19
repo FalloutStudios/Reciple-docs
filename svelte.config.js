@@ -2,6 +2,7 @@
 import adapter from '@sveltejs/adapter-vercel';
 import { vitePreprocess } from '@sveltejs/vite-plugin-svelte';
 import remarkHeaderId from 'remark-heading-id';
+import remarkGitHub from 'remark-github';
 import { mdsvex } from 'mdsvex';
 
 /** @type {import('@sveltejs/kit').Config} */
@@ -11,8 +12,10 @@ const config = {
 	preprocess: [
 		vitePreprocess(),
 		mdsvex({
-			// @ts-expect-error
-			remarkPlugins: [[remarkHeaderId, { defaults: true }]]
+			remarkPlugins: [
+				[remarkHeaderId, { defaults: true }],
+				[remarkGitHub, { repository: 'thenorthsolution/reciple' }]
+			],
 		})
 	],
 	kit: {
