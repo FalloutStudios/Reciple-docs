@@ -1,18 +1,6 @@
 <script lang="ts">
-    import { afterNavigate, beforeNavigate } from '$app/navigation';
     import '$lib/styles/main.scss';
-
-    let ready = true;
-
-    beforeNavigate(() => ready = false);
-    afterNavigate(() => ready = true);
+  import NavigationLoader from '../lib/components/NavigationLoader.svelte';
 </script>
-{#if !ready}
-<style>
-    html {
-        overflow: hidden;
-    }
-</style>
-<div class="page-loader"><div class="progress"></div></div>
-{/if}
+<NavigationLoader/>
 <slot/>
