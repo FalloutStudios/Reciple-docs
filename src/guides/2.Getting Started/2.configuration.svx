@@ -27,8 +27,10 @@ By default, Reciple will create your Discord bot and use the `TOKEN` environment
     It is not recommended to add your Discord bot token directly in your configuration file.
 </Alert>
 
+*****
+
 ## Commands
-You can also disable specific command types and their related features such as cooldowns. Command configuration also allows you to specify which guild the application commands should be registered to.
+You can also disable specific command types and their related features such as cooldowns. Command configuration also allows you to specify which guild the application commands should be registered to.
 
 ## Application Commands
 The application commands are the context menus and slash commands.
@@ -95,6 +97,8 @@ export const config = {
     </discord-message>
 </discord-messages>
 
+*****
+
 ## Application Command Register
 Just like the context menu and slash commands' config, you can also configure both with `applicationCommandRegister`.
 
@@ -115,6 +119,8 @@ export const config = {
 - `registerEmptyCommands` Whether your application should register commands when empty.
 - `registerToGuilds` An array of server ID where application commands should be registered. This will not overwrite the existing command config.
 
+*****
+
 ## Client
 This configuration allows you to modify the Discord.js Client options, which include intents, cache options, and more.
 
@@ -132,6 +138,8 @@ export const config = {
 ```
 
 > **View [`ClientOptions`](https://discord.js.org/docs/packages/discord.js/14.15.2/ClientOptions:Interface) Docs**
+
+*****
 
 ## Logger
 This config allows you to configure the [`Logger`](/docs/core/main/classes:Logger).
@@ -159,6 +167,8 @@ export const config = {
   - `logsFolder` The folder where log files are saved.
   - `file` The name of the latest log file.
 
+*****
+
 ## Modules
 This configuration allows you to change the directory where modules are stored and the files that should be excluded.
 
@@ -178,6 +188,8 @@ export const config = {
 - `filter` A function that returns a boolean. This functions filters the module files to be loaded.
 - `disableModuleVersionCheck` Whether to check if the module supports the current version of Reciple.
 
+*****
+
 ## Preconditions
 Preconditions are functions that are executed before a command execution, and it determine whether the execution must continue. Built-in preconditions includes the [`CooldownPrecondition`](/docs/core/main/classes:CooldownPrecondition) and [`CommandPremissionsPermissions`](/docs/core/main/classes:CommandPremissionsPermissions).
 
@@ -192,6 +204,8 @@ export const config = {
 
 > Create your own preconditions by following the precondition schema [View Docs](/docs/core/main/interfaces:CommandPreconditionData)
 
+*****
+
 ## Command Halts
 Command halts are functions that are executed after the command is terminated. This allows you to handle command errors, cooldowns, and precondition triggers. This config sets the global command halts for every commands.
 
@@ -201,6 +215,8 @@ export const config = {
 };
 ```
 > Create your own command halt by following the command halt schema [View Docs](/docs/core/main/interfaces:CommandHaltData)
+
+*****
 
 ## Cooldown Sweeper Options
 This config allows you to modify the cooldown sweeping options.
@@ -217,6 +233,8 @@ export const config = {
 - `filter` The cooldown sweep filter function that returns a boolean when a cooldown is unused.
 - `maxAgeMs` The max age of a cooldown to be marked unused.
 
+*****
+
 ## Check For Updates
 By default, Reciple checks for updates when Reciple process is started.
 
@@ -225,6 +243,8 @@ export const config = {
     checkForUpdates: true
 };
 ```
+
+*****
 
 ## version
 <Alert type='danger' title='DANGER'>
