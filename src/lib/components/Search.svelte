@@ -8,21 +8,21 @@
     import { Tooltip } from 'flowbite-svelte';
     import { deprecatedElementSorter, getElementDisplayName, getElementHref, getElementIcon, isElementDeprecated } from '../scripts/helpers';
     import { goto } from '$app/navigation';
-    import type { PackageTagLoadData } from '../../routes/docs/[package]/[tag]/+page';
-    import type { DocsParser } from '../scripts/classes/DocsParser';
+    import { fade } from 'svelte/transition';
+    import type { SearchData } from '../scripts/types';
 
-    export let docs: PackageTagLoadData & { docs: DocsParser & { data: Exclude<DocsParser['data'], undefined> } };
     export let searchInput: HTMLInputElement|null = null;
     export let query: string = '';
     export let originalValue: string = '';
     export let selectedId: number = -1;
     export let open: boolean = false;
+    export let search: (query: string) => Promise<SearchData[]> = async () => [];
 
     const dispatcher = createEventDispatcher();
 
     let searchContainer: HTMLDivElement;
     let searchContent: HTMLDivElement;
-    let results: SearchResult[] = [];
+    let results: SearchData[] = [];
     let selectedResult: HTMLAnchorElement|null = null;
 
     let canBeClosed: boolean = true;
@@ -72,11 +72,11 @@
         selectedId = -1;
         originalValue = searchInput?.value ?? '';
 
-        inputTimer = setTimeout(() => search(), 500);
+        inputTimer = setTimeout(() => executeSearch(), 500);
     }
 
-    async function search() {
-        results = query.trim() ? (docs.docs.data?.search(query).sort((a, b) => deprecatedElementSorter(isElementDeprecated(a), isElementDeprecated(b))).splice(0, 20) ?? []) : [];
+    async function executeSearch() {
+        results = await search(query);
         loading = false;
     }
 
@@ -142,6 +142,70 @@
 
     onDestroy(() => typeof window !== 'undefined' && window.removeEventListener('keypress', searchShortcut));
 </script>
+
+{#if open}
+<div class="search-wrapper" in:fade={{ duration: 200 }} out:fade={{ duration: 200 }}>
+    <style>
+        html {
+            overflow: hidden;
+        }
+    </style>
+    <div class="search-container" bind:this={searchContainer}>
+        <div class="search-content" bind:this={searchContent}>
+            <div class="search-field">
+                <div class="search-input">
+                    <div class="search-icon">
+                        <Icon icon={searchIcon}/>
+                    </div>
+                    <input type="search" bind:this={searchInput} bind:value={query} placeholder="Search..." autocomplete="off" on:focus={() => { clear(true); open = true; }} on:blur={inputBlur} on:input={inputUpdate} on:keydown={keydown} on:keyup={keyup}>
+                    <button class="search-close" on:click={close} on:blur={inputBlur} on:focus={inputFocus}>
+                        <Icon icon={closeIcon}/>
+                    </button>
+                    <Tooltip triggeredBy=".search-close" placement="bottom-end">Close Search</Tooltip>
+                </div>
+                {#if results.length}
+                    <div class="search-results">
+                        {#each results as result, index}
+                            <a
+                                href={result.href}
+                                id="sr-{index}"
+                                on:blur={inputBlur}
+                                on:focus={inputFocus}
+                                on:click={() => { open = false; goto(result.href); }}
+                                data-name={result.name}
+                                title={(result.displayName ?? result.name) + (result.deprecated ? ' (Deprecated)' : '')}
+                                class="search-result"
+                                class:deprecated={result.deprecated}
+                                class:active={selectedId == index}
+                            >
+                                {#if result.icon}
+                                    <span class="icon">
+                                        <Icon icon={result.icon}/>
+                                    </span>
+                                {/if}
+                                <span class="name">{(result.displayName ?? result.name)}</span>
+                            </a>
+                        {/each}
+                    </div>
+                {:else if loading}
+                    <div class="search-info">
+                        <p>Loading...</p>
+                    </div>
+                {:else if !query}
+                    <div class="search-info">
+                        <p>Enter a search query</p>
+                    </div>
+                {:else}
+                    <div class="search-info">
+                        <p>No Results Found</p>
+                    </div>
+                {/if}
+            </div>
+        </div>
+    </div>
+    <Svrollbar viewport={searchContainer} contents={searchContent} alwaysVisible={true}/>
+</div>
+{/if}
 
 <style lang="scss">
     @import '../styles/variables.scss';
@@ -294,57 +358,3 @@
         }
     }
 </style>
-
-{#if open}
-<div class="search-wrapper">
-    <style>
-        html {
-            overflow: hidden;
-        }
-    </style>
-    <div class="search-container" bind:this={searchContainer}>
-        <div class="search-content" bind:this={searchContent}>
-            <div class="search-field">
-                <div class="search-input">
-                    <div class="search-icon">
-                        <Icon icon={searchIcon}/>
-                    </div>
-                    <input type="search" bind:this={searchInput} bind:value={query} placeholder="Search..." autocomplete="off" on:focus={() => { clear(true); open = true; }} on:blur={inputBlur} on:input={inputUpdate} on:keydown={keydown} on:keyup={keyup}>
-                    <button class="search-close" on:click={close} on:blur={inputBlur} on:focus={inputFocus}>
-                        <Icon icon={closeIcon}/>
-                    </button>
-                    <Tooltip triggeredBy=".search-close" placement="bottom-end">Close Search</Tooltip>
-                </div>
-                {#if results.length}
-                    <div class="search-results">
-                        {#each results as result, index}
-                            {@const displayName = getElementDisplayName(docs.docs.data, result)}
-                            {@const deprecated = 'comment' in result || 'signatures' in result ? isElementDeprecated(result) : false}
-                            {@const href = getElementHref(docs, result)}
-                            <a {href} id="sr-{index}" on:blur={inputBlur} on:focus={inputFocus} on:click={() => { open = false; goto(href); }} data-name={displayName.search} title={displayName.name + (deprecated ? ' (Deprecated)' : '')} class="search-result" class:deprecated={deprecated} class:active={selectedId == index}>
-                                <span class="icon">
-                                    <Icon icon={getElementIcon(result)}/>
-                                </span>
-                                <span class="name">{displayName.name}</span>
-                            </a>
-                        {/each}
-                    </div>
-                {:else if loading}
-                    <div class="search-info">
-                        <p>Loading...</p>
-                    </div>
-                {:else if !query}
-                    <div class="search-info">
-                        <p>Enter a search query</p>
-                    </div>
-                {:else}
-                    <div class="search-info">
-                        <p>No Results Found</p>
-                    </div>
-                {/if}
-            </div>
-        </div>
-    </div>
-    <Svrollbar viewport={searchContainer} contents={searchContent} alwaysVisible={true}/>
-</div>
-{/if}

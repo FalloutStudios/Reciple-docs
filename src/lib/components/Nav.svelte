@@ -7,6 +7,7 @@
     import type { PackageTagLoadData } from '../../routes/docs/[package]/[tag]/+page';
     import type { DocsParser } from '../scripts/classes/DocsParser';
     import '$lib/styles/nav.scss';
+  import { deprecatedElementSorter, getElementDisplayName, getElementHref, getElementIcon, isElementDeprecated } from '../scripts/helpers';
 
     export let data: PackageTagLoadData & { docs: DocsParser & { data: Exclude<DocsParser['data'], undefined> } };
 
@@ -56,5 +57,23 @@
     </div>
 </div>
 {#if data?.docs.data}
-    <Search docs={data} bind:searchInput={searchInput} bind:open={opensearch}/>
+    <Search
+        bind:searchInput={searchInput}
+        bind:open={opensearch}
+        search={async query => {
+            const results = query.trim() ? (data.docs.data?.search(query).sort((a, b) => deprecatedElementSorter(isElementDeprecated(a), isElementDeprecated(b))).splice(0, 20) ?? []) : [];
+
+            return results.map(result => {
+                const { name, displayName } = getElementDisplayName(data.docs.data, result);
+
+                return {
+                    name,
+                    displayName,
+                    icon: getElementIcon(result),
+                    deprecated: 'comment' in result || 'signatures' in result ? isElementDeprecated(result) : false,
+                    href: getElementHref(data, result)
+                };
+            });
+        }}
+    />
 {/if}

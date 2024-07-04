@@ -193,7 +193,7 @@ export function isDocsElement(element: unknown): element is AnyDocsElement {
     return element instanceof ClassParser || element instanceof  EnumParser || element instanceof  FunctionParser || element instanceof  InterfaceParser || element instanceof  TypeAliasParser || element instanceof VariableParser;
 }
 
-export function getElementDisplayName(docs: ProjectParser, element: SearchResult): { name: string; search: string; } {
+export function getElementDisplayName(docs: ProjectParser, element: SearchResult): { name: string; displayName: string; } {
     if ('parentId' in element) {
         const parent = docs.find(element.parentId) as InterfaceParser|ClassParser|null;
         const isStatic = (element instanceof ClassMethodParser || element instanceof ClassPropertyParser) && element.static;
@@ -201,10 +201,10 @@ export function getElementDisplayName(docs: ProjectParser, element: SearchResult
 
         const name = `${parent?.name ?? ''}${isStatic ? '#' : '.'}${element.name}`;
 
-        return { name, search: name + (isMethod ? '()' : '') };
+        return { name, displayName: name + (isMethod ? '()' : '') };
     }
 
-    return { name: element.name, search: element.name };
+    return { name: element.name, displayName: element.name };
 }
 
 export function getElementHref(data: { docs: DocsParser; package: string;  }, element: SearchResult): string {

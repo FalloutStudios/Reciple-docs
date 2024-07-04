@@ -1,3 +1,4 @@
+import type { IconifyIcon } from '@iconify/svelte';
 import type { ArrayTypeParser, ClassParser, ConditionalTypeParser, EnumParser, FunctionParser, IndexedAccessTypeParser, InferredTypeParser, InterfaceParser, IntersectionTypeParser, IntrinsicTypeParser, LiteralTypeParser, MappedTypeParser, NamedTupleMemberTypeParser, OptionalTypeParser, PredicateTypeParser, ProjectParser, QueryTypeParser, ReferenceTypeParser, ReflectionTypeParser, RestTypeParser, TemplateLiteralTypeParser, TupleTypeParser, TypeAliasParser, TypeOperatorTypeParser, UnionTypeParser, UnknownTypeParser, VariableParser } from 'typedoc-json-parser';
 
 export type DocsElementType = 'classes'|'enums'|'functions'|'interfaces'|'namespaces'|'typeAliases';
@@ -14,4 +15,12 @@ export interface Docs extends ProjectParser.Json {
             content: string;
         }[];
     }[];
+}
+
+export interface SearchData {
+    name: string;
+    displayName?: string;
+    href: string;
+    icon?: string|IconifyIcon;
+    deprecated?: boolean;
 }
