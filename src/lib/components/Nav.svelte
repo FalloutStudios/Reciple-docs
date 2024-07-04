@@ -7,7 +7,7 @@
     import type { PackageTagLoadData } from '../../routes/docs/[package]/[tag]/+page';
     import type { DocsParser } from '../scripts/classes/DocsParser';
     import '$lib/styles/nav.scss';
-  import { deprecatedElementSorter, getElementDisplayName, getElementHref, getElementIcon, isElementDeprecated } from '../scripts/helpers';
+    import { deprecatedElementSorter, getElementDisplayName, getElementHref, getElementIcon, isElementDeprecated } from '../scripts/helpers';
 
     export let data: PackageTagLoadData & { docs: DocsParser & { data: Exclude<DocsParser['data'], undefined> } };
 

@@ -19,7 +19,7 @@ export type Guides = {
             previous: { categoryId: string; pageId: string; }|null;
             next: { categoryId: string; pageId: string; }|null;
         };
-        metadata: Record<string, any>;
+        metadata: { title?: string; description?: string; keywords?: string[]; } & Record<string, any>;
     }[];
 }[];
 

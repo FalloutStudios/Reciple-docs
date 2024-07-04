@@ -61,6 +61,8 @@
     function inputFocus() {
         clear(true);
         open = true;
+
+        if (query) inputUpdate();
     }
 
     function inputUpdate() {
@@ -72,14 +74,11 @@
         selectedId = -1;
         originalValue = searchInput?.value ?? '';
 
-        inputTimer = setTimeout(() => executeSearch(), 500);
+        inputTimer = setTimeout(async () => {
+            results = await search(query);
+            loading = false;
+        }, 500);
     }
-
-    async function executeSearch() {
-        results = await search(query);
-        loading = false;
-    }
-
     function keydown(e: KeyboardEvent) {
         if (e.key === 'ArrowDown') {
             e.preventDefault();
@@ -170,7 +169,7 @@
                                 href={result.href}
                                 id="sr-{index}"
                                 on:blur={inputBlur}
-                                on:focus={inputFocus}
+                                on:focus={() => { selectedId = index; clear(true); open = true; }}
                                 on:click={() => { open = false; goto(result.href); }}
                                 data-name={result.name}
                                 title={(result.displayName ?? result.name) + (result.deprecated ? ' (Deprecated)' : '')}
