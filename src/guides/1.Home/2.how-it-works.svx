@@ -54,7 +54,7 @@ mybot/
 
 ## Schema
 
-Reciple modules requires `versions` and `onStart` properties to load. 
+Reciple modules requires `onStart` properties to load. 
 [View Docs](/docs/core/main/interfaces:RecipleModuleData)
 
 ```js
