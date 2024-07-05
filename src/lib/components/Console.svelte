@@ -57,6 +57,18 @@
     }
 </script>
 
+<div class="console-container">
+    <div class="topbar">
+        <div class="controls" on:click={() => { console.innerHTML = ''; index = 0; printConsoleOutput();}}>
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <h3 class="title">catplvsplus@user</h3>
+    </div>
+    <pre class="console-content" bind:this={console}></pre>
+</div>
+
 <style lang="scss">
     @import '../styles/variables.scss';
 
@@ -80,6 +92,7 @@
             text-wrap: pretty;
             font-size: 0.8rem;
             overflow-y: scroll;
+            margin: 0;
 
             :global(span) {
                 color: rgba($white, $alpha: 0.7);
@@ -155,15 +168,3 @@
         }
     }
 </style>
-
-<div class="console-container">
-    <div class="topbar">
-        <div class="controls" on:click={() => { console.innerHTML = ''; index = 0; printConsoleOutput();}}>
-            <span></span>
-            <span></span>
-            <span></span>
-        </div>
-        <h3 class="title">catplvsplus@user</h3>
-    </div>
-    <pre class="console-content" bind:this={console}></pre>
-</div>
