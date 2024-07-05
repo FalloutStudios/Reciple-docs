@@ -2,7 +2,7 @@
 
 :root {
     --sidebar-width: 320px;
-    --padding-bottom: 0.5rem;
+    --padding-bottom: 9rem;
 }
 
 .sidebar-container {
@@ -73,7 +73,7 @@
             .sidebar {
                 .sidebar-content {
                     .sidebar-links {
-                        padding-bottom: 5rem;
+                        padding-bottom: var(--padding-bottom);
                     }
                 }
             }
@@ -86,27 +86,27 @@
     z-index: 4;
     bottom: 0;
     right: 0;
-    margin: 1.5rem 0;
-    height: 3rem;
-    width: 60px;
+    margin: 5rem 0;
+    height: 4rem;
+    width: 4rem;
     @include Transition();
 
     button {
         height: 100%;
-        width: calc(100% + 20px);
+        width: calc(100% + 4rem);
         border: none;
-        background: $link;
-        border-radius: 3rem;
-        padding-right: 20px;
         @include Transition();
         cursor: pointer;
+        @include BorderedButton(darken($link, $amount: 3), lighten(rgba($link, $alpha: 0.1), $amount: 3));
+        border-radius: 3rem;
+        padding-right: 4rem;
 
         .icon {
             height: 2.5em;
             width: 2.5em;
             display: block;
             position: relative;
-            margin-left: 1rem;
+            margin-left: 1.5rem;
 
             &::before,
             &::after {
@@ -137,8 +137,8 @@
     }
 
     &.active {
-        margin: 1.5rem;
-        width: 3rem;
+        margin: 5rem 3.5rem;
+        width: 4rem;
 
         button {
             border-radius: 3rem;

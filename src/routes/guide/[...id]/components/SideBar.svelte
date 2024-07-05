@@ -25,14 +25,11 @@
     beforeNavigate(() => open = false);
 
     onMount(() => {
-        if(typeof window !== 'undefined') window.addEventListener('resize', onResize);
-        onResize();
-    });
-
-    onDestroy(() => {
-        if(typeof window !== 'undefined') window.removeEventListener('resize', onResize);
+        if(typeof window !== 'undefined') onResize();
     });
 </script>
+
+<svelte:window on:resize={onResize} />
 
 <div class="sidebar-container" class:mobile={width < 900}>
     {#if width > 900}
