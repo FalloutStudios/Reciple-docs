@@ -7,7 +7,7 @@ $danger: #ee4747;
 $warning: #ee8447;
 $success: #47ee79;
 $dark: rgb(17, 17, 20);
-$border: #18181b;
+$border: #242427;
 
 @mixin BorderedButton($bg: $dark, $border: $border, $radius: 5px) {
     background: $bg;
