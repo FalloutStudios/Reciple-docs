@@ -1,4 +1,4 @@
-$bg: rgb(28, 28, 30);
+$bg: rgb(13, 13, 15);
 $white: #dde1e3;
 $link: #5255fc;
 $linkVisited: #5957f1;
@@ -6,8 +6,8 @@ $blue: #4f8bfa;
 $danger: #ee4747;
 $warning: #ee8447;
 $success: #47ee79;
-$dark: rgb(33, 33, 36);
-$border: #3c3c3c;
+$dark: rgb(17, 17, 20);
+$border: #20202b;
 
 @mixin BorderedButton($bg: $dark, $border: $border, $radius: 5px) {
     background: $bg;
