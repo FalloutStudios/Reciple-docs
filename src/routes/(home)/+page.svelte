@@ -10,30 +10,16 @@
     import externalLinkIcon from '@iconify/icons-tabler/external-link';
 
     let navScroll = false;
+    let scrollY = 0;
 
-    function onScroll() {
-        if (window.scrollY > 0) {
-            navScroll = true;
-        } else {
-            navScroll = false;
-        }
-    }
-
-    onMount(() => {
-        if (typeof window !== 'undefined') {
-            window.addEventListener('scroll', onScroll);
-            onScroll();
-        }
-    });
-
-    onDestroy(() => {
-        if (typeof window !== 'undefined') window.removeEventListener('scroll', onScroll);
-    });
+    $: navScroll = scrollY > 0;
 </script>
 
 <svelte:head>
     <title>Reciple - ⚡Discord.js framework that just works</title>
 </svelte:head>
+
+<svelte:window bind:scrollY/>
 
 <HomeNav {navScroll}/>
 <div class="home">
