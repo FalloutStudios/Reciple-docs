@@ -57,7 +57,7 @@
     }
 </style>
 
-{#if firstElement}<button class="skip-navigation" on:click={() => firstElement?.focus()}>Skip to navigation</button>{/if}
+{#if firstElement}<button class="skip-navigation" on:click={() => firstElement?.focus()}>Skip navigation</button>{/if}
 
 <Nav/><Sidebar bind:pages={data.guides}/>
 <div class="content-container">
