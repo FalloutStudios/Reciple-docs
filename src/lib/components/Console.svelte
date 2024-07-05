@@ -48,7 +48,7 @@
             if (step.delay) await sleep(step.delay);
         }
 
-        if (isVisibleInViewport(element)) element.scrollIntoView({ behavior: 'delay' in step && (step.delay ?? 0) <= 499 ? 'instant' : 'smooth' })
+        if (isVisibleInViewport(element)) console.scrollBy({ top: console.scrollHeight, behavior: 'smooth' });
 
         index++;
         if (index > consoleSteps.length) return;
@@ -68,7 +68,8 @@
         overflow: hidden;
         width: 100%;
         height: 100%;
-        @include BorderedButton(#1c1b24, #373352);
+        color: $white;
+        @include BorderedButton(#15131d, #373352);
         box-shadow: 0px 0px 120px -10px rgba($linkVisited, $alpha: 0.2);
 
         .console-content {
@@ -81,7 +82,7 @@
             overflow-y: scroll;
 
             :global(span) {
-                color: darken($white, $amount: 50);
+                color: rgba($white, $alpha: 0.7);
             }
 
             :global(.green) {
@@ -89,7 +90,7 @@
             }
 
             :global(.blue) {
-                color: $link;
+                color: $blue;
             }
 
             :global(red) {

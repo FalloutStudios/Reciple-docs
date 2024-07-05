@@ -4,6 +4,7 @@
     .brandings {
         display: flex;
         flex-direction: column;
+        justify-content: end;
         opacity: 0.7;
 
         .header {

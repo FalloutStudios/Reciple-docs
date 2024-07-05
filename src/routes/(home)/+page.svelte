@@ -1,43 +1,83 @@
 <script lang="ts">
-    import Install from '$lib/components/Install.svelte';
-    import LinkButton from '$lib/components/LinkButton.svelte';
-    import Brandings from '$lib/components/Bandings.svelte';
-    import { githubHome, npmHome } from '$lib/scripts/config';
-    import Icon from '@iconify/svelte';
-    import externalLinkIcon from '@iconify/icons-tabler/external-link';
-    import Console from '../lib/components/Console.svelte';
+    import { onDestroy, onMount } from 'svelte';
+    import HomeNav from "./components/HomeNav.svelte";
     import isMobile from 'is-mobile';
-    import { onMount } from 'svelte';
+    import Icon from '@iconify/svelte';
+    import LinkButton from '$lib/components/LinkButton.svelte';
+    import { githubHome } from '$lib/scripts/config';
+    import Console from '$lib/components/Console.svelte';
+    import Install from '$lib/components/Install.svelte';
+    import externalLinkIcon from '@iconify/icons-tabler/external-link';
 
-    let mobile = true;
+    let navScroll = false;
+
+    function onScroll() {
+        if (window.scrollY > 0) {
+            navScroll = true;
+        } else {
+            navScroll = false;
+        }
+    }
 
     onMount(() => {
-        mobile = isMobile();
-    })
+        if (typeof window !== 'undefined') {
+            window.addEventListener('scroll', onScroll);
+            onScroll();
+        }
+    });
+
+    onDestroy(() => {
+        if (typeof window !== 'undefined') window.removeEventListener('scroll', onScroll);
+    });
 </script>
+
+<svelte:head>
+    <title>Reciple - ⚡Discord.js framework that just works</title>
+</svelte:head>
+
+<HomeNav {navScroll}/>
+<div class="home">
+    <div class="home-container">
+        <div class="intro">
+            <h1 class="title">
+                Another <a href="https://discord.js.org/" class="highlight">Discord.js</a> framework that just works<Icon icon="fluent-emoji:fire" inline style="font-size: 1.2em; margin-left: 0.3rem"/>
+            </h1>
+            <div class="description">
+                Reciple is a command framework with message command (aka prefix command), slash command, and context menu support. Reciple makes Discord.js command handling simple and easy using our built-in CLI tool.
+            </div>
+            <div class="buttons">
+                <LinkButton class="blue" href="/guide">Get Started</LinkButton>
+                <LinkButton href="/docs">Docs</LinkButton>
+                <LinkButton href={githubHome} target="_blank">GitHub <Icon icon={externalLinkIcon}/></LinkButton>
+            </div>
+        </div>
+        <div class="install">
+            <Console/>
+            <Install/>
+        </div>
+    </div>
+</div>
 
 <style lang="scss">
     @import url('https://fonts.googleapis.com/css2?family=Archivo+Black&display=swap');
     @import '$lib/styles/variables.scss';
 
     .home {
+        padding-top: 5rem;
+        min-height: calc(100% - 5rem);
         display: flex;
-        min-height: 100%;
-        width: 100%;
         align-items: center;
         justify-content: center;
-        padding: 5rem;
         flex-direction: column;
-        position: relative;
-        z-index: 2;
+        gap: 2rem;
 
         .home-container {
             display: flex;
             align-items: center;
-            max-width: 1200px;
+            justify-content: space-between;
             width: 100%;
-            padding-bottom: 8rem;
-            padding-top: 8rem;
+            max-width: 1200px;
+            padding: 0.5rem 2rem;
 
             .intro {
                 width: 100%;
@@ -47,7 +87,7 @@
                     font-family: 'Archivo Black', 'Inter', sans-serif;
                     font-size: 2.8rem;
                     font-weight: 500;
-                    line-height: 3rem;
+                    line-height: 3.5rem;
                     padding-bottom: 10px;
                     color: $white;
 
@@ -56,7 +96,7 @@
                         color: $white;
                         background: $link;
                         border-radius: 5px;
-                        padding: 5px 10px;
+                        padding: 2px 10px;
                         position: relative;
                         box-shadow: 0px 0px 40px rgba($linkVisited, $alpha: 0.5);
                     }
@@ -106,10 +146,10 @@
                 align-items: center;
                 justify-content: center;
                 flex-direction: column;
+                gap: 1rem;
 
                 :global(> .install-command) {
                     flex-shrink: 0;
-                    margin-top: 0.5rem;
                 }
             }
         }
@@ -137,6 +177,8 @@
 
                 .install {
                     width: 100%;
+                    flex-direction: column-reverse;
+                    gap: 1rem;
 
                     :global(.install-command) {
                         max-width: 100%;
@@ -144,44 +186,5 @@
                 }
             }
         }
-
-        @media (max-width: 560px) {
-            .home {
-                padding: 3rem;
-            }
-        }
-
-        @media (max-width: 375px) {
-            .home {
-                padding: 2.4rem;
-            }
-        }
     }
 </style>
-
-<svelte:head>
-    <title>Reciple</title>
-</svelte:head>
-
-<div class="home">
-    <div class="home-container">
-        <div class="intro">
-            <h1 class="title">
-                Another <a href="https://discord.js.org/" class="highlight">Discord.js</a> framework that just works<Icon icon="fluent-emoji:fire" inline style="font-size: 1.2em; margin-left: 0.3rem"/>
-            </h1>
-            <div class="description">
-                Reciple is a command framework with message command (aka prefix command), slash command, and context menu support. Reciple makes Discord.js command handling simple and easy using our built-in CLI tool.
-            </div>
-            <div class="buttons">
-                <LinkButton class="blue" href="/guide">Get Started</LinkButton>
-                <LinkButton href="/docs">Docs</LinkButton>
-                <LinkButton href={githubHome} target="_blank">GitHub <Icon icon={externalLinkIcon}/></LinkButton>
-            </div>
-        </div>
-        <div class="install">
-            {#if !mobile}<Console/>{/if}
-            <Install/>
-        </div>
-    </div>
-    <Brandings/>
-</div>
