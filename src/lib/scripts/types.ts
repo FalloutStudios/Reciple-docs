@@ -19,7 +19,7 @@ export interface Docs extends ProjectParser.Json {
 
 export interface SearchData {
     name: string;
-    displayName?: string;
+    displayName?: string|[any, Record<string, any>];
     href: string;
     icon?: string|IconifyIcon;
     deprecated?: boolean;

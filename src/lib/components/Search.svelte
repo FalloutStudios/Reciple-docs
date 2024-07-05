@@ -77,8 +77,10 @@
         inputTimer = setTimeout(async () => {
             results = await search(query);
             loading = false;
+            console.log(results);
         }, 500);
     }
+
     function keydown(e: KeyboardEvent) {
         if (e.key === 'ArrowDown') {
             e.preventDefault();
@@ -112,35 +114,36 @@
         }
     }
 
+    /**
+     * Handles keyboard shortcuts for search functionality.
+     *
+     * @param {KeyboardEvent} e - The keyboard event.
+     */
     function searchShortcut(e: KeyboardEvent) {
-        if (e.key === '/' || (e.key == 'k' && e.ctrlKey) || (!e.ctrlKey && !e.altKey && e.key.length === 1)) {
-            if (document.activeElement === searchInput) return;
+        const validKeys = ['/', 'k'];
 
-            e.preventDefault();
+        if (!(validKeys.includes(e.key) && e.ctrlKey) && !(!e.ctrlKey && !e.altKey && e.key.length === 1)) return;
+        if (document.activeElement === searchInput) return;
 
-            open = true;
+        e.preventDefault();
 
-            setTimeout(() => {
-                if (searchInput && e.key !== '/') {
-                    searchInput.value = e.key;
-                    originalValue = e.key;
-                    query = e.key;
+        open = true;
 
-                    inputUpdate();
-                }
+        setTimeout(() => {
+            if (searchInput && e.key !== '/') {
+                searchInput.value = e.key;
+                originalValue = e.key;
+                query = e.key;
 
-                searchInput?.focus();
-            }, 100);
-        }
+                inputUpdate();
+            }
+
+            searchInput?.focus();
+        }, 100);
     }
-
-    onMount(() => {
-        searchInput?.focus();
-        if (typeof window !== 'undefined') window.addEventListener('keypress', searchShortcut);
-    });
-
-    onDestroy(() => typeof window !== 'undefined' && window.removeEventListener('keypress', searchShortcut));
 </script>
+
+<svelte:window on:keydown={searchShortcut} />
 
 {#if open}
 <div class="search-wrapper" in:fade={{ duration: 200 }} out:fade={{ duration: 200 }}>
@@ -182,7 +185,13 @@
                                         <Icon icon={result.icon}/>
                                     </span>
                                 {/if}
-                                <span class="name">{(result.displayName ?? result.name)}</span>
+                                <span class="name">
+                                    {#if typeof result.displayName === 'string'}
+                                        {(result.displayName ?? result.name)}
+                                    {:else if result.displayName}
+                                        <svelte:component this={result.displayName[0]} {...result.displayName[1]}/>
+                                    {/if}
+                                </span>
                             </a>
                         {/each}
                     </div>
@@ -308,9 +317,11 @@
                             display: flex;
                             align-items: center;
                             width: 100%;
-                            color: darken($white, $amount: 10);
+                            color: darken(#fff, $amount: 5);
                             text-decoration: none;
                             padding: 0.3rem 1rem;
+                            transition: 0.1s;
+                            margin-bottom: 0.2rem;
 
                             .icon {
                                 font-size: 1.2rem;
@@ -327,11 +338,13 @@
                             &:hover,
                             &:focus,
                             &.active {
-                                background-color: rgba(lighten($bg, $amount: 10), $alpha: 0.5);
+                                background-color: rgba($white, $alpha: 0.05);
                             }
 
                             &.active {
                                 color: lighten($link, $amount: 10);
+                                background-color: rgba($link, $alpha: 0.05);
+                                font-weight: 600;
                             }
 
                             &.deprecated {

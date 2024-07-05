@@ -10,6 +10,7 @@
     import type { SearchData } from '../../../../lib/scripts/types';
     import { slug } from 'github-slugger';
     import Uwuify from 'uwuifier';
+  import SearchValue from './SearchValue.svelte';
 
 
     let opensearch = false;
@@ -43,9 +44,14 @@
             )
             .map(p => ({
                 name: p.metadata.title ?? p.id,
-                displayName: p.metadata.title && catYes ? uwu.uwuifyWords(p.metadata.title) : p.metadata.title,
+                displayName: p.metadata.title
+                    ? [SearchValue, {
+                        name: catYes ? uwu.uwuifyWords(p.metadata.title) : p.metadata.title,
+                        category: catYes ? uwu.uwuifyWords(p.category) : p.category
+                    }]
+                    : p.id,
                 href: `/guide/${slug(p.category)}/${p.id}`,
-                icon: catYes ? 'fluent-emoji:cat-face' : 'lucide:book-marked'
+                icon: catYes ? 'fluent-emoji:cat-face' : undefined
             }));
     }
 </script>
