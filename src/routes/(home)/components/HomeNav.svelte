@@ -32,7 +32,7 @@
         top: 0;
         left: 0;
         width: 100%;
-        z-index: 80;
+        z-index: 5;
         display: flex;
         align-items: center;
         justify-content: center;

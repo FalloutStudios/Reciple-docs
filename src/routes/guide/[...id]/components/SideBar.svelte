@@ -43,10 +43,6 @@
         body {
             padding-left: 1rem;
         }
-
-        :root {
-            --padding-bottom: 5rem;
-        }
     </style>
     {/if}
     {#if open || width > 900}
