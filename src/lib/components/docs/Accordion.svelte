@@ -95,8 +95,14 @@
             }
 
             &.active {
-                > .accordion-header .caret {
-                    rotate: 180deg;
+                > .accordion-header {
+                    &.sub-header {
+                        background: rgba(lighten($dark, $amount: 2), $alpha: 0.3);
+                    }
+
+                    .caret {
+                        rotate: 180deg;
+                    }
                 }
             }
         }
