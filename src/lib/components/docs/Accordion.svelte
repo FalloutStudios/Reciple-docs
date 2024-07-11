@@ -10,6 +10,8 @@
     export let open: boolean = true;
     export let hr: boolean = true;
     export let id: string|null = null;
+    export let isSubaccordion: boolean = false;
+    export let isSubHeader: boolean = false;
 </script>
 
 <style lang="scss">
@@ -38,6 +40,20 @@
                 align-items: center;
                 z-index: 1;
                 display: flex;
+
+                &:hover,
+                &:focus {
+                    background: rgba(lighten($dark, $amount: 2), $alpha: 0.8);
+                }
+
+                &.sub-header {
+                    background: none;
+
+                    &:hover,
+                    &:focus {
+                        background: rgba(lighten($dark, $amount: 2), $alpha: 0.3);
+                    }
+                }
 
                 .name {
                     width: 100%;
@@ -68,6 +84,11 @@
                 margin-right: 2.8rem;
                 margin-bottom: 2rem;
 
+                &.sub-accordion {
+                    margin-left: 0;
+                    margin-right: 0;
+                }
+
                 &.hr {
                     border-bottom: 1px solid rgba($border, $alpha: 0.5);
                 }
@@ -95,13 +116,13 @@
 
 <div class="accordion-container" {id}>
     <div class="accordion" class:active={open}>
-        <button class="accordion-header" on:click={() => open = !open}>
+        <button class="accordion-header" on:click={() => open = !open} class:sub-header={isSubHeader}>
             <span class="icon"><Icon {icon}/></span>
             <span class="name">{name}</span>
             <span class="caret"><Icon icon={caretDownIcon}/></span>
         </button>
         {#if open}
-            <div class="accordion-content" class:hr={hr} transition:slide={{ axis: "y", duration: 300, delay: 1 }}><slot/></div>
+            <div class="accordion-content" class:hr={hr} class:sub-accordion={isSubaccordion} transition:slide={{ axis: "y", duration: 300, delay: 1 }}><slot/></div>
         {/if}
     </div>
 </div>

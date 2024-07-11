@@ -61,7 +61,7 @@
         bind:searchInput={searchInput}
         bind:open={opensearch}
         search={async query => {
-            const results = query.trim() ? (data.docs.data?.search(query).sort((a, b) => deprecatedElementSorter(isElementDeprecated(a), isElementDeprecated(b))).splice(0, 20) ?? []) : [];
+            const results = query.trim() ? (data.docs.data?.search(query).sort(deprecatedElementSorter).splice(0, 20) ?? []) : [];
 
             return results.map(result => {
                 const { name, displayName } = getElementDisplayName(data.docs.data, result);

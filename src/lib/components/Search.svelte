@@ -1,12 +1,10 @@
 <script lang="ts">
-    import { createEventDispatcher, onDestroy, onMount } from 'svelte';
+    import { createEventDispatcher } from 'svelte';
     import { Svrollbar } from 'svrollbar';
-    import type { SearchResult } from 'typedoc-json-parser';
     import closeIcon from '@iconify/icons-tabler/arrow-right';
     import searchIcon from '@iconify/icons-tabler/search';
     import Icon from '@iconify/svelte';
     import { Tooltip } from 'flowbite-svelte';
-    import { deprecatedElementSorter, getElementDisplayName, getElementHref, getElementIcon, isElementDeprecated } from '../scripts/helpers';
     import { goto } from '$app/navigation';
     import { fade } from 'svelte/transition';
     import type { SearchData } from '../scripts/types';

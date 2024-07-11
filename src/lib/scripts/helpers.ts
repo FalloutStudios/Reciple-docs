@@ -87,9 +87,9 @@ export function getElementBlocktag(element: { comment: CommentParser; }|{ signat
     return sig ? getElementBlocktag(sig, tag) : null;
 }
 
-export function deprecatedElementSorter(a: AnyDocsElement, b: AnyDocsElement): number;
+export function deprecatedElementSorter(a: TypeParameterParser|{ comment: CommentParser; }|{ signatures: SignatureParser[]; }, b: TypeParameterParser|{ comment: CommentParser; }|{ signatures: SignatureParser[]; }): number;
 export function deprecatedElementSorter(a: boolean, b: boolean): number;
-export function deprecatedElementSorter(a: AnyDocsElement|boolean, b: AnyDocsElement|boolean): number {
+export function deprecatedElementSorter(a: TypeParameterParser|{ comment: CommentParser; }|{ signatures: SignatureParser[]; }|boolean, b: TypeParameterParser|{ comment: CommentParser; }|{ signatures: SignatureParser[]; }|boolean): number {
     const aDeprecated = typeof a === 'boolean' ? a : isElementDeprecated(a);
     const bDeprecated = typeof b === 'boolean' ? b : isElementDeprecated(b);
 

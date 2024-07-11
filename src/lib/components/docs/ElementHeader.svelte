@@ -13,6 +13,7 @@
     import FloatingLabel from './FloatingLabel.svelte';
     import warningBoldIcon from '@iconify/icons-ph/warning-bold';
     import { Colors } from '../../scripts/config';
+    import TableOfContents from './TableOfContents.svelte';
 
     export let element: AnyDocsElement;
     export let data: PackageQueryLoadData;
@@ -148,6 +149,9 @@
                 <Accordion name="Constructor" icon={symbolMethodIcon} hr={false}>
                     <SignatureTable {data} signatures={[element.construct]}/>
                 </Accordion>
+            {/if}
+            {#if element instanceof ClassParser || element instanceof InterfaceParser}
+                <TableOfContents properties={element.properties} methods={element.methods}/>
             {/if}
         </div>
     </div>
