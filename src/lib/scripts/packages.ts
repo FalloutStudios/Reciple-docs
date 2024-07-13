@@ -17,6 +17,11 @@ export const parsers = {
         package: 'reciple',
         npm: 'reciple',
     }),
+    'decorators': new DocsParser({
+        ...defaultDocsParserOptions,
+        package: 'decorators',
+        npm: '@reciple/decorators'
+    }),
     'utils': new DocsParser({
         ...defaultDocsParserOptions,
         package: 'utils',
