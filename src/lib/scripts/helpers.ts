@@ -70,7 +70,7 @@ export function getElementDescription(element: { comment: CommentParser; }|{ sig
     const description = ('signatures' in element ? element.signatures.find(s => s.comment.description)?.comment.description : ('comment' in element && element.comment?.description)) || null;
     if (!description) return description;
 
-    return description.replace('＠', '@');
+    return description.replaceAll('＠', '@');
 }
 
 export function isElementDeprecated(element: TypeParameterParser|{ comment: CommentParser; }|{ signatures: SignatureParser[]; }): boolean {
