@@ -1,0 +1,264 @@
+---
+title: "Decorators"
+---
+
+<script lang="ts">
+    import Alert from '$lib/components/Alert.svelte';
+</script>
+
+# Decorators
+
+Decorators can be used to easily add functionality to your modules. By default decorators are created with the typescript template of `create-reciple`. To use decorators, you need to install the [`@reciple/decorators`](https://www.npmjs.com/package/@reciple/decorators) package in your project and set `experimentalDecorators` to `true` in your `tsconfig.json`.
+
+### tsconfig.json
+```json
+{
+    "compilerOptions": {
+        // ...Other compiler options...
+        "experimentalDecorators": true
+    }
+}
+```
+
+# Writing Modules with Decorators
+
+To use decorators, you need to import the `@reciple/decorators` package in your module. Then add the [`@setRecipleModule()`](/docs/decorators/main/functions:setRecipleModule) decorator to your module class. This decorator will set your module's metadata to the prototype using the [`recipleModuleMetadataSymbol`](/docs/decorators/main/variables:recipleModuleMetadataSymbol) symbol property.
+
+```ts
+import { setRecipleModule } from '@reciple/decorators';
+
+@setRecipleModule()
+export class PingCommand implements RecipleModuleData {
+    public async onStart(): Promise<boolean> {
+        return true;
+    }
+}
+
+export default new PingCommand();
+```
+
+`@setRecipleModule()` takes an optional `versions` parameter. This parameter will set the [`versions`](/docs/core/main/interfaces:RecipleModuleData#versions) property of your module.
+
+```ts
+import { setRecipleModule } from '@reciple/decorators';
+
+@setRecipleModule('^9.0.0') // or @setRecipleModule(['^9.0.0'])
+export class PingCommand implements RecipleModuleData {
+    public async onStart(): Promise<boolean> {
+        return true;
+    }
+}
+
+export default new PingCommand();
+```
+
+similar to
+
+```ts
+export class PingCommand implements RecipleModuleData {
+    public versions = '^9.0.0';
+
+    public async onStart(): Promise<boolean> {
+        return true;
+    }
+}
+
+export default new PingCommand();
+```
+
+## Adding Commands With Decorators
+To add commands with decorators, adding [`@setRecipleModuleStart()`](/docs/decorators/main/functions:setRecipleModuleStart) decorator is required to set the created commands from the class' prototype metadata to the module's [`.commands`](/docs/core/main/interfaces:RecipleModuleData#commands) property.
+
+### Context Menu Commands
+
+[`@setContextMenuCommand()`](/docs/decorators/main/functions:setContextMenuCommand) decorator is used to add context menu commands to your module. First parameter of the decorator takes a command object or builder.
+
+```ts
+import { setContextMenuCommand, setRecipleModule, setRecipleModuleStart } from '@reciple/decorators';
+import { ContextMenuCommandExecuteData, RecipleModuleData } from 'reciple';
+import { ApplicationCommandType } from 'discord.js';
+
+@setRecipleModule()
+export class PingCommand implements RecipleModuleData {
+    @setRecipleModuleStart()
+    public async onStart(): Promise<boolean> {
+        return true;
+    }
+
+    @setContextMenuCommand({ name: 'Ping', type: ApplicationCommandType.Message })
+    public async handlePingCommand({ interaction }: ContextMenuCommandExecuteData): Promise<void> {
+        await interaction.reply('Pong!');
+    }
+}
+
+export default new PingCommand();
+```
+
+<discord-messages>
+    <discord-message profile="bot">
+        <discord-command slot="reply" profile="cat" command="Ping"></discord-command>
+        Pong!
+    </discord-message>
+</discord-messages>
+
+### Message Commands
+
+[`@setMessageCommand()`](/docs/decorators/main/functions:setMessageCommand) decorator is used to add message commands to your module. First parameter of the decorator takes a command object or builder.
+
+```ts
+import { setMessageCommand, setRecipleModule, setRecipleModuleStart } from '@reciple/decorators';
+import { MessageCommandExecuteData, RecipleModuleData } from 'reciple';
+import { ApplicationCommandType } from 'discord.js';
+
+@setRecipleModule()
+export class PingCommand implements RecipleModuleData {
+    @setRecipleModuleStart()
+    public async onStart(): Promise<boolean> {
+        return true;
+    }
+
+    @setMessageCommand({ name: 'ping', description: 'Ping command' })
+    public async handlePingCommand({ message }: MessageCommandExecuteData): Promise<void> {
+        await message.reply('Pong!');
+    }
+}
+
+export default new PingCommand();
+```
+
+<discord-messages>
+    <discord-message profile="cat">!ping</discord-message>
+    <discord-message profile="bot">
+        <discord-reply slot="reply" profile="cat">!ping</discord-reply>
+        Pong!
+    </discord-message>
+</discord-messages>
+
+### Slash Commands
+
+[`@setSlashCommand()`](/docs/decorators/main/functions:setSlashCommand) decorator is used to add slash commands to your module. First parameter of the decorator takes a command object or builder.
+
+```ts
+import { setSlashCommand, setRecipleModule, setRecipleModuleStart } from '@reciple/decorators';
+import { SlashCommandExecuteData, RecipleModuleData } from 'reciple';
+import { ApplicationCommandType } from 'discord.js';
+
+@setRecipleModule()
+export class PingCommand implements RecipleModuleData {
+    @setRecipleModuleStart()
+    public async onStart(): Promise<boolean> {
+        return true;
+    }
+
+    @setSlashCommand({ name: 'ping', description: 'Ping command' })
+    public async handlePingCommand({ interaction }: SlashCommandExecuteData): Promise<void> {
+        await interaction.reply('Pong!');
+    }
+}
+
+export default new PingCommand();
+```
+
+<discord-messages>
+    <discord-message profile="bot">
+        <discord-command slot="reply" profile="cat" command="/ping"></discord-command>
+        Pong!
+    </discord-message>
+</discord-messages>
+
+### Stacking Command Decorators
+
+```ts
+import { setContextMenuCommand, setMessageCommand, setRecipleModule, setRecipleModuleLoad, setRecipleModuleStart, setRecipleModuleUnload, setSlashCommand } from '@reciple/decorators';
+import { AnyCommandExecuteData, CommandType, RecipleModuleData } from "reciple";
+import { ApplicationCommandType, type Message } from 'discord.js';
+
+@setRecipleModule()
+export class PingCommand implements RecipleModuleData {
+    @setRecipleModuleStart()
+    public async onStart(): Promise<boolean> {
+        return true;
+    }
+
+    @setContextMenuCommand({ name: 'Ping', type: ApplicationCommandType.Message })
+    @setMessageCommand({ name: 'ping', description: 'Ping command' })
+    @setSlashCommand({ name: 'ping', description: 'Ping command' })
+    async handleCommandExecute(data: AnyCommandExecuteData): Promise<void> {
+        switch (data.type) {
+            case CommandType.ContextMenuCommand:
+            case CommandType.SlashCommand:
+                await data.interaction.reply('Pong!');
+                return;
+            case CommandType.MessageCommand:
+                await data.message.reply('Pong!');
+                return;
+        }
+    }
+}
+
+export default new PingCommand();
+```
+
+<discord-messages>
+    <discord-message profile="bot">
+        <discord-command slot="reply" profile="cat" command="Ping"></discord-command>
+        Pong!
+    </discord-message>
+    <discord-message profile="cat">!ping</discord-message>
+    <discord-message profile="bot">
+        <discord-reply slot="reply" profile="cat">!ping</discord-reply>
+        Pong!
+    </discord-message>
+    <discord-message profile="bot">
+        <discord-command slot="reply" profile="cat" command="/ping"></discord-command>
+        Pong!
+    </discord-message>
+</discord-messages>
+
+## Adding Event Listeners With Decorators
+
+`@reciple/decorators` provides [`@setClientEvent()`](/decorators/main/functions:setClientEvent), [`@setWebsocketEvent()`](/decorators/main/functions:setWebsocketEvent), and [`@setRESTEvent()`](/decorators/main/functions:setRESTEvent) decorators. These decorators are used to set a class method into an event listener.
+
+These decorators takes the event **name** as the first argument. You can set the event as **once** by setting the second argument to `true`. These event listeners are registered to its event emitter after the module is loaded (the bot is logged in), it means that it's required to use [`@setRecipleModuleLoad()`](/docs/decorators/main/functions:setRecipleModuleLoad) decorator to register the event listeners.
+
+<Alert type="info" title="INFO">
+    Although not required, it is recommended to use <a href="/docs/decorators/main/functions:setRecipleModuleUnload"><code>@setRecipleModuleUnload()</code></a> decorator on your <code>onUnload()</code> method to unregister the event listeners when the module is unloaded.
+</Alert>
+
+```ts
+import { setClientEvent, setRecipleModule, setRecipleModuleStart } from '@reciple/decorators';
+import { RecipleModuleData } from 'reciple';
+import { ApplicationCommandType } from 'discord.js';
+
+@setRecipleModule()
+export class MentionEvent implements RecipleModuleData {
+    @setRecipleModuleStart()
+    public async onStart(): Promise<boolean> {
+        return true;
+    }
+
+    @setRecipleModuleLoad()
+    public async onLoad(): Promise<void> {}
+
+    @setRecipleModuleUnload()
+    public async onUnload(): Promise<void> {}
+
+    @setClientEvent('messageCreate') // or @setClientEvent('messageCreate', true) for once event
+    public async onMessageCreate(message: Message): Promise<void> {
+        const bot = message.client.user?.id;
+        if (!bot || !message.content.include(bot)) return;
+
+        await message.reply('You mentioned me!');
+    }
+}
+
+export default new MentionEvent();
+```
+
+<discord-messages>
+    <discord-message profile="cat">963047284772306976</discord-message>
+    <discord-message profile="bot">
+        <discord-reply slot="reply" profile="cat">963047284772306976</discord-reply>
+        You mentioned me!
+    </discord-message>
+</discord-messages>
