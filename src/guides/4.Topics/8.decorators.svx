@@ -10,6 +10,11 @@ title: "Decorators"
 
 Decorators can be used to easily add functionality to your modules. By default decorators are created with the typescript template of `create-reciple`. To use decorators, you need to install the [`@reciple/decorators`](https://www.npmjs.com/package/@reciple/decorators) package in your project and set `experimentalDecorators` to `true` in your `tsconfig.json`.
 
+If you don't have the [`@reciple/decorators`](https://www.npmjs.com/package/@reciple/decorators) package installed, you can install it with `npm i @reciple/decorators`.
+```
+npm i @reciple/decorators
+```
+
 ### tsconfig.json
 ```json
 {
