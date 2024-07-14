@@ -71,6 +71,21 @@ export class PingCommand implements RecipleModuleData {
 export default new PingCommand();
 ```
 
+You can also pass an object to `@setRecipleModule()` to set the module's Id and name.
+
+```ts
+import { setRecipleModule } from '@reciple/decorators';
+
+@setRecipleModule({ id: 'ping', name: 'Ping', versions: '^9.0.0' })
+export class PingCommand implements RecipleModuleData {
+    public async onStart(): Promise<boolean> {
+        return true;
+    }
+}
+
+export default new PingCommand();
+```
+
 ## Adding Commands With Decorators
 To add commands with decorators, adding [`@setRecipleModuleStart()`](/docs/decorators/main/functions:setRecipleModuleStart) decorator is required to set the created commands from the class' prototype metadata to the module's [`.commands`](/docs/core/main/interfaces:RecipleModuleData#commands) property.
 
