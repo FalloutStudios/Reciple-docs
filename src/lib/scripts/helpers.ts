@@ -67,7 +67,10 @@ export function findDocsElement(project: ProjectParser, find: string|number) {
 }
 
 export function getElementDescription(element: { comment: CommentParser; }|{ signatures: SignatureParser[]; }): string|null {
-    return ('signatures' in element ? element.signatures.find(s => s.comment.description)?.comment.description : ('comment' in element && element.comment?.description)) || null;
+    const description = ('signatures' in element ? element.signatures.find(s => s.comment.description)?.comment.description : ('comment' in element && element.comment?.description)) || null;
+    if (!description) return description;
+
+    return description.replace('＠', '@');
 }
 
 export function isElementDeprecated(element: TypeParameterParser|{ comment: CommentParser; }|{ signatures: SignatureParser[]; }): boolean {
