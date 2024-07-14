@@ -237,9 +237,20 @@ export default new PingCommand();
 
 ## Adding Event Listeners With Decorators
 
-`@reciple/decorators` provides [`@setClientEvent()`](/decorators/main/functions:setClientEvent), [`@setWebsocketEvent()`](/decorators/main/functions:setWebsocketEvent), and [`@setRESTEvent()`](/decorators/main/functions:setRESTEvent) decorators. These decorators are used to set a class method into an event listener.
+`@reciple/decorators` provides:
+- [`@setClientEvent()`](/decorators/main/functions:setClientEvent) - Adds event listeners to the [`RecipleClient`](/docs/core/main/classes:RecipleClient)
+- [`@setWebsocketEvent()`](/decorators/main/functions:setWebsocketEvent) - Adds event listeners to the [`WebsocketManager`](https://discord.js.org/docs/packages/discord.js/main/WebSocketManager:Class)
+- [`@setRESTEvent()`](/decorators/main/functions:setRESTEvent) - Adds event listeners to the [`REST`](https://discord.js.org/docs/packages/rest/main/REST:Class)
+- [`@setModuleManagerEvent()`](/decorators/main/functions:setModuleManagerEvent) - Adds event listeners to the [`ModuleManager`](/docs/core/main/classes:ModuleManager)
+- [`@setProcessEvent()`](/decorators/main/functions:setProcessEvent) - Adds event listeners to the [`Process`](https://nodejs.org/api/process.html)
 
-These decorators takes the event **name** as the first argument. You can set the event as **once** by setting the second argument to `true`. These event listeners are registered to its event emitter after the module is loaded (the bot is logged in), it means that it's required to use [`@setRecipleModuleLoad()`](/docs/decorators/main/functions:setRecipleModuleLoad) decorator to register the event listeners.
+
+These decorators are used to set a class method into an event listener. These decorators takes the event **name** as the first argument. You can set the event as **once** by setting the second argument to `true`.
+
+### Event Register
+These event listeners are registered to its event emitter after the module is loaded (the bot is logged in), it means that it's required to use [`@setRecipleModuleLoad()`](/docs/decorators/main/functions:setRecipleModuleLoad) decorator to register the event listeners.
+
+> You can make the [`@setRecipleModuleStart()`](/docs/decorators/main/functions:setRecipleModuleStart)'s first parameter as `true` to register the event listeners even before the module is loaded.
 
 <Alert type="info" title="INFO">
     Although not required, it is recommended to use <a href="/docs/decorators/main/functions:setRecipleModuleUnload"><code>@setRecipleModuleUnload()</code></a> decorator on your <code>onUnload()</code> method to unregister the event listeners when the module is unloaded.
