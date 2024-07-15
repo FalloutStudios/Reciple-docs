@@ -63,3 +63,22 @@ new SlashCommandBuilder()
 ```
 
 > You can disable a global or command scope precondition from a command using [`.addDisabledPreconditions()`](/docs/core/main/classes:BaseCommandBuilder#addDisabledPreconditions) or [`.setDisabledPreconditions()`](/docs/core/main/classes:BaseCommandBuilder#setDisabledPreconditions). Just pass the id of preconditions you want to disable to the arguments of this method to not use them.
+
+## Set Global Precondition In Module
+This methods allows you to set a global precondition within a module without adding it to the config file.
+
+```js
+import { MyPrecondition } from '../preconditions/precondition.js';
+
+export class LoadPrecondition {
+    precondition = new MyPrecondition();
+
+    async onStart({ client }) {
+        client.commands.addPreconditions(this.precondition);
+
+        return true;
+    }
+}
+
+export default new LoadPrecondition();
+```

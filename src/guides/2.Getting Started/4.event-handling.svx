@@ -50,10 +50,10 @@ Working with message components and modals can make handling interactions diffic
 ### Two ways to install `reciple-interaction-events`
 - Select the addon `reciple-interaction-events` when creating the bot project using `npm create reciple@latest`
 - Install the package `reciple-interaction-events` using `npm i reciple-interaction-events`.
-  - Then create a new module in your modules folder. In this case we will name it `interaction-handler.js`.
+  - Then create a new module in your `./modules/addons` folder. In this case we will name it `reciple-interaction-events.js`.
     ```js
-    import { InteractionEventManager } from 'reciple-interaction-events';
-    export default new InteractionEventManager();
+    import { RecipleInteractionEvents } from 'reciple-interaction-events';
+    export default new RecipleInteractionEvents();
     ```
 
 After installing `reciple-interaction-events`, You can now add new property called `interactionEvents` in any of your modules to handle certain types of interactions.
@@ -161,7 +161,7 @@ When you run that command and press the button, it will send a response message.
 </discord-messages>
 <br/>
 
-> You can use dynamic custom id by setting the `customId` property of your event listener to a function.
+> You can use dynamic custom id/command name by setting the `customId`/`commandName` property of your event listener to a function.
 ```js
 interactionEvents = [
     {

@@ -293,3 +293,52 @@ export default new MentionEvent();
         You mentioned me!
     </discord-message>
 </discord-messages>
+
+### Interaction Listeners
+If you have [`reciple-interaction-events`](https://github.com/Reciple/reciple-interaction-events) installed, you can use its provided decorators to register an event listener to an interaction.
+
+<Alert type="warning" title="IMPORTANT">
+    It is required to add <code>@setRegisterInteractionEvents()</code> method decorator to your <code>onStart</code> or <code>onLoad</code> method to register the event listeners.
+</Alert>
+
+```ts
+import { InteractionListenerType, setRegisterInteractionEvents, setInteractionEvent } from 'reciple-interaction-events';
+import { setRecipleModule, setRecipleModuleStart, setMessageCommand } from '@reciple/decorators';
+import { ButtonBuilder, ButtonStyle, ComponentType, ButtonInteraction } from 'discord.js';
+import type { MessageCommandExecuteData, RecipleModuleData } from 'reciple';
+
+@setRecipleModule()
+export class MyModule implements RecipleModuleData {
+    @setRecipleModuleStart()
+    @setRegisterInteractionEvents()
+    async onStart(): Promise<boolean> {
+        return true;
+    }
+
+    @setMessageCommand({ name: 'test', description: 'Go test' })
+    async handleMessageCommand({ message }: MessageCommandExecuteData): Promise<void> {
+        await message.reply({
+            content: `Hello, world ${message.author}!`,
+            components: [
+                {
+                    type: ComponentType.ActionRow,
+                    components: [
+                        new ButtonBuilder()
+                            .setLabel('Delete Message')
+                            .setCustomId('delete-message')
+                            .setStyle(ButtonStyle.Secondary)
+                    ]
+                }
+            ]
+        });
+    }
+
+    @setInteractionEvent({ type: InteractionListenerType.Button, customId: 'delete-message' })
+    async onInteraction(interaction: ButtonInteraction): Promise<void> {
+        await interaction.deferUpdate();
+        await interaction.message.delete();
+    }
+}
+
+export default new MyModule();
+```

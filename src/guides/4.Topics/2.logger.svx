@@ -32,6 +32,7 @@ export class MyModule {
 ```
 
 <Alert type='warning' title='WARNING'>We used the <code>?.</code> operator because the <code>.logger</code> property could be undefined depending on your logger configuration.</Alert>
+<Alert type='warning' title='WARNING'>Logger currently doesn't support the <a href="https://cplusplus.com/reference/cstdio/printf/#parameters">printf format specifier</a></Alert>
 
 ## Creating Logger Context
 

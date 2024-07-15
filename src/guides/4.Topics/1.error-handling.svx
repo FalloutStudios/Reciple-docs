@@ -9,16 +9,17 @@ Using our external package [`reciple-anticrash`](https://npmjs.org/package/recip
 ### Two ways to install `reciple-anticrash`
 - Select the addon `reciple-anticrash` when creating the bot project using `npm create reciple@latest`
 - Install the package `reciple-anticrash` using `npm i reciple-anticrash`.
-  - Then create a new module in your `addons` folder. In this case we will name it `interaction-handler.js`.
+  - Then create a new module in your `./modules/addons` folder. In this case we will name it `reciple-anticrash.js`.
     ```js
     import { RecipleAnticrash } from 'reciple-anticrash';
-    export default new RecipleAnticrash();
+    export default new RecipleAnticrash({
+      reportChannels: process.env.ERROR_CHANNELS ? process.env.ERROR_CHANNELS.split(',') : []
+    });
     ```
 
-To add error channels, simple paste your error channels' id into an array at the first argument of your `RecipleAnticrash` instance.
-```js
-import { RecipleAnticrash } from 'reciple-anticrash';
-export default new RecipleAnticrash(['1032785824724570126']);
+To add error channels, simply create a new entry in your `.env` file and add your channels separated by commas.
+```properties
+ERROR_CHANNELS="123456789012345678,987654321098765432"
 ```
 
 Now, whenever there is an error, your bot will display these fancy error messages in its logs and error channels without crashing the entire bot process!

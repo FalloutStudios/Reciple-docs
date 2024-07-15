@@ -115,3 +115,23 @@ Now, when a command fails, the code above will send a message rather than termin
 </discord-messages>
 
 > You can disable a global or command scope halts from a command using [`.addDisabledHalts()`](/docs/core/main/classes:BaseCommandBuilder#adddisabledhalts) or [`.setDisabledHalts()`](/docs/core/main/classes:BaseCommandBuilder#setdisabledhalts). Just pass the id of the halt you want to disable to the arguments of this method to not use them.
+
+## Set Global Command Halt In Module
+
+This methods allows you to set a global command halt within a module without adding it to the config file.
+
+```js
+import { MyErrorHandler } from '../halts/error-handler.js';
+
+export class LoadHalt {
+    halt = new MyErrorHandler();
+
+    async onStart({ client }) {
+        client.commands.addHalts(this.halt);
+
+        return true;
+    }
+}
+
+export default LoadHalt;
+```
