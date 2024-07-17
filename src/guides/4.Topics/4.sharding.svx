@@ -30,7 +30,7 @@ command.name('').description('The options below are passed to reciple cli shards
 process.chdir(cli.cwd);
 
 // Load env file
-loadEnv({ path: cli.options.env });
+loadEnv({ path: cli.flags.env });
 ```
 
 Then we'll read the bot's config file to get the logger configuration. This ensures that each shard has its own logger.
@@ -42,7 +42,7 @@ import path from 'node:path';
 // ...Previous Code Here...
 
 // Read config file
-const config = (await ConfigReader.readConfigJS(cli.options.config ?? 'reciple.mjs')).config;
+const config = (await ConfigReader.readConfigJS(cli.flags.config ?? 'reciple.mjs')).config;
 const logsFolder = process.env.LOGS_FOLDER ?? path.join(process.cwd(), ((typeof config.logger?.logToFile !== 'function' ? config.logger?.logToFile.logsFolder : null) ?? 'logs'));
 ```
 
@@ -204,10 +204,10 @@ command.name('').description('The options below are passed to reciple cli shards
 process.chdir(cli.cwd);
 
 // Load env file
-loadEnv({ path: cli.options.env });
+loadEnv({ path: cli.flags.env });
 
 // Read config file
-const config = (await ConfigReader.readConfigJS(cli.options.config ?? 'reciple.mjs')).config;
+const config = (await ConfigReader.readConfigJS(cli.flags.config ?? 'reciple.mjs')).config;
 const logsFolder = process.env.LOGS_FOLDER ?? path.join(process.cwd(), ((typeof config.logger?.logToFile !== 'function' ? config.logger?.logToFile.logsFolder : null) ?? 'logs'));
 
 // Create the sharding manager's logger
