@@ -13,285 +13,63 @@ Please keep in mind that sharding is a highly advanced topic! Sharding is only r
     This guide will only tackle the basics of sharding using Discord.js <a href="https://discordjs.dev/docs/packages/discord.js/main/ShardingManager:Class"><code>ShardingManager</code></a>.
 </Alert>
 
-## Sharding File
-Your sharding file the file that manages your shards, rather than running your bot using `npm run start`. You will need to run your bot using the shard file we will create.
+## Reciple Sharding Setup
 
-First, create a new file in your bot's root directory. In this case we will name it `sharding-manager.js`. After we've created the file, we'll add Reciple args to the shard process.
+To use Reciple with sharding, you can use the `reciple shard` command to start the built-in sharding manager. Every command flags will be passed to the shard instance when supported.
 
-```js
-import { cli, command } from 'reciple';
-import { config as loadEnv } from 'dotenv';
-
-// Set the command args parser
-Reflect.set(command, 'options', command.options.filter(o => !['shardmode', 'version', 'yes'].includes(o.name())));
-command.name('').description('The options below are passed to reciple cli shards').parse();
-
-// Change cwd to the cli's one
-process.chdir(cli.cwd);
-
-// Load env file
-loadEnv({ path: cli.flags.env });
+```bash
+reciple shard
 ```
 
-Then we'll read the bot's config file to get the logger configuration. This ensures that each shard has its own logger.
+You can configure the sharding manager by exporting a `sharding` object in your `reciple.mjs` config.
+
 ```js
-import { cli, command, ConfigReader } from 'reciple';
-import { config as loadEnv } from 'dotenv';
-import path from 'node:path';
+// reciple.mjs
 
-// ...Previous Code Here...
-
-// Read config file
-const config = (await ConfigReader.readConfigJS(cli.flags.config ?? 'reciple.mjs')).config;
-const logsFolder = process.env.LOGS_FOLDER ?? path.join(process.cwd(), ((typeof config.logger?.logToFile !== 'function' ? config.logger?.logToFile.logsFolder : null) ?? 'logs'));
-```
-
-After that, we will create the sharding manager's logger.
-```js
-import { cli, command, ConfigReader } from 'reciple';
-import { config as loadEnv } from 'dotenv';
-import path from 'node:path';
-
-// ...Previous code here...
-
-// Create the sharding manager's logger
-const logger = await (await createLogger({
-    debugmode: true,
-    coloredMessages: true,
-    shards: false
-}))
-.setDebugMode(true)
-.setName('ShardManager')
-.createFileWriteStream({
-    file: path.join(logsFolder, `/sharder/${process.pid}/main.log`),
-    renameOldFile: true
-});
-
-// Modify some env variables
-Reflect.set(process.env, 'SHARDMODE', true);
-Reflect.set(process.env, 'SHARDS_LOGS_FOLDER', path.join(logsFolder, `/sharder/${process.pid}`));
-```
-
-After setting up the command args, config, and logger. We will create the [`ShardingManager`](https://discordjs.dev/docs/packages/discord.js/main/ShardingManager:Class) that manages the shards.
-```js
-import { cli, command, ConfigReader } from 'reciple';
-import { config as loadEnv } from 'dotenv';
-import { createReadStream } from 'node:fs';
-import path from 'node:path';
-
-// ...Previous code here...
-
-// Create the sharding manager
-const shards = new ShardingManager(cli.binPath, {
-    shardArgs: ['--shardmode', ...process.argv.slice(2)],
-    token: config.token,
-    totalShards: 5,
+/**
+ * @satisfies {import('reciple').RecipleConfigJS['sharding']}
+ */
+export const sharding = {
     mode: 'process',
-    respawn: true,
-});
+};
 ```
 
-Following the creation of the sharding manager, we will listen to the new shards and configure their individual loggers.
-```js
-import { cli, command, ConfigReader } from 'reciple';
-import { config as loadEnv } from 'dotenv';
-import { createReadStream } from 'node:fs';
-import path from 'node:path';
-
-// ...Previous code here...
-
-// Listen to new shards
-shards.on('shardCreate', shard => {
-    let logs;
-
-    logger.log(`Creating shard ${shard.id}...`);
-
-    shard.on('ready', () => {
-        logger.log(`Shard ${shard.id} is ready!`);
-        if (!logs) return;
-
-        logger.log(`Logs for shard ${shard.id} is located at '${logs}'`);
-
-        const readStream = createReadStream(logs, 'utf-8');
-
-        readStream.on('data', data => logger.writeStream?.write(data.toString('utf-8')));
-    });
-
-    shard.on('reconnecting', () => logger.log(`Shard ${shard.id} is reconnecting!`));
-    shard.on('disconnect', () => logger.log(`Shard ${shard.id} disconnected!`));
-    shard.on('death', () => logger.log(`Shard ${shard.id} died!`));
-    shard.on('error', err => logger.log(`Shard ${shard.id} encountered an error!\n`, err));
-
-    shard.on('message', data => {
-        if (!('type' in data) || data.type !== 'ProcessInfo') return;
-
-        logs = data.log;
-    });
-});
-```
-
-Almost done; now we will listen for process exits so that we can properly unload modules from the shards we created.
-```js
-import { cli, command, ConfigReader } from 'reciple';
-import { config as loadEnv } from 'dotenv';
-import { createReadStream } from 'node:fs';
-import path from 'node:path';
-
-// ...Previous code here...
-
-// Listen to process exit signals
-process.stdin.resume();
-
-process.once('SIGHUP', stopProcess);
-process.once('SIGINT', stopProcess);
-process.once('SIGQUIT', stopProcess);
-process.once('SIGABRT', stopProcess);
-process.once('SIGALRM', stopProcess);
-process.once('SIGTERM', stopProcess);
-process.once('SIGBREAK', stopProcess);
-process.once('SIGUSR2', stopProcess);
-
-function stopProcess() {
-    shards.shards.map(c => {
-        logger.log(`Killed ${c.id}`);
-
-        if (c.process) {
-            c.process?.kill('SIGINT');
-        } else {
-            c.kill();
-        }
-    });
-
-    logger.log(`Exitting process!`);
-    setTimeout(() => process.exit(0), 500);
-}
-```
-
-Finally, spawn the shards from the sharding manager, and you're done!
-```js
-import { cli, command, ConfigReader } from 'reciple';
-import { config as loadEnv } from 'dotenv';
-import { createReadStream } from 'node:fs';
-import path from 'node:path';
-
-// ...Previous code here...
-
-// Spawn the shards
-await shards.spawn();
-```
-
-You can now run your sharding manager by typing `node sharding-manager.js` in your terminal.
-
-<Alert type='info' title='INFO'>
-    Because we hooked the process args to the shard process, we can also use Reciple options when running shards, for example <code>node sharding-manager.js --token YOUR_TOKEN</code>
-</Alert>
 <Alert type='warning' title='WARNING'>
-    Passing arguments to the shards is only available when the sharding mode is set to `process` instead of `worker`.
+    When using <code>worker</code> sharding mode, discord.js <code>ShardingManager</code> will not pass the command flags to the shard by default unless you modify the discord.js internal code.
 </Alert>
 
-### Resulting Code
-```js
-import { cli, command, ConfigReader } from 'reciple';
-import { config as loadEnv } from 'dotenv';
-import { createReadStream } from 'node:fs';
-import path from 'node:path';
+## Worker Shard Temporary Fix
 
-// Set the command args parser
-Reflect.set(command, 'options', command.options.filter(o => !['shardmode', 'version', 'yes'].includes(o.name())));
-command.name('').description('The options below are passed to reciple cli shards').parse();
+To fix the issue where the ShardingManager aren't passing the command flags to the shard, we will modify `discord.js`'s internal code using [`patch-package`](https://npmjs.org/package/patch-package).
 
-// Change cwd to the cli's one
-process.chdir(cli.cwd);
+```bash
+npm i -D patch-package
+```
 
-// Load env file
-loadEnv({ path: cli.flags.env });
+Go to `./node_modules/discord.js/src/sharding/Shard.js` and modify the code at line `139` as follows:
 
-// Read config file
-const config = (await ConfigReader.readConfigJS(cli.flags.config ?? 'reciple.mjs')).config;
-const logsFolder = process.env.LOGS_FOLDER ?? path.join(process.cwd(), ((typeof config.logger?.logToFile !== 'function' ? config.logger?.logToFile.logsFolder : null) ?? 'logs'));
+```diff
+- this.worker = new Worker(path.resolve(this.manager.file), { workerData: this.env })
++ this.worker = new Worker(path.resolve(this.manager.file), {
++     workerData: this.env,
++     env: this.env,
++     argv: this.args,
++     execArgv: this.execArgv
++ })
+```
 
-// Create the sharding manager's logger
-const logger = await (await createLogger({
-    debugmode: true,
-    coloredMessages: true,
-    shards: false
-}))
-.setDebugMode(true)
-.setName('ShardManager')
-.createFileWriteStream({
-    file: path.join(logsFolder, `/sharder/${process.pid}/main.log`),
-    renameOldFile: true
-});
+To apply the fix, run the following command in your terminal:
 
-// Modify some env variables
-Reflect.set(process.env, 'SHARDMODE', true);
-Reflect.set(process.env, 'SHARDS_LOGS_FOLDER', path.join(logsFolder, `/sharder/${process.pid}`));
+```bash
+patch-package discord.js
+```
 
-// Create the sharding manager
-const shards = new ShardingManager(cli.binPath, {
-    shardArgs: ['--shardmode', ...process.argv.slice(2)],
-    token: config.token,
-    totalShards: 5,
-    mode: 'process',
-    respawn: true,
-});
+Add a postinstall script in `package.json` to run `patch-package` again.
 
-// Listen to new shards
-shards.on('shardCreate', shard => {
-    let logs;
-
-    logger.log(`Creating shard ${shard.id}...`);
-
-    shard.on('ready', () => {
-        logger.log(`Shard ${shard.id} is ready!`);
-        if (!logs) return;
-
-        logger.log(`Logs for shard ${shard.id} is located at '${logs}'`);
-
-        const readStream = createReadStream(logs, 'utf-8');
-
-        readStream.on('data', data => logger.writeStream?.write(data.toString('utf-8')));
-    });
-
-    shard.on('reconnecting', () => logger.log(`Shard ${shard.id} is reconnecting!`));
-    shard.on('disconnect', () => logger.log(`Shard ${shard.id} disconnected!`));
-    shard.on('death', () => logger.log(`Shard ${shard.id} died!`));
-    shard.on('error', err => logger.log(`Shard ${shard.id} encountered an error!\n`, err));
-
-    shard.on('message', data => {
-        if (!('type' in data) || data.type !== 'ProcessInfo') return;
-
-        logs = data.log;
-    });
-});
-
-// Listen to process exit signals
-process.stdin.resume();
-
-process.once('SIGHUP', stopProcess);
-process.once('SIGINT', stopProcess);
-process.once('SIGQUIT', stopProcess);
-process.once('SIGABRT', stopProcess);
-process.once('SIGALRM', stopProcess);
-process.once('SIGTERM', stopProcess);
-process.once('SIGBREAK', stopProcess);
-process.once('SIGUSR2', stopProcess);
-
-function stopProcess() {
-    shards.shards.map(c => {
-        logger.log(`Killed ${c.id}`);
-
-        if (c.process) {
-            c.process?.kill('SIGINT');
-        } else {
-            c.kill();
-        }
-    });
-
-    logger.log(`Exitting process!`);
-    setTimeout(() => process.exit(0), 500);
+```json
+{
+    "scripts": {
+        "postinstall": "patch-package"
+    }
 }
-
-// Spawn the shards
-await shards.spawn();
 ```
