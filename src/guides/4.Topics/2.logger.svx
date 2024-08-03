@@ -63,7 +63,7 @@ export class MyModule {
 
 The module will now have its own logger, which will print the context name to the console and log file.
 ```
-[19:53:36 INFO][MyModule] Module is started
-[19:53:36 INFO][MyModule] Module is loaded
-[19:53:36 INFO][MyModule] Module is unloaded
+[19:53:36][MyModule/INFO] Module is started
+[19:53:36][MyModule/INFO] Module is loaded
+[19:53:36][MyModule/INFO] Module is unloaded
 ```
