@@ -17,6 +17,8 @@ There are different types of command halts that serves their own purposes.
 - [`CommandPreconditionResultHaltTriggerData`](/docs/core/main/interfaces:CommandPreconditionResultHaltTriggerData) Used to handle a command that has triggered a precondition.
 - [`CommandInvalidArgumentsHaltTriggerData`](/docs/core/main/interfaces:CommandInvalidArgumentsHaltTriggerData) Can only be used with message commands to handle invalid argument error.
 - [`CommandMissingArgumentsHaltTriggerData`](/docs/core/main/interfaces:CommandMissingArgumentsHaltTriggerData) Can only be used with message commands to handle missing argument error.
+- [`CommandInvalidFlagsHaltTriggerData`](/docs/core/main/interfaces:CommandInvalidFlagsHaltTriggerData) Can only be used with message commands to handle invalid flag error.
+- [`CommandMissingFlagsHaltTriggerData`](/docs/core/main/interfaces:CommandMissingFlagsHaltTriggerData) Can only be used with message commands to handle missing flag error.
 
 Command halts are identified using the [`.reason`](/docs/core/main/interfaces:BaseCommandHaltData) property that uses the [`CommandHaltReason`](/docs/core/main/enums:CommandHaltReason) enum.
 
