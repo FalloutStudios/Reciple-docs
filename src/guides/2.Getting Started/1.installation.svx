@@ -29,10 +29,10 @@ Once you enter the command, the program will ask you to set up your bot. First, 
 
 After that, you can select an optional addons for Reciple. These addons are just pre-made Reciple modules.
 ### Addons
-- `reciple-interaction-events` Add property in Reciple modules to listen to interaction events.
-- `reciple-anticrash` Catch errors and report it in a Discord channel.
-- `reciple-dev-commands` Create dev only commands.
-- `reciple-registry-cache` Cache application commands to prevent API spam.
+- `reciple-interaction-events` [**Guide**](/guide/getting-started/event-handling). Add property in Reciple modules to listen to interaction events.
+- `reciple-anticrash` [**Guide**](/guide/topics/error-handling). Catch errors and report it in a Discord channel.
+- `reciple-dev-commands` [**NPM**](https://www.npmjs.com/package/reciple-dev-commands). Create dev only commands.
+- `reciple-registry-cache` [**NPM**](https://www.npmjs.com/package/reciple-registry-cache). Cache application commands to prevent API spam.
 
 To continue, press `Enter`.
 ```
@@ -86,6 +86,27 @@ And lastly, your Discord Bot token. You can obtain your token from [Discord Deve
 │
 ◆  Enter your Discord bot token from Developers Portal
 │   _
+└
+```
+
+> By default a template is chosen for your project, but **sometimes** you can choose different versions of templates depending on your setup config.
+```
+┌  create-reciple v8.6.2
+│
+◇  Would you like to use typescript?
+│  No
+│
+◇  Select a addons from Reciple (Press space to select, and enter to submit)
+│  none
+│
+◇  Select your preferred package manager
+│  npm
+│
+◆  Enter your Discord bot token from Developers Portal
+│   _
+│
+◇  Select a template
+│  Javascript
 └
 ```
 

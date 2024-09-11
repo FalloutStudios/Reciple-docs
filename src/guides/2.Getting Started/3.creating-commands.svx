@@ -327,8 +327,12 @@ export default new MyMessageCommand();
 ```
 
 <Alert type='info' title='INFO'>
-    <code>resolveValue</code> is true to use the function we passed to <code>.setResolveValue()</code>
+    <code>resolveValue</code> is true to use the function we passed to <code>.setResodeolveValue()</code>
 </Alert>
+
+> ### Read More
+- [Message Command Options](/guide/topics/message-command-options)
+- [Message Command Flags](/guide/topics/message-command-flags)
 
 You can now execute the same message command using the alias.
 
